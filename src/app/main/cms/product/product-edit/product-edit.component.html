@@ -1,0 +1,99 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h5 class="h5-title">Thêm mới thể loại</h5>
+        <div class="button">
+            <button href="" class="btn btn-primary btn-sm" onclick="createCategory();">
+                <i class="flaticon-381-save"></i>
+                Lưu
+            </button>
+            <a [routerLink]="['/cms/product']" class="btn btn-danger btn-sm">
+                <i class="flaticon-381-exit-1"></i>
+                Thoát
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form">
+        <div class="row w-100">
+                <div class="col-md-9">
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Tên thể loại</label>
+                        <div class="form-group">
+                            <input formControlName="name" id="name" type="text" class="form-control input-default " placeholder="Tên thể loại">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Ghi chú</label>
+                        <div class="form-group">
+                            <input formControlName="note" id="note" type="text" class="form-control input-default " placeholder="Ghi chú">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Tiêu đề SEO</label>
+                        <div class="form-group">
+                            <input formControlName="metaTitle" id="metaTitle" type="text" class="form-control input-default " placeholder="Tiêu đề SEO">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Từ khóa SEO</label>
+                        <div class="form-group">
+                            <input formControlName="metaKey" id="metaKey" type="text" class="form-control input-default " placeholder="Từ khóa SEO">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Mô tả SEO</label>
+                        <div class="form-group">
+                            <input formControlName="metaDesc" id="metaDesc" type="text" class="form-control input-default " placeholder="Mô tả SEO">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Thể loại cha</label>
+                        <div id="cate" class="form-group">
+                            <select id="idParent" class="form-control default-select" formControlName="idParent">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="mb-2 font-weight-bold" for="">Ảnh đại diện</label>
+                        <div class="">
+                            <input id="image" class="control-label" name="" type="file" value="">
+                            <span class="field-validation-valid text-danger" data-valmsg-for="Image" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Trạng thái hiển thị</label>
+                        <div class="form-group">
+                            <select id="active" class="form-control default-select" formControlName="active">
+                                <option value="1">Hiển thị</option>
+                                <option value="0">Không hiển thị</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<button (click)="getRawValue()">raw value</button>
+<!-- Button trigger modal -->
+<button id="btn-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Basic modal</button>
+<div class="modal fade" id="basicModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Modal body text goes here.</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-base-edit></app-base-edit> -->

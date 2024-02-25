@@ -52,124 +52,7 @@
                 </div>
                 <h5 class="name"><span class="font-w400">Xin chào,</span> </h5>
             </div>
-            <ul class="metismenu" id="menu">
-                <li class="nav-label first">Menu chính</li>
-                <li>
-                    <a class="ai-icon" href="/Admin/Dashboard/Index" aria-expanded="false">
-                        <i class="flaticon-144-layout"></i>
-                        <span class="nav-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-label">Thành phần</li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-165-menu"></i>
-                        <span class="nav-text">Thể loại</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                        <li><a href="">Thêm mới</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-050-tag"></i>
-                        <span class="nav-text">Thương hiệu</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                        <li><a href="">Create</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-092-money"></i>
-                        <span class="nav-text">Sản phẩm</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                        <li><a href="">Thêm mới</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-091-shopping-cart"></i>
-                        <span class="nav-text">Hóa đơn</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-381-menu-2"></i>
-                        <span class="nav-text">Thể loại tin tức</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                        <li><a href="">Thêm mới</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-381-news"></i>
-                        <span class="nav-text">Tin tức</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                        <li><a href="">Thêm mới</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-381-picture-2"></i>
-                        <span class="nav-text">Slide Show</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                        <li><a href="">Thêm mới</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-159-email"></i>
-                        <span class="nav-text">Liên hệ</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-381-menu-3"></i>
-                        <span class="nav-text">Vai trò</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow ai-icon" href="" aria-expanded="false">
-                        <i class="flaticon-381-user"></i>
-                        <span class="nav-text">Tài khoản</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Danh sách</a></li>
-                        <li><a href="">Thùng rác</a></li>
-                        <li><a href="">Thêm mới</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <app-navigator></app-navigator>
 
         </div>
     </div>
@@ -183,13 +66,15 @@
         <div class="container-fluid" style="padding-top: 0px;">
             <div class="row">
                 <div class="col-lg-12">
-                    <app-demo-table></app-demo-table>
+                    <!-- <app-demo-table></app-demo-table> -->
+                    <router-outlet></router-outlet>
                 </div>
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <app-demo-form></app-demo-form>
-                </div>
+                </div> -->
             </div>
         </div>
+        <app-confirm-dialog></app-confirm-dialog>
     </div>
 
     <!--**********************************
@@ -200,6 +85,7 @@
     ***********************************-->
 
     <app-footer></app-footer>
+
 
     <!--**********************************
         Footer end

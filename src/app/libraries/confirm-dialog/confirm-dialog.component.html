@@ -1,0 +1,44 @@
+<div #container class="core-confirm-dialog-container roboto-font">
+    @if(show == true){
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal fade show" style="display: block;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+    
+                                <div class="container no-padding no-margin" style="max-width: unset !important;">
+                                    <div class="title"><span class="captionText">{{ title | uppercase }}</span></div>
+                                </div>
+                                <button type="button" class="close">
+                                    <span (click)="close()">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">{{ body }}</div>
+                            @if(!!informationLines?.length){
+                                <ul>
+                                    @for(line of informationLines; track line){
+                                        <li>
+                                            {{ line }}
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            <div class="modal-footer">
+                                @if (!!!showCancelOnly) {
+                                    <button (click)="onConfirm()" type="button" class="btn btn-secondary" >{{ okButtonText }}</button>
+                                }
+                                <button (click)="close()" type="button" class="btn btn-primary">{{ cancelButtonText }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    
+</div>
+
+@if(show === true){
+    <div>1231233</div>
+}
