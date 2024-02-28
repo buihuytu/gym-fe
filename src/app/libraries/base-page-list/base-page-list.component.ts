@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { BasePageListService } from './base-page-list.service';
 import { HttpRequestService } from '../../services/http.service';
-import { LibrariesModule } from '../libraries.module';
 
 export interface ICorePageListApiDefinition {
   queryListRelativePath: string;
@@ -53,8 +52,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
     this.basePageListService.queryList(url,'x');
     // switchMap((x) => {
     //   // this.loading = true;
-    //   const url = this.apiDefinition.queryListRelativePath;
-    //   return 
+      
     // })
   }
   ngAfterViewInit(): void {

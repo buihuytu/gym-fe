@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BasePageListComponent, ICorePageListApiDefinition, ICoreTableColumnItem } from '../../../libraries/base-page-list/base-page-list.component';
 import { api } from '../../../constants/api/apiDefinitions';
+import { HttpRequestService } from '../../../services/http.service';
 
 @Component({
   selector: 'app-test-component',
@@ -60,5 +61,13 @@ export class TestComponentComponent {
       width: 150
     },
   ]
-
+  constructor(
+    private httpService: HttpRequestService,
+  ) {
+  }
+  ngOnInit() {
+    this.httpService.makeGetRequest('qur',api.QUERY_LIST_TEST).pipe().subscribe(x=>{
+      console.log(x)
+    })
+  }
 }
