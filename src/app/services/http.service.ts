@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, last, map } from "rxjs";
+import { AppConfigService } from "./app-config.service";
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -22,11 +23,13 @@ const cacheHeaders = new HttpHeaders({
   providedIn: 'root'
 })
 export class HttpRequestService {
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient,
+    public appConfigService: AppConfigService ) {
   }
 
   makePostRequest(name: string, relativeApiEndPoint: string, payload: any): Observable<any> {
-    return this.http.post<any>(relativeApiEndPoint, payload, {
+    return this.http.post<any>(this.appConfigService.BASE_URL + relativeApiEndPoint, payload, {
       headers: headers, observe: 'response', reportProgress: true, withCredentials: true,
     })
       .pipe(
@@ -36,7 +39,7 @@ export class HttpRequestService {
   }
 
   makeGetRequest(name: string, relativeApiEndPoint: string, cacheRequest: boolean = false): Observable<any> {
-    return this.http.get<any>(relativeApiEndPoint, {
+    return this.http.get<any>(this.appConfigService.BASE_URL + relativeApiEndPoint, {
       headers: cacheRequest ? cacheHeaders : headers, observe: 'response', reportProgress: true, withCredentials: true,
     })
       .pipe(

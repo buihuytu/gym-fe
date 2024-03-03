@@ -8,6 +8,7 @@ import { DemoFormComponent } from '../../demo/demo-form/demo-form.component';
 import { RouterModule } from '@angular/router';
 import { NavigatorComponent } from '../navigator/navigator.component';
 import { ConfirmDialogComponent } from '../../libraries/confirm-dialog/confirm-dialog.component';
+import { AppConfigService } from '../../services/app-config.service';
 
 @Component({
   selector: 'app-applayout',
@@ -26,7 +27,19 @@ import { ConfirmDialogComponent } from '../../libraries/confirm-dialog/confirm-d
   styleUrl: './applayout.component.css'
 })
 export class ApplayoutComponent implements OnInit {
-  ngOnInit(): void {
-    console.log("Call API to Load Avatar + Info");
+  constructor(public appConfig: AppConfigService ) {
+    
   }
+  ngOnInit(): void {
+    try {
+      fetch('../../assets/app.config.json').then(res => res.json()).then(({ 
+        BASE_URL,     
+      }) => {
+        this.appConfig.BASE_URL = BASE_URL;
+      }).catch(e => console.log("fetch app.config.json error", e))
+    } catch (e) {
+      console.log("appInitialize() zip() error: ", e)
+    }
+  }
+
 }
