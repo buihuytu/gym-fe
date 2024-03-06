@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BasePageListComponent, ICorePageListApiDefinition, ICoreTableColumnItem } from '../../../libraries/base-page-list/base-page-list.component';
 import { api } from '../../../constants/api/apiDefinitions';
 import { HttpRequestService } from '../../../services/http.service';
+import { EnumBaseButton } from '../../../constants/headerButton/ButtonDefinitions';
 
 @Component({
   selector: 'app-test-component',
@@ -16,6 +17,7 @@ export class TestComponentComponent {
   apiQueryList: ICorePageListApiDefinition ={
     queryListRelativePath: api.QUERY_LIST_TEST
   };
+  showButtons: EnumBaseButton[]= [EnumBaseButton.CREATE, EnumBaseButton.DELETE, EnumBaseButton.EDIT, EnumBaseButton.APPROVE]
   columns:ICoreTableColumnItem[] = [
     {
       caption: 'id',
@@ -67,7 +69,6 @@ export class TestComponentComponent {
   }
   ngOnInit() {
     this.httpService.makeGetRequest('qur',api.QUERY_LIST_TEST).pipe().subscribe(x=>{
-      console.log(x)
     })
   }
 }

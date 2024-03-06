@@ -25194,12 +25194,12 @@ input[type="checkbox"]:checked:after {
 }
 
 .checkbox-success .custom-control-label::before {
-    background-color: #ecfae4;
-    border-color: #ecfae4;
+    background-color: var(--light);
+    border-color: var(--light);
 }
 .checkbox-success .custom-control-input:checked ~ .custom-control-label::before {
-    background-color: #68CF29;
-    border-color: #68CF29;
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
 
 .checkbox-warning .custom-control-label::before {
@@ -28309,7 +28309,12 @@ button {
     font-size: 0.813rem !important;
     padding: 0.4rem 0.8rem;
 }
-
+.btn-sm{
+    border: 1px solid;
+}
+.btn-sm+.btn-sm{
+    margin-left:5px ;
+}
 .btn-md {
     font-size: 0.813rem !important;
     padding: 0.65rem 1.25rem;
