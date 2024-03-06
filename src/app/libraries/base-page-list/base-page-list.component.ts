@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, Input, OnInit, TemplateRef, isDevMode } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BasePageListService } from './base-page-list.service';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { EnumBaseButton } from '../../constants/headerButton/ButtonDefinitions';
@@ -44,6 +44,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private basePageListService: BasePageListService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.navigationLink = `/cms/test/${btoa('0')}`;
   }
@@ -87,7 +89,12 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   onHeaderButtonClick(e: EnumBaseButton) {
     switch (e) {
       case EnumBaseButton.CREATE:
-        this.navigationLink = `/cms/test/${btoa('0')}`;
+        this.router.navigate(
+          [btoa('0')],
+          {
+            relativeTo: this.route.parent,
+          }
+        );
         break;
       case EnumBaseButton.EDIT:
         this.navigationLink = `/cms/test/${btoa('0')}`;
