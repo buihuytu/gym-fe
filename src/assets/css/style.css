@@ -410,12 +410,12 @@ a {
     }
 
     a:not([href]):not([tabindex]) {
-        color: inherit;
+        color: #fff;;
         text-decoration: none;
     }
 
         a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
-            color: inherit;
+            color: #fff;
             text-decoration: none;
         }
 
@@ -2339,7 +2339,7 @@ pre {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #f8d5c5;
+    border-color: #fa9b6f;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(235, 129, 83, 0.25);
 }

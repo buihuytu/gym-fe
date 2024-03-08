@@ -1,9 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Directive } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BaseEditComponent } from '../../../../libraries/base-edit/base-edit.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogService } from '../../../../services/dialog.service';
+import { BasePageEditComponent } from '../../../../libraries/base-page-edit/base-page-edit.component';
 
+@Directive({
+  standalone: true,
+  selector: '[dir]',
+  host: {ngSkipHydration: 'true'},
+})
+class Dir {
+}
 @Component({
   selector: 'app-product-edit',
   standalone: true,
@@ -11,11 +19,13 @@ import { DialogService } from '../../../../services/dialog.service';
     RouterModule,
     FormsModule, 
     ReactiveFormsModule,
+    BasePageEditComponent
   ],
   templateUrl: './product-edit.component.html',
   styleUrl: './product-edit.component.css'
 })
 export class ProductEditComponent extends BaseEditComponent {
+  title: string = 'Quản lý thông tin X';
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,

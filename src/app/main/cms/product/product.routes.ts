@@ -5,13 +5,13 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { CanDeactivateGuard } from '../../../guards/can-deactivate.guard';
 
 export const routes: Routes = [
-    {
-        path: "",
-        component: ProductComponent,
-      },
-      {
-        path: ":id",
-        component: ProductEditComponent,
-        canDeactivate: [CanDeactivateGuard],
-      }
+  {
+    path: "",
+    component: ProductComponent,
+  },
+  {
+    path: ":id",
+    component: ProductEditComponent,
+    canDeactivate: [CanDeactivateGuard],
+  }
 ];
