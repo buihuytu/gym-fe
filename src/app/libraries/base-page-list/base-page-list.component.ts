@@ -5,6 +5,7 @@ import { BasePageListService } from './base-page-list.service';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { EnumBaseButton } from '../../constants/headerButton/ButtonDefinitions';
 import { CORE_VNS_BUTTONS } from '../../constants/headerButton/IButtonDefinitions';
+import { FormsModule } from '@angular/forms';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: string;
 }
@@ -26,6 +27,7 @@ export interface ICoreTableColumnItem {
     RouterModule,
     CommonModule,
     TooltipModule,
+    FormsModule,
   ],
   templateUrl: './base-page-list.component.html',
   styleUrl: './base-page-list.component.scss'
@@ -37,11 +39,13 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   @Input() buttons!: EnumBaseButton[];
 
   showButtons!: any[];
+  headerCheckboxState!:any;
   data!: any[];
+  checkingModel: boolean[] = [];
   visibleColumns!: ICoreTableColumnItem[];
   count!: number;
   navigationLink!: any;
-
+  selectedIds!: any[];  
   constructor(
     private basePageListService: BasePageListService,
     private router: Router,
@@ -49,6 +53,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   ) {
     this.navigationLink = `/cms/test/${btoa('0')}`;
   }
+
   ngOnInit(): void {
     if (!!!this.columns) {
       console.log("NOT EXITS COLUMNS")
@@ -97,7 +102,14 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
         );
         break;
       case EnumBaseButton.EDIT:
-        this.navigationLink = `/cms/test/${btoa('0')}`;
+        if(this.selectedIds.length === 0) return console.log('1');
+        if(this.selectedIds.length > 1) return console.log('2')
+        this.router.navigate(
+          [btoa(this.selectedIds[0].toString())],
+          {
+            relativeTo: this.route.parent,
+          }
+        );
         break;
       case EnumBaseButton.ACTIVATE:
         this.navigationLink = `/cms/test/${btoa('0')}`;
@@ -114,5 +126,35 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
       default: 
         break;
     }
+  }
+  toggleCheckAll(args: boolean) {
+    const newCheckingModel: boolean[] = [];
+    const newSelectedIds: any[] = [];
+    const newSelectedData: any[] = [];
+
+    this.data.map(item => {
+      newCheckingModel.push(args);
+      if (args) {
+        newSelectedIds.push(item.id);
+        newSelectedData.push(item);
+      }
+    });
+    this.checkingModel = newCheckingModel;
+    this.selectedIds = newSelectedIds;
+    console.log(newSelectedIds)
+  }
+  onCheckingNgModelChange() {
+    const newSelectedIds: number[] = [];
+    const newSelectedData: any[] = [];
+    this.data.filter((_: any, index: number) => !!this.checkingModel[index]).map(item => {
+      newSelectedIds.push(item.id)
+      newSelectedData.push(item)
+      
+    })
+    this.selectedIds = newSelectedIds;
+  }
+
+  selectedIdChanges(e:any){
+    console.log(e)
   }
 }
