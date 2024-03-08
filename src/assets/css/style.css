@@ -2431,7 +2431,12 @@ textarea.form-control {
 
 .form-group {
     margin-bottom: 1rem;
+    
 }
+.required::after {
+    content: " *";
+    color: red;
+  }
 
 .form-text {
     display: block;
@@ -2813,7 +2818,9 @@ textarea.form-control {
     border-radius: 0.75rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
+.input-error{
+    color: #ff1001;
+}
 @media (prefers-reduced-motion: reduce) {
     .btn {
         transition: none;

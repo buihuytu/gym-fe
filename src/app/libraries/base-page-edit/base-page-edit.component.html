@@ -2,7 +2,7 @@
     <div class="card-header d-flex justify-content-between">
         <h5 class="h5-title">{{title || ''}}</h5>
         <div class="button">
-            <button href="" class="btn btn-primary btn-sm" onclick="createCategory();">
+            <button href="" class="btn btn-primary btn-sm" (click)="saveData()">
                 <i class="flaticon-381-save"></i>
                 Lưu
             </button>
@@ -20,7 +20,8 @@
 <ng-template #default>
     <!-- <app-threedots></app-threedots> -->
 </ng-template>
-<button (click)="getRawValue()">raw value</button>
+@if (isDevMode) {
+    <button (click)="getRawValue()">raw value</button>
 <!-- Button trigger modal -->
 <button id="btn-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Basic modal</button>
 <div class="modal fade" id="basicModal">
@@ -39,4 +40,4 @@
         </div>
     </div>
 </div>
-<!-- <app-base-edit></app-base-edit> -->
+}

@@ -1,17 +1,10 @@
 import { Component, Directive } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BaseEditComponent } from '../../../../libraries/base-edit/base-edit.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DialogService } from '../../../../services/dialog.service';
 import { BasePageEditComponent } from '../../../../libraries/base-page-edit/base-page-edit.component';
 
-@Directive({
-  standalone: true,
-  selector: '[dir]',
-  host: {ngSkipHydration: 'true'},
-})
-class Dir {
-}
 @Component({
   selector: 'app-product-edit',
   standalone: true,
@@ -32,7 +25,7 @@ export class ProductEditComponent extends BaseEditComponent {
     ) {
     super(dialogService);
     this.form = this.fb.group({
-      name: [],
+      name: [null,[Validators.required]],
       note: [],
       metaTitle: [],
       metaKey: [],

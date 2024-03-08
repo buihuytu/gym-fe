@@ -5,10 +5,16 @@
             <div class="row w-100">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <label for="" class="mb-2 font-weight-bold">Tên thể loại</label>
+                        <label for="name" class="mb-2 font-weight-bold required">Tên thể loại</label>
                         <div class="form-group">
                             <input formControlName="name" id="name" type="text" class="form-control input-default "
                                 placeholder="Tên thể loại">
+                                @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                }
+                               
                         </div>
                     </div>
                     <div class="mb-3">
