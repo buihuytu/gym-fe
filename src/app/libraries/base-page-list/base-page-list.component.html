@@ -13,9 +13,10 @@
                 </div>
             </div>
             @for (button of showButtons; track $index) {
-                <div (click)="onHeaderButtonClick(button.code)" [appTooltip]='button.caption' class="btn btn-sm"><i [class]="button.iconClass"></i></div>
+            <div (click)="onHeaderButtonClick(button.code)" [appTooltip]='button.caption' class="btn btn-sm"><i
+                    [class]="button.iconClass"></i></div>
             }
-            
+
         </div>
     </div>
     <div class="card-body">
@@ -34,7 +35,8 @@
                     <tr>
                         <th style="width:50px;">
                             <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                <input (ngModelChange)="toggleCheckAll($event)" [(ngModel)]="headerCheckboxState" type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                <input (ngModelChange)="toggleCheckAll($event)" [(ngModel)]="headerCheckboxState"
+                                    type="checkbox" class="custom-control-input" id="checkAll" required="">
                                 <label class="custom-control-label" for="checkAll"></label>
                             </div>
                         </th>
@@ -49,11 +51,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (loading) {
+                    <app-pre-loader></app-pre-loader>
+                    }
                     <tr *ngFor="let row of data; let row_index=index">
                         <td>
                             <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                <input [(ngModel)]="checkingModel[row_index]" (ngModelChange)="onCheckingNgModelChange()" type="checkbox" class="custom-control-input" [id]="'customCheckBox'+ row_index"
-                                    required="">
+                                <input [(ngModel)]="checkingModel[row_index]"
+                                    (ngModelChange)="onCheckingNgModelChange()" type="checkbox"
+                                    class="custom-control-input" [id]="'customCheckBox'+ row_index" required="">
                                 <label class="custom-control-label" [htmlFor]="'customCheckBox'+ row_index"></label>
                             </div>
                         </td>

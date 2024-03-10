@@ -6,6 +6,8 @@ import { TooltipModule } from '../tooltip/tooltip.module';
 import { EnumBaseButton } from '../../constants/headerButton/ButtonDefinitions';
 import { CORE_VNS_BUTTONS } from '../../constants/headerButton/IButtonDefinitions';
 import { FormsModule } from '@angular/forms';
+import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
+import { api } from '../../constants/api/apiDefinitions';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: string;
 }
@@ -28,6 +30,7 @@ export interface ICoreTableColumnItem {
     CommonModule,
     TooltipModule,
     FormsModule,
+    PreLoaderComponent
   ],
   templateUrl: './base-page-list.component.html',
   styleUrl: './base-page-list.component.scss'
@@ -46,6 +49,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   count!: number;
   navigationLink!: any;
   selectedIds!: any[];  
+
+  loading!: boolean;
   constructor(
     private basePageListService: BasePageListService,
     private router: Router,
@@ -77,6 +82,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
     // })
   }
   ngAfterViewInit(): void {
+    this.loading = true;
     setTimeout(() => {
       const url = this.apiDefinition.queryListRelativePath;
       this.basePageListService.queryList(url, 'x').pipe().subscribe(x => {
@@ -87,6 +93,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
             this.data = data;
             this.count = body.innerBody.count;
           }
+          this.loading=false;
         }
       });
     })
