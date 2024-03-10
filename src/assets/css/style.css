@@ -12776,7 +12776,7 @@ a {
     }
 
     .header .navbar {
-        height: 4.5rem;
+        height: 4rem;
         padding: 0 40px;
         width: 100%;
     }
@@ -12970,7 +12970,7 @@ svg.pulse-svg {
 }
 
 [data-header-position="fixed"] .content-body {
-    padding-top: 5.5rem;
+    padding-top: 5rem;
 }
 
 [data-header-position="fixed"] .deznav {
@@ -28782,7 +28782,7 @@ button {
     border-color: #EEEEEE;
     position: relative;
     background: transparent;
-    padding: 1.5rem 1.875rem 1.25rem;
+    padding-right: 1.875rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28790,7 +28790,7 @@ button {
 
 @media only screen and (max-width: 575px) {
     .card-header {
-        padding: 1.25rem 1rem 1.25rem;
+        padding-right:1rem;
     }
 }
 
@@ -29507,7 +29507,7 @@ code {
 }
 
 .pagination {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
     .pagination .page-item.page-indicator .page-link {
@@ -29654,10 +29654,10 @@ code {
 }
 
     .pagination-circle .page-item .page-link, .pagination-circle .page-item.page-indicator .page-link {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         padding: 0;
-        line-height: 40px;
+        line-height: 30px;
         border-radius: 50% !important;
         padding: 0;
     }
@@ -29992,8 +29992,8 @@ code {
 .dataTables_scrollBody::-webkit-scrollbar,
 .table-responsive::-webkit-scrollbar {
     background-color: #F5F5F5;
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
 }
 
 .jsgrid-grid-body::-webkit-scrollbar-track,
@@ -30011,7 +30011,6 @@ code {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #7e7e7e;
 }
-
 .multi-steps > li.is-active:before, .multi-steps > li.is-active ~ li:before {
     content: counter(stepNum);
     font-family: inherit;

@@ -92,12 +92,12 @@
                 </tbody>
             </table>
             <div>
-                <nav>
-                    <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                <nav class="row">
+                    <div class="dataTables_info col-4" id="example2_info" role="status" aria-live="polite">
                         Hiển thị từ <span id="start"></span> đến <span id="end"></span> trên <span
                             id="totalProduct">{{count}}</span> sản phẩm
                     </div>
-                    <div>
+                    <div class="col-8">
                         <ul id="pagination" class="pagination pagination-circle" style="justify-content: end;">
 
                             <li id="previous" class="page-item page-indicator" style="cursor: not-allowed;">
@@ -108,7 +108,9 @@
                             <li class="page-item active" style="cursor:not-allowed;">
                                 <a class="page-link">1</a>
                             </li>
-        
+                            <li class="page-item active" style="cursor:not-allowed;">
+                                <a class="page-link">1</a>
+                            </li>
                             <li id="next" class="page-item page-indicator" style="cursor: not-allowed;">
                                 <a class="page-link">
                                     <i class="la la-angle-right"></i>
