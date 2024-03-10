@@ -11681,31 +11681,31 @@ a {
 
 .content-body .container-fluid {
     padding-top: 40px;
-    padding-right: 40px;
-    padding-left: 40px;
+    /* padding-right: 40px; */
+    /* padding-left: 40px; */
 }
 
 @media only screen and (max-width: 1200px) {
     .content-body .container-fluid {
         padding-top: 30px;
-        padding-right: 30px;
-        padding-left: 30px;
+        /* padding-right: 30px;
+        padding-left: 30px; */
     }
 }
 
 @media only screen and (max-width: 767px) {
     .content-body .container-fluid {
         padding-top: 20px;
-        padding-right: 20px;
-        padding-left: 20px;
+        /* padding-right: 20px;
+        padding-left: 20px; */
     }
 }
 
 @media only screen and (max-width: 575px) {
     .content-body .container-fluid {
         padding-top: 15px;
-        padding-right: 15px;
-        padding-left: 15px;
+        /* padding-right: 15px;
+        padding-left: 15px; */
     }
 }
 
@@ -12970,7 +12970,7 @@ svg.pulse-svg {
 }
 
 [data-header-position="fixed"] .content-body {
-    padding-top: 7.5rem;
+    padding-top: 5.5rem;
 }
 
 [data-header-position="fixed"] .deznav {

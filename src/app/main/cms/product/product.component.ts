@@ -40,7 +40,7 @@ export class ProductComponent implements OnInit, AfterViewInit, OnDestroy {
       field: 'nameCenter',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 50
     },
     {
       caption: 'address',
