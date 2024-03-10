@@ -11,7 +11,7 @@ import { EnumBaseButton } from '../../../constants/headerButton/ButtonDefinition
     BasePageListComponent
   ],
   templateUrl: './test-component.component.html',
-  styleUrl: './test-component.component.css'
+  styleUrl: './test-component.component.scss'
 })
 export class TestComponentComponent {
   apiQueryList: ICorePageListApiDefinition ={
