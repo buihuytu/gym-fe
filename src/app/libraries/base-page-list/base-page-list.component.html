@@ -2,10 +2,12 @@
     <div class="card-header">
         <h4 class="card-title">{{title}}</h4>
         <div>
-            <div class="input-group search-area right d-lg-inline-flex d-none">
+            <div [ngStyle]="{
+                marginRight: 5+'px',
+            }" class="input-group search-area right d-lg-inline-flex d-none">
                 <input type="search" class="form-control" placeholder="Find something here...">
                 <div class="input-group-append">
-                    <span [appTooltip]="'hi'" class="input-group-text">
+                    <span [appTooltip]="'Search'" class="input-group-text">
                         <a href="javascript:void(0)">
                             <i class="flaticon-381-search-2"></i>
                         </a>
