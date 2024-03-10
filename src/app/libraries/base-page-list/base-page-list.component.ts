@@ -50,7 +50,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   navigationLink!: any;
   selectedIds!: any[];  
 
-  loading!: boolean;
+  loading: boolean = true;
   constructor(
     private basePageListService: BasePageListService,
     private router: Router,

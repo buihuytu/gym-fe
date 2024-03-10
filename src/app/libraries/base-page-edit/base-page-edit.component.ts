@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { BasePageListService } from '../base-page-list/base-page-list.service';
 import { HttpRequestService } from '../../services/http.service';
 import { api } from '../../constants/api/apiDefinitions';
+import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
 
 export interface ICorePageEditCRUD {
   c?: api; // Create
@@ -24,6 +25,7 @@ export interface ICorePageEditCRUD {
     RouterModule,
     FormsModule, 
     ReactiveFormsModule,
+    PreLoaderComponent
   ],
   templateUrl: './base-page-edit.component.html',
   styleUrl: './base-page-edit.component.scss'

@@ -20,8 +20,8 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-responsive-md">
+        <div >
+            <table class="table table-responsive"><!-- table-responsive-md -->
                 <colgroup>
                     <col>
                     @for (col of visibleColumns; track col.field) {
@@ -31,8 +31,8 @@
                     }
                     <col>
                 </colgroup>
-                <thead>
-                    <tr>
+                <thead style="background-color: currentColor;">
+                    <tr style="color: #fff;">
                         <th style="width:50px;">
                             <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
                                 <input (ngModelChange)="toggleCheckAll($event)" [(ngModel)]="headerCheckboxState"
@@ -47,7 +47,7 @@
                             }"><strong>{{col.caption}}</strong></th>
                         }
                         }
-                        <th>&#160;</th>
+                        <!-- <th>&#160;</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -66,13 +66,13 @@
                         <td *ngFor="let col of visibleColumns; let col_index = index">
                             {{row[col.field]}}
                         </td>
-                        <td>
+                        <!-- <td>
                             <div class="d-flex">
                                 <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
                                         class="fa fa-pencil"></i></a>
                                 <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
             </table>

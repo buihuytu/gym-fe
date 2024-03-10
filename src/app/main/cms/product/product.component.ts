@@ -40,7 +40,7 @@ export class ProductComponent implements OnInit, AfterViewInit, OnDestroy {
       field: 'nameCenter',
       type: 'text',
       align: 'left',
-      width: 150
+      width: 250
     },
     {
       caption: 'address',
@@ -53,6 +53,55 @@ export class ProductComponent implements OnInit, AfterViewInit, OnDestroy {
       caption: 'phone',
       field: 'phone',
       type: 'text',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: 'isActive',
+      field: 'isActive',
+      type: 'boolean',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: 'isActive',
+      field: 'isActive',
+      type: 'boolean',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: 'isActive',
+      field: 'isActive',
+      type: 'boolean',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: 'isActive',
+      field: 'isActive',
+      type: 'boolean',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: 'isActive',
+      field: 'isActive',
+      type: 'boolean',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: 'isActive',
+      field: 'isActive',
+      type: 'boolean',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: 'isActive',
+      field: 'isActive',
+      type: 'boolean',
       align: 'left',
       width: 150
     },
