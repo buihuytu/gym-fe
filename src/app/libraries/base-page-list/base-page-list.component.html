@@ -21,7 +21,9 @@
     </div>
     <div class="card-body">
         <div >
-            <table class="table table-responsive"><!-- table-responsive-md -->
+            <table [ngStyle]="{
+                minHeight: tableHeight + 'px'
+            }" id="base-table" class="table table-responsive"><!-- table-responsive-md -->
                 <colgroup>
                     <col>
                     @for (col of visibleColumns; track col.field) {
@@ -93,11 +95,11 @@
             </table>
             <div>
                 <nav class="row">
-                    <div class="dataTables_info col-4" id="example2_info" role="status" aria-live="polite">
+                    <div class="dataTables_info col-6" id="example2_info" role="status" aria-live="polite">
                         Hiển thị từ <span id="start"></span> đến <span id="end"></span> trên <span
                             id="totalProduct">{{count}}</span> sản phẩm
                     </div>
-                    <div class="col-8">
+                    <div class="col-6">
                         <ul id="pagination" class="pagination pagination-circle" style="justify-content: end;">
 
                             <li id="previous" class="page-item page-indicator" style="cursor: not-allowed;">

@@ -44,6 +44,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   showButtons!: any[];
   headerCheckboxState!:any;
   data!: any[];
+  tableHeight!: number;
   checkingModel: boolean[] = [];
   visibleColumns!: ICoreTableColumnItem[];
   count!: number;
@@ -73,6 +74,10 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
     if (!!!this.buttons || this.buttons.length <= 0) {
       console.log("NOT EXITS BUTTONS")
     }
+		var win_h = window.outerHeight;
+		if (win_h > 0 ? win_h : screen.height) {
+      this.tableHeight = win_h - 350;
+		};
     this.showButtons = CORE_VNS_BUTTONS.filter(x => this.buttons.includes(x.code));
     this.showButtons.sort((a, b) => a.order - b.order);
     console.log(this.showButtons)
