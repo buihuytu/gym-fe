@@ -7,6 +7,7 @@ export class AppConfigService {
 
   /* This BASE_URL will be red from assets/app-config/app.config.json */
   BASE_URL!: string;
+  LANGUAGE!: boolean; // default language false => vn - true => en
   /********************************************************************/
 
 

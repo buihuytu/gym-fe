@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">{{title}}</h4>
+        <h4 class="card-title">{{!!!language ? title[0]:title[1]}}</h4>
         <div>
             <div [ngStyle]="{
                 marginRight: 5+'px',
@@ -53,8 +53,8 @@
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis'
                             }"
-                            [appTooltip]="col.caption">
-                                {{col.caption}}
+                            [appTooltip]="!!!language ? col.caption[0] : col.caption[1]">
+                                {{!!!language ? col.caption[0] : col.caption[1]}}
                             </div>
                         </th>
                         }
@@ -99,7 +99,7 @@
                 <nav class="row">
                     <div class="dataTables_info col-6" id="example2_info" role="status" aria-live="polite">
                         Hiển thị từ <span id="start"></span> đến <span id="end"></span> trên <span
-                            id="totalProduct">{{count}}</span> sản phẩm
+                            id="totalProduct">{{count}}</span> kết quả
                     </div>
                     <div class="col-6">
                         <ul id="pagination" class="pagination pagination-circle" style="justify-content: end;">

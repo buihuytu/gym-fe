@@ -8,12 +8,13 @@ import { CORE_VNS_BUTTONS } from '../../constants/headerButton/IButtonDefinition
 import { FormsModule } from '@angular/forms';
 import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
 import { api } from '../../constants/api/apiDefinitions';
+import { AppConfigService } from '../../services/app-config.service';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: string;
 }
 
 export interface ICoreTableColumnItem {
-  caption: string;
+  caption: string[];
   field: string;
   type: string;
   align: string;
@@ -36,7 +37,7 @@ export interface ICoreTableColumnItem {
   styleUrl: './base-page-list.component.scss'
 })
 export class BasePageListComponent implements OnInit, AfterViewInit {
-  @Input() title!: string;
+  @Input() title!: string[];
   @Input() columns!: ICoreTableColumnItem[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() buttons!: EnumBaseButton[];
@@ -50,14 +51,15 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   count!: number;
   navigationLink!: any;
   selectedIds!: any[];  
-
+  language!:boolean;
   loading: boolean = true;
   constructor(
     private basePageListService: BasePageListService,
+    public appConfig: AppConfigService,
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    this.navigationLink = `/cms/test/${btoa('0')}`;
+    this.language = this.appConfig.LANGUAGE;
   }
 
   ngOnInit(): void {

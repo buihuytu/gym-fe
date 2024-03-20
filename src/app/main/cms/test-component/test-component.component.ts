@@ -19,49 +19,49 @@ export class TestComponentComponent {
   };
   showButtons: EnumBaseButton[]= [EnumBaseButton.CREATE, EnumBaseButton.DELETE, EnumBaseButton.EDIT, EnumBaseButton.APPROVE]
   columns:ICoreTableColumnItem[] = [
-    {
-      caption: 'id',
-      field:'id',
-      hidden: true,
-      type: 'text',
-      align: 'left',
-      width: 100
-    },
-    {
-      caption: 'codeCenter',
-      field: 'codeCenter',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'nameCenter',
-      field: 'nameCenter',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'address',
-      field: 'address',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'phone',
-      field: 'phone',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
+    // {
+    //   caption: 'id',
+    //   field:'id',
+    //   hidden: true,
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 100
+    // },
+    // {
+    //   caption: 'codeCenter',
+    //   field: 'codeCenter',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 150
+    // },
+    // {
+    //   caption: 'nameCenter',
+    //   field: 'nameCenter',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 150
+    // },
+    // {
+    //   caption: 'address',
+    //   field: 'address',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 150
+    // },
+    // {
+    //   caption: 'phone',
+    //   field: 'phone',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 150
+    // },
+    // {
+    //   caption: 'isActive',
+    //   field: 'isActive',
+    //   type: 'boolean',
+    //   align: 'left',
+    //   width: 150
+    // },
   ]
   constructor(
     private httpService: HttpRequestService,

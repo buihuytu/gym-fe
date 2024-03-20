@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit, AfterViewInit, OnDestroy {
   showButtons: EnumBaseButton[]= [EnumBaseButton.CREATE, EnumBaseButton.DELETE, EnumBaseButton.EDIT, EnumBaseButton.APPROVE]
   columns:ICoreTableColumnItem[] = [
     {
-      caption: 'id',
+      caption: ['Mã trung tâm','Code '],
       field:'id',
       hidden: true,
       type: 'text',
@@ -29,84 +29,35 @@ export class ProductComponent implements OnInit, AfterViewInit, OnDestroy {
       width: 100
     },
     {
-      caption: 'codeCenter',
+      caption: ['Mã trung tâm','Code '],
       field: 'codeCenter',
       type: 'text',
       align: 'left',
       width: 150
     },
     {
-      caption: 'nameCenter',
+      caption: ['Mã trung tâm','Code '],
       field: 'nameCenter',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
-      caption: 'address',
+      caption: ['Mã trung tâm','Code '],
       field: 'address',
       type: 'text',
       align: 'left',
       width: 150
     },
     {
-      caption: 'phone',
+      caption: ['Mã trung tâm','Code '],
       field: 'phone',
       type: 'text',
       align: 'left',
       width: 150
     },
     {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
-      field: 'isActive',
-      type: 'boolean',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: 'isActive',
+      caption: ['Mã trung tâm','Code '],
       field: 'isActive',
       type: 'boolean',
       align: 'left',
