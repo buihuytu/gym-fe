@@ -43,7 +43,7 @@ export class SysOtherListTypeComponent {
     },
     {
       caption: ['Mô tả','Description'],
-      field: 'description',
+      field: 'note',
       type: 'text',
       align: 'left',
       width: 400
