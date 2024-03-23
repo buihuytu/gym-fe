@@ -46,7 +46,7 @@
                         </th>
                         @for (col of columns; track col.field) {
                         @if (!!!col.hidden) {
-                        <th >
+                        <th class="table-title-name">
                             <div [ngStyle]="{
                                 width: !!col.width?col.width+'px' :'80px',
                                 whiteSpace: 'nowrap',
