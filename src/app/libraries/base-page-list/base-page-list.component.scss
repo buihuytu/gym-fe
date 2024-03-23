@@ -1,3 +1,10 @@
+tbody tr{
+        cursor: pointer;
+}
+tbody tr:hover{
+   background-color: var(--rgba-primary-1);
+}
+
 .btn.btn-sm:hover {
         background-color: var(--primary);;
         color: #fff;
