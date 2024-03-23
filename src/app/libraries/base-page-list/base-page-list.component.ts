@@ -212,7 +212,12 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   onClickLocal(row: any, event: any) {
     if (event.detail === 1) {
     } else if (event.detail === 2) {
-      console.log("onClickLocal row", row, "event", event)
+      this.router.navigate(
+        [btoa(row.id)],
+        {
+          relativeTo: this.route.parent,
+        }
+      );
     }
 
   }

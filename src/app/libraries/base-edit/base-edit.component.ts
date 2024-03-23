@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { DialogService } from '../../services/dialog.service';
+import { ICorePageEditCRUD } from '../base-page-edit/base-page-edit.component';
 
 @Component({
   selector: 'app-base-edit',
@@ -15,7 +16,6 @@ export class BaseEditComponent {
   form!: FormGroup;
   entityTable!: string;
   showModal: boolean = false;
-
   constructor(
     public dialogService: DialogService
   ) { }

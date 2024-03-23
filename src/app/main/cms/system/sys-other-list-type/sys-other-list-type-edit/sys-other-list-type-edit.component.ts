@@ -3,7 +3,8 @@ import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DialogService } from '../../../../../services/dialog.service';
 import { RouterModule } from '@angular/router';
-import { BasePageEditComponent } from '../../../../../libraries/base-page-edit/base-page-edit.component';
+import { BasePageEditComponent, ICorePageEditCRUD } from '../../../../../libraries/base-page-edit/base-page-edit.component';
+import { api } from '../../../../../constants/api/apiDefinitions';
 
 @Component({
   selector: 'app-sys-other-list-type-edit',
@@ -19,25 +20,23 @@ import { BasePageEditComponent } from '../../../../../libraries/base-page-edit/b
 })
 export class SysOtherListTypeEditComponent extends BaseEditComponent {
   title: string[] = ['Nhóm tham số hệ thống','System parameter group'];
+  crud!: ICorePageEditCRUD;
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
     ) {
     super(dialogService);
     this.form = this.fb.group({
+      id:[],
+      code: [null,[Validators.required]],
       name: [null,[Validators.required]],
       note: [],
-      metaTitle: [],
-      metaKey: [],
-      metaDesc: [],
-      idParent:[],
-      image: [],
-      active: [],
     })
+    this.crud = {
+      c: api.SYS_OTHER_LIST_CREATE,
+      r: api.SYS_OTHER_LIST_READ,
+      u: api.SYS_OTHER_LIST_UPDATE,
+      d: api.SYS_OTHER_LIST_DELETE_IDS,
+    }
   }
-
-  getRawValue() {
-    console.log(this.form.getRawValue());
-  }
-
 }

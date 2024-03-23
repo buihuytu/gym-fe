@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef,isDevMode } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../services/dialog.service';
@@ -16,7 +16,7 @@ export interface ICorePageEditCRUD {
   r?: api; // GetById
   u?: api; // Update
   d?: api; // Delete
-  
+
 }
 @Component({
   selector: 'app-base-page-edit',
@@ -24,7 +24,7 @@ export interface ICorePageEditCRUD {
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     PreLoaderComponent
   ],
@@ -37,9 +37,10 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit {
   @Input() title!: string[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() crud!: ICorePageEditCRUD;
-  id!:number;
+  @Input() isModalMode!: boolean;
+  id!: number;
   isDevMode!: boolean;
-  language!:boolean;
+  language!: boolean;
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -47,21 +48,36 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public appConfig: AppConfigService,
-    ) {
+  ) {
     super(dialogService);
     this.language = this.appConfig.LANGUAGE;
     this.isDevMode = isDevMode();
     this.id = Number(atob(this.route.snapshot.params['id']));
-    
+
   }
   ngOnInit(): void {
     this.form = this.formGroup;
+    if (!!this.id && this.id != 0) {
+      this.getObjectById(this.id)
+    }
   }
-
+  getObjectById(id: any) {
+    this.httpService.makeGetRequest('getById', this.crud.r! + id).subscribe((x) => {
+      if (x.ok && x.status === 200) {
+        const body = x.body;
+        if (body.statusCode === 200) {
+          const innerBody = body.innerBody;
+          this.form.patchValue(innerBody);
+        }
+      } else {
+        this.onNotOk200Response(x);
+      }
+    })
+  }
   getRawValue() {
     console.log(this.form.getRawValue());
   }
-  saveData(){
+  saveData() {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
@@ -69,24 +85,35 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit {
     const param = JSON.stringify(this.form.getRawValue())
     console.log(param)
     if (!!!this.form.get('id')!.value) {
-    this.httpService.makePostRequest('create',this.crud.c!, param).subscribe((x) => {
-      if (x.ok && x.status === 200) {
-        const body = x.body;
-        if (body.statusCode === 200) {
-          if (isDevMode()) {
+      this.httpService.makePostRequest('create', this.crud.c!, param).subscribe((x) => {
+        if (x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            if (isDevMode()) {
+            }
+            this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
-          this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
+        } else {
+          this.onNotOk200Response(x);
         }
-      } else {
-        this.onNotOk200Response(x);
-      }
-    })
+      })
 
-    }else{
-
+    } else {
+      this.httpService.makePostRequest('update', this.crud.u!, param).subscribe((x) => {
+        if (x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            if (isDevMode()) {
+            }
+            this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
+          }
+        } else {
+          this.onNotOk200Response(x);
+        }
+      })
     }
   }
-  onCancel(){
+  onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
   onNotOk200Response(x: object): void {
