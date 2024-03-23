@@ -11,9 +11,10 @@ export class BasePageListService {
     ) { }
 
     queryList(url: string,request?: any): Observable<any> {
-        return this.httpService.makeGetRequest(
+        return this.httpService.makePostRequest(
             'queryList',
             url,
+            request
         );
     }
 
