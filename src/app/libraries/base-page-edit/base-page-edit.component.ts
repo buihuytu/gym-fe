@@ -9,6 +9,7 @@ import { BasePageListService } from '../base-page-list/base-page-list.service';
 import { HttpRequestService } from '../../services/http.service';
 import { api } from '../../constants/api/apiDefinitions';
 import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
+import { AppConfigService } from '../../services/app-config.service';
 
 export interface ICorePageEditCRUD {
   c?: api; // Create
@@ -33,19 +34,22 @@ export interface ICorePageEditCRUD {
 export class BasePageEditComponent extends BaseEditComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() main!: TemplateRef<any>;
-  @Input() title!: string;
+  @Input() title!: string[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() crud!: ICorePageEditCRUD;
   id!:number;
   isDevMode!: boolean;
+  language!:boolean;
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
     private httpService: HttpRequestService,
     private router: Router,
     private route: ActivatedRoute,
+    public appConfig: AppConfigService,
     ) {
     super(dialogService);
+    this.language = this.appConfig.LANGUAGE;
     this.isDevMode = isDevMode();
     this.id = Number(atob(this.route.snapshot.params['id']));
     

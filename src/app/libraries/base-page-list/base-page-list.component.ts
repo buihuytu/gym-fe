@@ -205,4 +205,15 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   selectedIdChanges(e:any){
     console.log(e)
   }
+
+  onRowDoubleClick(e:any){
+    console.log(e)
+  }
+  onClickLocal(row: any, event: any) {
+    if (event.detail === 1) {
+    } else if (event.detail === 2) {
+      console.log("onClickLocal row", row, "event", event)
+    }
+
+  }
 }
