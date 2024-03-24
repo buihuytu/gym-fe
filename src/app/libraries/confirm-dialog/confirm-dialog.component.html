@@ -5,16 +5,22 @@
                 <div class="modal fade show" style="display: block;">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header" [ngStyle]="{
+                                margin: '1rem 0'
+                            }">
     
-                                <div class="container no-padding no-margin" style="max-width: unset !important;">
+                                <div style="max-width: unset !important;padding: 0;">
                                     <div class="title"><span class="captionText">{{ title | uppercase }}</span></div>
                                 </div>
                                 <button type="button" class="close">
                                     <span (click)="close()">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">{{ body }}</div>
+                            <div [ngStyle]="{
+                                fontSize: '0.9vw',
+                                padding: '1.875rem',
+                                paddingTop: '1rem'
+                            }">{{ body }}</div>
                             @if(!!informationLines.length){
                                 <ul>
                                     @for(line of informationLines; track line){
@@ -40,5 +46,5 @@
 </div>
 
 @if(show === true){
-    <div>1231233</div>
+    <!-- <div>1231233</div> -->
 }

@@ -1,43 +1,51 @@
-<div class="card">
-    <div class="card-header d-flex justify-content-between">
-        <h5 class="h5-title">{{title || ''}}</h5>
-        <div class="button">
-            <button href="" class="btn btn-primary btn-sm" (click)="saveData()">
-                <i class="flaticon-381-save"></i>
-                Lưu
-            </button>
-            <a (click)="onCancel()" class="btn btn-danger btn-sm">
-                <i class="flaticon-381-exit-1"></i>
-                Thoát
-            </a>
+
+@if(!!isModalMode){
+    <div #containerBigger class="modal-dialog modal-edit-container" role="document">
+        <div #container class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{!!!language ? title[0]: title[1] || ''}}</h5>
+                <button (click)="onCancel()" type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"><ng-container [ngTemplateOutlet]="main || default"></ng-container></div>
+            <div class="modal-footer">
+                @if (isDevMode) {
+                    <button class="btn btn-secondary" (click)="getRawValue()">raw value</button>
+                }
+                <button (click)="onCancel()" type="button" class="btn btn-danger light" data-dismiss="modal">{{!!language?
+                    'Close':'Thoát'}}</button>
+                <button (click)="saveData()" type="button" class="btn btn-primary">{{!!language? 'Save':'Lưu'}}</button>
+            </div>
         </div>
     </div>
-    <div class="card-body">
-        <ng-container [ngTemplateOutlet]="main || default"></ng-container>
+}
+@else {
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h5 class="h5-title">{{!!!language ? title[0]: title[1] || ''}}</h5>
+            <div class="button">
+                <button href="" class="btn btn-primary btn-sm" (click)="saveData()">
+                    <i class="flaticon-381-save"></i>
+                    {{!!language? 'Save':'Lưu'}}
+                </button>
+                <a (click)="onCancel()" class="btn btn-danger btn-sm">
+                    <i class="flaticon-381-exit-1"></i>
+                    {{!!language?'Close':'Thoát'}}
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <ng-container [ngTemplateOutlet]="main || default"></ng-container>
+        </div>
+        @if (isDevMode) {
+            <button class="btn btn-secondary"  (click)="getRawValue()">raw value</button>
+        }
     </div>
-</div>
+    
+}
+
+
 
 <ng-template #default>
     <app-pre-loader></app-pre-loader>
 </ng-template>
-@if (isDevMode) {
-    <button (click)="getRawValue()">raw value</button>
-<!-- Button trigger modal -->
-<button id="btn-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Basic modal</button>
-<div class="modal fade" id="basicModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">Modal body text goes here.</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-}

@@ -6447,6 +6447,7 @@ a.close.disabled {
     position: fixed;
     top: 0;
     left: 0;
+    background-color: rgba(0, 0, 0, .5);
     z-index: 1050;
     display: none;
     width: 100%;
@@ -6472,7 +6473,15 @@ a.close.disabled {
         transition: none;
     }
 }
-
+.modal-mode-container{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 9999999998;
+}
 .modal.show .modal-dialog {
     transform: none;
 }
@@ -6582,7 +6591,7 @@ a.close.disabled {
 .modal-footer {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     padding: 1rem;
     border-top: 1px solid #EEEEEE;
     border-bottom-right-radius: 0.3rem;

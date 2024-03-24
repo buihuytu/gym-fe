@@ -7,8 +7,9 @@ import { EnumBaseButton } from '../../constants/headerButton/ButtonDefinitions';
 import { CORE_VNS_BUTTONS } from '../../constants/headerButton/IButtonDefinitions';
 import { FormsModule } from '@angular/forms';
 import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
-import { api } from '../../constants/api/apiDefinitions';
 import { AppConfigService } from '../../services/app-config.service';
+import { BehaviorSubject } from 'rxjs';
+import { defaultPaging } from '../../constants/defaultPaging';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: string;
 }
@@ -21,6 +22,11 @@ export interface ICoreTableColumnItem {
   width?: number;
   hidden?: boolean;
   templateRef?: TemplateRef<any>;
+}
+export interface IPagination {
+  skip: number;
+  take: number;
+  page:number;
 }
 
 @Component({
@@ -41,6 +47,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   @Input() columns!: ICoreTableColumnItem[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() buttons!: EnumBaseButton[];
+  @Input() fixedPageSize!: number;
+
 
   showButtons!: any[];
   headerCheckboxState!:any;
@@ -53,6 +61,19 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
   selectedIds!: any[];  
   language!:boolean;
   loading: boolean = true;
+
+  pagination$!: BehaviorSubject<IPagination>;
+  /* start: passing this var to Pagination */
+
+  pageCount!: number;
+
+  // Passing BehaviorSubject to other component is like using a service (that holds this BehaviorSubject) injected to both components
+  currentPage$ = new BehaviorSubject<number>(1);
+
+  /* end: passing this var to Pagination */
+
+  pageSize$!: BehaviorSubject<number>;
+
   constructor(
     private basePageListService: BasePageListService,
     public appConfig: AppConfigService,
@@ -82,17 +103,30 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
 		};
     this.showButtons = CORE_VNS_BUTTONS.filter(x => this.buttons.includes(x.code));
     this.showButtons.sort((a, b) => a.order - b.order);
-    console.log(this.showButtons)
-    // switchMap((x) => {
-    //   // this.loading = true;
-
-    // })
   }
   ngAfterViewInit(): void {
+    if (!!this.fixedPageSize) {
+      this.pageSize$ = new BehaviorSubject<number>(this.fixedPageSize);
+      this.pagination$ = new BehaviorSubject<IPagination>({
+        skip: 0,
+        take: this.fixedPageSize,
+        page: 1
+      });
+    } else {
+      this.pageSize$ = new BehaviorSubject<number>(defaultPaging.take);
+      this.pagination$ = new BehaviorSubject<IPagination>({
+        skip: 0,
+        take: defaultPaging.take,
+        page: 1
+      });
+
+    }
+
+
     this.loading = true;
     setTimeout(() => {
       const url = this.apiDefinition.queryListRelativePath;
-      this.basePageListService.queryList(url, 'x').pipe().subscribe(x => {
+      this.basePageListService.queryList(url, this.pagination$.value).pipe().subscribe(x => {
         if (!!x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {
@@ -170,5 +204,21 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
 
   selectedIdChanges(e:any){
     console.log(e)
+  }
+
+  onRowDoubleClick(e:any){
+    console.log(e)
+  }
+  onClickLocal(row: any, event: any) {
+    if (event.detail === 1) {
+    } else if (event.detail === 2) {
+      this.router.navigate(
+        [btoa(row.id)],
+        {
+          relativeTo: this.route.parent,
+        }
+      );
+    }
+
   }
 }

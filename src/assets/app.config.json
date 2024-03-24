@@ -1,4 +1,4 @@
 {
     "BASE_URL": "https://localhost:40404",
-    "LANGUAGE": true
+    "LANGUAGE": false
 }
