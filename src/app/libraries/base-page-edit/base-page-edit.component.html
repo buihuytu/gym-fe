@@ -1,16 +1,16 @@
 
 @if(!!isModalMode){
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div #containerBigger class="modal-dialog modal-edit-container" role="document">
+        <div #container class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{!!!language ? title[0]: title[1] || ''}}</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                <button (click)="onCancel()" type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
             <div class="modal-body"><ng-container [ngTemplateOutlet]="main || default"></ng-container></div>
             <div class="modal-footer">
                 @if (isDevMode) {
-                    <button (click)="getRawValue()">raw value</button>
+                    <button class="btn btn-secondary" (click)="getRawValue()">raw value</button>
                 }
                 <button (click)="onCancel()" type="button" class="btn btn-danger light" data-dismiss="modal">{{!!language?
                     'Close':'Thoát'}}</button>
@@ -22,15 +22,15 @@
 @else {
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h5 class="h5-title">{{title || ''}}</h5>
+            <h5 class="h5-title">{{!!!language ? title[0]: title[1] || ''}}</h5>
             <div class="button">
                 <button href="" class="btn btn-primary btn-sm" (click)="saveData()">
                     <i class="flaticon-381-save"></i>
-                    Lưu
+                    {{!!language? 'Save':'Lưu'}}
                 </button>
                 <a (click)="onCancel()" class="btn btn-danger btn-sm">
                     <i class="flaticon-381-exit-1"></i>
-                    Thoát
+                    {{!!language?'Close':'Thoát'}}
                 </a>
             </div>
         </div>
@@ -38,7 +38,7 @@
             <ng-container [ngTemplateOutlet]="main || default"></ng-container>
         </div>
         @if (isDevMode) {
-            <button (click)="getRawValue()">raw value</button>
+            <button class="btn btn-secondary"  (click)="getRawValue()">raw value</button>
         }
     </div>
     

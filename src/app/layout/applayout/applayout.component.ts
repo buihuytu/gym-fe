@@ -28,6 +28,9 @@ import { AppConfigService } from '../../services/app-config.service';
 })
 export class ApplayoutComponent implements OnInit {
   constructor(public appConfig: AppConfigService ) {
+    
+  }
+  ngOnInit(): void {
     try {
       fetch('../../assets/app.config.json').then(res => res.json()).then(({ 
         BASE_URL,LANGUAGE
@@ -38,9 +41,6 @@ export class ApplayoutComponent implements OnInit {
     } catch (e) {
       console.log("appInitialize() zip() error: ", e)
     }
-  }
-  ngOnInit(): void {
-    
   }
 
 }

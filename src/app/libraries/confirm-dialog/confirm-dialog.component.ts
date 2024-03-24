@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   templateUrl: './confirm-dialog.component.html',
-  styleUrl: './confirm-dialog.component.css'
+  styleUrl: './confirm-dialog.component.scss'
 })
 export class ConfirmDialogComponent extends BaseComponent implements AfterViewInit, OnDestroy  {
   @Input() showingUp!: boolean;

@@ -20,7 +20,10 @@ import { api } from '../../../../../constants/api/apiDefinitions';
 })
 export class SysOtherListTypeEditComponent extends BaseEditComponent {
   title: string[] = ['Nhóm tham số hệ thống','System parameter group'];
+
+  modalMode: boolean = false;//for modal and style modal
   crud!: ICorePageEditCRUD;
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,

@@ -1,5 +1,5 @@
-<div class="app-product-edit-container">
-    <app-base-page-edit [crud]="crud" [isModalMode]="true" [main]="main" [title]="title" [formGroup]="form"></app-base-page-edit>
+<div class="app-sys-other-list-type-edit-container">
+    <app-base-page-edit [width]="600" [class.modal-mode-container]="modalMode" [crud]="crud" [isModalMode]="modalMode" [main]="main" [title]="title" [formGroup]="form"></app-base-page-edit>
     <ng-template #main>
         <form [formGroup]="form">
             <div class="row w-100">

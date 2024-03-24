@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../services/dialog.service';
@@ -31,13 +31,20 @@ export interface ICorePageEditCRUD {
   templateUrl: './base-page-edit.component.html',
   styleUrl: './base-page-edit.component.scss'
 })
-export class BasePageEditComponent extends BaseEditComponent implements OnInit {
+export class BasePageEditComponent extends BaseEditComponent implements OnInit,AfterViewInit {
   @Input() formGroup!: FormGroup;
+  @Input() width!: number;
   @Input() main!: TemplateRef<any>;
   @Input() title!: string[];
+  
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() crud!: ICorePageEditCRUD;
   @Input() isModalMode!: boolean;
+
+
+  @ViewChild('container') container!: ElementRef;
+  @ViewChild('containerBigger') containerBigger!: ElementRef;
+
   id!: number;
   isDevMode!: boolean;
   language!: boolean;
@@ -54,6 +61,23 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit {
     this.isDevMode = isDevMode();
     this.id = Number(atob(this.route.snapshot.params['id']));
 
+  }
+  ngAfterViewInit(): void {
+    if (!this.isModalMode) {
+      console.log(this.container)
+      this.container.nativeElement.style.setProperty('--width', '100%');
+    } else {
+      if (!!this.width) {
+        this.containerBigger.nativeElement.style.setProperty(
+          'max-width',
+          this.width + 'px'
+        );
+      }
+      this.containerBigger.nativeElement.style.setProperty(
+        '--height',
+        '95%'
+      )
+    }
   }
   ngOnInit(): void {
     this.form = this.formGroup;
