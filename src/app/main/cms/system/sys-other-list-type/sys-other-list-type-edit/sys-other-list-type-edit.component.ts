@@ -36,10 +36,10 @@ export class SysOtherListTypeEditComponent extends BaseEditComponent {
       note: [],
     })
     this.crud = {
-      c: api.SYS_OTHER_LIST_CREATE,
-      r: api.SYS_OTHER_LIST_READ,
-      u: api.SYS_OTHER_LIST_UPDATE,
-      d: api.SYS_OTHER_LIST_DELETE_IDS,
+      c: api.SYS_OTHER_LIST_TYPE_CREATE,
+      r: api.SYS_OTHER_LIST_TYPE_READ,
+      u: api.SYS_OTHER_LIST_TYPE_UPDATE,
+      d: api.SYS_OTHER_LIST_TYPE_DELETE_IDS,
     }
   }
 }

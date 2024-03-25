@@ -6,5 +6,9 @@ export const routes: Routes = [
   {
     path: "sys-other-list-type",
     loadChildren:() => import('./sys-other-list-type/sys-other-list-type.routes').then((m) => m.routes)
+  },
+  {
+    path: "sys-other-list",
+    loadChildren:() => import('./sys-other-list/sys-other-list.routes').then((m) => m.routes)
   }
 ];

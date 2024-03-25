@@ -14,7 +14,7 @@ import { api } from '../../../../constants/api/apiDefinitions';
 })
 export class SysOtherListTypeComponent {
   apiQueryList: ICorePageListApiDefinition ={
-    queryListRelativePath: api.SYS_OTHER_LIST_TYPE
+    queryListRelativePath: api.SYS_OTHER_LIST_TYPE_QUERY_LIST
   };
   title: string[] = ['Nhóm tham số hệ thống','System parameter group'];
   showButtons: EnumBaseButton[]= [EnumBaseButton.CREATE, EnumBaseButton.DELETE, EnumBaseButton.EDIT, EnumBaseButton.APPROVE]
