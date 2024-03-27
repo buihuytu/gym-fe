@@ -24,7 +24,7 @@
     <div class="card-body">
         <div >
             <table [ngStyle]="{
-                minHeight: tableHeight + 'px'
+                minHeight: (tableHeight - 40) + 'px'
             }" id="base-table" class="table table-responsive"><!-- table-responsive-md -->
                 <colgroup>
                     <col>
@@ -99,27 +99,34 @@
             <div>
                 <nav class="row">
                     <div class="dataTables_info col-6" id="example2_info" role="status" aria-live="polite">
-                        Hiển thị từ <span id="start"></span> đến <span id="end"></span> trên <span
-                            id="totalProduct">{{count}}</span> kết quả
+                        Hiển thị từ 
+                        <select class="custom-select-pagination" [(ngModel)]="selectedSize" (ngModelChange)="onSizeChange($event)">
+                            <option *ngFor="let size of SizeChanger">{{size}}</option>
+                        </select>  /<span
+                            id="totalProduct">{{innerBodyCount$.value}}</span> kết quả
                     </div>
                     <div class="col-6">
                         <ul id="pagination" class="pagination pagination-circle" style="justify-content: end;">
-
+                            <li id="previous" class="page-item page-indicator" style="cursor: not-allowed;">
+                                <a class="page-link">
+                                    <i class="la la-angle-double-left"></i>
+                                </a>
+                            </li>
                             <li id="previous" class="page-item page-indicator" style="cursor: not-allowed;">
                                 <a class="page-link">
                                     <i class="la la-angle-left"></i>
                                 </a>
                             </li>
-                            <li class="page-item active" style="cursor:not-allowed;">
-                                <a class="page-link">1</a>
-                            </li>
-                            <li class="page-item active" style="cursor:not-allowed;">
-                                <a class="page-link">1</a>
+                            @for (item of displayPageCount; track $index) {
+                                <li class="page-item active" style="cursor:pointer">
+                                    <a class="page-link">{{item}}</a>
+                                </li>
+                            }
+                            <li id="next" class="page-item page-indicator" style="cursor: not-allowed;">
+                                <a class="page-link"><i class="la la-angle-right"></i></a>
                             </li>
                             <li id="next" class="page-item page-indicator" style="cursor: not-allowed;">
-                                <a class="page-link">
-                                    <i class="la la-angle-right"></i>
-                                </a>
+                                <a class="page-link"><i class="la la-angle-double-right"></i></a>
                             </li>
                         </ul>
                     </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnInit, TemplateRef, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, isDevMode } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BasePageListService } from './base-page-list.service';
 import { TooltipModule } from '../tooltip/tooltip.module';
@@ -8,8 +8,8 @@ import { CORE_VNS_BUTTONS } from '../../constants/headerButton/IButtonDefinition
 import { FormsModule } from '@angular/forms';
 import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
 import { AppConfigService } from '../../services/app-config.service';
-import { BehaviorSubject } from 'rxjs';
-import { defaultPaging } from '../../constants/defaultPaging';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { defaultPaging,defaultPagingList } from '../../constants/defaultPaging';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: string;
 }
@@ -26,7 +26,7 @@ export interface ICoreTableColumnItem {
 export interface IPagination {
   skip: number;
   take: number;
-  page:number;
+  page: number;
 }
 
 @Component({
@@ -42,27 +42,29 @@ export interface IPagination {
   templateUrl: './base-page-list.component.html',
   styleUrl: './base-page-list.component.scss'
 })
-export class BasePageListComponent implements OnInit, AfterViewInit {
+export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() title!: string[];
   @Input() columns!: ICoreTableColumnItem[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() buttons!: EnumBaseButton[];
   @Input() fixedPageSize!: number;
 
-
+  subscriptions: Subscription[] = [];
   showButtons!: any[];
-  headerCheckboxState!:any;
+  headerCheckboxState!: any;
   data!: any[];
   tableHeight!: number;
   checkingModel: boolean[] = [];
   visibleColumns!: ICoreTableColumnItem[];
-  count!: number;
+  innerBodyCount$ = new BehaviorSubject<number>(1);
   navigationLink!: any;
-  selectedIds!: any[];  
-  language!:boolean;
+  selectedIds!: any[];
+  language!: boolean;
   loading: boolean = true;
-
-  pagination$!: BehaviorSubject<IPagination>;
+  displayPageCount: any[] = [];
+  SizeChanger: any[] = defaultPagingList.take;
+  selectedSize: number = defaultPaging.take;
+  pagination$ = new BehaviorSubject<IPagination>({skip:0,take:this.selectedSize,page:1});
   /* start: passing this var to Pagination */
 
   pageCount!: number;
@@ -72,7 +74,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
 
   /* end: passing this var to Pagination */
 
-  pageSize$!: BehaviorSubject<number>;
+  pageSize$ = new BehaviorSubject<number>(defaultPaging.take);
 
   constructor(
     private basePageListService: BasePageListService,
@@ -81,6 +83,13 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
   ) {
     this.language = this.appConfig.LANGUAGE;
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['pageCount']) {
+      if (this.pageCount !== undefined) {
+        this.resolvePageCount();
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -97,12 +106,13 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
     if (!!!this.buttons || this.buttons.length <= 0) {
       console.log("NOT EXITS BUTTONS")
     }
-		var win_h = window.outerHeight;
-		if (win_h > 0 ? win_h : screen.height) {
+    var win_h = window.outerHeight;
+    if (win_h > 0 ? win_h : screen.height) {
       this.tableHeight = win_h - 350;
-		};
+    };
     this.showButtons = CORE_VNS_BUTTONS.filter(x => this.buttons.includes(x.code));
     this.showButtons.sort((a, b) => a.order - b.order);
+    this.onSizeChange(defaultPaging.take);
   }
   ngAfterViewInit(): void {
     if (!!this.fixedPageSize) {
@@ -119,10 +129,10 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
         take: defaultPaging.take,
         page: 1
       });
-
     }
-
-
+    this.getDataForTable();
+  }
+  getDataForTable(){
     this.loading = true;
     setTimeout(() => {
       const url = this.apiDefinition.queryListRelativePath;
@@ -132,9 +142,9 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
           if (body.statusCode === 200) {
             const data = body.innerBody.list;
             this.data = data;
-            this.count = body.innerBody.count;
+            this.innerBodyCount$.next(body.innerBody.count);
           }
-          this.loading=false;
+          this.loading = false;
         }
       });
     })
@@ -150,8 +160,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
         );
         break;
       case EnumBaseButton.EDIT:
-        if(this.selectedIds.length === 0) return console.log('1');
-        if(this.selectedIds.length > 1) return console.log('2')
+        if (this.selectedIds.length === 0) return console.log('1');
+        if (this.selectedIds.length > 1) return console.log('2')
         this.router.navigate(
           [btoa(this.selectedIds[0].toString())],
           {
@@ -171,7 +181,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
       case EnumBaseButton.APPROVE:
         this.navigationLink = `/cms/test/${btoa('0')}`;
         break;
-      default: 
+      default:
         break;
     }
   }
@@ -197,16 +207,16 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
     this.data.filter((_: any, index: number) => !!this.checkingModel[index]).map(item => {
       newSelectedIds.push(item.id)
       newSelectedData.push(item)
-      
+
     })
     this.selectedIds = newSelectedIds;
   }
 
-  selectedIdChanges(e:any){
+  selectedIdChanges(e: any) {
     console.log(e)
   }
 
-  onRowDoubleClick(e:any){
+  onRowDoubleClick(e: any) {
     console.log(e)
   }
   onClickLocal(row: any, event: any) {
@@ -219,6 +229,33 @@ export class BasePageListComponent implements OnInit, AfterViewInit {
         }
       );
     }
+  }
+  onSizeChange(event: any) {
+    this.pageSize$.next(event)
+    this.pageCount = Math.ceil(this.innerBodyCount$.value / this.pageSize$.value);
+    this.resolvePageCount();
+    this.pagination$.next({ skip: 0, take: this.pageSize$.value, page: this.currentPage$.value })
+  }
+  private resolvePageCount() {
+    let arrayPageCount = this.chunkArray(this.pageCount, 4)
+    this.displayPageCount = !!arrayPageCount.length ? arrayPageCount[0] : [];
+    this.subscriptions.push(
+      this.currentPage$.subscribe(x => {
+        for (let i = 0; i < arrayPageCount.length; i++) {
+          if (arrayPageCount[i].includes(this.currentPage$.value)) {
+            this.displayPageCount = arrayPageCount[i]
+          }
+        }
+      })
+    )
 
+  }
+  chunkArray<T>(pageCount: number, chunkSize: number) {
+    let array = Array.from({ length: pageCount }, (_, index) => index + 1)
+    const result = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize));
+    }
+    return result;
   }
 }
