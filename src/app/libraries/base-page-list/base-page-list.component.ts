@@ -90,6 +90,11 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
         this.resolvePageCount();
       }
     }
+    if (changes['this.pagination$']) {
+      if (this.pagination$ !== undefined) {
+        console.log('first')
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -235,6 +240,17 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     this.pageCount = Math.ceil(this.innerBodyCount$.value / this.pageSize$.value);
     this.resolvePageCount();
     this.pagination$.next({ skip: 0, take: this.pageSize$.value, page: this.currentPage$.value })
+    this.getDataForTable();
+  }
+  clickPageNumber(event: number) {
+    if (event === this.currentPage$.value) {
+      return;
+    } else {
+      this.currentPage$.next(event)
+      this.pagination$.next({ skip: 0, take: this.pageSize$.value, page: this.currentPage$.value })
+      this.getDataForTable();
+    }
+
   }
   private resolvePageCount() {
     let arrayPageCount = this.chunkArray(this.pageCount, 4)
@@ -258,4 +274,5 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     }
     return result;
   }
+  
 }

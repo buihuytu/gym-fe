@@ -118,7 +118,7 @@
                                 </a>
                             </li>
                             @for (item of displayPageCount; track $index) {
-                                <li class="page-item active" style="cursor:pointer">
+                                <li  [class.active]="item == currentPage$.value" [class.not-current]="item !== currentPage$.value" class="page-item" style="cursor:pointer" (click)="clickPageNumber(item)">
                                     <a class="page-link">{{item}}</a>
                                 </li>
                             }
