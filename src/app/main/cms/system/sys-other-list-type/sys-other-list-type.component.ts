@@ -35,6 +35,13 @@ export class SysOtherListTypeComponent {
       width: 250
     },
     {
+      caption: ['Mã nhóm','Code'],
+      field: 'code',
+      type: 'text',
+      align: 'left',
+      width: 250
+    },
+    {
       caption: ['Tên nhóm tham số','name'],
       field: 'name',
       type: 'text',
