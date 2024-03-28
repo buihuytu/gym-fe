@@ -48,7 +48,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() buttons!: EnumBaseButton[];
   @Input() fixedPageSize!: number;
-
+  @Input() left!: TemplateRef<any>;
   subscriptions: Subscription[] = [];
   showButtons!: any[];
   headerCheckboxState!: any;

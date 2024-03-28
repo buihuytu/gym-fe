@@ -10,7 +10,7 @@ import { api } from '../../../../constants/api/apiDefinitions';
     BasePageListComponent
   ],
   templateUrl: './sys-other-list-type.component.html',
-  styleUrl: './sys-other-list-type.component.css'
+  styleUrl: './sys-other-list-type.component.scss'
 })
 export class SysOtherListTypeComponent {
   apiQueryList: ICorePageListApiDefinition ={

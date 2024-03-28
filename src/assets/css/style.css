@@ -35357,7 +35357,7 @@ table.dataTable.display tbody td {
 }
 
 .chat-wrapper .chat-left-sidebar {
-    width: 320px;
+    width: 100%;
     min-width: 320px;
     -webkit-transition: all 0.2s;
     -ms-transition: all 0.2s;
@@ -35386,7 +35386,7 @@ table.dataTable.display tbody td {
     height: 42px;
     background: transparent;
     border-left: 0;
-    border: 1px solid #EEEEEE;
+    border: 1px solid #d7d1d1;
     border-top-right-radius: 42px;
     border-bottom-right-radius: 42px;
 }
