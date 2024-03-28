@@ -35636,7 +35636,7 @@ table.dataTable.display tbody td {
 
 .chat-box-area {
     position: relative;
-    padding: 20px 20px;
+    padding: 1.25rem 1.25rem;
     background: #f1f1f1;
     z-index: 1;
     height: 630px;
@@ -35654,7 +35654,7 @@ table.dataTable.display tbody td {
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
     transition: all 0.5s;
-    padding: 20px 20px;
+    padding: .7rem 1.25rem;
     cursor: pointer;
 }
 
