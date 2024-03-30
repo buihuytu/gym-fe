@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { EnumBaseButton } from '../../../../constants/headerButton/ButtonDefinitions';
 import { BasePageListComponent, ICorePageListApiDefinition, ICoreTableColumnItem } from '../../../../libraries/base-page-list/base-page-list.component';
 import { api } from '../../../../constants/api/apiDefinitions';
+import { BaseComponent } from '../../../../libraries/base-component/base-component.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sys-other-list-type',
@@ -12,7 +14,8 @@ import { api } from '../../../../constants/api/apiDefinitions';
   templateUrl: './sys-other-list-type.component.html',
   styleUrl: './sys-other-list-type.component.scss'
 })
-export class SysOtherListTypeComponent {
+export class SysOtherListTypeComponent implements BaseComponent {
+  subscriptions!: Subscription[];
   apiQueryList: ICorePageListApiDefinition ={
     queryListRelativePath: api.SYS_OTHER_LIST_TYPE_QUERY_LIST
   };
@@ -59,4 +62,11 @@ export class SysOtherListTypeComponent {
   constructor(
   ) {
   }
+  ngAfterViewInit(): void {
+  }
+  ngOnDestroy(): void {
+  }
+  ngOnInit() {
+  }
+
 }

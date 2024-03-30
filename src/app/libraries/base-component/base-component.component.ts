@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,11 +11,15 @@ import { Subscription } from 'rxjs';
   templateUrl: './base-component.component.html',
   styleUrl: './base-component.component.css'
 })
-export class BaseComponent implements OnDestroy{
-  subscriptions: Subscription[] = [];
+export class BaseComponent implements OnInit,AfterViewInit, OnDestroy{
+  subscriptions: Subscription[]  = [];
 
   constructor(
   ) { }
+  ngAfterViewInit(): void {
+  }
+  ngOnInit(): void {
+  }
 
   ngOnDestroy(): void {
     this.subscriptions.map(x => x?.unsubscribe());

@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './confirm-dialog.component.html',
   styleUrl: './confirm-dialog.component.scss'
 })
-export class ConfirmDialogComponent extends BaseComponent implements AfterViewInit, OnDestroy  {
+export class ConfirmDialogComponent extends BaseComponent {
   @Input() showingUp!: boolean;
   @ViewChild('container') container!: ElementRef;
 
@@ -63,7 +63,7 @@ export class ConfirmDialogComponent extends BaseComponent implements AfterViewIn
     )
   }
 
-  ngAfterViewInit(): void {
+  override ngAfterViewInit(): void {
 
   }
 

@@ -29500,7 +29500,7 @@ button:focus {
 }
 
 .card {
-    margin-bottom: 1.875rem;
+    /* margin-bottom: 1.875rem; */
     background-color: #fff;
     transition: all .5s ease-in-out;
     position: relative;
