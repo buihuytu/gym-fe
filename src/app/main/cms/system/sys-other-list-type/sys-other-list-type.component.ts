@@ -8,6 +8,7 @@ import { HttpRequestService } from '../../../../services/http.service';
 import { CommonModule } from '@angular/common';
 import { AppLayoutService } from '../../../../layout/applayout/applayout.service';
 import { FormsModule } from '@angular/forms';
+import { DebounceDirective } from '../../../../libraries/debounce-event/debounce-event.directive';
 
 @Component({
   selector: 'app-sys-other-list-type',
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     BasePageListComponent,
-    FormsModule
+    FormsModule,
+    DebounceDirective
   ],
   templateUrl: './sys-other-list-type.component.html',
   styleUrl: './sys-other-list-type.component.scss'
@@ -96,11 +98,7 @@ export class SysOtherListTypeComponent implements BaseComponent {
     );
   }
   onSearchListType(e:any){
-    
-    pipe(
-      debounceTime(300)
-    )
-    console.log(e)
+    console.log(this.searchType)
   }
 
   onSelectedListTypeChanged(e:any) {

@@ -5,7 +5,7 @@
             <div class="chat-left-sidebar">
                 <div class="d-flex chat-fix-search align-items-center">
                     <div class="input-group message-search-area">
-                        <input [(ngModel)]="searchType"  (ngModelChange)="onSearchListType($event)" type="text" class="form-control" placeholder="Search here..">
+                        <input [(ngModel)]="searchType" appDebounce  (debounceKeyUp)="onSearchListType($event)" type="text" class="form-control" placeholder="Search here..">
                     </div>
                 </div>
                 <div class="card-body message-bx px-0 pt-3" [ngStyle]="{
