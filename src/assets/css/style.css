@@ -30789,10 +30789,10 @@ code {
     border-bottom: 10px solid #3AB54B;
     border-right: 5px solid transparent;
 }
-
 .jsgrid-grid-body::-webkit-scrollbar,
 .dataTables_scrollBody::-webkit-scrollbar,
-.table-responsive::-webkit-scrollbar {
+.table-responsive::-webkit-scrollbar,
+.tab-content::-webkit-scrollbar {
     background-color: #F5F5F5;
     width: 5px;
     height: 5px;
@@ -30800,7 +30800,8 @@ code {
 
 .jsgrid-grid-body::-webkit-scrollbar-track,
 .dataTables_scrollBody::-webkit-scrollbar-track,
-.table-responsive::-webkit-scrollbar-track {
+.table-responsive::-webkit-scrollbar-track,
+.tab-content::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     background-color: #F5F5F5;
@@ -30808,7 +30809,8 @@ code {
 
 .jsgrid-grid-body::-webkit-scrollbar-thumb,
 .dataTables_scrollBody::-webkit-scrollbar-thumb,
-.table-responsive::-webkit-scrollbar-thumb {
+.table-responsive::-webkit-scrollbar-thumb,
+.tab-content::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #7e7e7e;
@@ -35358,7 +35360,7 @@ table.dataTable.display tbody td {
 
 .chat-wrapper .chat-left-sidebar {
     width: 100%;
-    min-width: 320px;
+    /* min-width: 320px; */
     -webkit-transition: all 0.2s;
     -ms-transition: all 0.2s;
     transition: all 0.2s;
@@ -35376,10 +35378,8 @@ table.dataTable.display tbody td {
 }
 
 .chat-wrapper .chat-left-sidebar .chat-fix-search .message-search-area .form-control {
-    border-right: 0;
-    height: 42px;
-    border-top-left-radius: 42px;
-    border-bottom-left-radius: 42px;
+    height: 35px;
+    border-radius: 37px;
 }
 
 .chat-wrapper .chat-left-sidebar .chat-fix-search .message-search-area .input-group-text {
@@ -35467,9 +35467,9 @@ table.dataTable.display tbody td {
     }
 }
 
-.message-bx .tab-content {
+/* .message-bx .tab-content {
     height: 624px;
-}
+} */
 
 @media only screen and (max-width: 767px) {
     .message-bx .tab-content {
@@ -35671,7 +35671,7 @@ table.dataTable.display tbody td {
 }
 
 .chat-list-area.active {
-    background: var(--rgba-primary-1);
+    background: var(--rgba-primary-2);
 }
 
 .chat-list-area:hover {

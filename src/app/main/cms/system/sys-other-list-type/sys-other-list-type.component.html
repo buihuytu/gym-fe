@@ -5,23 +5,25 @@
             <div class="chat-left-sidebar">
                 <div class="d-flex chat-fix-search align-items-center">
                     <div class="input-group message-search-area">
-                        <input type="text" class="form-control" placeholder="Search here..">
-                        <div class="input-group-append">
-                            <button class="input-group-text"><i class="flaticon-381-search-2"></i></button>
-                        </div>
+                        <input [(ngModel)]="searchType"  (ngModelChange)="onSearchListType($event)" type="text" class="form-control" placeholder="Search here..">
                     </div>
                 </div>
-                <div class="card-body message-bx px-0 pt-3">
-                    <div class="tab-content dz-scroll" id="message-bx">
-                        <div class="tab-pane fade show active" >
-                            <div class="chat-list-area active">
-                                <div class="info-body">
-                                    <div class="d-flex">
-                                        <h4 class="text-black user-name mb-0 font-w300 fs-16" data-name="Harry Marten">Harry Marten</h4>
+                <div class="card-body message-bx px-0 pt-3" [ngStyle]="{
+                    maxHeight: appLayoutService.tableHeight + 'px',
+                    overflowX: 'overlay'
+                }">
+                    <div class="tab-content dz-scroll table">
+                        @for (item of otherListTypeOptions; track $index) {
+                            <div (click)="onSelectedListTypeChanged(item)" class="tab-pane fade show active" > <!--  dfsd-->
+                                <div class="chat-list-area" [class.active]="currentIdType == item.id">
+                                    <div class="info-body">
+                                        <div class="d-flex">
+                                            <h4 class="text-black user-name mb-0 font-w300 fs-16">{{item.name}}</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>

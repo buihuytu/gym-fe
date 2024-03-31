@@ -10,6 +10,7 @@ import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component
 import { AppConfigService } from '../../services/app-config.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { defaultPaging,defaultPagingList } from '../../constants/defaultPaging';
+import { AppLayoutService } from '../../layout/applayout/applayout.service';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: string;
 }
@@ -79,6 +80,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
   constructor(
     private basePageListService: BasePageListService,
     public appConfig: AppConfigService,
+    public appLayoutService: AppLayoutService,
     private router: Router,
     private route: ActivatedRoute,
   ) {
@@ -115,6 +117,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     if (win_h > 0 ? win_h : screen.height) {
       this.tableHeight = win_h - 350;
     };
+    this.appLayoutService.tableHeight = this.tableHeight;
     this.showButtons = CORE_VNS_BUTTONS.filter(x => this.buttons.includes(x.code));
     this.showButtons.sort((a, b) => a.order - b.order);
     this.onSizeChange(defaultPaging.take);
@@ -141,17 +144,19 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     this.loading = true;
     setTimeout(() => {
       const url = this.apiDefinition.queryListRelativePath;
-      this.basePageListService.queryList(url, this.pagination$.value).pipe().subscribe(x => {
-        if (!!x.ok && x.status === 200) {
-          const body = x.body;
-          if (body.statusCode === 200) {
-            const data = body.innerBody.list;
-            this.data = data;
-            this.innerBodyCount$.next(body.innerBody.count);
+      this.subscriptions.push(
+        this.basePageListService.queryList(url, this.pagination$.value).pipe().subscribe(x => {
+          if (!!x.ok && x.status === 200) {
+            const body = x.body;
+            if (body.statusCode === 200) {
+              const data = body.innerBody.list;
+              this.data = data;
+              this.innerBodyCount$.next(body.innerBody.count);
+            }
+            this.loading = false;
           }
-          this.loading = false;
-        }
-      });
+        })
+      )
     })
   }
   onHeaderButtonClick(e: EnumBaseButton) {
