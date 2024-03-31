@@ -29,7 +29,10 @@ export interface IPagination {
   take: number;
   page: number;
 }
-
+export interface IInOperator {
+  field: string;
+  values: any;
+}
 @Component({
   selector: 'app-base-page-list',
   standalone: true,
@@ -47,6 +50,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() title!: string[];
   @Input() columns!: ICoreTableColumnItem[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
+  @Input() outerInOperators!: IInOperator[];
   @Input() buttons!: EnumBaseButton[];
   @Input() fixedPageSize!: number;
   @Input() left!: TemplateRef<any>;
@@ -92,10 +96,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
         this.resolvePageCount();
       }
     }
-    if (changes['this.pagination$']) {
-      if (this.pagination$ !== undefined) {
-        console.log('first')
-      }
+    if (changes['outerInOperators']) {
+      console.log(changes['outerInOperators'])
     }
   }
 

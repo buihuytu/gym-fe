@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EnumBaseButton } from '../../../../constants/headerButton/ButtonDefinitions';
-import { BasePageListComponent, ICorePageListApiDefinition, ICoreTableColumnItem } from '../../../../libraries/base-page-list/base-page-list.component';
+import { BasePageListComponent, ICorePageListApiDefinition, ICoreTableColumnItem, IInOperator } from '../../../../libraries/base-page-list/base-page-list.component';
 import { api } from '../../../../constants/api/apiDefinitions';
 import { BaseComponent } from '../../../../libraries/base-component/base-component.component';
 import { Subscription, debounceTime, pipe } from 'rxjs';
@@ -30,6 +30,7 @@ export class SysOtherListTypeComponent implements BaseComponent {
   currentIdType!:any;
   otherListTypeOptions!:any[];
   searchType!:any;
+  outerInOperators: IInOperator[] = [];
   showButtons: EnumBaseButton[] = [EnumBaseButton.CREATE, EnumBaseButton.DELETE, EnumBaseButton.EDIT, EnumBaseButton.APPROVE]
   columns: ICoreTableColumnItem[] = [
     {
@@ -105,6 +106,13 @@ export class SysOtherListTypeComponent implements BaseComponent {
     if(this.currentIdType == e.id) return;
     else{
       this.currentIdType = e.id;
+      this.outerInOperators.push(
+        {
+          field: 'typeId',
+          values: e.id
+        }
+      )
+      console.log(this.outerInOperators)
     }
   }
 }
