@@ -16,6 +16,8 @@ export class BaseEditComponent {
   form!: FormGroup;
   entityTable!: string;
   showModal: boolean = false;
+  ignoreDeactivate: boolean = false;
+
   constructor(
     public dialogService: DialogService
   ) { }
@@ -24,7 +26,7 @@ export class BaseEditComponent {
     console.log("this.formInitStringValue", this.formInitStringValue)
     console.log("JSON.stringify(this.form.getRawValue())", JSON.stringify(this.form?.getRawValue()))
     const condition = JSON.stringify(this.form.getRawValue()) === this.formInitStringValue;
-    if (condition) {
+    if (condition || this.ignoreDeactivate === true) {
       return true;
     } else {
       console.log("show-dialog");

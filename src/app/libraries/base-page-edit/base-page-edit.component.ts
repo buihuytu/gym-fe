@@ -106,6 +106,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
       this.form.markAllAsTouched();
       return;
     }
+    console.log(this.ignoreDeactivate);
     const param = JSON.stringify(this.form.getRawValue())
     console.log(param)
     if (!!!this.form.get('id')!.value) {
@@ -115,6 +116,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
           if (body.statusCode === 200) {
             if (isDevMode()) {
             }
+            this.ignoreDeactivate = true;
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
         } else {
@@ -129,6 +131,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
           if (body.statusCode === 200) {
             if (isDevMode()) {
             }
+            this.ignoreDeactivate = true;
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
         } else {

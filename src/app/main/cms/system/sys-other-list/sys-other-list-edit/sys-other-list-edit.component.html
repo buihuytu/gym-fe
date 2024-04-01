@@ -1,1 +1,82 @@
-<p>sys-other-list-edit works!</p>
+<div class="app-sys-other-list-type-edit-container">
+    <app-base-page-edit 
+        [width]="600" 
+        [class.modal-mode-container]="modalMode" 
+        [crud]="crud" 
+        [isModalMode]="modalMode" 
+        [main]="main" 
+        [title]="title" 
+        [formGroup]="form"
+    ></app-base-page-edit>
+    <ng-template #main>
+        <form [formGroup]="form">
+            <div class="row w-100">
+                <div class="col-md-12">
+                    <div class="mb-3 d-none">
+                        <label for="id" class="mb-2 font-weight-bold required">id</label>
+                        <div class="form-group">
+                            <input formControlName="id" id="id" type="text" class="form-control input-default "
+                                placeholder="Tên thể loại">
+                                @if (form.get('coidde')?.hasError('required') && !form.get('id')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                }
+                               
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="typeId" class="mb-2 font-weight-bold required">Nhóm tham số</label>
+                        <div class="form-group">
+                            <div class="basic-form">
+                                <select name="" class="form-control default-select form-control-lg" formControlName="typeId">
+                                    @for(otherListType of otherListTypeOptions; track otherListType.name){
+                                        <option value="{{ otherListType.id }}">{{ otherListType.name }}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        @if (form.get('typeId')?.hasError('required') && !form.get('id')?.untouched) {
+                            <span class="input-error">
+                                Bắt buộc chọn
+                            </span>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="code" class="mb-2 font-weight-bold required">Mã tham số</label>
+                        <div class="form-group">
+                            <input formControlName="code" id="code" type="text" class="form-control input-default "
+                                placeholder="Tên thể loại">
+                                @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                }
+                               
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="mb-2 font-weight-bold required">Tên tham số</label>
+                        <div class="form-group">
+                            <input formControlName="name" id="name" type="text" class="form-control input-default "
+                                placeholder="Tên thể loại">
+                                @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                }
+                               
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="mb-2 font-weight-bold">Ghi chú</label>
+                        <div class="form-group">
+                            <input formControlName="note" id="note" type="text" class="form-control input-default "
+                                placeholder="Ghi chú">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</div>
