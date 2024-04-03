@@ -46,7 +46,7 @@ export class SysOtherListTypeComponent implements BaseComponent {
       field: 'status',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Mã nhóm', 'Code'],
