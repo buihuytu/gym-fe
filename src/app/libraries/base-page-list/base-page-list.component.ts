@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, isDevMode } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BasePageListService } from './base-page-list.service';
 import { TooltipModule } from '../tooltip/tooltip.module';
@@ -8,11 +8,18 @@ import { CORE_VNS_BUTTONS } from '../../constants/headerButton/IButtonDefinition
 import { FormsModule } from '@angular/forms';
 import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
 import { AppConfigService } from '../../services/app-config.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { defaultPaging,defaultPagingList } from '../../constants/defaultPaging';
+import { BehaviorSubject, Subscription, filter } from 'rxjs';
+import { defaultPaging, defaultPagingList } from '../../constants/defaultPaging';
 import { AppLayoutService } from '../../layout/applayout/applayout.service';
+import { DialogService } from '../../services/dialog.service';
+import { HttpRequestService } from '../../services/http.service';
+import { api } from '../../constants/api/apiDefinitions';
 export interface ICorePageListApiDefinition {
-  queryListRelativePath: string;
+  queryListRelativePath: api;
+  deleteIds?: api;
+  toggleActiveIds?: api;
+  toggleApproveIds?: api;
+  toggleUnApproveIds?: api;
 }
 
 export interface ICoreTableColumnItem {
@@ -54,6 +61,10 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() buttons!: EnumBaseButton[];
   @Input() fixedPageSize!: number;
   @Input() left!: TemplateRef<any>;
+  @Input() hideHeader!: boolean;
+
+  @Output() selectedIdsChange = new EventEmitter();
+
   subscriptions: Subscription[] = [];
   showButtons!: any[];
   headerCheckboxState!: any;
@@ -69,7 +80,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
   displayPageCount: any[] = [];
   SizeChanger: any[] = defaultPagingList.take;
   selectedSize: number = defaultPaging.take;
-  pagination$ = new BehaviorSubject<IPagination>({skip:0,take:this.selectedSize,page:1});
+  pagination$ = new BehaviorSubject<IPagination>({ skip: 0, take: this.selectedSize, page: 1 });
   /* start: passing this var to Pagination */
 
   pageCount!: number;
@@ -80,6 +91,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
   /* end: passing this var to Pagination */
 
   pageSize$ = new BehaviorSubject<number>(defaultPaging.take);
+  pendingAction: any;
 
   constructor(
     private basePageListService: BasePageListService,
@@ -87,6 +99,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     public appLayoutService: AppLayoutService,
     private router: Router,
     private route: ActivatedRoute,
+    public dialogService: DialogService,
+    private httpService: HttpRequestService,
   ) {
     this.language = this.appConfig.LANGUAGE;
   }
@@ -141,8 +155,22 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
       });
     }
     this.getDataForTable();
+
+    this.subscriptions.push( // outer-push
+      this.dialogService.dialogConfirmed$.pipe(
+        filter(i => !!!this.dialogService.busy && !!i?.confirmed)
+      ).subscribe(() => {
+        this.dialogService.resetService();
+        switch (this.pendingAction) {
+          case EnumBaseButton.DELETE:
+            this.deleteObjectSelect();
+            break;
+          default:
+            break;
+        }
+      }))
   }
-  getDataForTable(){
+  getDataForTable() {
     this.loading = true;
     setTimeout(() => {
       const url = this.apiDefinition.queryListRelativePath;
@@ -188,7 +216,15 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
         this.navigationLink = `/cms/test/${btoa('0')}`;
         break;
       case EnumBaseButton.DELETE:
-        this.navigationLink = `/cms/test/${btoa('0')}`;
+        this.pendingAction= EnumBaseButton.DELETE;
+        if (this.selectedIds.length === 0) return console.log('1');
+        this.dialogService.busy = true;
+        this.dialogService.showConfirmDialog$.next(true);
+        this.dialogService.title$.next("XÁC NHẬN");
+        this.dialogService.body$.next("Bạn có chắc chắn muốn xóa những đối tượng đã chọn?");
+        this.dialogService.okButtonText$.next("Đồng ý");
+        this.dialogService.cancelButtonText$.next("Quay lại");
+        console.log('sdsd')
         break;
       case EnumBaseButton.APPROVE:
         this.navigationLink = `/cms/test/${btoa('0')}`;
@@ -211,7 +247,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     });
     this.checkingModel = newCheckingModel;
     this.selectedIds = newSelectedIds;
-    console.log(newSelectedIds)
+    this.selectedIdsChange.emit(this.selectedIds);
   }
   onCheckingNgModelChange() {
     const newSelectedIds: number[] = [];
@@ -222,6 +258,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
 
     })
     this.selectedIds = newSelectedIds;
+    this.selectedIdsChange.emit(this.selectedIds);
   }
 
   selectedIdChanges(e: any) {
@@ -281,5 +318,23 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     }
     return result;
   }
-  
+  deleteObjectSelect(){
+    this.subscriptions.push(
+      this.httpService.makePostRequest('create', this.apiDefinition.deleteIds!, {ids:this.selectedIds}).subscribe((x) => {
+        if (x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            this.getDataForTable();
+            this.selectedIds = [];
+            this.checkingModel =[];
+            this.headerCheckboxState = false;
+            if (isDevMode()) {
+            }
+          }
+        } else {
+          // this.onNotOk200Response(x);
+        }
+      })
+    )
+  }
 }

@@ -12,10 +12,12 @@ import { Subscription } from 'rxjs';
   styleUrl: './base-component.component.css'
 })
 export class BaseComponent implements OnInit,AfterViewInit, OnDestroy{
-  subscriptions: Subscription[]  = [];
+  subscriptions!: Subscription[] ;
 
   constructor(
-  ) { }
+  ) {
+    this.subscriptions = [];
+   }
   ngAfterViewInit(): void {
   }
   ngOnInit(): void {
