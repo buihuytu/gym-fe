@@ -2980,7 +2980,8 @@ textarea.form-control.is-invalid {
 }
 
 .input-error {
-    color: #ff1001;
+    color: #f0372cd9;
+    margin-left: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -11556,6 +11557,9 @@ button.bg-dark:focus {
 
 .font-weight-bold {
     font-weight: 700 !important;
+}
+.title-control-edit {
+    color: #5f5d5a;;
 }
 
 .font-weight-bolder {
@@ -25502,14 +25506,14 @@ svg text {
     background: #fff;
     border: 1px solid #d1d0d0;
     color: #6e6e6e;
-    height: 50px;
+    height: 37px;
     padding: 10px 20px;
     border-radius: 0.35rem;
 }
 
 @media only screen and (max-width: 1400px) {
     .form-control {
-        height: 41px;
+        height: 35px;
     }
 }
 
@@ -30265,7 +30269,7 @@ code {
 }
 
 .modal-body {
-    padding: 1.875rem;
+    padding: 1rem 1.875rem;
 }
 
 .modal-footer {

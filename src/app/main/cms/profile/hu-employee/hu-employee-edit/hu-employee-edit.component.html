@@ -1,1 +1,119 @@
-<p>hu-employee-edit works!</p>
+<div class="app-hu-employee-edit-container">
+    <app-base-page-edit [width]="600" [class.modal-mode-container]="modalMode" [crud]="crud" [isModalMode]="modalMode"
+        [main]="main" [title]="title" [formGroup]="form"></app-base-page-edit>
+    <ng-template #main>
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="code" class="mb-2 title-control-edit required">Mã nhân viên</label>
+                            <div class="form-group">
+                                <input formControlName="code" id="code" type="text" class="form-control input-default"
+                                    readonly placeholder="Mã nhân viên">
+                                <!-- @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
+                                        <span class="input-error">
+                                            Bắt buộc chọn
+                                        </span>
+                                    }
+                                    -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name" class="mb-2 title-control-edit required">Họ và tên</label>
+                            <div class="form-group">
+                                <input formControlName="name" id="name" type="text" class="form-control input-default "
+                                    placeholder="Họ và tên">
+                                @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="genderId" class="mb-2 title-control-edit required">Giới tính</label>
+                            <div class="form-group">
+                                <input formControlName="genderId" id="genderId" type="text"
+                                    class="form-control input-default " placeholder="Giới tính">
+                                @if (form.get('genderId')?.hasError('required') && !form.get('genderId')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="birthDate" class="mb-2 title-control-edit required">Ngày sinh</label>
+                            <div class="form-group">
+                                <input formControlName="birthDate" id="birthDate" type="date"
+                                    class="form-control input-default " placeholder="Ngày sinh">
+                                @if (form.get('birthDate')?.hasError('required') && !form.get('birthDate')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="idNo" class="mb-2 title-control-edit">Số Số CMND/CCCD</label>
+                            <div class="form-group">
+                                <input formControlName="idNo" id="idNo" type="text" class="form-control input-default "
+                                    placeholder="Giới tính">
+                                @if (form.get('idNo')?.hasError('required') && !form.get('idNo')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="mb-2 title-control-edit">Số điện thoại</label>
+                            <div class="form-group">
+                                <input formControlName="phone" id="phone" type="date" class="form-control input-default "
+                                    placeholder="Ngày sinh">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="" class="mb-2 title-control-edit">Giới tính</label>
+                            <div class="form-group">
+                                <input formControlName="note" id="note" type="text" class="form-control input-default "
+                                    placeholder="Giới tính">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="mb-2 title-control-edit">Ngày sinh</label>
+                            <div class="form-group">
+                                <input formControlName="note" id="note" type="text" class="form-control input-default "
+                                    placeholder="Ngày sinh">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="" class="mb-2 title-control-edit">Giới tính</label>
+                            <div class="form-group">
+                                <input formControlName="note" id="note" type="text" class="form-control input-default "
+                                    placeholder="Giới tính">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="mb-2 title-control-edit">Ngày sinh</label>
+                            <div class="form-group">
+                                <input formControlName="note" id="note" type="text" class="form-control input-default "
+                                    placeholder="Ngày sinh">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</div>
