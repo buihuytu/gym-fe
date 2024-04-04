@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../services/dialog.service';
@@ -31,7 +31,7 @@ export interface ICorePageEditCRUD {
   templateUrl: './base-page-edit.component.html',
   styleUrl: './base-page-edit.component.scss'
 })
-export class BasePageEditComponent extends BaseEditComponent implements OnInit,AfterViewInit {
+export class BasePageEditComponent extends BaseEditComponent implements OnInit,AfterViewInit, OnChanges {
   @Input() formGroup!: FormGroup;
   @Input() width!: number;
   @Input() main!: TemplateRef<any>;
@@ -62,16 +62,20 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
     this.id = Number(atob(this.route.snapshot.params['id']));
 
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    
+  }
   ngAfterViewInit(): void {
     if (!this.isModalMode) {
-      console.log(this.container)
       this.container.nativeElement.style.setProperty('--width', '100%');
     } else {
       if (!!this.width) {
+       setTimeout(() => {
         this.containerBigger.nativeElement.style.setProperty(
           'max-width',
           this.width + 'px'
         );
+       },200)
       }
       this.containerBigger.nativeElement.style.setProperty(
         '--height',

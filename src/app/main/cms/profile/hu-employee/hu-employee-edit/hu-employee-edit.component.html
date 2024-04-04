@@ -10,7 +10,7 @@
                             <label for="code" class="mb-2 title-control-edit required">Mã nhân viên</label>
                             <div class="form-group">
                                 <input formControlName="code" id="code" type="text" class="form-control input-default"
-                                    readonly placeholder="Mã nhân viên">
+                                    readonly placeholder="Hệ thống sẽ tự sinh">
                                 <!-- @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
                                         <span class="input-error">
                                             Bắt buộc chọn
@@ -61,7 +61,7 @@
                     </div>
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="idNo" class="mb-2 title-control-edit">Số CMND/CCCD</label>
+                            <label for="idNo" class="mb-2 title-control-edit required">Số CMND/CCCD</label>
                             <div class="form-group">
                                 <input formControlName="idNo" id="idNo" type="text" class="form-control input-default "
                                     placeholder="Giới tính">
@@ -73,42 +73,52 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="phone" class="mb-2 title-control-edit">Số điện thoại</label>
+                            <label for="staffGroupId" class="mb-2 title-control-edit required">Nhóm nhân viên</label>
                             <div class="form-group">
-                                <input formControlName="phone" id="phone" type="date" class="form-control input-default "
-                                    placeholder="Ngày sinh">
+                                <input formControlName="staffGroupId" id="note" type="text" class="form-control input-default "
+                                    placeholder="Giới tính">
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="phone" class="mb-2 title-control-edit required">Số điện thoại</label>
+                            <div class="form-group">
+                                <input formControlName="phone" id="phone" type="phone"
+                                    class="form-control input-default " placeholder="Số điện thoại">
+                                @if (form.get('phone')?.hasError('required') && !form.get('phone')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mail" class="mb-2 title-control-edit">Email cá nhân</label>
+                            <div class="form-group">
+                                <input formControlName="mail" id="mail" type="text" class="form-control input-default "
+                                    placeholder="Email cá nhân">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-12">
+                            <label for="address" class="mb-2 title-control-edit required">Địa chỉ</label>
+                            <div class="form-group">
+                                <input formControlName="address" id="address" type="text"
+                                    class="form-control input-default " placeholder="Địa chỉ">
                             </div>
                         </div>
                     </div>
                     <div class="row row-control justify-content-between">
-                        <div class="col-md-6">
-                            <label for="" class="mb-2 title-control-edit">Giới tính</label>
+                        <div class="col-md-12">
+                            <label for="note" class="mb-2 title-control-edit required">Ghi chú</label>
                             <div class="form-group">
-                                <input formControlName="note" id="note" type="text" class="form-control input-default "
-                                    placeholder="Giới tính">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="mb-2 title-control-edit">Ngày sinh</label>
-                            <div class="form-group">
-                                <input formControlName="note" id="note" type="text" class="form-control input-default "
-                                    placeholder="Ngày sinh">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-control justify-content-between">
-                        <div class="col-md-6">
-                            <label for="" class="mb-2 title-control-edit">Giới tính</label>
-                            <div class="form-group">
-                                <input formControlName="note" id="note" type="text" class="form-control input-default "
-                                    placeholder="Giới tính">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="mb-2 title-control-edit">Ngày sinh</label>
-                            <div class="form-group">
-                                <input formControlName="note" id="note" type="text" class="form-control input-default "
-                                    placeholder="Ngày sinh">
+                                <input formControlName="note" id="note" type="text"
+                                    class="form-control input-default " placeholder="Ghi chú">
                             </div>
                         </div>
                     </div>
