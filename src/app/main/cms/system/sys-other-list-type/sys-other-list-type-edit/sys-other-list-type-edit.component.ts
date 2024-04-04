@@ -16,7 +16,7 @@ import { api } from '../../../../../constants/api/apiDefinitions';
     BasePageEditComponent
   ],
   templateUrl: './sys-other-list-type-edit.component.html',
-  styleUrl: './sys-other-list-type-edit.component.css'
+  styleUrl: './sys-other-list-type-edit.component.scss'
 })
 export class SysOtherListTypeEditComponent extends BaseEditComponent {
   title: string[] = ['Nhóm tham số hệ thống','System parameter group'];

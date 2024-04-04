@@ -21,7 +21,7 @@ import { AppLayoutService } from '../../../../layout/applayout/applayout.service
     DebounceDirective
   ],
   templateUrl: './sys-other-list.component.html',
-  styleUrl: './sys-other-list.component.css'
+  styleUrl: './sys-other-list.component.scss'
 })
 export class SysOtherListComponent implements BaseComponent {
 

@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
     BasePageEditComponent
   ],
   templateUrl: './sys-other-list-edit.component.html',
-  styleUrl: './sys-other-list-edit.component.css'
+  styleUrl: './sys-other-list-edit.component.scss'
 })
 export class SysOtherListEditComponent extends BaseEditComponent  implements OnInit, AfterViewInit, OnDestroy{
   title: string[] = ['Nhóm tham số hệ thống','System parameter group'];
