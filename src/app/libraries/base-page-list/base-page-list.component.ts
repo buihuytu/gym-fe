@@ -319,6 +319,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     return result;
   }
   deleteObjectSelect(){
+    if(!this.apiDefinition.deleteIds!) return ;
     this.subscriptions.push(
       this.httpService.makePostRequest('create', this.apiDefinition.deleteIds!, {ids:this.selectedIds}).subscribe((x) => {
         if (x.ok && x.status === 200) {
