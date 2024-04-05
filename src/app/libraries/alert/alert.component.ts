@@ -87,7 +87,6 @@ export class AlertComponent implements OnInit, AfterViewInit, OnDestroy {
     
                         // auto close alert if required
                         x.map(alert => {
-                            debugger
                             if (!!alert.autoClose) {
                                 setTimeout(() => this.removeAlert(alert), alert.timeClose);
                             }
