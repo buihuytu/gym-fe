@@ -282,6 +282,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
 
     })
     this.selectedIds = newSelectedIds;
+    if(newSelectedIds.length === this.data.length)  this.headerCheckboxState = true;
+    else this.headerCheckboxState = false;
     this.selectedIdsChange.emit(this.selectedIds);
   }
 
