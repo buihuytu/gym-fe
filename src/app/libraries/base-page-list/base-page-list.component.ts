@@ -131,17 +131,17 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
 
   ngOnInit(): void {
     if (!!!this.columns) {
-      console.log("NOT EXITS COLUMNS")
+      this.alertService.warn("NOT EXITS COLUMNS");
     }
     if (this.columns.filter((c: ICoreTableColumnItem) => c.field === 'id').length === 0 && isDevMode() && this.columns.length) {
-      console.log("The columns must have one with 'field' property === 'id'")
+      this.alertService.warn("The columns must have one with 'field' property === 'id'");
     }
     this.visibleColumns = this.columns.filter((c: ICoreTableColumnItem) => !!!c.hidden)
     if (!!!this.visibleColumns.length && isDevMode() && this.columns.length) {
       console.log('first')
     }
     if (!!!this.buttons || this.buttons.length <= 0) {
-      console.log("NOT EXITS BUTTONS")
+      this.alertService.warn("NOT EXITS BUTTONS");
     }
     var win_h = window.outerHeight;
     if (win_h > 0 ? win_h : screen.height) {
