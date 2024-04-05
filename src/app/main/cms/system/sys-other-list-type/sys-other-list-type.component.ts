@@ -24,7 +24,8 @@ import { DebounceDirective } from '../../../../libraries/debounce-event/debounce
 })
 export class SysOtherListTypeComponent implements BaseComponent {
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.SYS_OTHER_LIST_TYPE_QUERY_LIST
+    queryListRelativePath: api.SYS_OTHER_LIST_TYPE_QUERY_LIST,
+    deleteIds:api.SYS_OTHER_LIST_TYPE_DELETE_IDS
   };
   title: string[] = ['Nhóm tham số hệ thống', 'System parameter group'];
   currentIdType!:any;
