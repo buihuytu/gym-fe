@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BasePageListService } from './base-page-list.service';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { EnumBaseButton } from '../../constants/headerButton/ButtonDefinitions';
-import { CORE_VNS_BUTTONS } from '../../constants/headerButton/IButtonDefinitions';
+import { BASE_BUTTONS } from '../../constants/headerButton/IButtonDefinitions';
 import { FormsModule } from '@angular/forms';
 import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
 import { AppConfigService } from '../../services/app-config.service';
@@ -148,7 +148,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
       this.tableHeight = win_h - 350;
     };
     this.appLayoutService.tableHeight = this.tableHeight;
-    this.showButtons = CORE_VNS_BUTTONS.filter(x => this.buttons.includes(x.code));
+    this.showButtons = BASE_BUTTONS.filter(x => this.buttons.includes(x.code));
     this.showButtons.sort((a, b) => a.order - b.order);
     this.onSizeChange(defaultPaging.take);
   }

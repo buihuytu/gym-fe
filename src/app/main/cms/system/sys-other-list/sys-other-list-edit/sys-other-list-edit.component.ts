@@ -7,6 +7,7 @@ import { DialogService } from '../../../../../services/dialog.service';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { HttpRequestService } from '../../../../../services/http.service';
 import { Subscription } from 'rxjs';
+import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-sys-other-list-edit',
@@ -15,7 +16,8 @@ import { Subscription } from 'rxjs';
     RouterModule,
     FormsModule, 
     ReactiveFormsModule,
-    BasePageEditComponent
+    BasePageEditComponent,
+    DropdownComponent
   ],
   templateUrl: './sys-other-list-edit.component.html',
   styleUrl: './sys-other-list-edit.component.scss'

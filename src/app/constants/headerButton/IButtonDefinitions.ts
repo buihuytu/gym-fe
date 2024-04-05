@@ -8,7 +8,7 @@ export interface ICoreButtonVNS {
     order?: any;
 }
 
-export const CORE_VNS_BUTTONS: ICoreButtonVNS[] = [
+export const BASE_BUTTONS: ICoreButtonVNS[] = [
     {
         code: EnumBaseButton.CREATE,
         iconClass: 'flaticon-043-plus',

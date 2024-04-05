@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AppLayoutService } from '../../../../layout/applayout/applayout.service';
 import { FormsModule } from '@angular/forms';
 import { DebounceDirective } from '../../../../libraries/debounce-event/debounce-event.directive';
+import { DropdownComponent } from '../../../../libraries/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-sys-other-list-type',
@@ -17,7 +18,7 @@ import { DebounceDirective } from '../../../../libraries/debounce-event/debounce
     CommonModule,
     BasePageListComponent,
     FormsModule,
-    DebounceDirective
+    DebounceDirective,
   ],
   templateUrl: './sys-other-list-type.component.html',
   styleUrl: './sys-other-list-type.component.scss'
