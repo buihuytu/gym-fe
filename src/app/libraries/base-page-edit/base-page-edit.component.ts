@@ -10,6 +10,8 @@ import { HttpRequestService } from '../../services/http.service';
 import { api } from '../../constants/api/apiDefinitions';
 import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
 import { AppConfigService } from '../../services/app-config.service';
+import { AlertService } from '../alert/alert.service';
+import { Subscription } from 'rxjs';
 
 export interface ICorePageEditCRUD {
   c?: api; // Create
@@ -48,6 +50,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
   id!: number;
   isDevMode!: boolean;
   language!: boolean;
+  subscriptions: Subscription[] =[];
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -55,6 +58,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
     private router: Router,
     private route: ActivatedRoute,
     public appConfig: AppConfigService,
+    private alertService: AlertService
   ) {
     super(dialogService);
     this.language = this.appConfig.LANGUAGE;
@@ -64,6 +68,9 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
   }
   ngOnChanges(changes: SimpleChanges): void {
     
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.map((subscription: Subscription) =>subscription.unsubscribe());
   }
   ngAfterViewInit(): void {
     if (!this.isModalMode) {
@@ -121,6 +128,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             if (isDevMode()) {
             }
             this.ignoreDeactivate = true;
+            this.alertService.success('Thêm mới thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
         } else {
@@ -136,6 +144,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             if (isDevMode()) {
             }
             this.ignoreDeactivate = true;
+            this.alertService.success('Cập nhật thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
         } else {

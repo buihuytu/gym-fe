@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, TemplateRef, isDevMode } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BasePageListService } from './base-page-list.service';
 import { TooltipModule } from '../tooltip/tooltip.module';
@@ -14,6 +14,7 @@ import { AppLayoutService } from '../../layout/applayout/applayout.service';
 import { DialogService } from '../../services/dialog.service';
 import { HttpRequestService } from '../../services/http.service';
 import { api } from '../../constants/api/apiDefinitions';
+import { AlertService } from '../alert/alert.service';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: api;
   deleteIds?: api;
@@ -53,7 +54,7 @@ export interface IInOperator {
   templateUrl: './base-page-list.component.html',
   styleUrl: './base-page-list.component.scss'
 })
-export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
+export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
   @Input() title!: string[];
   @Input() columns!: ICoreTableColumnItem[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
@@ -101,8 +102,12 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
     private route: ActivatedRoute,
     public dialogService: DialogService,
     private httpService: HttpRequestService,
+    private alertService: AlertService
   ) {
     this.language = this.appConfig.LANGUAGE;
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.map((subscription: Subscription) =>subscription.unsubscribe());
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pageCount']) {
@@ -325,6 +330,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges {
         if (x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {
+            this.alertService.success('Xóa thành công');
             this.getDataForTable();
             this.selectedIds = [];
             this.checkingModel =[];
