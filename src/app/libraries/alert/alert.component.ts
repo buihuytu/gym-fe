@@ -25,7 +25,7 @@ export enum EnumAlertType {
 
 export class IAlertOptions {
     id?: string;
-    autoClose?: boolean;
+    autoClose: boolean =true;
     keepAfterRouteChange?: boolean;
     timeClose?: number = 3000;
 }
@@ -87,6 +87,7 @@ export class AlertComponent implements OnInit, AfterViewInit, OnDestroy {
     
                         // auto close alert if required
                         x.map(alert => {
+                            debugger
                             if (!!alert.autoClose) {
                                 setTimeout(() => this.removeAlert(alert), alert.timeClose);
                             }

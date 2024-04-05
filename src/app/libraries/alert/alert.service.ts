@@ -35,7 +35,9 @@ export class AlertService {
 
     // main alert method    
     alert(alert: IAlert) {
-        alert.id = alert.id
+        alert.id = alert.id;
+        alert.autoClose = alert.autoClose ?? true;
+        alert.timeClose = alert.timeClose ?? 3000;
         this.alerts$.next([...this.alerts$.value, alert])
     }
 
