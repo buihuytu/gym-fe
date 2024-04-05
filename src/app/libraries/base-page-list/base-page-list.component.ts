@@ -195,12 +195,10 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
           [value.field]:value.values
         }
       });
-      console.log(filter)
       const param = {
         ...this.pagination$.value,
         filter : filter,
       }
-      console.log(param)
       this.subscriptions.push(
         this.basePageListService.queryList(url, param).pipe().subscribe(x => {
           if (!!x.ok && x.status === 200) {
