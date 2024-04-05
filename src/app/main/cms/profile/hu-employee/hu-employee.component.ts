@@ -128,13 +128,12 @@ export class HuEmployeeComponent implements BaseComponent {
     if(this.currentIdType == e.id) return;
     else{
       this.currentIdType = e.id;
-      this.outerInOperators.push(
+      this.outerInOperators = [
         {
           field: 'typeId',
           values: e.id
         }
-      )
-      console.log(this.outerInOperators)
+      ]
     }
   }
 }

@@ -59,6 +59,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() columns!: ICoreTableColumnItem[];
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() outerInOperators!: IInOperator[];
+  @Input() outerParam$!: BehaviorSubject<any>;
   @Input() buttons!: EnumBaseButton[];
   @Input() fixedPageSize!: number;
   @Input() left!: TemplateRef<any>;
@@ -66,6 +67,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
 
   @Output() selectedIdsChange = new EventEmitter();
 
+  filter$ = new BehaviorSubject<any>(null);
+  inOperators$ = new BehaviorSubject<IInOperator[]>([]);
   subscriptions: Subscription[] = [];
   showButtons!: any[];
   headerCheckboxState!: any;
@@ -116,8 +119,14 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
       }
     }
     if (changes['outerInOperators']) {
-      console.log(changes['outerInOperators'])
+      const currentInOperators: IInOperator[] = this.inOperators$.value;
+      const changedInOperators: IInOperator[] = changes['outerInOperators'].currentValue || [];
+      const remainInOperators = currentInOperators.filter(x => !!!changedInOperators.filter(y => y.field === x.field).length);
+      const newInOperators = [...remainInOperators, ...changedInOperators];
+      //const newInOperators = [...changedInOperators];
+      this.inOperators$.next(newInOperators);
     }
+    this.getDataForTable();
   }
 
   ngOnInit(): void {
@@ -159,7 +168,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         page: 1
       });
     }
-    this.getDataForTable();
+    //this.getDataForTable();
 
     this.subscriptions.push( // outer-push
       this.dialogService.dialogConfirmed$.pipe(
@@ -179,8 +188,21 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     this.loading = true;
     setTimeout(() => {
       const url = this.apiDefinition.queryListRelativePath;
+      let filter ={};
+      this.inOperators$.value.map((value) =>{
+        filter = {
+          ...filter,
+          [value.field]:value.values
+        }
+      });
+      console.log(filter)
+      const param = {
+        ...this.pagination$.value,
+        filter : filter,
+      }
+      console.log(param)
       this.subscriptions.push(
-        this.basePageListService.queryList(url, this.pagination$.value).pipe().subscribe(x => {
+        this.basePageListService.queryList(url, param).pipe().subscribe(x => {
           if (!!x.ok && x.status === 200) {
             const body = x.body;
             if (body.statusCode === 200) {
@@ -229,7 +251,6 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         this.dialogService.body$.next("Bạn có chắc chắn muốn xóa những đối tượng đã chọn?");
         this.dialogService.okButtonText$.next("Đồng ý");
         this.dialogService.cancelButtonText$.next("Quay lại");
-        console.log('sdsd')
         break;
       case EnumBaseButton.APPROVE:
         this.navigationLink = `/cms/test/${btoa('0')}`;
