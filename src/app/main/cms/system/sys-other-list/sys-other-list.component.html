@@ -13,7 +13,7 @@
                     overflowX: 'overlay'
                 }">
                     <div class="tab-content dz-scroll table">
-                        @for (item of otherListTypeOptions; track $index) {
+                        @for (item of otherListTypeOptionShow; track $index) {
                             <div (click)="onSelectedListTypeChanged(item)" class="tab-pane fade show active" > <!--  dfsd-->
                                 <div class="chat-list-area" [class.active]="currentIdType == item.id">
                                     <div class="info-body">

@@ -83,37 +83,5 @@ export class SysOtherListTypeComponent implements BaseComponent {
   ngOnDestroy(): void {
   }
   ngOnInit() {
-    this.getListOtherListTypes()
-  }
-
-  getListOtherListTypes() {
-    this.subscriptions.push(
-      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_TYPE_GET_LIST).subscribe(x => {
-        if (!!x.ok && x.status === 200) {
-          const body = x.body;
-          if (body.statusCode === 200) {
-            const data = body.innerBody;
-            this.otherListTypeOptions = data;
-          }
-        }
-      })
-    );
-  }
-  onSearchListType(e:any){
-    console.log(this.searchType)
-  }
-
-  onSelectedListTypeChanged(e:any) {
-    if(this.currentIdType == e.id) return;
-    else{
-      this.currentIdType = e.id;
-      this.outerInOperators.push(
-        {
-          field: 'typeId',
-          values: e.id
-        }
-      )
-      console.log(this.outerInOperators)
-    }
   }
 }

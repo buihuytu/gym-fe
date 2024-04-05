@@ -35,6 +35,7 @@ export class SysOtherListComponent implements BaseComponent {
   title: string[] = ['Tham số hệ thống', 'System parameter'];
   currentIdType!:any;
   otherListTypeOptions!:any[];
+  otherListTypeOptionShow!:any[];
   searchType!:any;
   outerInOperators: IInOperator[] = [];
   showButtons: EnumBaseButton[] = [
@@ -98,6 +99,7 @@ export class SysOtherListComponent implements BaseComponent {
           if (body.statusCode === 200) {
             const data = body.innerBody;
             this.otherListTypeOptions = data;
+            this.otherListTypeOptionShow = data;
           }
         }
       })
@@ -105,7 +107,11 @@ export class SysOtherListComponent implements BaseComponent {
   }
 
   onSearchListType(e:any){
-    console.log(this.searchType)
+    if(this.searchType !== '' && this.searchType !== null){
+      this.otherListTypeOptionShow = this.otherListTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.otherListTypeOptionShow = this.otherListTypeOptions
+    }
   }
 
   onSelectedListTypeChanged(e:any) {
