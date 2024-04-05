@@ -75,7 +75,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   visibleColumns!: ICoreTableColumnItem[];
   innerBodyCount$ = new BehaviorSubject<number>(1);
   navigationLink!: any;
-  selectedIds!: any[];
+  selectedIds: any[]= [];
   language!: boolean;
   loading: boolean = true;
   displayPageCount: any[] = [];
@@ -205,8 +205,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         );
         break;
       case EnumBaseButton.EDIT:
-        if (this.selectedIds.length === 0) return console.log('1');
-        if (this.selectedIds.length > 1) return console.log('2')
+        if (this.selectedIds.length === 0) return this.alertService.error('Chưa chọn bản ghi nào');
+        if (this.selectedIds.length > 1) return this.alertService.warn('Chỉ chọn 1 bản ghi để thực hiện chỉnh sửa');
         this.router.navigate(
           [btoa(this.selectedIds[0].toString())],
           {
@@ -222,7 +222,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         break;
       case EnumBaseButton.DELETE:
         this.pendingAction= EnumBaseButton.DELETE;
-        if (this.selectedIds.length === 0) return console.log('1');
+        if (this.selectedIds.length === 0) return this.alertService.error('Chưa chọn bản ghi nào');
         this.dialogService.busy = true;
         this.dialogService.showConfirmDialog$.next(true);
         this.dialogService.title$.next("XÁC NHẬN");
