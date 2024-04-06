@@ -14,7 +14,7 @@ import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.co
   standalone: true,
   imports: [
     RouterModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     BasePageEditComponent,
     DropdownComponent
@@ -22,26 +22,28 @@ import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.co
   templateUrl: './sys-other-list-edit.component.html',
   styleUrl: './sys-other-list-edit.component.scss'
 })
-export class SysOtherListEditComponent extends BaseEditComponent  implements OnInit, AfterViewInit, OnDestroy{
-  title: string[] = ['Nhóm tham số hệ thống','System parameter group'];
+export class SysOtherListEditComponent extends BaseEditComponent implements OnInit, AfterViewInit, OnDestroy {
+  title: string[] = ['Nhóm tham số hệ thống', 'System parameter group'];
 
   modalMode: boolean = true;//for modal and style modal
   crud!: ICorePageEditCRUD;
 
-  otherListTypeOptions!:any[];
+  otherListTypeOptions!: any[];
   subscriptions: Subscription[] = [];
+
+  getListTypeOptions$: api = api.SYS_OTHER_LIST_TYPE_GET_LIST;
 
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
     private httpService: HttpRequestService,
-    ) {
+  ) {
     super(dialogService);
     this.form = this.fb.group({
-      id:[],
-      code: [null,[Validators.required]],
-      name: [null,[Validators.required]],
-      typeId: [null,[Validators.required]],
+      id: [],
+      code: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      typeId: [null, [Validators.required]],
       note: [],
     })
     this.crud = {
@@ -51,11 +53,11 @@ export class SysOtherListEditComponent extends BaseEditComponent  implements OnI
       d: api.SYS_OTHER_LIST_DELETE_IDS,
     }
   }
-  
+
 
   getListOtherListTypes() {
     this.subscriptions.push(
-      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_TYPE_GET_LIST).subscribe(x => {
+      this.httpService.makeGetRequest('', api.SYS_OTHER_LIST_TYPE_GET_LIST).subscribe(x => {
         if (!!x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {
@@ -69,7 +71,7 @@ export class SysOtherListEditComponent extends BaseEditComponent  implements OnI
 
   ngOnInit(): void {
   }
-  
+
   ngAfterViewInit(): void {
     this.getListOtherListTypes();
   }
@@ -77,5 +79,5 @@ export class SysOtherListEditComponent extends BaseEditComponent  implements OnI
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
   }
-  
+
 }

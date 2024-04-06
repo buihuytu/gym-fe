@@ -5,19 +5,6 @@
         <form [formGroup]="form">
             <div class="row w-100">
                 <div class="col-md-12">
-                    <div class="mb-3 d-none">
-                        <label for="id" class="mb-2 title-control-edit required">id</label>
-                        <div class="form-group">
-                            <input formControlName="id" id="id" type="text" class="form-control input-default "
-                                placeholder="Tên thể loại">
-                            @if (form.get('coidde')?.hasError('required') && !form.get('id')?.untouched) {
-                            <span class="input-error">
-                                Bắt buộc chọn
-                            </span>
-                            }
-
-                        </div>
-                    </div>
                     <div class="mb-3">
                         <label for="typeId" class="mb-2 title-control-edit required">Nhóm tham số</label>
                         <div class="form-group">
@@ -27,7 +14,7 @@
                                         <option value="{{ otherListType.id }}">{{ otherListType.name }}</option>
                                     }
                                 </select> -->
-                                <app-dropdown></app-dropdown>
+                                <app-dropdown formControlName="typeId" [apiGetOptions]="getListTypeOptions$"></app-dropdown>
 
                             </div>
                         </div>
