@@ -27,7 +27,7 @@ export class SysUserComponent implements BaseComponent {
   subscriptions: Subscription[] = [];
 
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.SYS_OTHER_LIST_QUERY_LIST
+    queryListRelativePath: api.SYS_USER_QUERY_LIST
   };
   title: string[] = ['Tài khoản', 'User'];
   currentIdType!:any;

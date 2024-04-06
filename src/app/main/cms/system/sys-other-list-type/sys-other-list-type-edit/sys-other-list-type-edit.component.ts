@@ -42,4 +42,7 @@ export class SysOtherListTypeEditComponent extends BaseEditComponent {
       d: api.SYS_OTHER_LIST_TYPE_DELETE_IDS,
     }
   }
+  onFormReinit(e: string): void {
+    this.formInitStringValue = e;
+  }
 }
