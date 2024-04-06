@@ -74,6 +74,10 @@ export class SysOtherListEditComponent extends BaseEditComponent  implements OnI
     this.getListOtherListTypes();
   }
 
+  onFormReinit(e: string): void {
+    this.formInitStringValue = e;
+  }
+  
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
   }

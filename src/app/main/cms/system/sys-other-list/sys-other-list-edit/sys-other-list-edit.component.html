@@ -1,6 +1,14 @@
 <div class="app-sys-other-list-type-edit-container">
-    <app-base-page-edit [width]="600" [class.modal-mode-container]="modalMode" [crud]="crud" [isModalMode]="modalMode"
-        [main]="main" [title]="title" [formGroup]="form"></app-base-page-edit>
+    <app-base-page-edit 
+        [width]="600" 
+        [class.modal-mode-container]="modalMode" 
+        [crud]="crud" 
+        [isModalMode]="modalMode"
+        [main]="main" 
+        [title]="title" 
+        [formGroup]="form"
+        (onInitialValueStringReady)="onFormReinit($event)"
+    ></app-base-page-edit>
     <ng-template #main>
         <form [formGroup]="form">
             <div class="row w-100">

@@ -37,16 +37,18 @@ export class SysUserEditComponent extends BaseEditComponent implements OnInit, A
     super(dialogService);
     this.form = this.fb.group({
       id:[],
-      code: [null,[Validators.required]],
-      name: [null,[Validators.required]],
-      typeId: [null,[Validators.required]],
-      note: [],
+      groupId: [null,[Validators.required]],
+      username: [null,[Validators.required]],
+      fullname: [null,[Validators.required]],
+      employeeId: [null,[Validators.required]],
+      password: [null,[Validators.required]],
+      rePassword: [null,[Validators.required]],
     })
     this.crud = {
-      c: api.SYS_OTHER_LIST_CREATE,
-      r: api.SYS_OTHER_LIST_READ,
-      u: api.SYS_OTHER_LIST_UPDATE,
-      d: api.SYS_OTHER_LIST_DELETE_IDS,
+      c: api.SYS_USER_CREATE,
+      r: api.SYS_USER_READ,
+      u: api.SYS_USER_UPDATE,
+      d: api.SYS_USER_DELETE_IDS,
     }
   }
 
@@ -54,6 +56,10 @@ export class SysUserEditComponent extends BaseEditComponent implements OnInit, A
   }
   
   ngAfterViewInit(): void {
+  }
+
+  onFormReinit(e: string): void {
+    this.formInitStringValue = e;
   }
 
   ngOnDestroy(): void {

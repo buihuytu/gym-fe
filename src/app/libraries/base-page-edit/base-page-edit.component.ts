@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild, isDevMode } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DialogService } from '../../services/dialog.service';
@@ -43,6 +43,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
   @Input() crud!: ICorePageEditCRUD;
   @Input() isModalMode!: boolean;
 
+  @Output() onInitialValueStringReady = new EventEmitter<string>();
 
   @ViewChild('container') container!: ElementRef;
   @ViewChild('containerBigger') containerBigger!: ElementRef;
@@ -89,6 +90,13 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
         '95%'
       )
     }
+
+    setTimeout(() => {
+      this.onInitialValueStringReady.emit(
+        JSON.stringify(this.form.getRawValue())
+      );
+    })
+    
   }
   ngOnInit(): void {
     this.form = this.formGroup;
@@ -103,10 +111,15 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
         if (body.statusCode === 200) {
           const innerBody = body.innerBody;
           this.form.patchValue(innerBody);
+          
+          this.onInitialValueStringReady.emit(
+            JSON.stringify(this.form.getRawValue())
+          );
         }
       } else {
         this.onNotOk200Response(x);
       }
+      
     })
   }
   getRawValue() {
@@ -127,6 +140,10 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
           if (body.statusCode === 200) {
             if (isDevMode()) {
             }
+            this.onInitialValueStringReady.emit(
+              JSON.stringify(this.form.getRawValue())
+            );
+
             this.ignoreDeactivate = true;
             this.alertService.success('Thêm mới thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
@@ -143,6 +160,11 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
           if (body.statusCode === 200) {
             if (isDevMode()) {
             }
+
+            this.onInitialValueStringReady.emit(
+              JSON.stringify(this.form.getRawValue())
+            );
+
             this.ignoreDeactivate = true;
             this.alertService.success('Cập nhật thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
