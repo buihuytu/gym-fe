@@ -22,11 +22,11 @@
                                         <option value="{{ otherListType.id }}">{{ otherListType.name }}</option>
                                     }
                                 </select> -->
-                                <app-dropdown formControlName="typeId" [apiGetOptions]="getListTypeOptions$"></app-dropdown>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" [apiGetOptions]="getListTypeOptions$"></app-dropdown>
 
                             </div>
                         </div>
-                        @if (form.get('typeId')?.hasError('required') && !form.get('id')?.untouched) {
+                        @if (form.get('typeId')?.hasError('required') && !form.get('typeId')?.untouched) {
                         <span class="input-error">
                             Bắt buộc chọn
                         </span>

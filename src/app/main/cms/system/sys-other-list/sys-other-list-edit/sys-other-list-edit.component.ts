@@ -83,5 +83,8 @@ export class SysOtherListEditComponent extends BaseEditComponent implements OnIn
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
   }
-
+  onDropdownSelected(event:any, e:string):void{
+    this.form.get(e)?.setValue(event);
+    this.form.get(e)?.markAllAsTouched();
+  }
 }

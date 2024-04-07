@@ -54,4 +54,8 @@ export class DropdownComponent implements BaseComponent {
     this.selectedId = e.id;
     this.valueChange.emit(this.selectedId)
   }
+  onUnselectedIds(){
+    this.selectedId = null;
+    this.valueChange.emit(this.selectedId)
+  }
 }
