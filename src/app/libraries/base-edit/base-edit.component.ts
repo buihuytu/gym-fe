@@ -23,8 +23,6 @@ export class BaseEditComponent {
   ) { }
 
   canDeactivate(): Observable<boolean> | boolean {
-    console.log("this.formInitStringValue", this.formInitStringValue)
-    console.log("JSON.stringify(this.form.getRawValue())", JSON.stringify(this.form?.getRawValue()))
     const condition = JSON.stringify(this.form.getRawValue()) === this.formInitStringValue;
     if (condition || this.ignoreDeactivate === true) {
       return true;

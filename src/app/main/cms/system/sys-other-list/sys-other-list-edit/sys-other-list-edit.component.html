@@ -17,13 +17,10 @@
                         <label for="typeId" class="mb-2 title-control-edit required">Nhóm tham số</label>
                         <div class="form-group">
                             <div>
-                                <!-- <select name="" class="form-control default-select form-control-lg" formControlName="typeId">
-                                    @for(otherListType of otherListTypeOptions; track otherListType.name){
-                                        <option value="{{ otherListType.id }}">{{ otherListType.name }}</option>
-                                    }
-                                </select> -->
-                                <app-dropdown  (valueChange)="onDropdownSelected($event, 'typeId')" [getByIdOptions]="form.get('typeId')?.value" [apiGetOptions]="getListTypeOptions$"></app-dropdown>
-
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" 
+                                              [getByIdOptions]="form.get('typeId')?.value" 
+                                              [apiGetOptions]="getListTypeOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                         @if (form.get('typeId')?.hasError('required') && !form.get('typeId')?.untouched) {

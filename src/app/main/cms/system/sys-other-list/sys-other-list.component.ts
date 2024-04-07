@@ -68,7 +68,7 @@ export class SysOtherListComponent implements BaseComponent {
       width: 250
     },
     {
-      caption: ['Tên nhóm tham số', 'name'],
+      caption: ['Tên tham số', 'name'],
       field: 'name',
       type: 'text',
       align: 'left',
@@ -85,27 +85,10 @@ export class SysOtherListComponent implements BaseComponent {
 
 
   constructor(
-    private sysOtherListService: SysOtherListService,
     private httpService: HttpRequestService,
     public appLayoutService:AppLayoutService
   ){
   }
-  
-  getListOtherListTypes() {
-    this.subscriptions.push(
-      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_TYPE_GET_LIST).subscribe(x => {
-        if (!!x.ok && x.status === 200) {
-          const body = x.body;
-          if (body.statusCode === 200) {
-            const data = body.innerBody;
-            this.otherListTypeOptions = data;
-            this.otherListTypeOptionShow = data;
-          }
-        }
-      })
-    );
-  }
-
   onSearchListType(e:any){
     if(this.searchType !== '' && this.searchType !== null){
       this.otherListTypeOptionShow = this.otherListTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
@@ -131,9 +114,6 @@ export class SysOtherListComponent implements BaseComponent {
   }
 
   ngAfterViewInit(){
-    setTimeout(() => {
-      this.getListOtherListTypes();
-    })
   }
 
   ngOnDestroy(): void {
