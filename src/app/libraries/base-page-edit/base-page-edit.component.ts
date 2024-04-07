@@ -52,6 +52,9 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
   isDevMode!: boolean;
   language!: boolean;
   subscriptions: Subscription[] =[];
+
+  payLoad = '';
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -123,18 +126,16 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
     })
   }
   getRawValue() {
-    console.log(this.form.getRawValue());
+    this.payLoad = JSON.stringify(this.form.getRawValue(), null, 2);
   }
   saveData() {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
     }
-    console.log(this.ignoreDeactivate);
-    const param = JSON.stringify(this.form.getRawValue())
-    console.log(param)
+    this.payLoad = JSON.stringify(this.form.getRawValue())
     if (!!!this.form.get('id')!.value) {
-      this.httpService.makePostRequest('create', this.crud.c!, param).subscribe((x) => {
+      this.httpService.makePostRequest('create', this.crud.c!, this.payLoad).subscribe((x) => {
         if (x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {
@@ -154,7 +155,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
       })
 
     } else {
-      this.httpService.makePostRequest('update', this.crud.u!, param).subscribe((x) => {
+      this.httpService.makePostRequest('update', this.crud.u!, this.payLoad).subscribe((x) => {
         if (x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {
