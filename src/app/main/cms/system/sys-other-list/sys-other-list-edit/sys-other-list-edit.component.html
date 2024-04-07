@@ -22,7 +22,7 @@
                                         <option value="{{ otherListType.id }}">{{ otherListType.name }}</option>
                                     }
                                 </select> -->
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" [apiGetOptions]="getListTypeOptions$"></app-dropdown>
+                                <app-dropdown  (valueChange)="onDropdownSelected($event, 'typeId')" [getByIdOptions]="form.get('typeId')?.value" [apiGetOptions]="getListTypeOptions$"></app-dropdown>
 
                             </div>
                         </div>

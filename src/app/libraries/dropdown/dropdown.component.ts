@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { api } from '../../constants/api/apiDefinitions';
 import { BaseComponent } from '../base-component/base-component.component';
 import { Subscription } from 'rxjs';
@@ -11,8 +11,9 @@ import { HttpRequestService } from '../../services/http.service';
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss'
 })
-export class DropdownComponent implements BaseComponent {
+export class DropdownComponent implements BaseComponent, OnChanges {
   @Input() apiGetOptions!: string;
+  @Input() getByIdOptions!: any;
   @Output() valueChange = new EventEmitter;
   
   subscriptions: Subscription[] =[];
@@ -26,6 +27,11 @@ export class DropdownComponent implements BaseComponent {
   constructor(
     private httpService: HttpRequestService,
   ) {
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['getByIdOptions']) {
+      this.selectedId = changes['getByIdOptions'].currentValue;
+    }
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
