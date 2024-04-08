@@ -16,12 +16,10 @@
                     <div class="mb-3">
                         <label for="typeId" class="mb-2 title-control-edit required">Nhóm tham số</label>
                         <div class="form-group">
-                            <div>
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" 
+                            <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" 
                                               [getByIdOptions]="form.get('typeId')?.value" 
                                               [apiGetOptions]="getListTypeOptions$">
-                                </app-dropdown>
-                            </div>
+                            </app-dropdown>
                         </div>
                         @if (form.get('typeId')?.hasError('required') && !form.get('typeId')?.untouched) {
                         <span class="input-error">
