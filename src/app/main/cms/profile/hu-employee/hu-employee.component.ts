@@ -44,7 +44,7 @@ export class HuEmployeeComponent implements BaseComponent {
     },
     {
       caption: ['Trạng thái làm việc', 'Working Status'],
-      field: 'status',
+      field: 'statusName',
       type: 'text',
       align: 'left',
       width: 220
@@ -58,10 +58,10 @@ export class HuEmployeeComponent implements BaseComponent {
     },
     {
       caption: ['Họ và tên', 'Employee name'],
-      field: 'name',
+      field: 'fullName',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Địa chỉ', 'Address'],
@@ -72,7 +72,7 @@ export class HuEmployeeComponent implements BaseComponent {
     },
     {
       caption: ['Điện thoại', 'Phone'],
-      field: 'phone',
+      field: 'phoneNumber',
       type: 'text',
       align: 'left',
       width: 120
@@ -130,7 +130,7 @@ export class HuEmployeeComponent implements BaseComponent {
       this.currentIdType = e.id;
       this.outerInOperators = [
         {
-          field: 'typeId',
+          field: 'staffGroupId',
           values: e.id
         }
       ]

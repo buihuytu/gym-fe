@@ -20,11 +20,11 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="name" class="mb-2 title-control-edit required">Họ và tên</label>
+                            <label for="fullName" class="mb-2 title-control-edit required">Họ và tên</label>
                             <div class="form-group">
-                                <input formControlName="name" id="name" type="text" class="form-control input-default "
+                                <input formControlName="fullName" id="fullName" type="text" class="form-control input-default "
                                     placeholder="Họ và tên">
-                                @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
+                                @if (form.get('fullName')?.hasError('required') && !form.get('fullName')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
                                 </span>
@@ -88,11 +88,11 @@
                    
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="phone" class="mb-2 title-control-edit required">Số điện thoại</label>
+                            <label for="phoneNumber" class="mb-2 title-control-edit required">Số điện thoại</label>
                             <div class="form-group">
-                                <input formControlName="phone" id="phone" type="phone"
+                                <input formControlName="phoneNumber" id="phoneNumber" type="phone"
                                     class="form-control input-default " placeholder="Số điện thoại">
-                                @if (form.get('phone')?.hasError('required') && !form.get('phone')?.untouched) {
+                                @if (form.get('phoneNumber')?.hasError('required') && !form.get('phoneNumber')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
                                 </span>

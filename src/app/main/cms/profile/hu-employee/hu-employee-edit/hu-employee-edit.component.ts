@@ -36,21 +36,21 @@ export class HuEmployeeEditComponent extends BaseEditComponent implements OnInit
     this.form = this.fb.group({
       id:[],
       code: [null],
-      name: [null,[Validators.required]],
+      fullName: [null,[Validators.required]],
       birthDate: [null,[Validators.required]],
       genderId: [null,[Validators.required]],
       staffGroupId: [null,[Validators.required]],
       idNo: [null,[Validators.required]],
-      phone: [null,[Validators.required]],
+      phoneNumber: [null,[Validators.required]],
       address: [null,[Validators.required]],
       mail: [null],
       note: [],
     })
     this.crud = {
-      c: api.SYS_OTHER_LIST_TYPE_CREATE,
-      r: api.SYS_OTHER_LIST_TYPE_READ,
-      u: api.SYS_OTHER_LIST_TYPE_UPDATE,
-      d: api.SYS_OTHER_LIST_TYPE_DELETE_IDS,
+      c: api.PER_EMPLOYEE_CREATE,
+      r: api.PER_EMPLOYEE_READ,
+      u: api.PER_EMPLOYEE_UPDATE,
+      d: api.PER_EMPLOYEE_DELETE_IDS,
     }
   }
   ngOnInit() {

@@ -83,7 +83,7 @@ export class PerCustomerComponent {
     },
     {
       caption: ['Ngày sinh', 'Birth date'],
-      field: 'birthDate',
+      field: 'birthDateString',
       type: 'date',
       align: 'center',
       width: 120
