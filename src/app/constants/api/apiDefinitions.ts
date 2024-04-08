@@ -16,6 +16,8 @@ export enum api{
     SYS_OTHER_LIST_UPDATE = '/api/SysOtherList/Update',
     SYS_OTHER_LIST_DELETE_IDS = '/api/SysOtherList/DeleteIds',
     SYS_OTHER_LIST_GET_LIST_BY_GROUP = '/api/SysOtherList/GetOtherListByGroup?code=',
+    SYS_OTHER_LIST_GET_LIST_BY_CODE = '/api/SysOtherList/GetListByCode?typeCode=',
+    SYS_OTHER_LIST_GET_LIST_BY_TYPE = '/api/SysOtherList/GetListByType?type=',
 
     //SYS_USER
     SYS_USER_QUERY_LIST = '/api/SysUser/QueryList',
@@ -31,4 +33,10 @@ export enum api{
     PER_CUSTOMER_UPDATE = '/api/PerCustomer/Update',
     PER_CUSTOMER_DELETE_IDS = '/api/PerCustomer/DeleteIds',
     PER_CUSTOMER_TOGGLE_ACTIVE = '/api/PerCustomer/ToggleActiveIds',
+    //PER_EMPLOYEE
+    PER_EMPLOYEE_QUERY_LIST = '/api/PerEmployee/QueryList',
+    PER_EMPLOYEE_CREATE = '/api/PerEmployee/Create',
+    PER_EMPLOYEE_READ = '/api/PerEmployee/GetById?id=',
+    PER_EMPLOYEE_UPDATE = '/api/PerEmployee/Update',
+    PER_EMPLOYEE_DELETE_IDS = '/api/PerEmployee/DeleteIds',
 }

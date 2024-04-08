@@ -37,8 +37,10 @@
                         <div class="col-md-6">
                             <label for="genderId" class="mb-2 title-control-edit required">Giới tính</label>
                             <div class="form-group">
-                                <input formControlName="genderId" id="genderId" type="text"
-                                    class="form-control input-default " placeholder="Giới tính">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'genderId')" 
+                                              [getByIdOptions]="form.get('genderId')?.value" 
+                                              [apiGetOptions]="getGenderOptions$">
+                                </app-dropdown>
                                 @if (form.get('genderId')?.hasError('required') && !form.get('genderId')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
@@ -75,8 +77,10 @@
                         <div class="col-md-6">
                             <label for="staffGroupId" class="mb-2 title-control-edit required">Nhóm nhân viên</label>
                             <div class="form-group">
-                                <input formControlName="staffGroupId" id="note" type="text" class="form-control input-default "
-                                    placeholder="Giới tính">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'staffGroupId')" 
+                                              [getByIdOptions]="form.get('staffGroupId')?.value" 
+                                              [apiGetOptions]="getStaffGroupOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                         
@@ -115,7 +119,7 @@
                     </div>
                     <div class="row row-control justify-content-between">
                         <div class="col-md-12">
-                            <label for="note" class="mb-2 title-control-edit required">Ghi chú</label>
+                            <label for="note" class="mb-2 title-control-edit">Ghi chú</label>
                             <div class="form-group">
                                 <input formControlName="note" id="note" type="text"
                                     class="form-control input-default " placeholder="Ghi chú">

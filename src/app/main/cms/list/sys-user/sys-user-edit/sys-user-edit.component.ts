@@ -7,6 +7,7 @@ import { api } from '../../../../../constants/api/apiDefinitions';
 import { DialogService } from '../../../../../services/dialog.service';
 import { HttpRequestService } from '../../../../../services/http.service';
 import { Subscription } from 'rxjs';
+import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-sys-user-edit',
@@ -15,7 +16,8 @@ import { Subscription } from 'rxjs';
     RouterModule,
     FormsModule, 
     ReactiveFormsModule,
-    BasePageEditComponent
+    BasePageEditComponent,
+    DropdownComponent
   ],
   templateUrl: './sys-user-edit.component.html',
   styleUrl: './sys-user-edit.component.css'
@@ -28,6 +30,8 @@ export class SysUserEditComponent extends BaseEditComponent implements OnInit, A
 
   otherListTypeOptions!:any[];
   subscriptions: Subscription[] = [];
+
+  getListTypeOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'USER_GROUP';
 
   constructor(
     private fb: FormBuilder,
@@ -52,6 +56,11 @@ export class SysUserEditComponent extends BaseEditComponent implements OnInit, A
     }
   }
 
+  onDropdownSelected(event:any, e:string):void{
+    this.form.get(e)?.setValue(event);
+    this.form.get(e)?.markAllAsTouched();
+  }
+  
   ngOnInit(): void {
   }
   

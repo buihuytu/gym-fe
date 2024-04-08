@@ -24,8 +24,8 @@ import { DebounceDirective } from '../../../../libraries/debounce-event/debounce
 })
 export class HuEmployeeComponent implements BaseComponent {
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.SYS_OTHER_LIST_TYPE_QUERY_LIST,
-    deleteIds:api.SYS_OTHER_LIST_TYPE_DELETE_IDS
+    queryListRelativePath: api.PER_EMPLOYEE_QUERY_LIST,
+    deleteIds:api.PER_EMPLOYEE_DELETE_IDS
   };
   title: string[] = ['Danh sách nhân viên', 'List of employee'];
   currentIdType!:any;
@@ -109,7 +109,7 @@ export class HuEmployeeComponent implements BaseComponent {
 
   getListOtherListTypes() {
     this.subscriptions.push(
-      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_TYPE_GET_LIST).subscribe(x => {
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'STAFF_GROUP').subscribe(x => {
         if (!!x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {

@@ -5,6 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { DialogService } from '../../../../../services/dialog.service';
 import { RouterModule } from '@angular/router';
+import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-hu-employee-edit',
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     FormsModule, 
     ReactiveFormsModule,
-    BasePageEditComponent
+    BasePageEditComponent,
+    DropdownComponent
   ],
   templateUrl: './hu-employee-edit.component.html',
   styleUrl: './hu-employee-edit.component.scss'
@@ -24,6 +26,8 @@ export class HuEmployeeEditComponent extends BaseEditComponent implements OnInit
   modalMode: boolean = true;//for modal and style modal
   crud!: ICorePageEditCRUD;
 
+  getStaffGroupOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'STAFF_GROUP';
+  getGenderOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'GENDER';
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -50,5 +54,10 @@ export class HuEmployeeEditComponent extends BaseEditComponent implements OnInit
     }
   }
   ngOnInit() {
+  }
+
+  onDropdownSelected(event:any, e:string):void{
+    this.form.get(e)?.setValue(event);
+    this.form.get(e)?.markAllAsTouched();
   }
 }
