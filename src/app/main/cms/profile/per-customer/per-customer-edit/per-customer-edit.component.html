@@ -163,10 +163,10 @@
     
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="bankbrach" class="mb-2 title-control-edit">Chi nhánh ngân hàng</label>
+                            <label for="bankBrach" class="mb-2 title-control-edit">Chi nhánh ngân hàng</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankbrach')" 
-                                        [getByIdOptions]="form.get('bankbrach')?.value" 
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankBrach')" 
+                                        [getByIdOptions]="form.get('bankBrach')?.value" 
                                         [apiGetOptions]="getBankBranchOptions$">
                                     </app-dropdown>
                             </div>

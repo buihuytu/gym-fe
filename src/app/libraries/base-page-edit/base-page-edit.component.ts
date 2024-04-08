@@ -12,6 +12,7 @@ import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component
 import { AppConfigService } from '../../services/app-config.service';
 import { AlertService } from '../alert/alert.service';
 import { Subscription } from 'rxjs';
+import { PreLoaderFullScreenComponent } from '../../layout/pre-loader-full-screen/pre-loader-full-screen.component';
 
 export interface ICorePageEditCRUD {
   c?: api; // Create
@@ -28,7 +29,8 @@ export interface ICorePageEditCRUD {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    PreLoaderComponent
+    PreLoaderComponent,
+    PreLoaderFullScreenComponent
   ],
   templateUrl: './base-page-edit.component.html',
   styleUrl: './base-page-edit.component.scss'
@@ -52,7 +54,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
   isDevMode!: boolean;
   language!: boolean;
   subscriptions: Subscription[] =[];
-
+  loading: boolean = false;
   payLoad = '';
 
   constructor(
@@ -108,13 +110,14 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
     }
   }
   getObjectById(id: any) {
+    this.loading = true;
     this.httpService.makeGetRequest('getById', this.crud.r! + id).subscribe((x) => {
       if (x.ok && x.status === 200) {
         const body = x.body;
         if (body.statusCode === 200) {
           const innerBody = body.innerBody;
           this.form.patchValue(innerBody);
-          
+          this.loading = false;
           this.onInitialValueStringReady.emit(
             JSON.stringify(this.form.getRawValue())
           );
@@ -133,6 +136,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
       this.form.markAllAsTouched();
       return;
     }
+    this.loading = true;
     this.payLoad = JSON.stringify(this.form.getRawValue())
     if (!!!this.form.get('id')!.value) {
       this.httpService.makePostRequest('create', this.crud.c!, this.payLoad).subscribe((x) => {
@@ -144,7 +148,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             this.onInitialValueStringReady.emit(
               JSON.stringify(this.form.getRawValue())
             );
-
+            this.loading = false;
             this.ignoreDeactivate = true;
             this.alertService.success('Thêm mới thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
@@ -165,7 +169,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             this.onInitialValueStringReady.emit(
               JSON.stringify(this.form.getRawValue())
             );
-
+            this.loading = false;
             this.ignoreDeactivate = true;
             this.alertService.success('Cập nhật thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });

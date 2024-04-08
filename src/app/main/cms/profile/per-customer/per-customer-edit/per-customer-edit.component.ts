@@ -65,7 +65,7 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
       bankNo: [],
       avatar: [],
       genderId: [],
-      bankbrach: [],
+      bankBrach: [],
       address: [],
       birthDate: [],
       note: [],

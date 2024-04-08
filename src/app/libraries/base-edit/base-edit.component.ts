@@ -9,7 +9,7 @@ import { ICorePageEditCRUD } from '../base-page-edit/base-page-edit.component';
   standalone: true,
   imports: [],
   templateUrl: './base-edit.component.html',
-  styleUrl: './base-edit.component.css'
+  styleUrl: './base-edit.component.scss'
 })
 export class BaseEditComponent {
   formInitStringValue!: string;

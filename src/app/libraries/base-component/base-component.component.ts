@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
     CommonModule
   ],
   templateUrl: './base-component.component.html',
-  styleUrl: './base-component.component.css'
+  styleUrl: './base-component.component.scss'
 })
 export class BaseComponent implements OnInit,AfterViewInit, OnDestroy{
   subscriptions!: Subscription[] ;
