@@ -77,7 +77,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
     this.subscriptions.map((subscription: Subscription) =>subscription.unsubscribe());
   }
   ngAfterViewInit(): void {
-    if (!this.isModalMode) {
+    if (!!!this.isModalMode) {
       this.container.nativeElement.style.setProperty('--width', '100%');
     } else {
       if (!!this.width) {

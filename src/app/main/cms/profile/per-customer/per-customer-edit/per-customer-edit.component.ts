@@ -39,6 +39,13 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
 
   apiParams: string[] = ["CUSTOMER_GROUP", "GENDER", "NATIVE", "RELIGION", "BANK", "BANK_BRANCH"];
 
+  getCustomerOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUSTOMER_GROUP';
+  getGenderOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'GENDER';
+  getNativeIdOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'NATIVE';
+  getReligionOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'RELIGION';
+  getBankOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK';
+  getBankBranchOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK_BRANCH';
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,

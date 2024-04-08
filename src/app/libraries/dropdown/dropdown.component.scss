@@ -90,6 +90,7 @@ p {
   border: 1px solid #b5b5b5;
   border-radius: 5px;
   list-style: none;
+  z-index: 99;
   opacity: 0;
   -webkit-animation-name: HideList;
   animation-name: HideList;
