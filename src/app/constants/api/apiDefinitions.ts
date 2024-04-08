@@ -15,6 +15,7 @@ export enum api{
     SYS_OTHER_LIST_READ = '/api/SysOtherList/GetById?id=',
     SYS_OTHER_LIST_UPDATE = '/api/SysOtherList/Update',
     SYS_OTHER_LIST_DELETE_IDS = '/api/SysOtherList/DeleteIds',
+    SYS_OTHER_LIST_GET_LIST_BY_CODE = '/api/SysOtherList/GetListByCode?typeCode=',
 
     //SYS_USER
     SYS_USER_QUERY_LIST = '/api/SysUser/QueryList',

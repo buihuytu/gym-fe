@@ -23,12 +23,11 @@
                     <div class="mb-3">
                         <label for="groupId" class="mb-2 font-weight-bold required">Nhóm tài khoản</label>
                         <div class="form-group">
-                            <div class="basic-form">
-                                <select name="" class="form-control default-select form-control-lg" formControlName="groupId">
-                                    @for(otherListType of otherListTypeOptions; track otherListType.name){
-                                        <option value="{{ otherListType.id }}">{{ otherListType.name }}</option>
-                                    }
-                                </select>
+                            <div>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'groupId')" 
+                                              [getByIdOptions]="form.get('groupId')?.value" 
+                                              [apiGetOptions]="getListTypeOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                         @if (form.get('groupId')?.hasError('required') && !form.get('groupId')?.untouched) {
@@ -66,12 +65,11 @@
                     <div class="mb-3">
                         <label for="employeeId" class="mb-2 font-weight-bold required">Mã NV</label>
                         <div class="form-group">
-                            <div class="basic-form">
-                                <select name="" class="form-control default-select form-control-lg" formControlName="employeeId">
-                                    @for(otherListType of otherListTypeOptions; track otherListType.name){
-                                        <option value="{{ otherListType.id }}">{{ otherListType.name }}</option>
-                                    }
-                                </select>
+                            <div>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'groupId')" 
+                                              [getByIdOptions]="form.get('employeeId')?.value" 
+                                              [apiGetOptions]="getListTypeOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                         @if (form.get('employeeId')?.hasError('required') && !form.get('employeeId')?.untouched) {
