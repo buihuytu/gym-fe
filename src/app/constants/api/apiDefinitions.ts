@@ -39,4 +39,18 @@ export enum api{
     PER_EMPLOYEE_READ = '/api/PerEmployee/GetById?id=',
     PER_EMPLOYEE_UPDATE = '/api/PerEmployee/Update',
     PER_EMPLOYEE_DELETE_IDS = '/api/PerEmployee/DeleteIds',
+
+    // GYM_PACKAGE 
+    GYM_PACKAGE_QUERY_LIST = '/api/GymPackage/QueryList',
+    GYM_PACKAGE_CREATE = '/api/GymPackage/Create',
+    GYM_PACKAGE_READ = '/api/GymPackage/GetById?id=',
+    GYM_PACKAGE_UPDATE = '/api/GymPackage/Update',
+    GYM_PACKAGE_DELETE_IDS = '/api/GymPackage/DeleteIds',
+
+    // GYM_SHIFT 
+    GYM_SHIFT_QUERY_LIST = '/api/GymShift/QueryList',
+    GYM_SHIFT_CREATE = '/api/GymShift/Create',
+    GYM_SHIFT_READ = '/api/GymShift/GetById?id=',
+    GYM_SHIFT_UPDATE = '/api/GymShift/Update',
+    GYM_SHIFT_DELETE_IDS = '/api/GymShift/DeleteIds',
 }
