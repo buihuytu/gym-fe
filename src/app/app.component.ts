@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './libraries/alert/alert.component';
+import { AppConfigService } from './services/app-config.service';
 
 @Component({
   selector: 'app-root',
@@ -23,4 +24,8 @@ import { AlertComponent } from './libraries/alert/alert.component';
 })
 export class AppComponent {
   title = 'GymAngularFrontend';
+  constructor(
+    public appConfigService: AppConfigService,
+  ) { 
+  }
 }

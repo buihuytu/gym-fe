@@ -1,19 +1,23 @@
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DomService {
 
-  constructor() { }
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+  ) { }
 
   getMaxZIndex() {
-    return Math.max(
-      ...Array.from(document.querySelectorAll('body *'), el =>
-        parseFloat(window.getComputedStyle(el).zIndex),
-      ).filter(zIndex => !Number.isNaN(zIndex)),
-      0,
-    );
+      return Math.max(
+        ...Array.from(this.document.querySelectorAll('body *'), el =>
+          parseFloat(typeof window !== "undefined" ? window.getComputedStyle(el).zIndex : '0'),
+        ).filter(zIndex => !Number.isNaN(zIndex)),
+        0,
+      );
+    
   }
 
   cssStringSizeToNumber(stringSize: string): number | undefined {

@@ -143,10 +143,13 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     if (!!!this.buttons || this.buttons.length <= 0) {
       this.alertService.warn("NOT EXITS BUTTONS");
     }
-    var win_h = window.outerHeight;
-    if (win_h > 0 ? win_h : screen.height) {
-      this.tableHeight = win_h - 350;
-    };
+    if (typeof window !== "undefined") {
+      var win_h = window.outerHeight;
+      if (win_h > 0 ? win_h : screen.height) {
+        this.tableHeight = win_h - 350;
+      };
+    }
+    
     this.appLayoutService.tableHeight = this.tableHeight;
     this.showButtons = BASE_BUTTONS.filter(x => this.buttons.includes(x.code));
     this.showButtons.sort((a, b) => a.order - b.order);
