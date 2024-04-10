@@ -10,17 +10,6 @@
     <li>
         <a class="has-arrow ai-icon" href="" aria-expanded="false">
             <i class="flaticon-165-menu"></i>
-            <span class="nav-text">Demo</span>
-        </a>
-        <ul aria-expanded="false">
-            <li><a [routerLink]="['/cms/product']">Danh sách</a></li>
-            <li><a href="">Thùng rác</a></li>
-            <li><a [routerLink]="['/cms/product/1']">Thêm mới</a></li>
-        </ul>
-    </li>
-    <li>
-        <a class="has-arrow ai-icon" href="" aria-expanded="false">
-            <i class="flaticon-165-menu"></i>
             <span class="nav-text">Danh mục</span>
         </a>
         <ul aria-expanded="false">
@@ -28,7 +17,7 @@
             <li><a href="">Danh sách hàng hóa</a></li>
             <li><a href="">Danh sách sản phẩm, NVL</a></li>
             <li><a href="">Danh sách hội viên</a></li>
-            <li><a href="">Danh sách Ca tập</a></li>
+            <li><a [routerLink]="['/cms/list/gym-shift']">Danh sách Ca tập</a></li>
             <li><a [routerLink]="['/cms/list/gym-package']">Danh sách Gói cước</a></li>
             <li><a href="">Danh sách Locker</a></li>
             <li><a [routerLink]="['/cms/profile/employees']">Danh sách nhân viên</a></li>

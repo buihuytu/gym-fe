@@ -1,0 +1,15 @@
+import {  Routes } from '@angular/router';
+import { CanDeactivateGuard } from '../../../../guards/can-deactivate.guard';
+import { GymShiftComponent } from './gym-shift.component';
+
+export const routes: Routes = [
+  {
+    path: "",
+    component: GymShiftComponent,
+  },
+  // {
+  //   path: ":id",
+  //   component: GymPackageEditComponent,
+  //   canDeactivate: [CanDeactivateGuard],
+  // }
+];

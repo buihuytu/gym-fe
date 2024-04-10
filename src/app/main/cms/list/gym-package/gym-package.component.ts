@@ -29,6 +29,7 @@ export class GymPackageComponent implements BaseComponent {
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];
+
   showButtons: EnumBaseButton[] = [
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 

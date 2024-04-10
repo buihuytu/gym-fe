@@ -10,4 +10,8 @@ export const routes: Routes = [
     path: "gym-package",
     loadChildren:() => import('./gym-package/gym-package.routes').then((m) => m.routes)
   },
+  {
+    path: "gym-shift",
+    loadChildren:() => import('./gym-shift/gym-shift.routes').then((m) => m.routes)
+  },
 ];
