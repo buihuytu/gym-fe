@@ -1,3 +1,7 @@
-<!-- <app-login></app-login> -->
-<app-applayout></app-applayout>
+@if (!!authenticated) {
+<app-login></app-login>
+}
+@if (!authenticated) {
+    <app-applayout></app-applayout>
+}
 
