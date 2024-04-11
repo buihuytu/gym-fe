@@ -18,7 +18,7 @@ import { DebounceDirective } from '../../../../libraries/debounce-event/debounce
     DebounceDirective
   ],
   templateUrl: './gym-shift.component.html',
-  styleUrl: './gym-shift.component.css'
+  styleUrl: './gym-shift.component.scss'
 })
 export class GymShiftComponent implements BaseComponent {
   subscriptions: Subscription[] = [];
