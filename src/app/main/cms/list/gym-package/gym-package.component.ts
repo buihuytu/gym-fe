@@ -18,7 +18,7 @@ import { EnumBaseButton } from '../../../../constants/headerButton/ButtonDefinit
     DebounceDirective
   ],
   templateUrl: './gym-package.component.html',
-  styleUrl: './gym-package.component.css'
+  styleUrl: './gym-package.component.scss'
 })
 export class GymPackageComponent implements BaseComponent {
   subscriptions: Subscription[] = [];
