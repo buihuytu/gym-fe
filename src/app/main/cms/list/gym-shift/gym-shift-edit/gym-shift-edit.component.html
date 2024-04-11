@@ -1,4 +1,4 @@
-<div class="app-gym-package-edit-container">
+<div class="app-gym-shift-edit-container">
     <app-base-page-edit 
         [width]="1000" 
         [class.modal-mode-container]="modalMode" 
@@ -14,21 +14,21 @@
             <div class="row w-100">
                 <div class="col-md-12">
                     <div class="mb-3 d-none">
-                        <label for="id" class="mb-2 font-weight-bold">id</label>
+                        <label for="id" class="mb-2 font-weight-bold required">id</label>
                         <div class="form-group">
                             <input formControlName="id" id="id" type="text" class="form-control input-default "
                                 placeholder="id">
                         </div>
                     </div>
                     <div class="mb-3 d-none">
-                        <label for="isActive" class="mb-2 font-weight-bold">isActive</label>
+                        <label for="isActive" class="mb-2 font-weight-bold required">isActive</label>
                         <div class="form-group">
                             <input formControlName="isActive" id="isActive" type="text" class="form-control input-default "
                                 placeholder="isActive">
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="code" class="mb-2 font-weight-bold required">Mã gói</label>
+                        <label for="code" class="mb-2 font-weight-bold required">Mã ca</label>
                         <div class="form-group">
                             <input formControlName="code" id="code" type="text" class="form-control input-default">
                                 @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
@@ -40,24 +40,30 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="money" class="mb-2 font-weight-bold required">Giá</label>
+                        <label for="name" class="mb-2 font-weight-bold required">Tên ca</label>
                         <div class="form-group">
-                            <input formControlName="money" id="money" type="number" class="form-control input-default ">
-                                @if (form.get('money')?.hasError('required') && !form.get('money')?.untouched) {
+                            <input formControlName="name" id="name" type="text" class="form-control input-default">
+                                @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc nhập
                                     </span>
                                 }
                                
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalDays" class="mb-2 font-weight-bold">Số ngày trong tuần</label>
+                        <div class="form-group">
+                            <input formControlName="totalDays" id="totalDays" type="text" class="form-control input-default ">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label for="period" class="mb-2 font-weight-bold required">Thời hạn</label>
+                        <label for="hoursStart" class="mb-2 font-weight-bold required">Giờ bắt đầu</label>
                         <div class="form-group">
-                            <input formControlName="period" id="period" type="number" class="form-control input-default ">
-                                @if (form.get('period')?.hasError('required') && !form.get('period')?.untouched) {
+                            <input formControlName="hoursStart" id="hoursStart" type="time" class="form-control input-default">
+                                @if (form.get('hoursStart')?.hasError('required') && !form.get('hoursStart')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc nhập
                                     </span>
@@ -66,25 +72,21 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="shiftId" class="mb-2 font-weight-bold required">Ca tập</label>
+                        <label for="hoursEnd" class="mb-2 font-weight-bold required">Giờ kết thúc</label>
                         <div class="form-group">
-                            <div>
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'shiftId')" 
-                                              [getByIdOptions]="form.get('shiftId')?.value" 
-                                              [apiGetOptions]="getListShiftOptions$">
-                                </app-dropdown>
-                            </div>
+                            <input formControlName="hoursEnd" id="hoursEnd" type="time" class="form-control input-default">
+                                @if (form.get('hoursEnd')?.hasError('required') && !form.get('hoursEnd')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc nhập
+                                    </span>
+                                }
+                               
                         </div>
-                        @if (form.get('shiftId')?.hasError('required') && !form.get('shiftId')?.untouched) {
-                            <span class="input-error">
-                                Bắt buộc chọn
-                            </span>
-                        }
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="mb-2 font-weight-bold">Mô tả</label>
+                        <label for="note" class="mb-2 font-weight-bold">Ghi chú</label>
                         <div class="form-group">
-                            <input formControlName="description" id="description" type="text" class="form-control input-default ">
+                            <input formControlName="note" id="note" type="text" class="form-control input-default ">
                         </div>
                     </div>
                 </div>

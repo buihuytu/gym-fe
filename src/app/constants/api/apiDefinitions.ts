@@ -33,6 +33,7 @@ export enum api{
     PER_CUSTOMER_UPDATE = '/api/PerCustomer/Update',
     PER_CUSTOMER_DELETE_IDS = '/api/PerCustomer/DeleteIds',
     PER_CUSTOMER_TOGGLE_ACTIVE = '/api/PerCustomer/ToggleActiveIds',
+
     //PER_EMPLOYEE
     PER_EMPLOYEE_QUERY_LIST = '/api/PerEmployee/QueryList',
     PER_EMPLOYEE_CREATE = '/api/PerEmployee/Create',
@@ -53,4 +54,5 @@ export enum api{
     GYM_SHIFT_READ = '/api/GymShift/GetById?id=',
     GYM_SHIFT_UPDATE = '/api/GymShift/Update',
     GYM_SHIFT_DELETE_IDS = '/api/GymShift/DeleteIds',
+    GYM_SHIFT_GET_LIST = '/api/GymShift/GetList',
 }

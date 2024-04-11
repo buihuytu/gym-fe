@@ -23,7 +23,8 @@ import { DebounceDirective } from '../../../../libraries/debounce-event/debounce
 export class GymShiftComponent implements BaseComponent {
   subscriptions: Subscription[] = [];
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.GYM_PACKAGE_QUERY_LIST
+    queryListRelativePath: api.GYM_SHIFT_QUERY_LIST,
+    deleteIds:api.GYM_SHIFT_DELETE_IDS
   };
   title: string[] = ['Danh mục ca tập', 'List Gym Shift'];
   currentIdType!:any;
@@ -46,36 +47,50 @@ export class GymShiftComponent implements BaseComponent {
       width: 100
     },
     {
-      caption: ['Mã gói', 'Code'],
+      caption: ['Trạng thái', 'Status'],
+      field: 'status',
+      type: 'text',
+      align: 'left',
+      width: 250
+    },
+    {
+      caption: ['Mã ca', 'Code'],
       field: 'code',
       type: 'text',
       align: 'left',
       width: 250
     },
     {
-      caption: ['Giá', 'Money'],
-      field: 'money',
+      caption: ['Tên ca', 'Name'],
+      field: 'name',
       type: 'text',
       align: 'left',
       width: 250
     },
     {
-      caption: ['Thời hạn', 'Period'],
-      field: 'period',
+      caption: ['Số ngày trong tuần', 'Total Days Of Week'],
+      field: 'totalDays',
       type: 'text',
       align: 'left',
       width: 400
     },
     {
-      caption: ['Ca sdsdsdsds', 'Shift'],
-      field: 'shiftName',
+      caption: ['Giờ bắt đầu', 'Hour Start'],
+      field: 'hoursStartString',
       type: 'text',
       align: 'left',
       width: 400
     },
     {
-      caption: ['Mô tả', 'Description'],
-      field: 'description',
+      caption: ['Giờ kết thúc', 'Hour Start'],
+      field: 'hoursEndString',
+      type: 'text',
+      align: 'left',
+      width: 400
+    },
+    {
+      caption: ['Ghi chú', 'Note'],
+      field: 'note',
       type: 'text',
       align: 'left',
       width: 400

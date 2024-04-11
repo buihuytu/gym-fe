@@ -23,7 +23,8 @@ import { EnumBaseButton } from '../../../../constants/headerButton/ButtonDefinit
 export class GymPackageComponent implements BaseComponent {
   subscriptions: Subscription[] = [];
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.GYM_PACKAGE_QUERY_LIST
+    queryListRelativePath: api.GYM_PACKAGE_QUERY_LIST,
+    deleteIds:api.GYM_PACKAGE_DELETE_IDS
   };
   title: string[] = ['Danh mục gói cước', 'List Gym Package'];
   currentIdType!:any;
@@ -44,6 +45,13 @@ export class GymPackageComponent implements BaseComponent {
       type: 'text',
       align: 'left',
       width: 100
+    },
+    {
+      caption: ['Trạng thái', 'Status'],
+      field: 'status',
+      type: 'text',
+      align: 'left',
+      width: 250
     },
     {
       caption: ['Mã gói', 'Code'],
