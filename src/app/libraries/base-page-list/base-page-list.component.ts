@@ -143,7 +143,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
       console.log('first')
     }
     if (!!!this.buttons || this.buttons.length <= 0) {
-      this.alertService.warn("NOT EXITS BUTTONS");
+      // this.alertService.warn("NOT EXITS BUTTONS");
     }
     if (typeof window !== "undefined") {
       var win_h = window.outerHeight;

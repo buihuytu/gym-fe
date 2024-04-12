@@ -9,6 +9,7 @@ import { DialogService } from '../../../../../services/dialog.service';
 import { HttpRequestService } from '../../../../../services/http.service';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
+import { BaseCustomerSearchComponent } from '../../../../../libraries/base-customer-search/base-customer-search.component';
 
 @Component({
   selector: 'app-gym-package-edit',
@@ -19,7 +20,7 @@ import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-emplo
     ReactiveFormsModule,
     BasePageEditComponent,
     DropdownComponent,
-    BaseEmployeeSearchComponent
+    BaseCustomerSearchComponent
   ],
   templateUrl: './gym-package-edit.component.html',
   styleUrl: './gym-package-edit.component.css'
