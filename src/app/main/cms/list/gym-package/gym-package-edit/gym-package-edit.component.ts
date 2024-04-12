@@ -49,6 +49,7 @@ export class GymPackageEditComponent extends BaseEditComponent implements OnInit
       money: [null,[Validators.required]],
       period: [null,[Validators.required]],
       shiftId: [null,[Validators.required]],
+      isPrivate: [],
       description: [],
     })
     this.crud = {

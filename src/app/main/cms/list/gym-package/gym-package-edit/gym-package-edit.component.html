@@ -1,6 +1,6 @@
 <div class="app-gym-package-edit-container">
     <app-base-page-edit 
-        [width]="1000" 
+        [width]="600" 
         [class.modal-mode-container]="modalMode" 
         [crud]="crud" 
         [isModalMode]="modalMode" 
@@ -64,6 +64,10 @@
                                 }
                             <!-- <base-customer-search></base-customer-search> -->
                         </div>
+                    </div>
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input formControlName="isPrivate" type="checkbox" class="custom-control-input" id="isPrivate" required="">
+                        <label class="custom-control-label" for="isPrivate">Gói tập riêng</label>
                     </div>
                     <div class="mb-3">
                         <label for="shiftId" class="mb-2 font-weight-bold required">Ca tập</label>

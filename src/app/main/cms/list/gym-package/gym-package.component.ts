@@ -82,6 +82,13 @@ export class GymPackageComponent implements BaseComponent {
       width: 400
     },
     {
+      caption: ['Gói tập riêng', 'Private Package'],
+      field: 'isPrivate',
+      type: 'text',
+      align: 'left',
+      width: 400
+    },
+    {
       caption: ['Mô tả', 'Description'],
       field: 'description',
       type: 'text',
