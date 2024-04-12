@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { DialogService } from '../../../../../services/dialog.service';
 import { HttpRequestService } from '../../../../../services/http.service';
 import { api } from '../../../../../constants/api/apiDefinitions';
+import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
 
 @Component({
   selector: 'app-gym-package-edit',
@@ -17,7 +18,8 @@ import { api } from '../../../../../constants/api/apiDefinitions';
     FormsModule, 
     ReactiveFormsModule,
     BasePageEditComponent,
-    DropdownComponent
+    DropdownComponent,
+    BaseEmployeeSearchComponent
   ],
   templateUrl: './gym-package-edit.component.html',
   styleUrl: './gym-package-edit.component.css'

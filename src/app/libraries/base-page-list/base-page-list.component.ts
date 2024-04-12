@@ -64,8 +64,10 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() fixedPageSize!: number;
   @Input() left!: TemplateRef<any>;
   @Input() hideHeader!: boolean;
+  @Input() isControl!: boolean;
 
   @Output() selectedIdsChange = new EventEmitter();
+  @Output() selectedDataChange = new EventEmitter();
 
   filter$ = new BehaviorSubject<any>(null);
   inOperators$ = new BehaviorSubject<IInOperator[]>([]);
@@ -300,12 +302,16 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   onClickLocal(row: any, event: any) {
     if (event.detail === 1) {
     } else if (event.detail === 2) {
-      this.router.navigate(
-        [btoa(row.id)],
-        {
-          relativeTo: this.route.parent,
-        }
-      );
+      if(!!this.isControl){}
+      else{
+        this.router.navigate(
+          [btoa(row.id)],
+          {
+            relativeTo: this.route.parent,
+          }
+        );
+      }
+      this.selectedDataChange.emit(row);
     }
   }
   onSizeChange(event: any) {
