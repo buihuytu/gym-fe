@@ -55,4 +55,12 @@ export enum api{
     GYM_SHIFT_UPDATE = '/api/GymShift/Update',
     GYM_SHIFT_DELETE_IDS = '/api/GymShift/DeleteIds',
     GYM_SHIFT_GET_LIST = '/api/GymShift/GetList',
+
+    //GOODS_LIST
+    GOODS_LIST_QUERY_LIST = '/api/GoodsList/QueryList',
+    GOODS_LIST_CREATE = '/api/GoodsList/Create',
+    GOODS_LIST_READ = '/api/GoodsList/GetById?id=',
+    GOODS_LIST_UPDATE = '/api/GoodsList/Update',
+    GOODS_LIST_DELETE_IDS = '/api/GoodsList/DeleteIds',
+    GOODS_LIST_GET_LIST = '/api/GoodsList/GetList',
 }

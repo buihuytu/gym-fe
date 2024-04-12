@@ -14,4 +14,8 @@ export const routes: Routes = [
     path: "gym-shift",
     loadChildren:() => import('./gym-shift/gym-shift.routes').then((m) => m.routes)
   },
+  {
+    path: "goods-list",
+    loadChildren:() => import('./goods-list/goods-list.routes').then((m) => m.routes)
+  },
 ];
