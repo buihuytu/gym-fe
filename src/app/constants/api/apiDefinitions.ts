@@ -80,4 +80,21 @@ export enum api{
     CARD_INFO_DELETE_IDS = '/api/CardInfo/DeleteIds',
     CARD_INFO_TOGGLE_ACTIVE = '/api/CardInfo/ToggleActiveIds',
     CARD_INFO_GET_LIST_CUSTOMER = '/api/CardInfo/GetListCustomer',
+
+    // GOODS_EQUIPMENT
+    GOODS_EQUIPMENT_QUERY_LIST = '/api/GoodsEquipment/QueryList',
+    GOODS_EQUIPMENT_CREATE = '/api/GoodsEquipment/Create',
+    GOODS_EQUIPMENT_READ = '/api/GoodsEquipment/GetById?id=',
+    GOODS_EQUIPMENT_UPDATE = '/api/GoodsEquipment/Update',
+    GOODS_EQUIPMENT_DELETE_IDS = '/api/GoodsEquipment/DeleteIds',
+    GOODS_EQUIPMENT_GET_LIST = '/api/GoodsEquipment/GetList',
+    GOODS_EQUIPMENT_GET_LIST_BY_TYPE_CODE = '/api/GoodsEquipment/GetListByTypeCode?typeCode=',
+
+    // GOODS_EQUIPMENT_FIX
+    GOODS_EQUIPMENT_FIX_QUERY_LIST = '/api/GoodsEquipmentFix/QueryList',
+    GOODS_EQUIPMENT_FIX_CREATE = '/api/GoodsEquipmentFix/Create',
+    GOODS_EQUIPMENT_FIX_READ = '/api/GoodsEquipmentFix/GetById?id=',
+    GOODS_EQUIPMENT_FIX_UPDATE = '/api/GoodsEquipmentFix/Update',
+    GOODS_EQUIPMENT_FIX_DELETE_IDS = '/api/GoodsEquipmentFix/DeleteIds',
+    GOODS_EQUIPMENT_FIX_GET_LIST = '/api/GoodsEquipmentFix/GetList',
 }

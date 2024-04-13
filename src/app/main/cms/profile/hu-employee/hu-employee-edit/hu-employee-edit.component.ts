@@ -56,6 +56,10 @@ export class HuEmployeeEditComponent extends BaseEditComponent implements OnInit
   ngOnInit() {
   }
 
+  onFormReinit(e: string): void {
+    this.formInitStringValue = e;
+  }
+
   onDropdownSelected(event:any, e:string):void{
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();

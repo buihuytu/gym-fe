@@ -1,4 +1,4 @@
-<div class="app-sys-other-list-container">
+<div class="app-goods-equipment-container">
     <app-base-page-list 
         [outerInOperators]="outerInOperators" 
         [left]="left" 
@@ -20,7 +20,7 @@
                     overflowX: 'overlay'
                 }">
                     <div class="tab-content dz-scroll table">
-                        @for (item of otherListTypeOptionShow; track $index) {
+                        @for (item of listEquipmentTypeOptionShow; track $index) {
                             <div (click)="onSelectedListTypeChanged(item)" class="tab-pane fade show active" > <!--  dfsd-->
                                 <div class="chat-list-area" [class.active]="currentIdType == item.id">
                                     <div class="info-body">

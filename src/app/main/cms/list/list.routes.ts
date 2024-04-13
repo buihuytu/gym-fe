@@ -26,4 +26,12 @@ export const routes: Routes = [
     path: "card-check-in",
     loadChildren:() => import('./ls-cartcheckin/ls-cart-checkin.routes').then((m) => m.routes)
   },
+  {
+    path: "goods-equipment",
+    loadChildren:() => import('./goods-equipment/goods-equipment.routes').then((m) => m.routes)
+  },
+  {
+    path: "goods-equipment-fix",
+    loadChildren:() => import('./goods-equipment-fix/goods-equipment-fix.routes').then((m) => m.routes)
+  },
 ];

@@ -1,0 +1,125 @@
+<div class="app-goods-equipment-fix-edit-container">
+    <app-base-page-edit 
+        [width]="1000" 
+        [class.modal-mode-container]="modalMode" 
+        [crud]="crud" 
+        [isModalMode]="modalMode"
+        [main]="main" 
+        [title]="title" 
+        [formGroup]="form"
+        (onInitialValueStringReady)="onFormReinit($event)"
+    ></app-base-page-edit>
+    <ng-template #main>
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="equipmentId" class="mb-2 title-control-edit required">Tên thiết bị</label>
+                            <div class="form-group">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'equipmentId')" 
+                                              [getByIdOptions]="form.get('equipmentId')?.value" 
+                                              [apiGetOptions]="getListEquipmentOptions$">
+                                </app-dropdown>
+                                @if (form.get('equipmentId')?.hasError('required') && !form.get('equipmentId')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="code" class="mb-2 title-control-edit required">Mã</label>
+                            <div class="form-group">
+                                <input formControlName="code" id="code" type="text" class="form-control input-default"
+                                    readonly placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="startDate" class="mb-2 title-control-edit required">Ngày thực hiện</label>
+                            <div class="form-group">
+                                <input formControlName="startDate" id="startDate" type="date" class="form-control input-default "
+                                    placeholder="">
+                                @if (form.get('startDate')?.hasError('required') && !form.get('startDate')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="endDate" class="mb-2 title-control-edit required">Ngày hoàn thành</label>
+                            <div class="form-group">
+                                <input formControlName="endDate" id="endDate" type="date"
+                                    class="form-control input-default " placeholder="">
+                                @if (form.get('endDate')?.hasError('required') && !form.get('endDate')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="resultId" class="mb-2 title-control-edit required">Trạng thái sau bảo trì/sửa chữa</label>
+                            <div class="form-group">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'resultId')" 
+                                              [getByIdOptions]="form.get('resultId')?.value" 
+                                              [apiGetOptions]="getListEquipmentOptions$">
+                                </app-dropdown>
+                                @if (form.get('resultId')?.hasError('required') && !form.get('resultId')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="money" class="mb-2 title-control-edit">Chi phí</label>
+                            <div class="form-group">
+                                <input formControlName="money" id="money" type="number" class="form-control input-default"
+                                    readonly placeholder="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-6">
+                            <label for="expectedUseTime" class="mb-2 title-control-edit">Thời gian dự kiến sử dụng lại</label>
+                            <div class="form-group">
+                                <input formControlName="expectedUseTime" id="expectedUseTime" type="date"
+                                    class="form-control input-default " placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="employeeId" class="mb-2 title-control-edit">Người giám sát</label>
+                            <div class="form-group">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'employeeId')" 
+                                              [getByIdOptions]="form.get('employeeId')?.value" 
+                                              [apiGetOptions]="getListEquipmentOptions$">
+                                </app-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-control justify-content-between">
+                        <div class="col-md-12">
+                            <label for="note" class="mb-2 title-control-edit">Ghi chú</label>
+                            <div class="form-group">
+                                <input formControlName="note" id="note" type="text"
+                                    class="form-control input-default " placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+</div>
