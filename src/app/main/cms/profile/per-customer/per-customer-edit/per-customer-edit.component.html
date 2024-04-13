@@ -9,8 +9,7 @@
                     <div class="mb-3 d-none">
                         <label for="id" class="mb-2 title-control-edit required">id</label>
                         <div class="form-group">
-                            <input formControlName="id" id="id" type="text" class="form-control input-default "
-                                placeholder="Tên thể loại">
+                            <input formControlName="id" id="id" type="text" class="form-control input-default ">
                             @if (form.get('id')?.hasError('required') && !form.get('id')?.untouched) {
                             <span class="input-error">
                                 Bắt buộc chọn
@@ -53,14 +52,16 @@
                                 }
                             </div> -->
                             <div class="mb-3">
-                                <label for="customerClassId" class="mb-2 title-control-edit required">Nhóm khách hàng</label>
+                                <label for="customerClassId" class="mb-2 title-control-edit required">Nhóm khách
+                                    hàng</label>
                                 <div class="form-group">
-                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'customerClassId')" 
-                                        [getByIdOptions]="form.get('customerClassId')?.value" 
+                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'customerClassId')"
+                                        [getByIdOptions]="form.get('customerClassId')?.value"
                                         [apiGetOptions]="getCustomerOptions$">
                                     </app-dropdown>
                                 </div>
-                                @if (form.get('customerClassId')?.hasError('required') && !form.get('customerClassId')?.untouched) {
+                                @if (form.get('customerClassId')?.hasError('required') &&
+                                !form.get('customerClassId')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
                                 </span>
@@ -74,8 +75,10 @@
                             <div class="mb-3">
                                 <label for="fullName" class="mb-2 title-control-edit required">Họ tên khách hàng</label>
                                 <div class="form-group">
-                                    <input formControlName="fullName" id="fullName" type="text" class="form-control input-default">
-                                    @if (form.get('fullName')?.hasError('required') && !form.get('fullName')?.untouched) {
+                                    <input formControlName="fullName" id="fullName" type="text"
+                                        class="form-control input-default">
+                                    @if (form.get('fullName')?.hasError('required') && !form.get('fullName')?.untouched)
+                                    {
                                     <span class="input-error">
                                         Bắt buộc chọn
                                     </span>
@@ -89,7 +92,8 @@
                                 <div class="form-group">
                                     <input formControlName="birthDate" id="birthDate" type="date"
                                         class="form-control input-default">
-                                    @if (form.get('birthDate')?.hasError('required') && !form.get('birthDate')?.untouched) {
+                                    @if (form.get('birthDate')?.hasError('required') &&
+                                    !form.get('birthDate')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc chọn
                                     </span>
@@ -98,15 +102,14 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="genderId" class="mb-2 title-control-edit required">Giới tính</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'genderId')" 
-                                        [getByIdOptions]="form.get('genderId')?.value" 
-                                        [apiGetOptions]="getGenderOptions$">
-                                    </app-dropdown>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'genderId')"
+                                    [getByIdOptions]="form.get('genderId')?.value" [apiGetOptions]="getGenderOptions$">
+                                </app-dropdown>
                                 @if (form.get('genderId')?.hasError('required') && !form.get('genderId')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
@@ -117,11 +120,12 @@
                         <div class="col-md-6">
                             <label for="address" class="mb-2 title-control-edit">Địa chỉ</label>
                             <div class="form-group">
-                                <input formControlName="address" id="address" type="text" class="form-control input-dèault">
+                                <input formControlName="address" id="address" type="text"
+                                    class="form-control input-dèault">
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="email" class="mb-2 title-control-edit">Email</label>
@@ -132,65 +136,65 @@
                         <div class="col-md-6">
                             <label for="nativeId" class="mb-2 title-control-edit">Tình thành</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'nativeId')" 
-                                        [getByIdOptions]="form.get('nativeId')?.value" 
-                                        [apiGetOptions]="getNativeIdOptions$">
-                                    </app-dropdown>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'nativeId')"
+                                    [getByIdOptions]="form.get('nativeId')?.value"
+                                    [apiGetOptions]="getNativeIdOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="religionId" class="mb-2 title-control-edit">Tôn giáo</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'religionId')" 
-                                        [getByIdOptions]="form.get('religionId')?.value" 
-                                        [apiGetOptions]="getReligionOptions$">
-                                    </app-dropdown>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'religionId')"
+                                    [getByIdOptions]="form.get('religionId')?.value"
+                                    [apiGetOptions]="getReligionOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="bankId" class="mb-2 title-control-edit">Ngân hàng</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankId')" 
-                                        [getByIdOptions]="form.get('bankId')?.value" 
-                                        [apiGetOptions]="getBankOptions$">
-                                    </app-dropdown>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankId')"
+                                    [getByIdOptions]="form.get('bankId')?.value" [apiGetOptions]="getBankOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="bankBrach" class="mb-2 title-control-edit">Chi nhánh ngân hàng</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankBrach')" 
-                                        [getByIdOptions]="form.get('bankBrach')?.value" 
-                                        [apiGetOptions]="getBankBranchOptions$">
-                                    </app-dropdown>
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankBrach')"
+                                    [getByIdOptions]="form.get('bankBrach')?.value"
+                                    [apiGetOptions]="getBankBranchOptions$">
+                                </app-dropdown>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="bankNo" class="mb-2 title-control-edit">Số tài khoản</label>
                             <div class="form-group">
-                                <input formControlName="bankNo" id="bankNo" type="number" class="form-control input-default">
+                                <input formControlName="bankNo" id="bankNo" type="number"
+                                    class="form-control input-default">
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label for="phoneNumber" class="mb-2 title-control-edit">Số điện thoại</label>
                             <div class="form-group">
-                                <input formControlName="phoneNumber" id="phoneNumber" type="number" class="form-control input-default">
+                                <input formControlName="phoneNumber" id="phoneNumber" type="number"
+                                    class="form-control input-default">
                             </div>
                         </div>
                         <div class="col-md-8">
                             <label for="" class="mb-2 title-control-edit">Ghi chú</label>
                             <div class="form-group">
-                                <input formControlName="note" id="note" type="text" class="form-control input-default "
-                                    placeholder="Ghi chú">
+                                <input formControlName="note" id="note" type="text" class="form-control input-default ">
                             </div>
                         </div>
                     </div>

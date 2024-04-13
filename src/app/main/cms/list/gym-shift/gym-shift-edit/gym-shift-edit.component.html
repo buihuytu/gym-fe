@@ -1,14 +1,7 @@
 <div class="app-gym-shift-edit-container">
-    <app-base-page-edit 
-        [width]="1000" 
-        [class.modal-mode-container]="modalMode" 
-        [crud]="crud" 
-        [isModalMode]="modalMode" 
-        [main]="main" 
-        [title]="title" 
-        [formGroup]="form"
-        (onInitialValueStringReady)="onFormReinit($event)"
-    ></app-base-page-edit>
+    <app-base-page-edit [width]="1000" [class.modal-mode-container]="modalMode" [crud]="crud" [isModalMode]="modalMode"
+        [main]="main" [title]="title" [formGroup]="form"
+        (onInitialValueStringReady)="onFormReinit($event)"></app-base-page-edit>
     <ng-template #main>
         <form [formGroup]="form">
             <div class="row w-100">
@@ -16,45 +9,45 @@
                     <div class="mb-3 d-none">
                         <label for="id" class="mb-2 font-weight-bold required">id</label>
                         <div class="form-group">
-                            <input formControlName="id" id="id" type="text" class="form-control input-default "
-                                placeholder="id">
+                            <input formControlName="id" id="id" type="text" class="form-control input-default ">
                         </div>
                     </div>
                     <div class="mb-3 d-none">
                         <label for="isActive" class="mb-2 font-weight-bold required">isActive</label>
                         <div class="form-group">
-                            <input formControlName="isActive" id="isActive" type="text" class="form-control input-default "
-                                placeholder="isActive">
+                            <input formControlName="isActive" id="isActive" type="text"
+                                class="form-control input-default ">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="code" class="mb-2 font-weight-bold required">Mã ca</label>
                         <div class="form-group">
                             <input formControlName="code" id="code" type="text" class="form-control input-default">
-                                @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc nhập
-                                    </span>
-                                }
-                               
+                            @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
+                            <span class="input-error">
+                                Bắt buộc nhập
+                            </span>
+                            }
+
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="name" class="mb-2 font-weight-bold required">Tên ca</label>
                         <div class="form-group">
                             <input formControlName="name" id="name" type="text" class="form-control input-default">
-                                @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc nhập
-                                    </span>
-                                }
-                               
+                            @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
+                            <span class="input-error">
+                                Bắt buộc nhập
+                            </span>
+                            }
+
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="totalDays" class="mb-2 font-weight-bold">Số ngày trong tuần</label>
                         <div class="form-group">
-                            <input formControlName="totalDays" id="totalDays" type="text" class="form-control input-default ">
+                            <input formControlName="totalDays" id="totalDays" type="text"
+                                class="form-control input-default ">
                         </div>
                     </div>
                 </div>
@@ -62,25 +55,27 @@
                     <div class="mb-3">
                         <label for="hoursStart" class="mb-2 font-weight-bold required">Giờ bắt đầu</label>
                         <div class="form-group">
-                            <input formControlName="hoursStart" id="hoursStart" type="time" class="form-control input-default">
-                                @if (form.get('hoursStart')?.hasError('required') && !form.get('hoursStart')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc nhập
-                                    </span>
-                                }
-                               
+                            <input formControlName="hoursStart" id="hoursStart" type="time"
+                                class="form-control input-default">
+                            @if (form.get('hoursStart')?.hasError('required') && !form.get('hoursStart')?.untouched) {
+                            <span class="input-error">
+                                Bắt buộc nhập
+                            </span>
+                            }
+
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="hoursEnd" class="mb-2 font-weight-bold required">Giờ kết thúc</label>
                         <div class="form-group">
-                            <input formControlName="hoursEnd" id="hoursEnd" type="time" class="form-control input-default">
-                                @if (form.get('hoursEnd')?.hasError('required') && !form.get('hoursEnd')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc nhập
-                                    </span>
-                                }
-                               
+                            <input formControlName="hoursEnd" id="hoursEnd" type="time"
+                                class="form-control input-default">
+                            @if (form.get('hoursEnd')?.hasError('required') && !form.get('hoursEnd')?.untouched) {
+                            <span class="input-error">
+                                Bắt buộc nhập
+                            </span>
+                            }
+
                         </div>
                     </div>
                     <div class="mb-3">

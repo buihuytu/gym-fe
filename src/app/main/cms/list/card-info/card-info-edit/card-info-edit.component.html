@@ -6,20 +6,6 @@
         <form [formGroup]="form">
             <div class="row w-100">
                 <div class="col-md-12">
-                    <div class="mb-3 d-none">
-                        <label for="id" class="mb-2 title-control-edit required">id</label>
-                        <div class="form-group">
-                            <input formControlName="id" id="id" type="text" class="form-control input-default "
-                                placeholder="Tên loại thẻ">
-                            @if (form.get('id')?.hasError('required') && !form.get('id')?.untouched) {
-                            <span class="input-error">
-                                Bắt buộc chọn
-                            </span>
-                            }
-
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-12"> -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
