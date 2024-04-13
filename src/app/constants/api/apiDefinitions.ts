@@ -63,4 +63,21 @@ export enum api{
     GOODS_LIST_UPDATE = '/api/GoodsList/Update',
     GOODS_LIST_DELETE_IDS = '/api/GoodsList/DeleteIds',
     GOODS_LIST_GET_LIST = '/api/GoodsList/GetList',
+
+    //CARD_CHECK_IN
+    CARD_CHECK_IN_QUERY_LIST = '/api/CardCheckIn/QueryList',
+    CARD_CHECK_IN_CREATE = '/api/CardCheckIn/Create',
+    CARD_CHECK_IN_READ = '/api/CardCheckIn/GetById?id=',
+    CARD_CHECK_IN_UPDATE = '/api/CardCheckIn/Update',
+    CARD_CHECK_IN_DELETE_IDS = '/api/CardCheckIn/DeleteIds',
+    CARD_CHECK_IN_TOGGLE_ACTIVE = '/api/CardCheckIn/ToggleActiveIds',
+
+    //CARD_INFO
+    CARD_INFO_QUERY_LIST = '/api/CardInfo/QueryList',
+    CARD_INFO_CREATE = '/api/CardInfo/Create',
+    CARD_INFO_READ = '/api/CardInfo/GetById?id=',
+    CARD_INFO_UPDATE = '/api/CardInfo/Update',
+    CARD_INFO_DELETE_IDS = '/api/CardInfo/DeleteIds',
+    CARD_INFO_TOGGLE_ACTIVE = '/api/CardInfo/ToggleActiveIds',
+    CARD_INFO_GET_LIST_CUSTOMER = '/api/CardInfo/GetListCustomer',
 }

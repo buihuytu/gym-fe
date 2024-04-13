@@ -1,0 +1,109 @@
+<div class="app-card-info-edit-container">
+    <app-base-page-edit [width]="1000!" [class.modal-mode-container]="modalMode" [crud]="crud" [isModalMode]="modalMode"
+        [main]="main" [title]="title" [formGroup]="form"
+        (onInitialValueStringReady)="onFormReinit($event)"></app-base-page-edit>
+    <ng-template #main>
+        <form [formGroup]="form">
+            <div class="row w-100">
+                <div class="col-md-12">
+                    <div class="mb-3 d-none">
+                        <label for="id" class="mb-2 title-control-edit required">id</label>
+                        <div class="form-group">
+                            <input formControlName="id" id="id" type="text" class="form-control input-default "
+                                placeholder="Tên loại thẻ">
+                            @if (form.get('id')?.hasError('required') && !form.get('id')?.untouched) {
+                            <span class="input-error">
+                                Bắt buộc chọn
+                            </span>
+                            }
+
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-12"> -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="code" class="mb-2 title-control-edit required">Mã thẻ</label>
+                                <div class="form-group">
+                                    <input formControlName="code" id="code" type="text"
+                                        class="form-control input-default ">
+                                    @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="cardTypeId" class="mb-2 title-control-edit required">Tên loại thẻ</label>
+                                <div class="form-group">
+                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'cardTypeId')" 
+                                        [getByIdOptions]="form.get('cardTypeId')?.value" 
+                                        [apiGetOptions]="getCardTypeOptions$">
+                                    </app-dropdown>
+                                </div>
+                                @if (form.get('cardTypeId')?.hasError('required') && !form.get('cardTypeId')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="customerId" class="mb-2 title-control-edit required">Tên khách hàng</label>
+                                <div class="form-group">
+                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'customerId')" 
+                                        [getByIdOptions]="form.get('customerId')?.value" 
+                                        [apiGetOptions]="getCustomerOptions$">
+                                    </app-dropdown>
+                                </div>
+                                @if (form.get('customerId')?.hasError('required') && !form.get('customerId')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="effectDate" class="mb-2 title-control-edit required">Ngày hiệu lực</label>
+                                <div class="form-group">
+                                    <input formControlName="effectDate" id="effectDate" type="date"
+                                        class="form-control input-default">
+                                    @if (form.get('effectDate')?.hasError('required') && !form.get('effectDate')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="expiredDate" class="mb-2 title-control-edit required">Ngày hết hiệu lực</label>
+                                <div class="form-group">
+                                    <input formControlName="expiredDate" id="effectDate" type="date"
+                                        class="form-control input-default">
+                                    @if (form.get('expiredDate')?.hasError('required') && !form.get('expiredDate')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+            </div>
+        </form>
+    </ng-template>
+</div>
