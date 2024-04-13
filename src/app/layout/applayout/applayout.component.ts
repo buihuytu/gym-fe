@@ -10,7 +10,7 @@ import { NavigatorComponent } from '../navigator/navigator.component';
 import { ConfirmDialogComponent } from '../../libraries/confirm-dialog/confirm-dialog.component';
 import { AppConfigService } from '../../services/app-config.service';
 import { AlertComponent } from '../../libraries/alert/alert.component';
-
+import { baseUrl,language } from '../../app.config';
 @Component({
   selector: 'app-applayout',
   standalone: true,
@@ -33,8 +33,8 @@ export class ApplayoutComponent implements OnInit {
     
   }
   ngOnInit(): void {
-    this.appConfig.BASE_URL = "https://localhost:40404";
-    this.appConfig.LANGUAGE = false;
+    this.appConfig.BASE_URL = baseUrl;
+    this.appConfig.LANGUAGE = language;
     // try {
     //   fetch('../../assets/app.config.json').then(res => res.json()).then(({ 
     //     BASE_URL,LANGUAGE

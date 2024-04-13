@@ -8,6 +8,7 @@ import { api } from '../../../../constants/api/apiDefinitions';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DebounceDirective } from '../../../../libraries/debounce-event/debounce-event.directive';
+import { AppConfigService } from '../../../../services/app-config.service';
 
 @Component({
   selector: 'app-ls-cart-checkin',
@@ -26,7 +27,7 @@ export class LsCartCheckinComponent {
     queryListRelativePath: api.CARD_CHECK_IN_QUERY_LIST,
     deleteIds:api.CARD_CHECK_IN_DELETE_IDS
   };
-  title: string[] = ['Danh sách thẻ check-in', 'List cart checkin'];
+  title: string[] = ['Danh sách thẻ check-in', 'List cart check-in'];
   currentIdType!:any;
   otherListTypeOptions!:any[];
   searchType!:any;
@@ -85,9 +86,10 @@ export class LsCartCheckinComponent {
       width: 130
     },
   ]
+  language!: boolean;
   constructor(
     private httpService: HttpRequestService,
-    public appLayoutService:AppLayoutService
+    public appLayoutService:AppLayoutService,
   ) {
   }
   subscriptions: Subscription[]=[];

@@ -52,7 +52,6 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
 
   id!: number;
   isDevMode!: boolean;
-  language!: boolean;
   subscriptions: Subscription[] =[];
   loading: boolean = false;
   payLoad = '';

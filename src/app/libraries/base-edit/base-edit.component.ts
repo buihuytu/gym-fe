@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { DialogService } from '../../services/dialog.service';
-import { ICorePageEditCRUD } from '../base-page-edit/base-page-edit.component';
+import { errorMessage } from '../../constants/error-control'
 
 @Component({
   selector: 'app-base-edit',
@@ -12,15 +12,17 @@ import { ICorePageEditCRUD } from '../base-page-edit/base-page-edit.component';
   styleUrl: './base-edit.component.scss'
 })
 export class BaseEditComponent {
+  ErrorMessage = errorMessage;
+  language!: boolean;
   formInitStringValue!: string;
   form!: FormGroup;
   entityTable!: string;
   showModal: boolean = false;
   ignoreDeactivate: boolean = false;
-
   constructor(
     public dialogService: DialogService
-  ) { }
+  ) { 
+  }
 
   canDeactivate(): Observable<boolean> | boolean {
     const condition = JSON.stringify(this.form.getRawValue()) === this.formInitStringValue;
