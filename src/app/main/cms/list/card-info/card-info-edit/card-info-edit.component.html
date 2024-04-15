@@ -44,10 +44,13 @@
                             <div class="mb-3">
                                 <label for="customerId" class="mb-2 title-control-edit required">Tên khách hàng</label>
                                 <div class="form-group">
-                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'customerId')" 
+                                    <base-customer-control
+                                        (selectedDataChange)="onDropdownSelected($event, 'customerId')"
+                                    ></base-customer-control>
+                                    <!-- <app-dropdown (valueChange)="onDropdownSelected($event, 'customerId')" 
                                         [getByIdOptions]="form.get('customerId')?.value" 
                                         [apiGetOptions]="getCustomerOptions$">
-                                    </app-dropdown>
+                                    </app-dropdown> -->
                                 </div>
                                 @if (form.get('customerId')?.hasError('required') && !form.get('customerId')?.untouched) {
                                 <span class="input-error">

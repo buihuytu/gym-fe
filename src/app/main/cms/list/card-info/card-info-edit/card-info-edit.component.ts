@@ -8,6 +8,7 @@ import { HttpRequestService } from '../../../../../services/http.service';
 import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.component';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { DialogService } from '../../../../../services/dialog.service';
+import { BaseCustomerSearchComponent } from '../../../../../libraries/base-customer-search/base-customer-search.component';
 
 @Component({
   selector: 'app-card-info-edit',
@@ -17,7 +18,8 @@ import { DialogService } from '../../../../../services/dialog.service';
     FormsModule, 
     ReactiveFormsModule,
     BasePageEditComponent,
-    DropdownComponent
+    DropdownComponent,
+    BaseCustomerSearchComponent
   ],
   templateUrl: './card-info-edit.component.html',
   styleUrl: './card-info-edit.component.scss'
