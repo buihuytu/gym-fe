@@ -38,6 +38,7 @@ export class BaseEmployeeSearchComponent implements BaseComponent {
   outerInOperators: IInOperator[] = [];
   language!: boolean;
   showPopup!: boolean;
+  selectedData!: any;
   showButtons: EnumBaseButton[] = [EnumBaseButton.CREATE, EnumBaseButton.DELETE, EnumBaseButton.EDIT, EnumBaseButton.APPROVE]
   columns: ICoreTableColumnItem[] = [
     {
@@ -163,6 +164,11 @@ export class BaseEmployeeSearchComponent implements BaseComponent {
   }
   onSelectedDataChange(e:any){
     this.selectedDataChange.emit(e);
+    this.selectedData = e
     this.showPopup = false;
+  }
+  onUnSelectedData(){
+    this.selectedDataChange.emit(null);
+    this.selectedData = null;
   }
 }

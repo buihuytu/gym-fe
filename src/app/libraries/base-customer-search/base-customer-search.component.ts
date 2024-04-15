@@ -38,6 +38,8 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   outerInOperators: IInOperator[] = [];
   language!: boolean;
   showPopup!: boolean;
+
+  selectedData!: any;
   columns: ICoreTableColumnItem[] = [
     {
       caption: ['id', 'id'],
@@ -178,6 +180,11 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   }
   onSelectedDataChange(e:any){
     this.selectedDataChange.emit(e);
+    this.selectedData = e
     this.showPopup = false;
+  }
+  onUnSelectedData(){
+    this.selectedDataChange.emit(null);
+    this.selectedData = null;
   }
 }

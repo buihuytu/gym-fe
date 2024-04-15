@@ -132,8 +132,8 @@ body {
   
   .close {
     position: absolute;
-    top: 12%;
-    right: 3rem;
+    top: 12% !important;
+    right: 3rem !important;
   }
   
   @-webkit-keyframes HideList {
