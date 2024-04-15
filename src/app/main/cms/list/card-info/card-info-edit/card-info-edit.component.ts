@@ -15,7 +15,7 @@ import { BaseCustomerSearchComponent } from '../../../../../libraries/base-custo
   standalone: true,
   imports: [
     RouterModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     BasePageEditComponent,
     DropdownComponent,
@@ -24,32 +24,32 @@ import { BaseCustomerSearchComponent } from '../../../../../libraries/base-custo
   templateUrl: './card-info-edit.component.html',
   styleUrl: './card-info-edit.component.scss'
 })
-export class CardInfoEditComponent extends BaseEditComponent  implements OnInit, AfterViewInit, OnDestroy{
-  title: string[] = ['Thông tin thẻ','Information card'];
+export class CardInfoEditComponent extends BaseEditComponent implements OnInit, AfterViewInit, OnDestroy {
+  title: string[] = ['Thông tin thẻ', 'Information card'];
 
   modalMode: boolean = true;//for modal and style modal
   crud!: ICorePageEditCRUD;
 
-  otherListTypeOptions!:any[];
+  otherListTypeOptions!: any[];
   subscriptions: Subscription[] = [];
 
   apiParams: string[] = ["TYPE_CARD"];
-  getCardTypeOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'TYPE_CARD';
-  getCustomerOptions$:string = api.CARD_INFO_GET_LIST_CUSTOMER;
+  getCardTypeOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'TYPE_CARD';
+  getCustomerOptions$: string = api.CARD_INFO_GET_LIST_CUSTOMER;
 
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
     private httpService: HttpRequestService,
-    ) {
+  ) {
     super(dialogService);
     this.form = this.fb.group({
-      id:[],
-      code: [null,[Validators.required]],
-      cardTypeId: [null,[Validators.required]],
-      customerId: [null,[Validators.required]],
-      effectDate: [null,[Validators.required]],
-      expiredDate: [null,[Validators.required]],
+      id: [],
+      code: [null, [Validators.required]],
+      cardTypeId: [null, [Validators.required]],
+      customerId: [null, [Validators.required]],
+      effectDate: [null, [Validators.required]],
+      expiredDate: [null, [Validators.required]],
       note: [],
     })
     this.crud = {
@@ -59,7 +59,7 @@ export class CardInfoEditComponent extends BaseEditComponent  implements OnInit,
       d: api.CARD_INFO_DELETE_IDS,
     }
   }
-  
+
 
   getListOtherListTypes() {
     forkJoin(this.apiParams.map(param => this.httpService.makeGetRequest('', api.SYS_OTHER_LIST_GET_LIST_BY_GROUP + param)))
@@ -89,24 +89,24 @@ export class CardInfoEditComponent extends BaseEditComponent  implements OnInit,
   ngOnInit(): void {
     this.getListOtherListTypes();
   }
-  
+
   ngAfterViewInit(): void {
   }
 
   onFormReinit(e: string): void {
     this.formInitStringValue = e;
   }
-  
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
   }
 
-  onDropdownSelected(event:any, e:string):void{
+  onDropdownSelected(event: any, e: string): void {
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();
   }
-  onSelectCustomerId(event:any, e:string):void{
-    this.form.get(e)?.setValue(event.id);
+  onSelectCustomerId(event: any, e: string): void {
+    this.form.get(e)?.setValue(!!event ? event.id : null);
     this.form.get(e)?.markAllAsTouched();
   }
 }
