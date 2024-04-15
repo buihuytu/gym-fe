@@ -10,7 +10,30 @@
     <li>
         <a class="has-arrow ai-icon" href="" aria-expanded="false">
             <i class="flaticon-165-menu"></i>
-            <span class="nav-text">Danh mục</span>
+            <span class="nav-text">Quản lý khách hàng</span>
+        </a>
+        <ul aria-expanded="false">
+            <li><a [routerLink]="['/cms/profile/per-customer']">Thông tin hội viên</a></li>
+        </ul>
+    </li>
+    <li>
+        <a class="has-arrow ai-icon" href="" aria-expanded="false">
+            <i class="flaticon-381-user-3"></i>
+            <span class="nav-text">Quản lý nhân viên</span>
+        </a>
+        <ul aria-expanded="false">
+            <li><a [routerLink]="['/cms/profile/employees']">Danh sách nhân viên</a></li>
+
+            <li><a href="">Thông tin giao dịch</a></li>
+            <li><a href="">Lịch sử hội viên</a></li>
+            <li><a href="">Ngày sinh nhật khách</a></li>
+            <li><a href="">Customer Not Goto Gym</a></li>
+        </ul>
+    </li>
+    <li>
+        <a class="has-arrow ai-icon" href="" aria-expanded="false">
+            <i class="flaticon-381-id-card"></i>
+            <span class="nav-text">Quản lý vật chất</span>
         </a>
         <ul aria-expanded="false">
             <li><a [routerLink]="['/cms/list/goods-equipment']">Danh sách thiết bị</a></li>
@@ -20,23 +43,9 @@
             <li><a [routerLink]="['/cms/list/gym-shift']">Danh sách Ca tập</a></li>
             <li><a [routerLink]="['/cms/list/gym-package']">Danh sách Gói cước</a></li>
             <li><a href="">Danh sách Locker</a></li>
-            <li><a [routerLink]="['/cms/profile/employees']">Danh sách nhân viên</a></li>
             <li><a [routerLink]="['/cms/list/sys-user']">Danh sách tài khoản</a></li>
             <li><a [routerLink]="['/cms/system/sys-other-list']">Tham số hệ thống</a></li>
             <li><a [routerLink]="['/cms/system/sys-other-list-type']">Nhóm tham số hệ thống</a></li>
-        </ul>
-    </li>
-    <li>
-        <a class="has-arrow ai-icon" href="" aria-expanded="false">
-            <i class="flaticon-381-user-3"></i>
-            <span class="nav-text">Quản lý hội viên</span>
-        </a>
-        <ul aria-expanded="false">
-            <li><a [routerLink]="['/cms/profile/per-customer']">Thông tin hội viên</a></li>
-            <li><a href="">Thông tin giao dịch</a></li>
-            <li><a href="">Lịch sử hội viên</a></li>
-            <li><a href="">Ngày sinh nhật khách</a></li>
-            <li><a href="">Customer Not Goto Gym</a></li>
         </ul>
     </li>
     <li>
@@ -60,6 +69,7 @@
             <li><a href="">Báo cáo thẻ hết hạn</a></li>
         </ul>
     </li>
+
     <li>
         <a class="has-arrow ai-icon" href="" aria-expanded="false">
             <i class="flaticon-092-money"></i>

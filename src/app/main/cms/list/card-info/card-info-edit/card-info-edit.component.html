@@ -62,11 +62,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="effectDate" class="mb-2 title-control-edit required">Ngày hiệu lực</label>
+                                <label for="effectedDate" class="mb-2 title-control-edit required">Ngày hiệu lực</label>
                                 <div class="form-group">
-                                    <input formControlName="effectDate" id="effectDate" type="date"
+                                    <input formControlName="effectedDate" id="effectedDate" type="date"
                                         class="form-control input-default">
-                                    @if (form.get('effectDate')?.hasError('required') && !form.get('effectDate')?.untouched) {
+                                    @if (form.get('effectedDate')?.hasError('required') && !form.get('effectedDate')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc chọn
                                     </span>
@@ -83,6 +83,20 @@
                                     <input formControlName="expiredDate" id="effectDate" type="date"
                                         class="form-control input-default">
                                     @if (form.get('expiredDate')?.hasError('required') && !form.get('expiredDate')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="expiredDateString" class="mb-2 title-control-edit required">Ngày hết hiệu lực</label>
+                                <div class="form-group">
+                                    <input formControlName="expiredDateString" id="expiredDateString" type="text"
+                                        class="form-control input-default">
+                                    @if (form.get('expiredDateString')?.hasError('required') && !form.get('expiredDateString')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc chọn
                                     </span>

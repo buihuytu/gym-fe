@@ -48,8 +48,9 @@ export class CardInfoEditComponent extends BaseEditComponent implements OnInit, 
       code: [null, [Validators.required]],
       cardTypeId: [null, [Validators.required]],
       customerId: [null, [Validators.required]],
-      effectDate: [null, [Validators.required]],
+      effectedDate: [null, [Validators.required]],
       expiredDate: [null, [Validators.required]],
+      expiredDateString: [null, [Validators.required]],
       note: [],
     })
     this.crud = {
