@@ -22,6 +22,7 @@ export const routes: Routes = [
   },
   {
     path: "**",
-    component: Error404Component,
+    loadComponent: () => import("../app/main/error/error-404/error-404.component").then(m => m.Error404Component)
   },
+  
 ];
