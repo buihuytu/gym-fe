@@ -20,7 +20,10 @@
     <div #container class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">{{!!!language ? title[0]: title[1] || ''}}</h5>
-            <button type="button" (click)="onClose()" class="close" data-dismiss="modal"><span>&times;</span>
+            <button [ngStyle]="{
+              right: 0+'!important',
+              top: 0+'!important'
+            }" type="button" (click)="onClose()" class="close" data-dismiss="modal"><span>&times;</span>
             </button>
         </div>
         <div class="modal-body"><ng-container [ngTemplateOutlet]="main"></ng-container></div>
