@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { api } from '../../constants/api/apiDefinitions';
 import { EnumBaseButton } from '../../constants/headerButton/ButtonDefinitions';
@@ -24,6 +24,8 @@ import { AppConfigService } from '../../services/app-config.service';
   styleUrl: './base-employee-search.component.scss'
 })
 export class BaseEmployeeSearchComponent implements BaseComponent {
+  @Input() getByIdOptions!: any;
+  @Input() showFrom!: any;
   @Output() selectedDataChange = new EventEmitter();
 
   apiQueryList: ICorePageListApiDefinition = {

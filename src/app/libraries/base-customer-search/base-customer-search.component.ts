@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { api } from '../../constants/api/apiDefinitions';
@@ -24,6 +24,8 @@ import { DebounceDirective } from '../debounce-event/debounce-event.directive';
   styleUrl: './base-customer-search.component.scss'
 })
 export class BaseCustomerSearchComponent implements BaseComponent {
+  @Input() getByIdOptions!: any;
+  @Input() showFrom!: any;
   @Output() selectedDataChange = new EventEmitter();
 
   apiQueryList: ICorePageListApiDefinition = {
@@ -130,6 +132,21 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   subscriptions: Subscription[]=[];
   ngAfterViewInit(): void {
     
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['getByIdOptions']) {
+      this.subscriptions.push(
+        this.httpService.makeGetRequest('',api.PER_CUSTOMER_READ+changes['getByIdOptions'].currentValue).subscribe(x => {
+          if (!!x.ok && x.status === 200) {
+            const body = x.body;
+            if (body.statusCode === 200) {
+              const data = body.innerBody;
+              this.selectedData = data
+            }
+          }
+        })
+      );
+    }
   }
   ngOnDestroy(): void {
     this.subscriptions.map((subscription: Subscription) =>{

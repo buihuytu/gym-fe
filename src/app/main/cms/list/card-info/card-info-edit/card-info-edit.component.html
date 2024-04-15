@@ -46,7 +46,7 @@
                                 <div class="form-group">
                                     <base-customer-control
                                         (selectedDataChange)="onSelectCustomerId($event, 'customerId')"
-
+                                        [getByIdOptions]="form.get('customerId')?.value"
                                     ></base-customer-control>
                                     <!-- <app-dropdown (valueChange)="onDropdownSelected($event, 'customerId')" 
                                         [getByIdOptions]="form.get('customerId')?.value" 
