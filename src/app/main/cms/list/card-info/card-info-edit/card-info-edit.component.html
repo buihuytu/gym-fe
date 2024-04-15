@@ -45,7 +45,8 @@
                                 <label for="customerId" class="mb-2 title-control-edit required">Tên khách hàng</label>
                                 <div class="form-group">
                                     <base-customer-control
-                                        (selectedDataChange)="onDropdownSelected($event, 'customerId')"
+                                        (selectedDataChange)="onSelectCustomerId($event, 'customerId')"
+
                                     ></base-customer-control>
                                     <!-- <app-dropdown (valueChange)="onDropdownSelected($event, 'customerId')" 
                                         [getByIdOptions]="form.get('customerId')?.value" 

@@ -105,4 +105,8 @@ export class CardInfoEditComponent extends BaseEditComponent  implements OnInit,
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();
   }
+  onSelectCustomerId(event:any, e:string):void{
+    this.form.get(e)?.setValue(event.id);
+    this.form.get(e)?.markAllAsTouched();
+  }
 }
