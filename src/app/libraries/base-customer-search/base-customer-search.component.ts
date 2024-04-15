@@ -137,12 +137,7 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   ngOnInit() {
     this.getListOtherListTypes()
     if (typeof window !== "undefined") {
-      var win_h = window.outerHeight;
-      console.log(win_h);
-      console.log( screen.height)
-      // if (win_h > 0 ? win_h : screen.height) {
-      //   this.tableHeight = win_h - 350;
-      // };
+    
     }
   }
 

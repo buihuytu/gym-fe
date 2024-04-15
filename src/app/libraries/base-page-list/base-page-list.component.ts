@@ -80,7 +80,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   visibleColumns!: ICoreTableColumnItem[];
   innerBodyCount$ = new BehaviorSubject<number>(1);
   navigationLink!: any;
-  selectedIds: any[]= [];
+  selectedIds: any[] = [];
   language!: boolean;
   loading: boolean = true;
   displayPageCount: any[] = [];
@@ -112,7 +112,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     this.language = this.appConfig.LANGUAGE;
   }
   ngOnDestroy(): void {
-    this.subscriptions.map((subscription: Subscription) =>subscription.unsubscribe());
+    this.subscriptions.map((subscription: Subscription) => subscription.unsubscribe());
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pageCount']) {
@@ -151,10 +151,12 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         this.tableHeight = win_h - 350;
       };
     }
-    
+
     this.appLayoutService.tableHeight = this.tableHeight;
-    this.showButtons = BASE_BUTTONS.filter(x => this.buttons.includes(x.code));
-    this.showButtons.sort((a, b) => a.order - b.order);
+    if (!!!this.isControl) {
+      this.showButtons = BASE_BUTTONS.filter(x => this.buttons.includes(x.code));
+      this.showButtons.sort((a, b) => a.order - b.order);
+    }
     this.onSizeChange(defaultPaging.take);
   }
   ngAfterViewInit(): void {
@@ -193,16 +195,16 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     this.loading = true;
     setTimeout(() => {
       const url = this.apiDefinition.queryListRelativePath;
-      let filter ={};
-      this.inOperators$.value.map((value) =>{
+      let filter = {};
+      this.inOperators$.value.map((value) => {
         filter = {
           ...filter,
-          [value.field]:value.values
+          [value.field]: value.values
         }
       });
       const param = {
         ...this.pagination$.value,
-        filter : filter,
+        filter: filter,
       }
       this.subscriptions.push(
         this.basePageListService.queryList(url, param).pipe().subscribe(x => {
@@ -246,7 +248,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         this.navigationLink = `/cms/test/${btoa('0')}`;
         break;
       case EnumBaseButton.DELETE:
-        this.pendingAction= EnumBaseButton.DELETE;
+        this.pendingAction = EnumBaseButton.DELETE;
         if (this.selectedIds.length === 0) return this.alertService.error('Chưa chọn bản ghi nào');
         this.dialogService.busy = true;
         this.dialogService.showConfirmDialog$.next(true);
@@ -287,7 +289,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
 
     })
     this.selectedIds = newSelectedIds;
-    if(newSelectedIds.length === this.data.length)  this.headerCheckboxState = true;
+    if (newSelectedIds.length === this.data.length) this.headerCheckboxState = true;
     else this.headerCheckboxState = false;
     this.selectedIdsChange.emit(this.selectedIds);
   }
@@ -302,8 +304,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   onClickLocal(row: any, event: any) {
     if (event.detail === 1) {
     } else if (event.detail === 2) {
-      if(!!this.isControl){}
-      else{
+      if (!!this.isControl) { }
+      else {
         this.router.navigate(
           [btoa(row.id)],
           {
@@ -353,17 +355,17 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     }
     return result;
   }
-  deleteObjectSelect(){
-    if(!this.apiDefinition.deleteIds!) return ;
+  deleteObjectSelect() {
+    if (!this.apiDefinition.deleteIds!) return;
     this.subscriptions.push(
-      this.httpService.makePostRequest('create', this.apiDefinition.deleteIds!, {ids:this.selectedIds}).subscribe((x) => {
+      this.httpService.makePostRequest('create', this.apiDefinition.deleteIds!, { ids: this.selectedIds }).subscribe((x) => {
         if (x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {
             this.alertService.success('Xóa thành công');
             this.getDataForTable();
             this.selectedIds = [];
-            this.checkingModel =[];
+            this.checkingModel = [];
             this.headerCheckboxState = false;
             if (isDevMode()) {
             }
