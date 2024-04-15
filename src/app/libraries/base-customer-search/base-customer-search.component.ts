@@ -117,49 +117,6 @@ export class BaseCustomerSearchComponent implements BaseComponent {
       align: 'left',
       width: 120
     },
-    {
-      caption: ['Tỉnh thành', 'Native'],
-      field: 'nativeName',
-      type: 'text',
-      align: 'left',
-      width: 100
-    },
-    
-    {
-      caption: ['Tôn giáo', 'Religion'],
-      field: 'religionName',
-      type: 'text',
-      align: 'left',
-      width: 100
-    },
-    {
-      caption: ['Ngân hàng', 'Bank'],
-      field: 'bankName',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Chi nhánh ngân hàng', 'Bank branch'],
-      field: 'bankBranchName',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Số tài khoản', 'Bank no'],
-      field: 'bankNo',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Ghi chú', 'Note'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
   ]
   constructor(
     private httpService: HttpRequestService,
