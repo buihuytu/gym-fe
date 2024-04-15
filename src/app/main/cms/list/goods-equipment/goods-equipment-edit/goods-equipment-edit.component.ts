@@ -42,11 +42,11 @@ export class GoodsEquipmentEditComponent extends BaseEditComponent implements On
       equipmentType: [null,[Validators.required]],
       manufacturer: [],
       purchaseDate: [null,[Validators.required]],
-      statusId: [null,[Validators.required]],
+      statusId: [],
       warrantyExpiryDate: [null,[Validators.required]],
       cost: [null,[Validators.required]],
       address: [],
-      managerId: [null,[Validators.required]],
+      managerId: [],
       note: [],
     })
     this.crud = {

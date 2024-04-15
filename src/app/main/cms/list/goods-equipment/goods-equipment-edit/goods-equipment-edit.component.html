@@ -15,13 +15,13 @@
                 <div class="col-md-12">
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="typeId" class="mb-2 title-control-edit required">Loại thiết bị</label>
+                            <label for="equipmentType" class="mb-2 title-control-edit required">Loại thiết bị</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" 
-                                              [getByIdOptions]="form.get('typeId')?.value" 
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'equipmentType')" 
+                                              [getByIdOptions]="form.get('equipmentType')?.value" 
                                               [apiGetOptions]="getListEquipmentTypeOptions$">
                                 </app-dropdown>
-                                @if (form.get('typeId')?.hasError('required') && !form.get('typeId')?.untouched) {
+                                @if (form.get('equipmentType')?.hasError('required') && !form.get('equipmentType')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
                                 </span>
@@ -33,8 +33,7 @@
                         <div class="col-md-6">
                             <label for="code" class="mb-2 title-control-edit required">Mã thiết bị</label>
                             <div class="form-group">
-                                <input formControlName="code" id="code" type="text" class="form-control input-default"
-                                    readonly placeholder="">
+                                <input formControlName="code" id="code" type="text" class="form-control input-default" placeholder="">
                             </div>
                         </div>
                         <div class="col-md-6">
