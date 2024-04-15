@@ -12,7 +12,7 @@ import { DebounceDirective } from '../debounce-event/debounce-event.directive';
 import { AppConfigService } from '../../services/app-config.service';
 
 @Component({
-  selector: 'base-employee-search',
+  selector: 'base-employee-control',
   standalone: true,
   imports: [
     CommonModule,

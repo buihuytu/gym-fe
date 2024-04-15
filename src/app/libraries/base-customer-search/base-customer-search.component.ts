@@ -12,7 +12,7 @@ import { BasePageListComponent, ICorePageListApiDefinition, IInOperator, ICoreTa
 import { DebounceDirective } from '../debounce-event/debounce-event.directive';
 
 @Component({
-  selector: 'base-customer-search',
+  selector: 'base-customer-control',
   standalone: true,
   imports: [
     CommonModule,
