@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AppLayoutService } from '../../../../layout/applayout/applayout.service';
 import { FormsModule } from '@angular/forms';
 import { DebounceDirective } from '../../../../libraries/debounce-event/debounce-event.directive';
-import { DropdownComponent } from '../../../../libraries/dropdown/dropdown.component';
+import { DropdownComponent } from '../../../../libraries/base-dropdown/dropdown.component';
 
 @Component({
   selector: 'app-sys-other-list-type',

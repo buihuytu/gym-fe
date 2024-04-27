@@ -6,8 +6,9 @@ import { DialogService } from '../../../../../services/dialog.service';
 import { HttpRequestService } from '../../../../../services/http.service';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { RouterModule } from '@angular/router';
-import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
+import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
 import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.component';
+import { CheckListComponent } from '../../../../../libraries/base-checklist/base-checklist.component';
 
 @Component({
   selector: 'app-per-customer-edit',
@@ -17,7 +18,8 @@ import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.
     FormsModule, 
     ReactiveFormsModule,
     BasePageEditComponent,
-    DropdownComponent
+    DropdownComponent,
+    CheckListComponent
   ],
   templateUrl: './per-customer-edit.component.html',
   styleUrl: './per-customer-edit.component.scss'
