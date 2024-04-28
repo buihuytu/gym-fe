@@ -50,7 +50,6 @@ p {
   right: 0rem;
   border-radius: 3px;
   padding: 3px;
-  /* color: black; */
   background-color: currentcolor;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -107,7 +106,7 @@ p {
 
 .select-box__option {
   display: block;
-  padding: 15px;
+  padding: 10px;
   background-color: #fff;
 }
 
@@ -117,7 +116,12 @@ p {
   background-color: rgba(235, 129, 83, 0.9);
   color: #fff;
 }
-
+label{
+  margin-bottom: 0 !important;
+}
+p{
+  line-height: 1.8!important;
+}
 .close {
   position: absolute;
   top: 12%;

@@ -64,4 +64,7 @@ export class DropdownComponent implements BaseComponent, OnChanges {
     this.selectedId = null;
     this.valueChange.emit(this.selectedId)
   }
+  blur(){
+    console.log('first')
+  }
 }

@@ -1,30 +1,25 @@
-<div class="select-box form-control" (click)="onShowOptions()" (blur)="onBlur()">
+<div class="select-box form-control" (click)="onShowOptions()">
   <div class="select-box__current" tabindex="1">
     <div class="select-box__value">
-      <input class="select-box__input" type="radio" id="null" value="null" name="null"/>
+      <input class="select-box__input" type="radio" id="null" value="null" name="null" />
       <p class="select-box__input-text">{{holderText}}</p>
     </div>
     {{holderText}}
-    @if (!!selectedId) {
-      <button (click)="onUnselectedIds()" type="button" class="close" data-dismiss="modal"><span>&times;</span>
-      </button>
+    @if (selectedIds.length > 0) {
+    <button (click)="onUnselectedIds()" type="button" class="close" data-dismiss="modal"><span>&times;</span>
+    </button>
     }
-    <img class="select-box__icon" src="../../../assets/images/up-chervon.svg" alt="Arrow Icon" aria-hidden="true"/>
+    <img class="select-box__icon" src="../../../assets/images/up-chervon.svg" alt="Arrow Icon" aria-hidden="true" />
   </div>
-  <ul class="select-box__list" [class.opacityList]="showOptions">
+  <ul (blur)="onBlur()" tabindex="2" class="select-box__list" [class.opacityList]="showOptions">
     @for (item of dataShow; track $index) {
-      <li (click)="onSelectedIds($index)">
-        <div class="select-box__option"  aria-hidden="aria-hidden">
-          <input 
-              type="checkbox"
-              (ngModelChange)="onCheckingNgModelChange()"
-              [(ngModel)]="checkingModel[$index]"
-              [id]="'customCheckBox'+ $index"
-              class="custom-control-input"
-              required="">
-          <label class="label-for-checkbox" [htmlFor]="'customCheckBox'+ $index">{{item.name}}</label>
-        </div>
-      </li>
+    <li (click)="onSelectedIds($index)">
+      <div class="select-box__option" aria-hidden="aria-hidden">
+        <input type="checkbox" (ngModelChange)="onCheckingNgModelChange()" [(ngModel)]="checkingModel[$index]"
+          [id]="'customCheckBox'+ $index" class="custom-control-input" required="">
+        <label class="label-for-checkbox" [htmlFor]="'customCheckBox'+ $index">{{item.name}}</label>
+      </div>
+    </li>
     }
   </ul>
 </div>

@@ -18,13 +18,13 @@ export class CheckListComponent implements BaseComponent, OnChanges {
   @Input() apiGetOptions!: string;
   @Input() getByIdOptions!: any;
   @Output() valueChange = new EventEmitter;
-  
-  subscriptions: Subscription[] =[];
-  data: any[]=[];
-  dataShow: any[]=[];
 
-  showOptions:boolean = false;
-  holderText:string ='';
+  subscriptions: Subscription[] = [];
+  data: any[] = [];
+  dataShow: any[] = [];
+
+  showOptions: boolean = false;
+  holderText: string = '';
   /**
    *
    */
@@ -43,12 +43,12 @@ export class CheckListComponent implements BaseComponent, OnChanges {
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-      if(!!this.apiGetOptions && this.apiGetOptions !== ''){
+      if (!!this.apiGetOptions && this.apiGetOptions !== '') {
         this.subscriptions.push(
-          this.httpService.makeGetRequest('get', this.apiGetOptions).pipe().subscribe((x)=>{
-            if(!!x.ok && x.status =='200'){
+          this.httpService.makeGetRequest('get', this.apiGetOptions).pipe().subscribe((x) => {
+            if (!!x.ok && x.status == '200') {
               const body = x.body;
-              if(body.statusCode == '200'){
+              if (body.statusCode == '200') {
                 const data = body.innerBody;
                 this.data = data;
                 this.dataShow = data;
@@ -62,10 +62,10 @@ export class CheckListComponent implements BaseComponent, OnChanges {
   ngOnInit(): void {
   }
   ngOnDestroy(): void {
-    this.subscriptions.map((subscription)=> subscription.unsubscribe())
+    this.subscriptions.map((subscription) => subscription.unsubscribe())
   }
-  onSelectedIds(e:any){
-    this.checkingModel[e] =!this.checkingModel[e];
+  onSelectedIds(e: any) {
+    this.checkingModel[e] = !this.checkingModel[e];
     this.onCheckingNgModelChange();
   }
   onCheckingNgModelChange() {
@@ -77,19 +77,23 @@ export class CheckListComponent implements BaseComponent, OnChanges {
       newHolder.push(item.name)
       newSelectedData.push(item)
     })
-    this.holderText = newSelectedIds.length == this.data.length ? 'Tất cả': newHolder.join('; ')
+    this.holderText = newSelectedIds.length == this.data.length ? 'Tất cả' : newHolder.join('; ')
     this.selectedIds = newSelectedIds;
     this.valueChange.emit(this.selectedIds);
   }
-  onShowOptions(){
-    this.showOptions =true;
+  onShowOptions() {
+    this.showOptions = true;
   }
-  onBlur(){
+  onBlur() {
     console.log('ssss')
-    this.showOptions =false;
+    this.showOptions = false;
   }
-  onUnselectedIds(){
-    this.selectedId = null;
+  onUnselectedIds() {
+    this.selectedIds = [];
+    this.holderText = '';
+    this.checkingModel.map((_: any, index) => {
+      this.checkingModel[index] = false;
+    })
     this.valueChange.emit(this.selectedId)
   }
 }
