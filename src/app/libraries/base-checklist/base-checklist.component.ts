@@ -4,12 +4,15 @@ import { BaseComponent } from '../base-component/base-component.component';
 import { Subscription } from 'rxjs';
 import { HttpRequestService } from '../../services/http.service';
 import { FormsModule } from '@angular/forms';
+import { AppConfigService } from '../../services/app-config.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-base-checklist',
   standalone: true,
   imports: [
     FormsModule,
+    CommonModule
   ],
   templateUrl: './base-checklist.component.html',
   styleUrl: './base-checklist.component.scss'
@@ -22,7 +25,7 @@ export class CheckListComponent implements BaseComponent, OnChanges {
   subscriptions: Subscription[] = [];
   data: any[] = [];
   dataShow: any[] = [];
-
+  language!: boolean;
   showOptions: boolean = false;
   holderText: string = '';
   /**
@@ -34,7 +37,10 @@ export class CheckListComponent implements BaseComponent, OnChanges {
   checkingModel: boolean[] = [];
   constructor(
     private httpService: HttpRequestService,
+    public appConfig: AppConfigService,
   ) {
+    this.language = this.appConfig.LANGUAGE;
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['getByIdOptions']) {
@@ -82,10 +88,9 @@ export class CheckListComponent implements BaseComponent, OnChanges {
     this.valueChange.emit(this.selectedIds);
   }
   onShowOptions() {
-    this.showOptions = true;
+    this.showOptions = !this.showOptions;
   }
   onBlur() {
-    console.log('ssss')
     this.showOptions = false;
   }
   onUnselectedIds() {
