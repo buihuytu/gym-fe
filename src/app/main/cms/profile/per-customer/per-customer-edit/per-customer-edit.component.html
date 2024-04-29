@@ -148,10 +148,11 @@
                         <div class="col-md-6">
                             <label for="religionId" class="mb-2 title-control-edit">Tôn giáo</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'religionId')"
+                                <base-employee-control (valueChange)="onDropdownSelected($event, 'religionId')"
                                     [getByIdOptions]="form.get('religionId')?.value"
-                                    [apiGetOptions]="getReligionOptions$">
-                                </app-dropdown>
+                                    [top]="-30"
+                                    [left]="-15">
+                                </base-employee-control>
                             </div>
                         </div>
                         <div class="col-md-6">

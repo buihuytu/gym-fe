@@ -6,6 +6,7 @@ import { api } from '../../../../../constants/api/apiDefinitions';
 import { DialogService } from '../../../../../services/dialog.service';
 import { RouterModule } from '@angular/router';
 import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
+import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
 
 @Component({
   selector: 'app-hu-employee-edit',
@@ -15,7 +16,8 @@ import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdo
     FormsModule, 
     ReactiveFormsModule,
     BasePageEditComponent,
-    DropdownComponent
+    DropdownComponent,
+    BaseEmployeeSearchComponent
   ],
   templateUrl: './hu-employee-edit.component.html',
   styleUrl: './hu-employee-edit.component.scss'

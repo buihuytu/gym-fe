@@ -26,7 +26,13 @@ import { DebounceDirective } from '../debounce-event/debounce-event.directive';
 export class BaseCustomerSearchComponent implements BaseComponent {
   @Input() getByIdOptions!: any;
   @Input() showFrom!: any;
+  @Input() isModalMode: any= true;
   @Output() selectedDataChange = new EventEmitter();
+
+
+  //style margin
+  @Input() top: number=-9.25;
+  @Input() left: number=-100;
 
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.PER_CUSTOMER_QUERY_LIST,

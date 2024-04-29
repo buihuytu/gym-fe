@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
 import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.component';
 import { CheckListComponent } from '../../../../../libraries/base-checklist/base-checklist.component';
+import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
 
 @Component({
   selector: 'app-per-customer-edit',
@@ -19,7 +20,8 @@ import { CheckListComponent } from '../../../../../libraries/base-checklist/base
     ReactiveFormsModule,
     BasePageEditComponent,
     DropdownComponent,
-    CheckListComponent
+    CheckListComponent,
+    BaseEmployeeSearchComponent
   ],
   templateUrl: './per-customer-edit.component.html',
   styleUrl: './per-customer-edit.component.scss'

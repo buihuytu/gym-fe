@@ -26,6 +26,11 @@ import { AppConfigService } from '../../services/app-config.service';
 export class BaseEmployeeSearchComponent implements BaseComponent {
   @Input() getByIdOptions!: any;
   @Input() showFrom!: any;
+  @Input() isModalMode: any= true;
+
+  //style margin
+  @Input() top: number=-9.25;
+  @Input() left: number=-100;
   @Output() selectedDataChange = new EventEmitter();
 
   apiQueryList: ICorePageListApiDefinition = {
