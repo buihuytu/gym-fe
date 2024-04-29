@@ -51,15 +51,15 @@ export class PerCustomerComponent {
       field: 'status',
       type: 'text',
       align: 'left',
-      width: 220
+      width: 200
     },
-    {
-      caption: ['Ảnh đại diện', 'Avatar'],
-      field: 'avatar',
-      type: 'text',
-      align: 'left',
-      width: 220
-    },
+    // {
+    //   caption: ['Ảnh đại diện', 'Avatar'],
+    //   field: 'avatar',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 200
+    // },
     {
       caption: ['Mã khách hàng', 'Customer Code'],
       field: 'code',
@@ -79,12 +79,19 @@ export class PerCustomerComponent {
       field: 'fullName',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Ngày sinh', 'Birth date'],
       field: 'birthDateString',
       type: 'date',
+      align: 'center',
+      width: 120
+    },
+    {
+      caption: ['CCCD/CMND', 'ID No'],
+      field: 'idNo',
+      type: 'text',
       align: 'center',
       width: 120
     },
@@ -110,47 +117,18 @@ export class PerCustomerComponent {
       width: 100
     },
     {
-      caption: ['Email', 'Email'],
-      field: 'email',
-      type: 'text',
+      caption: ['Là khách tập thử', 'Is Guest Pass'],
+      field: 'isGuestPass',
+      type: 'bool',
       align: 'left',
-      width: 120
+      width: 170
     },
     {
-      caption: ['Tỉnh thành', 'Native'],
-      field: 'nativeName',
+      caption: ['Huấn luyện viên', 'Coach'],
+      field: 'perPtName',
       type: 'text',
       align: 'left',
-      width: 100
-    },
-    
-    {
-      caption: ['Tôn giáo', 'Religion'],
-      field: 'religionName',
-      type: 'text',
-      align: 'left',
-      width: 100
-    },
-    {
-      caption: ['Ngân hàng', 'Bank'],
-      field: 'bankName',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Chi nhánh ngân hàng', 'Bank branch'],
-      field: 'bankBranchName',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Số tài khoản', 'Bank no'],
-      field: 'bankNo',
-      type: 'text',
-      align: 'left',
-      width: 150
+      width: 170
     },
     {
       caption: ['Ghi chú', 'Note'],

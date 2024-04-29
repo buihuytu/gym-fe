@@ -153,6 +153,8 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
         } else {
+          this.loading = false;
+          this.alertService.error(x.message);
           this.onNotOk200Response(x);
         }
       })

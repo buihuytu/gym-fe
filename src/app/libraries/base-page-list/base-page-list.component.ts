@@ -74,7 +74,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   subscriptions: Subscription[] = [];
   showButtons!: any[];
   headerCheckboxState!: any;
-  data!: any[];
+  data: any[]=[];
   tableHeight!: number;
   checkingModel: boolean[] = [];
   visibleColumns!: ICoreTableColumnItem[];

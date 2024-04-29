@@ -6,51 +6,17 @@
         <form [formGroup]="form">
             <div class="row w-100">
                 <div class="col-md-12">
-                    <div class="mb-3 d-none">
-                        <label for="id" class="mb-2 title-control-edit required">id</label>
-                        <div class="form-group">
-                            <input formControlName="id" id="id" type="text" class="form-control input-default ">
-                            @if (form.get('id')?.hasError('required') && !form.get('id')?.untouched) {
-                            <span class="input-error">
-                                Bắt buộc chọn
-                            </span>
-                            }
-
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-12"> -->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="code" class="mb-2 title-control-edit required">Mã khách hàng</label>
                                 <div class="form-group">
-                                    <input formControlName="code" id="code" type="text"
-                                        class="form-control input-default ">
-                                    @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc chọn
-                                    </span>
-                                    }
+                                    <input formControlName="code" id="code" type="text" placeholder="Mã khách hàng sẽ được tự phát sinh"
+                                        class="form-control input-default " readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <!-- <div class="mb-3">
-                                <label for="typeId" class="mb-2 title-control-edit required">Nhóm tham số</label>
-                                <div class="form-group">
-                                    <div>
-                                        <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" 
-                                                      [getByIdOptions]="form.get('typeId')?.value" 
-                                                      [apiGetOptions]="getListTypeOptions$">
-                                        </app-dropdown>
-                                    </div>
-                                </div>
-                                @if (form.get('typeId')?.hasError('required') && !form.get('typeId')?.untouched) {
-                                <span class="input-error">
-                                    Bắt buộc chọn
-                                </span>
-                                }
-                            </div> -->
                             <div class="mb-3">
                                 <label for="customerClassId" class="mb-2 title-control-edit required">Nhóm khách
                                     hàng</label>
@@ -107,9 +73,9 @@
                         <div class="col-md-6">
                             <label for="genderId" class="mb-2 title-control-edit required">Giới tính</label>
                             <div class="form-group">
-                                <app-base-checklist (valueChange)="onDropdownSelected($event, 'genderId')"
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'genderId')"
                                     [getByIdOptions]="form.get('genderId')?.value" [apiGetOptions]="getGenderOptions$">
-                                </app-base-checklist>
+                                </app-dropdown>
                                 @if (form.get('genderId')?.hasError('required') && !form.get('genderId')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
@@ -128,69 +94,54 @@
 
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="email" class="mb-2 title-control-edit">Email</label>
-                            <div class="form-group">
-                                <input formControlName="email" id="email" type="text" class="form-control input-dèault">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="nativeId" class="mb-2 title-control-edit">Tình thành</label>
-                            <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'nativeId')"
-                                    [getByIdOptions]="form.get('nativeId')?.value"
-                                    [apiGetOptions]="getNativeIdOptions$">
-                                </app-dropdown>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="religionId" class="mb-2 title-control-edit">Tôn giáo</label>
-                            <div class="form-group">
-                                <base-employee-control (valueChange)="onDropdownSelected($event, 'religionId')"
-                                    [getByIdOptions]="form.get('religionId')?.value"
-                                    [top]="-30"
-                                    [left]="-15">
-                                </base-employee-control>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="bankId" class="mb-2 title-control-edit">Ngân hàng</label>
-                            <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankId')"
-                                    [getByIdOptions]="form.get('bankId')?.value" [apiGetOptions]="getBankOptions$">
-                                </app-dropdown>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="bankBrach" class="mb-2 title-control-edit">Chi nhánh ngân hàng</label>
-                            <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankBrach')"
-                                    [getByIdOptions]="form.get('bankBrach')?.value"
-                                    [apiGetOptions]="getBankBranchOptions$">
-                                </app-dropdown>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="bankNo" class="mb-2 title-control-edit">Số tài khoản</label>
-                            <div class="form-group">
-                                <input formControlName="bankNo" id="bankNo" type="number"
-                                    class="form-control input-default">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-4">
                             <label for="phoneNumber" class="mb-2 title-control-edit">Số điện thoại</label>
                             <div class="form-group">
                                 <input formControlName="phoneNumber" id="phoneNumber" type="number"
                                     class="form-control input-default">
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="idNo" class="mb-2 title-control-edit">CCCD/CMND</label>
+                            <div class="form-group">
+                                <input formControlName="idNo" id="idNo" type="text"
+                                    class="form-control input-default">
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="perPtId" class="mb-2 title-control-edit">Huấn luyện viên</label>
+                            <div class="form-group">
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'perPtId')"
+                                    [getByIdOptions]="form.get('perPtId')?.value"
+                                    [top]="-30"
+                                    [isModalMode]="false"
+                                    [left]="-15">
+                                </base-employee-control>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="statusId" class="mb-2 title-control-edit">Trạng thái khách hàng</label>
+                            <div class="form-group">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'statusId')"
+                                    [getByIdOptions]="form.get('statusId')?.value"
+                                    [apiGetOptions]="geCusStatusOptions$">
+                                </app-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 d-flex">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                    <input type="checkbox" formControlName="isGuestPass"
+                                        class="custom-control-input form-control" id="isGuestPass" required="">
+                                    <label class="custom-control-label" for="isGuestPass"></label>
+                                </div>
+                            </div>
+                            <label for="bankId" class="mb-2 title-control-edit">Là khách tập thử</label>
                         </div>
                         <div class="col-md-8">
                             <label for="" class="mb-2 title-control-edit">Ghi chú</label>

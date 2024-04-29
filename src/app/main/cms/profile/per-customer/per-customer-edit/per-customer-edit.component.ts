@@ -48,7 +48,7 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
   getNativeIdOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'NATIVE';
   getReligionOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'RELIGION';
   getBankOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK';
-  getBankBranchOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK_BRANCH';
+  geCusStatusOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUS_STATUS';
 
   constructor(
     private fb: FormBuilder,
@@ -58,21 +58,20 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
     super(dialogService);
     this.form = this.fb.group({
       id:[],
-      code: [null,[Validators.required]],
+      code: [null],
       fullName: [null,[Validators.required]],
       customerClassId: [null,[Validators.required]],
       phoneNumber: [],
       email: [],
-      nativeId: [],
-      religionId: [],
-      bankId: [],
-      bankNo: [],
       avatar: [],
       genderId: [],
-      bankBrach: [],
+      statusId: [],
       address: [],
-      birthDate: [],
+      birthDate: [null,[Validators.required]],
       note: [],
+      perPtId:[],
+      idNo:[],
+      isGuestPass:[]
     })
     this.crud = {
       c: api.PER_CUSTOMER_CREATE,
@@ -142,4 +141,5 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();
   }
+  
 }
