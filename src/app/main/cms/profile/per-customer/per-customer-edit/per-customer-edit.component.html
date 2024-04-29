@@ -109,7 +109,25 @@
                         </div>
                     </div>
 
-                   
+                    <div class="row mb-3">
+                        <div class="col-md-6 d-flex">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                    <input type="checkbox" formControlName="isGuestPass"
+                                        class="custom-control-input form-control" id="isGuestPass" required="">
+                                    <label class="custom-control-label" for="isGuestPass"></label>
+                                </div>
+                            </div>
+                            <label for="isGuestPass" class="mb-2 title-control-edit">Là khách tập thử</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="mb-2 title-control-edit">Email</label>
+                            <div class="form-group">
+                                <input formControlName="email" id="email" type="text" class="form-control input-default ">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="perPtId" class="mb-2 title-control-edit">Huấn luyện viên</label>
@@ -133,20 +151,11 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-4 d-flex">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                    <input type="checkbox" formControlName="isGuestPass"
-                                        class="custom-control-input form-control" id="isGuestPass" required="">
-                                    <label class="custom-control-label" for="isGuestPass"></label>
-                                </div>
-                            </div>
-                            <label for="bankId" class="mb-2 title-control-edit">Là khách tập thử</label>
-                        </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <label for="" class="mb-2 title-control-edit">Ghi chú</label>
                             <div class="form-group">
-                                <input formControlName="note" id="note" type="text" class="form-control input-default ">
+                                <textarea  formControlName="note" id="note" type="text" class="form-control input-default "></textarea>
+                                
                             </div>
                         </div>
                     </div>
