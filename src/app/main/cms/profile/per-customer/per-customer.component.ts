@@ -31,6 +31,10 @@ export class PerCustomerComponent {
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];
+
+  otherListTypeOptions!:any[];
+  otherListTypeOptionShow!:any[];
+
   showButtons: EnumBaseButton[] = [
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 
@@ -145,15 +149,47 @@ export class PerCustomerComponent {
   }
   subscriptions: Subscription[]=[];
   ngAfterViewInit(): void {
-    
+    setTimeout(() => {
+      this.getListOtherListTypes();
+    })
   }
   ngOnDestroy(): void {
   }
   ngOnInit() {
   }
-
+  getListOtherListTypes() {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUSTOMER_GROUP').subscribe(x => {
+        if (!!x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            const data = body.innerBody;
+            this.otherListTypeOptions = data;
+            this.otherListTypeOptionShow = data;
+          }
+        }
+      })
+    );
+  }
   onSearchListType(e:any){
-    console.log(this.searchType)
+    if(this.searchType !== '' && this.searchType !== null){
+      this.otherListTypeOptionShow = this.otherListTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.otherListTypeOptionShow = this.otherListTypeOptions
+    }
+  }
+
+  onSelectedListTypeChanged(e:any) {
+    if(this.currentIdType == e.id) return;
+    else{
+      this.currentIdType = e.id;
+      this.outerInOperators= [
+        {
+          field: 'customerClassId',
+          values: e.id
+        }
+      ]
+    }
   }
 
   

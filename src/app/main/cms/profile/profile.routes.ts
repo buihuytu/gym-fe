@@ -9,4 +9,8 @@ export const routes: Routes = [
     path: "per-customer",
     loadChildren:() => import('./per-customer/per-customer.routes').then((m) => m.routes)
   },
+  {
+    path: "per-customer-transaction",
+    loadChildren:() => import('./per-customer-transaction/per-customer-transaction.routes').then((m) => m.routes)
+  },
 ];
