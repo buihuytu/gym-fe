@@ -19,10 +19,6 @@ export const routes: Routes = [
     loadChildren:() => import('./goods-list/goods-list.routes').then((m) => m.routes)
   }, 
   {
-    path: "card-info",
-    loadChildren:() => import('./card-info/card-info.routes').then((m) => m.routes)
-  },
-  {
     path: "card-check-in",
     loadChildren:() => import('./ls-cartcheckin/ls-cart-checkin.routes').then((m) => m.routes)
   },
