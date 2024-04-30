@@ -17,7 +17,7 @@ export class PerCustomerTransactionComponent {
   title: string[] = ['Giao dịch với khách hàng', 'Transactions with customers'];
 
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.PER_CUSTOMER_QUERY_LIST,
+    queryListRelativePath: api.PER_CUSTOMER_TRANSACTIONS_QUERY_LIST,
   };
 
   columns: ICoreTableColumnItem[] = [
@@ -38,7 +38,7 @@ export class PerCustomerTransactionComponent {
     },
     {
       caption: ['Ngày giao dịch', 'Transaction date'],
-      field: 'code',
+      field: 'transDateString',
       type: 'text',
       align: 'left',
       width: 150
@@ -100,8 +100,8 @@ export class PerCustomerTransactionComponent {
       width: 100
     },
     {
-      caption: ['Hình thức liên hệ(Hình thức giao dịch)', 'Contact form (Transaction form)'],
-      field: 'note',
+      caption: ['Hình thức liên hệ (Hình thức giao dịch)', 'Contact form (Transaction form)'],
+      field: 'transForm',
       type: 'text',
       align: 'left',
       width: 200

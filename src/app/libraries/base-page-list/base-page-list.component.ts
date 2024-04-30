@@ -142,9 +142,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     if (!!!this.visibleColumns.length && isDevMode() && this.columns.length) {
       console.log('first')
     }
-    if (!!!this.buttons || this.buttons.length <= 0) {
-      // this.alertService.warn("NOT EXITS BUTTONS");
-    }
+    
     if (typeof window !== "undefined") {
       var win_h = window.outerHeight;
       if (win_h > 0 ? win_h : screen.height) {
@@ -154,8 +152,12 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
 
     this.appLayoutService.tableHeight = this.tableHeight;
     if (!!!this.isControl) {
-      this.showButtons = BASE_BUTTONS.filter(x => this.buttons.includes(x.code));
-      this.showButtons.sort((a, b) => a.order - b.order);
+      if (!!!this.buttons || this.buttons.length <= 0) {
+      }else{
+        this.showButtons = BASE_BUTTONS.filter(x => this.buttons.includes(x.code));
+        this.showButtons.sort((a, b) => a.order - b.order);
+      }
+     
     }
     this.onSizeChange(defaultPaging.take);
   }
