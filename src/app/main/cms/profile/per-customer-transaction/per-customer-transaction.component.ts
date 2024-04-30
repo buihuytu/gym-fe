@@ -3,6 +3,7 @@ import { BasePageListComponent, ICorePageListApiDefinition, ICoreTableColumnItem
 import { api } from '../../../../constants/api/apiDefinitions';
 import { AppLayoutService } from '../../../../layout/applayout/applayout.service';
 import { HttpRequestService } from '../../../../services/http.service';
+import { EnumBaseButton } from '../../../../constants/headerButton/ButtonDefinitions';
 
 @Component({
   selector: 'app-per-customer-transaction',
@@ -19,7 +20,12 @@ export class PerCustomerTransactionComponent {
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.PER_CUSTOMER_TRANSACTIONS_QUERY_LIST,
   };
-
+  showButtons: EnumBaseButton[] = [
+    EnumBaseButton.CREATE, 
+    EnumBaseButton.DELETE, 
+    EnumBaseButton.EDIT, 
+    EnumBaseButton.APPROVE
+  ]
   columns: ICoreTableColumnItem[] = [
     {
       caption: ['id', 'id'],
