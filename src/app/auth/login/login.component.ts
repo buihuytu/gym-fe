@@ -10,6 +10,7 @@ import { IClientLoginRequest } from '../../interfaces/IClientLoginRequest';
 import { IAuthData } from '../../interfaces/IAuthData';
 import { IFormatedResponse } from '../../interfaces/IFormatedResponse';
 import { CommonModule } from '@angular/common';
+import { AlertComponent } from '../../libraries/alert/alert.component';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     FormsModule,
     CommonModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,   
+    AlertComponent, 
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
