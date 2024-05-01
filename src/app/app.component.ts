@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AlertComponent
+    AlertComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

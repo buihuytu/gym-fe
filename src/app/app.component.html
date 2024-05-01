@@ -1,7 +1,7 @@
-@if (!!authenticated) {
+@if (!authenticated) {
 <app-login></app-login>
 }
-@if (!authenticated) {
+@if (!!authenticated) {
     <app-applayout></app-applayout>
 }
 

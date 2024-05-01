@@ -1,6 +1,10 @@
 export enum api{
     QUERY_LIST_TEST = '/api/TrCenter/QueryList?id=2',
 
+    // Auth
+    SYS_LOGIN = '/api/authentication/ClientsLogin',
+    SYS_LOGOUT = '/api/authentication/Logout',
+
     //SYS_OTHER_LIST_TYPE
     SYS_OTHER_LIST_TYPE_QUERY_LIST = '/api/SysOtherListType/QueryList',
     SYS_OTHER_LIST_TYPE_CREATE = '/api/SysOtherListType/Create',

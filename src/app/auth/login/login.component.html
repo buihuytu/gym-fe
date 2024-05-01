@@ -8,15 +8,15 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <h4 class="text-center mb-5" style="text-transform: uppercase;">Đăng nhập trang quản lý</h4>
-                                    <form class="login-form">
+                                    <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Tên đăng nhập</strong></label>
-                                            <input type="text" name="username" class="form-control" >
+                                            <input type="text" name="username" class="form-control" formControlName="username">
                                             <span id="check-username"></span>
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Mật khẩu</strong></label>
-                                            <input type="password" name="password" class="form-control" >
+                                            <input type="password" name="password" class="form-control" formControlName="password">
                                             <span id="check-password"></span>
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
