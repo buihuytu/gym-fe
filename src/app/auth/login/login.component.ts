@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               };
               this.authService.data$.next(newAuthData);
               //this.responseService.resolve(body);
-              this.router.navigate(['/cms/profile/employees']);
+              this.router.navigate(['/home']);
             } else {
               this.alertService.info(
                 x.body.message
