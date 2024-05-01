@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log("111111")
     debugger
     this.subscriptions.push(
       this.authService
@@ -71,11 +70,11 @@ export class LoginComponent implements OnInit, OnDestroy {
                 loginTime: new Date().getTime(),
               };
               this.authService.data$.next(newAuthData);
-              //this.responseService.resolve(body);
+              this.alertService.success('Đăng nhập thành công');
               this.router.navigate(['/home']);
             } else {
               this.alertService.info(
-                x.body.message
+                x.body.messageCode
               );
             }
           } else {

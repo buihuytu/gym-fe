@@ -115,7 +115,8 @@ export class BaseEmployeeSearchComponent implements BaseComponent,OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['getByIdOptions']) {
-      this.getObjectById(changes['getByIdOptions'].currentValue);
+      if(!!changes['getByIdOptions'].currentValue)
+        this.getObjectById(changes['getByIdOptions'].currentValue);
     }
   }
   subscriptions: Subscription[]=[];
