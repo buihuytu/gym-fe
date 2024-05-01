@@ -130,7 +130,7 @@ body {
     color: #fff;
   }
   
-  .close {
+  .clear-content {
     position: absolute;
     top: 12% !important;
     right: 3rem !important;
@@ -162,4 +162,13 @@ body {
   .flaticon-381-search-2:before {
     font-weight: 700;
     color: #000;
+}
+.backgound-content {
+  width: 1000vw;
+  height: 1000vh;
+  position: absolute;
+  top: -50rem;
+  left: -50rem;
+  z-index: 9999;
+  background: rgba(0, 0, 0, .5);
 }

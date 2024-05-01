@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
+import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Subscription, forkJoin } from 'rxjs';

@@ -7,7 +7,7 @@ import { DialogService } from '../../../../../services/dialog.service';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { HttpRequestService } from '../../../../../services/http.service';
 import { Subscription } from 'rxjs';
-import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
+import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
 
 @Component({
   selector: 'app-sys-other-list-edit',

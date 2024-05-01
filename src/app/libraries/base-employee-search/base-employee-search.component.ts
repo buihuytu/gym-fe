@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { api } from '../../constants/api/apiDefinitions';
 import { EnumBaseButton } from '../../constants/headerButton/ButtonDefinitions';
@@ -23,11 +23,16 @@ import { AppConfigService } from '../../services/app-config.service';
   templateUrl: './base-employee-search.component.html',
   styleUrl: './base-employee-search.component.scss'
 })
-export class BaseEmployeeSearchComponent implements BaseComponent {
+export class BaseEmployeeSearchComponent implements BaseComponent,OnChanges {
   @Input() getByIdOptions!: any;
   @Input() showFrom!: any;
-  @Output() selectedDataChange = new EventEmitter();
+  @Input() isModalMode: any= true;
 
+  //style margin
+  @Input() top: number=-9.25;
+  @Input() left: number=-100;
+  @Output() selectedDataChange = new EventEmitter();
+  @Output() selectedIdChange = new EventEmitter();
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.PER_EMPLOYEE_QUERY_LIST,
     deleteIds:api.PER_EMPLOYEE_DELETE_IDS
@@ -108,6 +113,11 @@ export class BaseEmployeeSearchComponent implements BaseComponent {
   ) {
     this.language = this.appConfig.LANGUAGE;
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['getByIdOptions']) {
+      this.getObjectById(changes['getByIdOptions'].currentValue);
+    }
+  }
   subscriptions: Subscription[]=[];
   ngAfterViewInit(): void {
     
@@ -121,11 +131,6 @@ export class BaseEmployeeSearchComponent implements BaseComponent {
     this.getListOtherListTypes()
     if (typeof window !== "undefined") {
       var win_h = window.outerHeight;
-      console.log(win_h);
-      console.log( screen.height)
-      // if (win_h > 0 ? win_h : screen.height) {
-      //   this.tableHeight = win_h - 350;
-      // };
     }
   }
 
@@ -158,6 +163,19 @@ export class BaseEmployeeSearchComponent implements BaseComponent {
       ]
     }
   }
+  getObjectById(id: any) {
+    this.httpService.makeGetRequest('getById', api.PER_EMPLOYEE_READ + id).subscribe((x) => {
+      if (x.ok && x.status === 200) {
+        const body = x.body;
+        if (body.statusCode === 200) {
+          const innerBody = body.innerBody;
+          this.selectedData = innerBody;  
+        }
+      } else {
+      }
+      
+    })
+  }
   onShowPopup(){
     this.showPopup = true;
   }
@@ -166,6 +184,7 @@ export class BaseEmployeeSearchComponent implements BaseComponent {
   }
   onSelectedDataChange(e:any){
     this.selectedDataChange.emit(e);
+    this.selectedIdChange.emit(e.id);
     this.selectedData = e
     this.showPopup = false;
   }

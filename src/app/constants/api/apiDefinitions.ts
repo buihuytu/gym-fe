@@ -101,4 +101,12 @@ export enum api{
     GOODS_EQUIPMENT_FIX_UPDATE = '/api/GoodsEquipmentFix/Update',
     GOODS_EQUIPMENT_FIX_DELETE_IDS = '/api/GoodsEquipmentFix/DeleteIds',
     GOODS_EQUIPMENT_FIX_GET_LIST = '/api/GoodsEquipmentFix/GetList',
+
+    //PER_CUSTOMER
+    PER_CUSTOMER_TRANSACTIONS_QUERY_LIST = '/api/PerCusTransaction/QueryList',
+    PER_CUSTOMER_TRANSACTIONS_CREATE = '/api/PerCusTransaction/Create',
+    PER_CUSTOMER_TRANSACTIONS_READ = '/api/PerCusTransaction/GetById?id=',
+    PER_CUSTOMER_TRANSACTIONS_UPDATE = '/api/PerCusTransaction/Update',
+    PER_CUSTOMER_TRANSACTIONS_DELETE_IDS = '/api/PerCusTransaction/DeleteIds',
+    PER_CUSTOMER_TRANSACTIONS_TOGGLE_ACTIVE = '/api/PerCusTransaction/ToggleActiveIds',
 }

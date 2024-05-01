@@ -3,7 +3,7 @@ import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BasePageEditComponent, ICorePageEditCRUD } from '../../../../../libraries/base-page-edit/base-page-edit.component';
-import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
+import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
 import { Subscription } from 'rxjs';
 import { DialogService } from '../../../../../services/dialog.service';
 import { HttpRequestService } from '../../../../../services/http.service';

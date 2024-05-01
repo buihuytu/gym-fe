@@ -97,6 +97,7 @@
                                                 [htmlFor]="'customCheckBox'+ row_index"></label>
                                         </div>
                                     </td>
+                                    
                                     <td *ngFor="let col of visibleColumns; let col_index = index">
                                         <div [appTooltip]="row[col.field]" [ngStyle]="{
                                             width: !!col.width?col.width+'px' :'80px',
@@ -104,7 +105,17 @@
                                             overflow: 'hidden',
                                             textOverflow: 'ellipsis'
                                         }">
-                                            {{row[col.field]}}
+                                        <!-- <div class="d-flex align-items-center"><img src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg" class="rounded-lg mr-2" width="24" alt=""></div> -->
+                                            @if (col.type == 'bool') {
+                                                <div [ngStyle]="{
+                                                    minHeight: '1.8rem',
+                                                }" class="custom-control custom-checkbox checkbox-success check-lg mr-3 d-flex justify-content-center">
+                                                    <input [checked]="row[col.field]" type="checkbox"  class="custom-control-input form-control" >
+                                                    <label class="custom-control-label" for="isGuestPass"></label>
+                                                </div>
+                                            }@else {
+                                                {{row[col.field]}} 
+                                            } 
                                         </div>
                                     </td>
                                     <!-- <td>
@@ -117,6 +128,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        @if (!loading) {
                         <div>
                             <nav class="row">
                                 <div class="dataTables_info col-6" id="example2_info" role="status" aria-live="polite">
@@ -157,7 +169,7 @@
                             </nav>
 
                         </div>
-                        <div id="totalPage" style="display: none;"></div>
+                    }
                     </div>
                 </div>
             </div>

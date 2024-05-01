@@ -29,6 +29,7 @@ import { baseUrl,language } from '../../app.config';
   styleUrl: './applayout.component.css'
 })
 export class ApplayoutComponent implements OnInit {
+  avatarUrl!: string;
   constructor(public appConfig: AppConfigService ) {
     
   }

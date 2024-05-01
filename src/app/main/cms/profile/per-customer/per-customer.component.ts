@@ -31,6 +31,10 @@ export class PerCustomerComponent {
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];
+
+  otherListTypeOptions!:any[];
+  otherListTypeOptionShow!:any[];
+
   showButtons: EnumBaseButton[] = [
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 
@@ -51,15 +55,15 @@ export class PerCustomerComponent {
       field: 'status',
       type: 'text',
       align: 'left',
-      width: 220
+      width: 200
     },
-    {
-      caption: ['Ảnh đại diện', 'Avatar'],
-      field: 'avatar',
-      type: 'text',
-      align: 'left',
-      width: 220
-    },
+    // {
+    //   caption: ['Ảnh đại diện', 'Avatar'],
+    //   field: 'avatar',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 200
+    // },
     {
       caption: ['Mã khách hàng', 'Customer Code'],
       field: 'code',
@@ -79,12 +83,19 @@ export class PerCustomerComponent {
       field: 'fullName',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Ngày sinh', 'Birth date'],
       field: 'birthDateString',
       type: 'date',
+      align: 'center',
+      width: 120
+    },
+    {
+      caption: ['CCCD/CMND', 'ID No'],
+      field: 'idNo',
+      type: 'text',
       align: 'center',
       width: 120
     },
@@ -110,47 +121,18 @@ export class PerCustomerComponent {
       width: 100
     },
     {
-      caption: ['Email', 'Email'],
-      field: 'email',
-      type: 'text',
+      caption: ['Là khách tập thử', 'Is Guest Pass'],
+      field: 'isGuestPass',
+      type: 'bool',
       align: 'left',
-      width: 120
+      width: 170
     },
     {
-      caption: ['Tỉnh thành', 'Native'],
-      field: 'nativeName',
+      caption: ['Huấn luyện viên', 'Coach'],
+      field: 'perPtName',
       type: 'text',
       align: 'left',
-      width: 100
-    },
-    
-    {
-      caption: ['Tôn giáo', 'Religion'],
-      field: 'religionName',
-      type: 'text',
-      align: 'left',
-      width: 100
-    },
-    {
-      caption: ['Ngân hàng', 'Bank'],
-      field: 'bankName',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Chi nhánh ngân hàng', 'Bank branch'],
-      field: 'bankBranchName',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Số tài khoản', 'Bank no'],
-      field: 'bankNo',
-      type: 'text',
-      align: 'left',
-      width: 150
+      width: 170
     },
     {
       caption: ['Ghi chú', 'Note'],
@@ -167,15 +149,47 @@ export class PerCustomerComponent {
   }
   subscriptions: Subscription[]=[];
   ngAfterViewInit(): void {
-    
+    setTimeout(() => {
+      this.getListOtherListTypes();
+    })
   }
   ngOnDestroy(): void {
   }
   ngOnInit() {
   }
-
+  getListOtherListTypes() {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUSTOMER_GROUP').subscribe(x => {
+        if (!!x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            const data = body.innerBody;
+            this.otherListTypeOptions = data;
+            this.otherListTypeOptionShow = data;
+          }
+        }
+      })
+    );
+  }
   onSearchListType(e:any){
-    console.log(this.searchType)
+    if(this.searchType !== '' && this.searchType !== null){
+      this.otherListTypeOptionShow = this.otherListTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.otherListTypeOptionShow = this.otherListTypeOptions
+    }
+  }
+
+  onSelectedListTypeChanged(e:any) {
+    if(this.currentIdType == e.id) return;
+    else{
+      this.currentIdType = e.id;
+      this.outerInOperators= [
+        {
+          field: 'customerClassId',
+          values: e.id
+        }
+      ]
+    }
   }
 
   

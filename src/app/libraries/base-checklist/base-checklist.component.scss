@@ -14,6 +14,17 @@ body {
   color: #60666d;
 }
 
+.custom-control-input {
+  margin-right: 1rem;
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+}
+
+.label-for-checkbox {
+  margin-bottom: 0;
+}
+
 .form-control {
   padding: 6px 4px 6px 20px;
 }
@@ -29,19 +40,11 @@ p {
   outline: none;
 }
 
-.select-box__current:focus+.select-box__list {
-  opacity: 1;
-  -webkit-animation-name: none;
-  animation-name: none;
-}
-
-.select-box__current:focus+.select-box__list .select-box__option {
-  cursor: pointer;
-}
-
-.select-box__current:focus .select-box__icon {
-  -webkit-transform: translateY(-50%) rotate(180deg);
-  transform: translateY(-50%) rotate(180deg);
+.holderText {
+  width: 80%;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .select-box__icon {
@@ -90,24 +93,34 @@ p {
   border: 1px solid #b5b5b5;
   border-radius: 5px;
   list-style: none;
-  z-index: 99;
+  z-index: -1;
   opacity: 0;
-  -webkit-animation-name: HideList;
-  animation-name: HideList;
-  -webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-  -webkit-animation-delay: 0.5s;
-  animation-delay: 0.5s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-timing-function: step-start;
-  animation-timing-function: step-start;
+  // // -webkit-animation-name: HideList;
+  // // animation-name: HideList;
+  // -webkit-animation-duration: 0.5s;
+  // animation-duration: 0.5s;
+  // -webkit-animation-delay: 0.5s;
+  // animation-delay: 0.5s;
+  // -webkit-animation-fill-mode: forwards;
+  // animation-fill-mode: forwards;
+  // -webkit-animation-timing-function: step-start;
+  // animation-timing-function: step-start;
   box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.select-box-area_options {
+  height: 250px;
+  overflow: overlay;
+}
+
+.opacityList {
+  opacity: 1 !important;
+  z-index: 99;
 }
 
 .select-box__option {
   display: block;
-  padding: 15px;
+  padding: 10px;
   background-color: #fff;
 }
 
@@ -118,32 +131,40 @@ p {
   color: #fff;
 }
 
+label {
+  margin-bottom: 0 !important;
+}
+
+p {
+  line-height: 1.8 !important;
+}
+
 .close {
   position: absolute;
   top: 12%;
   right: 3rem;
 }
 
-@-webkit-keyframes HideList {
-  from {
-    -webkit-transform: scaleY(1);
-    transform: scaleY(1);
-  }
+// @-webkit-keyframes HideList {
+//   from {
+//     -webkit-transform: scaleY(1);
+//     transform: scaleY(1);
+//   }
 
-  to {
-    -webkit-transform: scaleY(0);
-    transform: scaleY(0);
-  }
-}
+//   to {
+//     -webkit-transform: scaleY(0);
+//     transform: scaleY(0);
+//   }
+// }
 
-@keyframes HideList {
-  from {
-    -webkit-transform: scaleY(1);
-    transform: scaleY(1);
-  }
+// @keyframes HideList {
+//   from {
+//     -webkit-transform: scaleY(1);
+//     transform: scaleY(1);
+//   }
 
-  to {
-    -webkit-transform: scaleY(0);
-    transform: scaleY(0);
-  }
-}
+//   to {
+//     -webkit-transform: scaleY(0);
+//     transform: scaleY(0);
+//   }
+// }

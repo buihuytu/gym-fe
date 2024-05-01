@@ -6,8 +6,10 @@ import { DialogService } from '../../../../../services/dialog.service';
 import { HttpRequestService } from '../../../../../services/http.service';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { RouterModule } from '@angular/router';
-import { DropdownComponent } from '../../../../../libraries/dropdown/dropdown.component';
+import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
 import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.component';
+import { CheckListComponent } from '../../../../../libraries/base-checklist/base-checklist.component';
+import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
 
 @Component({
   selector: 'app-per-customer-edit',
@@ -17,7 +19,9 @@ import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.
     FormsModule, 
     ReactiveFormsModule,
     BasePageEditComponent,
-    DropdownComponent
+    DropdownComponent,
+    CheckListComponent,
+    BaseEmployeeSearchComponent
   ],
   templateUrl: './per-customer-edit.component.html',
   styleUrl: './per-customer-edit.component.scss'
@@ -44,7 +48,7 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
   getNativeIdOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'NATIVE';
   getReligionOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'RELIGION';
   getBankOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK';
-  getBankBranchOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK_BRANCH';
+  geCusStatusOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUS_STATUS';
 
   constructor(
     private fb: FormBuilder,
@@ -54,21 +58,20 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
     super(dialogService);
     this.form = this.fb.group({
       id:[],
-      code: [null,[Validators.required]],
+      code: [null],
       fullName: [null,[Validators.required]],
       customerClassId: [null,[Validators.required]],
       phoneNumber: [],
       email: [],
-      nativeId: [],
-      religionId: [],
-      bankId: [],
-      bankNo: [],
       avatar: [],
       genderId: [],
-      bankBrach: [],
+      statusId: [],
       address: [],
-      birthDate: [],
+      birthDate: [null,[Validators.required]],
       note: [],
+      perPtId:[],
+      idNo:[],
+      isGuestPass:[]
     })
     this.crud = {
       c: api.PER_CUSTOMER_CREATE,
@@ -138,4 +141,5 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();
   }
+  
 }
