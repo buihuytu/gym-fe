@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
     RouterModule 
   ],
   templateUrl: './navigator.component.html',
-  styleUrl: './navigator.component.css'
+  styleUrl: './navigator.component.scss'
 })
 export class NavigatorComponent {
   
