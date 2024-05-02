@@ -29,8 +29,14 @@ export class HttpRequestService {
   }
 
   makePostRequest(name: string, relativeApiEndPoint: string, payload: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const header1s = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': 'true',
+      'Authorization': `Bearer ${token}`
+    })
     return this.http.post<any>(this.appConfigService.BASE_URL + relativeApiEndPoint, payload, {
-      headers: headers, observe: 'response', reportProgress: true, withCredentials: true,
+      headers: header1s, observe: 'response', reportProgress: true, withCredentials: true,
     })
       .pipe(
         last(),
@@ -39,8 +45,14 @@ export class HttpRequestService {
   }
 
   makeGetRequest(name: string, relativeApiEndPoint: string, cacheRequest: boolean = false): Observable<any> {
+    const token = localStorage.getItem('token');
+    const header1s = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': 'true',
+      'Authorization': `Bearer ${token}`
+    })
     return this.http.get<any>(this.appConfigService.BASE_URL + relativeApiEndPoint, {
-      headers: cacheRequest ? cacheHeaders : headers, observe: 'response', reportProgress: true, withCredentials: true,
+      headers: cacheRequest ? cacheHeaders : header1s, observe: 'response', reportProgress: true, withCredentials: true,
     })
       .pipe(
         map(response => response),
