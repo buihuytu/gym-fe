@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ApplayoutComponent } from './layout/applayout/applayout.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -24,7 +24,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent  implements OnInit, OnDestroy, AfterViewInit {
+export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges{
   title = 'GymAngularFrontend';
   authenticated!: boolean;
   subscriptions: Subscription[] = []
@@ -34,6 +34,9 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit {
     this.subscriptions.push(
       this.authService.data$.subscribe(x => this.authenticated = !!x )
     )
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
   }
 
   ngOnInit(): void {

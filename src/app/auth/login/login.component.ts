@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               };
               this.authService.data$.next(newAuthData);
               this.alertService.success('Đăng nhập thành công');
+              localStorage.setItem('token', newAuthData.token);
               this.router.navigate(['/home']);
             } else {
               this.alertService.info(
