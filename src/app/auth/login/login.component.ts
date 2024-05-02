@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    debugger
     this.subscriptions.push(
       this.authService
         .userLogin(this.form.getRawValue() as IClientLoginRequest)
