@@ -29,7 +29,7 @@ export class HttpRequestService {
   }
 
   makePostRequest(name: string, relativeApiEndPoint: string, payload: any): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('gym_token');
     const header1s = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': 'true',
@@ -45,7 +45,7 @@ export class HttpRequestService {
   }
 
   makeGetRequest(name: string, relativeApiEndPoint: string, cacheRequest: boolean = false): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('gym_token');
     const header1s = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': 'true',

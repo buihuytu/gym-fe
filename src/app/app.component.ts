@@ -8,6 +8,7 @@ import { AlertComponent } from './libraries/alert/alert.component';
 import { AppConfigService } from './services/app-config.service';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
@@ -27,12 +28,16 @@ import { Subscription } from 'rxjs';
 export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges{
   title = 'GymAngularFrontend';
   authenticated!: boolean;
-  subscriptions: Subscription[] = []
+  subscriptions: Subscription[] = [];
+  expiration: any;
+  isExpiration!: boolean;
   constructor(
     private authService: AuthService,
+    private tokenService: TokenService
   ) {
+    
     this.subscriptions.push(
-      this.authService.data$.subscribe(x => this.authenticated = !!x )
+      this.authService.data$.subscribe(x => this.authenticated = !!x)
     )
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -40,14 +45,27 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges
   }
 
   ngOnInit(): void {
+    console.log(this.authService.data$.value);
+    
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.map(x => {
-      if (x) x.unsubscribe()
-    })
+    // this.subscriptions.map(x => {
+    //   if (x) x.unsubscribe()
+    // })
   }
 
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.expiration = this.tokenService.getExpiration();
+      // console.log(parseInt(this.expiration, 10).toLocaleString(), Date.now() > parseInt(this.expiration, 10));
+      // this.isExpiration = Date.now() > parseInt(this.expiration, 10)
+      
+      this.subscriptions.push(
+        this.tokenService.isExpired$.subscribe(x => this.isExpiration = x)
+      )
+      console.log(this.tokenService.isExpired$.value);
+    })
+
   }
 }

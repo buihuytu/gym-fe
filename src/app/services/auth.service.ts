@@ -6,6 +6,7 @@ import { HttpRequestService } from "./http.service";
 import { api } from "../constants/api/apiDefinitions";
 import { IClientLoginRequest } from "../interfaces/IClientLoginRequest";
 import { IAuthData } from "../interfaces/IAuthData";
+import { TokenService } from "./token.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
   data$ = new BehaviorSubject<IAuthData | null>(null);
   constructor(
       private httpService: HttpRequestService,
+      private tokenService: TokenService
   ) { }
 
   // Web client login
@@ -24,6 +26,8 @@ export class AuthService {
   // Web client logout
   userLogout(): Observable<any> {
     const url = api.SYS_LOGOUT
+    this.data$.next(null);
+    this.tokenService.removeToken()
     return this.httpService.makePostRequest("clientLogout", url, {})
   }
 
@@ -36,4 +40,5 @@ export class AuthService {
   getToken = (): string => {
     return this.data$.value!.token;
   };
+  
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AppConfigService } from '../../services/app-config.service';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +15,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class HeaderComponent {
   language: boolean = true;
-  constructor(public appConfig: AppConfigService){
+  constructor(
+    public appConfig: AppConfigService,
+    private authService: AuthService,
+    private router: Router,
+  ){
     console.log(this.appConfig.LANGUAGE) ; 
   }
   onChangeLanguage(){
     this.appConfig.LANGUAGE = !this.appConfig.LANGUAGE;
+  }
+  logOut(){
+    this.authService.userLogout();
+    this.router.navigate(['/']);
   }
 }

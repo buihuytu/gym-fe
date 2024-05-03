@@ -72,7 +72,11 @@ export class LoginComponent implements OnInit, OnDestroy {
               };
               this.authService.data$.next(newAuthData);
               this.alertService.success('Đăng nhập thành công');
-              localStorage.setItem('token', newAuthData.token);
+              localStorage.setItem('gym_token', newAuthData.token);
+              
+              const expirationTime = new Date().setHours(new Date().getHours()+1); // Chuyển đổi expiresIn thành mili giây
+              console.log(expirationTime);
+              localStorage.setItem('gym_token_expiration', expirationTime.toString());
               this.router.navigate(['/home']);
             } else {
               this.alertService.info(
@@ -96,9 +100,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.map((x) => {
-      if (x) x.unsubscribe();
-    });
+    // this.subscriptions.map((x) => {
+    //   if (x) x.unsubscribe();
+    // });
   }
 
 }
