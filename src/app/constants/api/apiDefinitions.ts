@@ -27,9 +27,9 @@ export enum api{
 
     //SYS_USER
     SYS_USER_QUERY_LIST = '/api/SysUser/QueryList',
-    SYS_USER_CREATE = '/api/SysUser/Create',
+    SYS_USER_CREATE = '/api/SysUser/CreateUser',
+    SYS_USER_UPDATE = '/api/SysUser/UpdateUser',
     SYS_USER_READ = '/api/SysUser/GetByIdString?id=',
-    SYS_USER_UPDATE = '/api/SysUser/Update',
     SYS_USER_DELETE_IDS = '/api/SysUser/DeleteIds',
 
     //SYS_MENU
