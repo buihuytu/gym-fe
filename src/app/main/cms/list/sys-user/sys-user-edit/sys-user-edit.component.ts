@@ -9,6 +9,7 @@ import { HttpRequestService } from '../../../../../services/http.service';
 import { Subscription } from 'rxjs';
 import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
 import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
+import { CheckListComponent } from '../../../../../libraries/base-checklist/base-checklist.component';
 
 @Component({
   selector: 'app-sys-user-edit',
@@ -19,7 +20,8 @@ import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-emplo
     ReactiveFormsModule,
     BasePageEditComponent,
     DropdownComponent,
-    BaseEmployeeSearchComponent
+    BaseEmployeeSearchComponent,
+    CheckListComponent
   ],
   templateUrl: './sys-user-edit.component.html',
   styleUrl: './sys-user-edit.component.css'
@@ -34,7 +36,7 @@ export class SysUserEditComponent extends BaseEditComponent implements OnInit, A
   subscriptions: Subscription[] = [];
 
   getListTypeOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'USER_GROUP';
-
+  getMenuOptions$: any = api.SYS_MENU_GET_ALL_ACTION;
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -46,9 +48,11 @@ export class SysUserEditComponent extends BaseEditComponent implements OnInit, A
       groupId: [null,[Validators.required]],
       username: [null,[Validators.required]],
       fullname: [null,[Validators.required]],
-      employeeId: [null,[Validators.required]],
+      employeeId: [null],
       password: [null,[Validators.required]],
       rePassword: [null,[Validators.required]],
+      decentralizationList: [null],
+
     })
     this.crud = {
       c: api.SYS_USER_CREATE,
@@ -58,7 +62,7 @@ export class SysUserEditComponent extends BaseEditComponent implements OnInit, A
     }
   }
 
-  onDropdownSelected(event:any, e:string):void{
+  onDropdownSelected(event:any, e:any):void{
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();
   }

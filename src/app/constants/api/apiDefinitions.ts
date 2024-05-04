@@ -39,6 +39,7 @@ export enum api{
     SYS_MENU_UPDATE = '/api/SysMENU/Update',
     SYS_MENU_DELETE_IDS = '/api/SysMENU/DeleteIds',
     SYS_MENU_GET_ACTION_BY_USER = '/api/SysMenu/GetActionByUser',
+    SYS_MENU_GET_ALL_ACTION = '/api/SysMenu/GetAllAction',
 
     //PER_CUSTOMER
     PER_CUSTOMER_QUERY_LIST = '/api/PerCustomer/QueryList',

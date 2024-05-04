@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label for="employeeId" class="mb-2 font-weight-bold required">NV</label>
+                        <label for="employeeId" class="mb-2 font-weight-bold">NV</label>
                         <div class="form-group">
                             <div>
                                 <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'employeeId')"
@@ -67,11 +67,17 @@
                                 </base-employee-control>
                             </div>
                         </div>
-                        @if (form.get('employeeId')?.hasError('required') && !form.get('employeeId')?.untouched) {
-                            <span class="input-error">
-                                Bắt buộc chọn
-                            </span>
-                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="decentralizationList" class="mb-2 font-weight-bold">Phân quyền</label>
+                        <div class="form-group">
+                            <div>
+                                <app-base-checklist (valueChange)="onDropdownSelected($event, 'decentralizationList')"
+                                    [getByIdOptions]="form.get('decentralizationList')?.value"
+                                    [apiGetOptions]="getMenuOptions$">
+                                </app-base-checklist>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="mb-2 font-weight-bold required">Mật khẩu</label>

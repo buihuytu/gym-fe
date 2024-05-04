@@ -92,6 +92,7 @@ export class CheckListComponent implements BaseComponent, OnChanges {
   }
   onBlur() {
     this.showOptions = false;
+    this.valueChange.emit(this.selectedId)
   }
   onUnselectedIds() {
     this.selectedIds = [];
