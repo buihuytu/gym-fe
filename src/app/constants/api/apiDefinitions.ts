@@ -4,7 +4,7 @@ export enum api{
     // Auth
     SYS_LOGIN = '/api/authentication/ClientsLogin',
     SYS_LOGOUT = '/api/authentication/Logout',
-    SYS_REFRESH = '/api/authentication/refresh',
+    SYS_REFRESH = '/api/authentication/Refresh',
 
     //SYS_OTHER_LIST_TYPE
     SYS_OTHER_LIST_TYPE_QUERY_LIST = '/api/SysOtherListType/QueryList',

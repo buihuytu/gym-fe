@@ -9,6 +9,7 @@ import { AppConfigService } from './services/app-config.service';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 import { TokenService } from './services/token.service';
+import { PreLoaderComponent } from './layout/pre-loader/pre-loader.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { TokenService } from './services/token.service';
     ReactiveFormsModule,
     HttpClientModule,
     AlertComponent,
+    PreLoaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -31,6 +33,7 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges
   subscriptions: Subscription[] = [];
   expiration: any;
   isExpiration!: boolean;
+  loading!: boolean
   constructor(
     private authService: AuthService,
     private tokenService: TokenService
@@ -41,12 +44,9 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges
     )
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
   }
 
   ngOnInit(): void {
-    console.log(this.authService.data$.value);
-    
   }
 
   ngOnDestroy(): void {
@@ -57,11 +57,13 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges
 
   ngAfterViewInit(): void {
     setTimeout(() => {
+      this.loading = true
       this.expiration = this.tokenService.getExpiration();
       
       this.subscriptions.push(
         this.tokenService.isExpired$.subscribe(x => this.isExpiration = x)
       )
+      this.loading = false
     })
   }
 }

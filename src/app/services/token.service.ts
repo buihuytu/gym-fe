@@ -39,7 +39,7 @@ export class TokenService {
       this.isExpired$.next(true);
       return 0;
     }
-    this.httpService.makePostRequest('refresh',api.SYS_REFRESH,{token: this.getToken()}).subscribe(x=>{
+    this.httpService.makePostRequest('Refresh',api.SYS_REFRESH,{token: this.getToken()}).subscribe(x=>{
       if(!!x.ok && x.status =='200'){
         const body = x.body;
         if(body.statusCode == 200){

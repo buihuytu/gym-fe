@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../../services/token.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -16,18 +17,24 @@ import { TokenService } from '../../services/token.service';
 })
 export class HeaderComponent {
   language: boolean = true;
+  data!:any;
+  subscriptions: Subscription[] = [];
   constructor(
     public appConfig: AppConfigService,
-    private tọkenSevices: TokenService,
+    private tọkenServices: TokenService,
+    private authService: AuthService,
     private router: Router,
   ){
-    console.log(this.appConfig.LANGUAGE) ; 
+    this.subscriptions.push(
+      this.authService.data$.subscribe(x => this.data = x)
+    )
+    console.log(this.data)
   }
   onChangeLanguage(){
     this.appConfig.LANGUAGE = !this.appConfig.LANGUAGE;
   }
   logOut(){
-    this.tọkenSevices.userLogout();
+    this.tọkenServices.userLogout();
     this.router.navigate(['/']);
   }
 }
