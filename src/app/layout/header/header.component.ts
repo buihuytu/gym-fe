@@ -3,6 +3,7 @@ import { AppConfigService } from '../../services/app-config.service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent {
   language: boolean = true;
   constructor(
     public appConfig: AppConfigService,
-    private authService: AuthService,
+    private tọkenSevices: TokenService,
     private router: Router,
   ){
     console.log(this.appConfig.LANGUAGE) ; 
@@ -26,7 +27,7 @@ export class HeaderComponent {
     this.appConfig.LANGUAGE = !this.appConfig.LANGUAGE;
   }
   logOut(){
-    this.authService.userLogout();
+    this.tọkenSevices.userLogout();
     this.router.navigate(['/']);
   }
 }

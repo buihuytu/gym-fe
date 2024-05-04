@@ -14,8 +14,7 @@ import { TokenService } from "./token.service";
 export class AuthService {
   data$ = new BehaviorSubject<IAuthData | null>(null);
   constructor(
-      private httpService: HttpRequestService,
-      private tokenService: TokenService
+      private httpService: HttpRequestService
   ) { }
 
   // Web client login
@@ -23,13 +22,7 @@ export class AuthService {
       return this.httpService.makePostRequest('clientLogin',api.SYS_LOGIN, request)
   }
 
-  // Web client logout
-  userLogout(): Observable<any> {
-    const url = api.SYS_LOGOUT
-    this.data$.next(null);
-    this.tokenService.removeToken()
-    return this.httpService.makePostRequest("clientLogout", url, {})
-  }
+  
 
   isAuthenticate = (): boolean => {
     return !!this.data$.value;

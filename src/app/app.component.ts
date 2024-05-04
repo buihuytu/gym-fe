@@ -63,6 +63,5 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges
         this.tokenService.isExpired$.subscribe(x => this.isExpiration = x)
       )
     })
-
   }
 }

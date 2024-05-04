@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpRequestService } from './http.service';
+import { api } from '../constants/api/apiDefinitions';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
   isExpired$ = new BehaviorSubject<boolean>(true);
-  constructor() {}
+  constructor(private httpService: HttpRequestService,
+    private authService: AuthService,) {}
 
   // Lưu token vào localStorage với thời gian hết hạn
-  saveToken(token: string, expiresIn: number): void {
-    const expirationTime = Date.now() + expiresIn * 1000; // Chuyển đổi expiresIn thành mili giây
+  saveToken(token: string, expiresIn: Date): void {
     localStorage.setItem('gym_token', token);
-    localStorage.setItem('gym_token_expiration', expirationTime.toString());
 
     // Tự động xóa token khi nó hết hạn
     setTimeout(() => {
       this.removeToken();
-    }, expiresIn * 1000);
+    }, (expiresIn.getTime() - new Date().getTime())*1000);
   }
 
   // Lấy token từ localStorage
   getToken(): string | null {
-    const tokenExpiration = localStorage.getItem('gym_token_expiration');
-    if (!tokenExpiration || Date.now() > parseInt(tokenExpiration, 10)) {
-      // Xóa token nếu đã hết hạn
-      this.removeToken();
-      return null;
-    }
     return localStorage.getItem('gym_token');
   }
 
@@ -39,12 +35,35 @@ export class TokenService {
   }
 
   getExpiration(): number {
-    const tokenExpiration = localStorage.getItem('gym_token_expiration');
-    if (!tokenExpiration) {
+    if(!this.getToken()) {
       this.isExpired$.next(true);
       return 0;
     }
-    this.isExpired$.next(Date.now() > parseInt(tokenExpiration, 10));
-    return parseInt(tokenExpiration, 10);
+    this.httpService.makePostRequest('refresh',api.SYS_REFRESH,{token: this.getToken()}).subscribe(x=>{
+      if(!!x.ok && x.status =='200'){
+        const body = x.body;
+        if(body.statusCode == 200){
+          const data = body.innerBody;
+          if(!!data.isExpired){
+            this.removeToken();
+            this.isExpired$.next(true);
+            return 0;
+          }
+          else{
+            this.saveToken(data.token, new Date(data.dateExpire));
+            this.authService.data$.next(data);
+            return data.expiresIn;
+          }
+        }
+      }
+    });
+    return 0;
+  }
+  // Web client logout
+  userLogout(): Observable<any> {
+    const url = api.SYS_LOGOUT
+    this.authService.data$.next(null);
+    this.removeToken()
+    return this.httpService.makePostRequest("clientLogout", url, {})
   }
 }
