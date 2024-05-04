@@ -56,13 +56,15 @@
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label for="employeeId" class="mb-2 font-weight-bold required">Mã NV</label>
+                        <label for="employeeId" class="mb-2 font-weight-bold required">NV</label>
                         <div class="form-group">
                             <div>
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'groupId')" 
-                                              [getByIdOptions]="form.get('employeeId')?.value" 
-                                              [apiGetOptions]="getListTypeOptions$">
-                                </app-dropdown>
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'employeeId')"
+                                    [getByIdOptions]="form.get('employeeId')?.value"
+                                    [top]="-20"
+                                    [isModalMode]="false"
+                                    [left]="0">
+                                </base-employee-control>
                             </div>
                         </div>
                         @if (form.get('employeeId')?.hasError('required') && !form.get('employeeId')?.untouched) {

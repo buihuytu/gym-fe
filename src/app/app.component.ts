@@ -58,13 +58,10 @@ export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.expiration = this.tokenService.getExpiration();
-      // console.log(parseInt(this.expiration, 10).toLocaleString(), Date.now() > parseInt(this.expiration, 10));
-      // this.isExpiration = Date.now() > parseInt(this.expiration, 10)
       
       this.subscriptions.push(
         this.tokenService.isExpired$.subscribe(x => this.isExpiration = x)
       )
-      console.log(this.tokenService.isExpired$.value);
     })
 
   }
