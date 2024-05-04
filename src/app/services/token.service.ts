@@ -30,7 +30,6 @@ export class TokenService {
   // Xóa token khỏi localStorage
   removeToken(): void {
     localStorage.removeItem('gym_token');
-    localStorage.removeItem('gym_token_expiration');
     this.isExpired$.next(true);
   }
 
@@ -46,7 +45,6 @@ export class TokenService {
           const data = body.innerBody;
           if(!!data.isExpired){
             this.removeToken();
-            this.isExpired$.next(true);
             return 0;
           }
           else{

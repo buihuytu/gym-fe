@@ -3,7 +3,7 @@
         <div class="card-header">
             <h4 class="card-title">{{!!!language ? title[0]:title[1]}}</h4>
             <div>
-                <div [ngStyle]="{
+                <!-- <div [ngStyle]="{
                     marginRight: 5+'px',
                 }" class="input-group search-area right d-lg-inline-flex d-none">
                     <input type="search" class="form-control" placeholder="Find something here...">
@@ -14,7 +14,7 @@
                             </a>
                         </span>
                     </div>
-                </div>
+                </div> -->
                 @for (button of showButtons; track $index) {
                 <div (click)="onHeaderButtonClick(button.code)" [appTooltip]='button.caption' class="btn btn-sm"><i
                         [class]="button.iconClass"></i></div>
