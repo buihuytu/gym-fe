@@ -25,7 +25,7 @@ import { PreLoaderComponent } from './layout/pre-loader/pre-loader.component';
     PreLoaderComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent  implements OnInit, OnDestroy, AfterViewInit,OnChanges{
   title = 'GymAngularFrontend';

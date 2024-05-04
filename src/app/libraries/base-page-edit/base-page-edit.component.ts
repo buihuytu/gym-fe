@@ -79,7 +79,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
   }
   ngAfterViewInit(): void {
     if (!!!this.isModalMode) {
-      this.container.nativeElement.style.setProperty('--width', '100%');
+      // this.container.nativeElement.style.setProperty('--width', '100%');
     } else {
       if (!!this.width) {
        setTimeout(() => {

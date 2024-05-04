@@ -11,6 +11,7 @@ import { IAuthData } from '../../interfaces/IAuthData';
 import { IFormatedResponse } from '../../interfaces/IFormatedResponse';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from '../../libraries/alert/alert.component';
+import { PreLoaderComponent } from '../../layout/pre-loader/pre-loader.component';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +21,13 @@ import { AlertComponent } from '../../libraries/alert/alert.component';
     CommonModule,
     ReactiveFormsModule,   
     AlertComponent, 
+    PreLoaderComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  
+  loading: boolean = false;
   form: FormGroup;
   passwordInputType: string = 'password';
   subscriptions: Subscription[] = [];
@@ -58,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.loading = true;
     this.subscriptions.push(
       this.authService
         .userLogin(this.form.getRawValue() as IClientLoginRequest)
@@ -79,11 +82,14 @@ export class LoginComponent implements OnInit, OnDestroy {
                 x.body.messageCode
               );
             }
+          this.loading = false;
           } else {
             if (isDevMode()) {
             } else {
               this.alertService.info('Login failed');
             }
+          this.loading = false;
+
           }
         })
     );    

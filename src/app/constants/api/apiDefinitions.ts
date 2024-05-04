@@ -13,7 +13,7 @@ export enum api{
     SYS_OTHER_LIST_TYPE_UPDATE = '/api/SysOtherListType/Update',
     SYS_OTHER_LIST_TYPE_DELETE_IDS = '/api/SysOtherListType/DeleteIds',
     SYS_OTHER_LIST_TYPE_GET_LIST = '/api/SysOtherListType/GetList',
-
+    
     //SYS_OTHER_LIST
     SYS_OTHER_LIST_QUERY_LIST = '/api/SysOtherList/QueryList',
     SYS_OTHER_LIST_CREATE = '/api/SysOtherList/Create',
@@ -23,6 +23,7 @@ export enum api{
     SYS_OTHER_LIST_GET_LIST_BY_GROUP = '/api/SysOtherList/GetOtherListByGroup?code=',
     SYS_OTHER_LIST_GET_LIST_BY_CODE = '/api/SysOtherList/GetListByCode?typeCode=',
     SYS_OTHER_LIST_GET_LIST_BY_TYPE = '/api/SysOtherList/GetListByType?type=',
+    SYS_OTHER_LIST_GET_ALL_USER = '/api/SysOtherList/GetAllUser',
 
     //SYS_USER
     SYS_USER_QUERY_LIST = '/api/SysUser/QueryList',

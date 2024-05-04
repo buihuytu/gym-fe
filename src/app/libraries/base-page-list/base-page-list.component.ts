@@ -329,6 +329,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     if (event === this.currentPage$.value) {
       return;
     } else {
+      this.checkingModel = [];
+      this.headerCheckboxState = false;
       this.currentPage$.next(event)
       this.pagination$.next({ skip: 0, take: this.pageSize$.value, page: this.currentPage$.value })
       this.getDataForTable();

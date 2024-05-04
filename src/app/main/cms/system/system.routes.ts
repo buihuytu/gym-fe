@@ -10,5 +10,10 @@ export const routes: Routes = [
   {
     path: "sys-other-list",
     loadChildren:() => import('./sys-other-list/sys-other-list.routes').then((m) => m.routes)
+  },
+  {
+    path: "decentralization",
+    loadComponent:() => import('./decentralization/decentralization.component').then((m) => m.DecentralizationComponent)
   }
+  
 ];
