@@ -9,4 +9,8 @@ export const routes: Routes = [
     path: "card-info",
     loadChildren:() => import('./card-info/card-info.routes').then((m) => m.routes)
   },
+  {
+    path: "card-issuance",
+    loadChildren:() => import('./card-issuance/card-issuance.routes').then((m) => m.routes)
+  },
 ];
