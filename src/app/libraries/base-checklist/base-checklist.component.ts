@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CheckListComponent implements BaseComponent, OnChanges {
   @Input() apiGetOptions!: string;
-  @Input() getByIdOptions!: any;
+  @Input() getByIdOptionCheckLists!: any[];
   @Output() valueChange = new EventEmitter;
 
   subscriptions: Subscription[] = [];
@@ -33,7 +33,7 @@ export class CheckListComponent implements BaseComponent, OnChanges {
    */
   selected: boolean = false;
   selectedId!: any;
-  selectedIds: any[] = [];
+  selectedIds: number[] = [];
   checkingModel: boolean[] = [];
   constructor(
     private httpService: HttpRequestService,
@@ -43,9 +43,22 @@ export class CheckListComponent implements BaseComponent, OnChanges {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['getByIdOptions']) {
-      this.selectedId = changes['getByIdOptions'].currentValue;
+    if (changes['getByIdOptionCheckLists']) {
+      if(!!changes['getByIdOptionCheckLists'].currentValue && !changes['getByIdOptionCheckLists'].firstChange){
+        this.selectedIds = changes['getByIdOptionCheckLists'].currentValue;
+        this.checkValueSelected(this.selectedIds);
+      }
     }
+  }
+
+  checkValueSelected(e:any[]){
+    const newHolder: string[] = [];
+    this.data.map((x) => {
+      if (e.includes(x.id)) {
+        newHolder.push(x.name);
+      }
+    })
+    this.holderText = e.length == this.data.length ? 'Tất cả' : newHolder.join('; ')
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -64,8 +77,12 @@ export class CheckListComponent implements BaseComponent, OnChanges {
         )
       }
     })
+    // this.dataShow.map((_: any, index) => {
+    //   this.checkingModel[index] = true;
+    // })
   }
   ngOnInit(): void {
+    
   }
   ngOnDestroy(): void {
     this.subscriptions.map((subscription) => subscription.unsubscribe())
@@ -92,7 +109,7 @@ export class CheckListComponent implements BaseComponent, OnChanges {
   }
   onBlur() {
     this.showOptions = false;
-    this.valueChange.emit(this.selectedId)
+    this.valueChange.emit(this.selectedIds)
   }
   onUnselectedIds() {
     this.selectedIds = [];

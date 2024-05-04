@@ -107,6 +107,12 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
     if (!!this.id && this.id != 0) {
       this.getObjectById(this.id)
     }
+    if(window.location.href.indexOf(`sys-user`)! > 0 ){
+      if(Number(atob(this.route.snapshot.params['id'])) == 0){
+      }else{
+      this.getObjectById(atob(this.route.snapshot.params['id']))
+      }
+    }
   }
   getObjectById(id: any) {
     this.loading = true;
@@ -120,6 +126,10 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
           this.onInitialValueStringReady.emit(
             JSON.stringify(this.form.getRawValue())
           );
+        }
+        else{
+          this.alertService.error(body.messageCode);
+          this.loading = false;
         }
       } else {
         this.onNotOk200Response(x);

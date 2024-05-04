@@ -5,7 +5,7 @@
       <p class="select-box__input-text">{{holderText}}</p>
     </div>
     <p class="holderText">{{holderText}}</p>
-    @if (selectedIds.length > 0) {
+    @if (selectedIds !=null && selectedIds.length > 0) {
     <button (click)="onUnselectedIds()" type="button" class="close" data-dismiss="modal"><span>&times;</span>
     </button>
     }

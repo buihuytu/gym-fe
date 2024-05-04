@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <div>
                                 <app-base-checklist (valueChange)="onDropdownSelected($event, 'decentralizationList')"
-                                    [getByIdOptions]="form.get('decentralizationList')?.value"
+                                    [getByIdOptionCheckLists]="form.get('decentralizationList')?.value"
                                     [apiGetOptions]="getMenuOptions$">
                                 </app-base-checklist>
                             </div>
