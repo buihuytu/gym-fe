@@ -25,7 +25,8 @@ export class CardIssuanceComponent {
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.CARD_INFO_QUERY_LIST,
     deleteIds:api.CARD_INFO_DELETE_IDS,
-    toggleActiveIds: api.CARD_INFO_TOGGLE_ACTIVE
+    toggleActiveIds: api.CARD_INFO_TOGGLE_ACTIVE,
+    exportExcel:api.CARD_INFO_QUERY_LIST,
   };
   title: string[] = ['Cấp thẻ', 'Card issuance'];
   currentIdType!:any;
@@ -35,7 +36,9 @@ export class CardIssuanceComponent {
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 
     EnumBaseButton.EDIT, 
-    EnumBaseButton.APPROVE
+    EnumBaseButton.APPROVE,
+    EnumBaseButton.PDF,
+    EnumBaseButton.EXCEL,
   ]
   columns: ICoreTableColumnItem[] = [
     {

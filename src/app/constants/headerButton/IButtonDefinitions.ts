@@ -44,5 +44,19 @@ export const BASE_BUTTONS: ICoreButtonVNS[] = [
         styleClass: 'btn btn-primary',
         order: 5,
     },
+    {
+        code: EnumBaseButton.PDF,
+        iconClass: 'fa fa-file-pdf-o',
+        caption: 'Xuất file PDF',
+        styleClass: 'btn btn-primary',
+        order: 5,
+    },
+    {
+        code: EnumBaseButton.EXCEL,
+        iconClass: 'fa fa-file-excel-o',
+        caption: 'Xuất file excel',
+        styleClass: 'btn btn-primary',
+        order: 5,
+    },
 
 ]

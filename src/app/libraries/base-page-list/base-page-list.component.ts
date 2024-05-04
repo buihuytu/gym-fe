@@ -21,6 +21,8 @@ export interface ICorePageListApiDefinition {
   toggleActiveIds?: api;
   toggleApproveIds?: api;
   toggleUnApproveIds?: api;
+  exportExcel?: api;
+  exportPdf?: api;
 }
 
 export interface ICoreTableColumnItem {
@@ -74,7 +76,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   subscriptions: Subscription[] = [];
   showButtons!: any[];
   headerCheckboxState!: any;
-  data: any[]=[];
+  data: any[] = [];
   tableHeight!: number;
   checkingModel: boolean[] = [];
   visibleColumns!: ICoreTableColumnItem[];
@@ -142,7 +144,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     if (!!!this.visibleColumns.length && isDevMode() && this.columns.length) {
       console.log('first')
     }
-    
+
     if (typeof window !== "undefined") {
       var win_h = window.outerHeight;
       if (win_h > 0 ? win_h : screen.height) {
@@ -153,11 +155,11 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     this.appLayoutService.tableHeight = this.tableHeight;
     if (!!!this.isControl) {
       if (!!!this.buttons || this.buttons.length <= 0) {
-      }else{
+      } else {
         this.showButtons = BASE_BUTTONS.filter(x => this.buttons.includes(x.code));
         this.showButtons.sort((a, b) => a.order - b.order);
       }
-     
+
     }
     this.onSizeChange(defaultPaging.take);
   }
@@ -261,6 +263,34 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         break;
       case EnumBaseButton.APPROVE:
         this.navigationLink = `/cms/test/${btoa('0')}`;
+        break;
+      case EnumBaseButton.EXCEL:
+        const urlExcel = this.apiDefinition.exportExcel;
+        if (!urlExcel) return this.alertService.warn('Không tìm thấy API');;
+        this.subscriptions.push(
+          this.basePageListService.exportExcel(urlExcel, { ids: this.selectedIds }).pipe().subscribe(x => {
+            if (!!x.ok && x.status === 200) {
+              const body = x.body;
+              if (body.statusCode === 200) {
+              }
+              this.loading = false;
+            }
+          })
+        )
+        break;
+      case EnumBaseButton.PDF:
+        const urlPdf = this.apiDefinition.exportPdf;
+        if (!urlPdf) return this.alertService.warn('Không tìm thấy API');;
+        this.subscriptions.push(
+          this.basePageListService.exportPdf(urlPdf, { ids: this.selectedIds }).pipe().subscribe(x => {
+            if (!!x.ok && x.status === 200) {
+              const body = x.body;
+              if (body.statusCode === 200) {
+              }
+              this.loading = false;
+            }
+          })
+        )
         break;
       default:
         break;

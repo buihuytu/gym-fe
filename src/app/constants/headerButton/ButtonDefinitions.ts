@@ -6,4 +6,6 @@ export enum EnumBaseButton{
     ACTIVATE = 'ACTIVATE',
     INACTIVATE = 'INACTIVATE',
     APPROVE = 'APPROVE',
+    EXCEL = 'EXCEL',
+    PDF = 'PDF',
 }

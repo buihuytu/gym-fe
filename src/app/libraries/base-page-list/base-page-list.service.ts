@@ -32,4 +32,19 @@ export class BasePageListService {
             request
         );
     }
+    exportExcel(url: string,request?: any): Observable<any> {
+        return this.httpService.makePostRequest(
+            'unapproveIds',
+            url,
+            request
+        );
+    }
+    exportPdf(url: string,request?: any): Observable<any> {
+        return this.httpService.makePostRequest(
+            'unapproveIds',
+            url,
+            request
+        );
+    }
+
 }
