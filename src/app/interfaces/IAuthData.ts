@@ -10,4 +10,5 @@ export interface IAuthData {
     token: string;
     userName: string;
     loginTime: number;
+    decentralization:any
 }

@@ -28,7 +28,6 @@ export class HeaderComponent {
     this.subscriptions.push(
       this.authService.data$.subscribe(x => this.data = x)
     )
-    console.log(this.data)
   }
   onChangeLanguage(){
     this.appConfig.LANGUAGE = !this.appConfig.LANGUAGE;
