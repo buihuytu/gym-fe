@@ -11,13 +11,8 @@
                             <div class="mb-3">
                                 <label for="code" class="mb-2 title-control-edit required">Mã thẻ</label>
                                 <div class="form-group">
-                                    <input formControlName="code" id="code" type="text"
-                                        class="form-control input-default ">
-                                    @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc chọn
-                                    </span>
-                                    }
+                                    <input formControlName="code" id="code" type="text" placeholder="Mã thẻ sẽ được tự phát sinh"
+                                        class="form-control input-default " readonly>
                                 </div>
                             </div>
                         </div>
@@ -42,26 +37,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="customerId" class="mb-2 title-control-edit required">Tên khách hàng</label>
-                                <div class="form-group">
-                                    <base-customer-control
-                                        (selectedDataChange)="onSelectCustomerId($event, 'customerId')"
-                                        [getByIdOptions]="form.get('customerId')?.value"
-                                    ></base-customer-control>
-                                    <!-- <app-dropdown (valueChange)="onDropdownSelected($event, 'customerId')" 
-                                        [getByIdOptions]="form.get('customerId')?.value" 
-                                        [apiGetOptions]="getCustomerOptions$">
-                                    </app-dropdown> -->
-                                </div>
-                                @if (form.get('customerId')?.hasError('required') && !form.get('customerId')?.untouched) {
-                                <span class="input-error">
-                                    Bắt buộc chọn
-                                </span>
-                                }
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
                                 <label for="effectedDate" class="mb-2 title-control-edit required">Ngày hiệu lực</label>
                                 <div class="form-group">
                                     <input formControlName="effectedDate" id="effectedDate" type="date"
@@ -74,8 +49,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="expiredDate" class="mb-2 title-control-edit required">Ngày hết hiệu lực</label>
@@ -90,17 +63,58 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                    <input type="checkbox" formControlName="isGuestPass"
+                                        class="custom-control-input form-control" id="isGuestPass" required="">
+                                    <label class="custom-control-label" for="isGuestPass"></label>
+                                </div>
+                            </div>
+                            <label for="isGuestPass" class="mb-2 title-control-edit">Có tủ đồ</label>
+                        </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="expiredDateString" class="mb-2 title-control-edit required">Ngày hết hiệu lực</label>
+                                <label for="expiredDate" class="mb-2 title-control-edit required">Ca tập</label>
                                 <div class="form-group">
-                                    <input formControlName="expiredDateString" id="expiredDateString" type="text"
-                                        class="form-control input-default">
-                                    @if (form.get('expiredDateString')?.hasError('required') && !form.get('expiredDateString')?.untouched) {
+                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'cardTypeId')" 
+                                        [getByIdOptions]="form.get('cardTypeId')?.value" 
+                                        [apiGetOptions]="getCardTypeOptions$">
+                                    </app-dropdown>
+                                    @if (form.get('expiredDate')?.hasError('required') && !form.get('expiredDate')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc chọn
                                     </span>
                                     }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="code" class="mb-2 title-control-edit required">Giá tiền</label>
+                                <div class="form-group">
+                                    <input formControlName="code" id="code" type="text"
+                                        class="form-control input-default ">
+                                    @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc chọn
+                                    </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="code" class="mb-2 title-control-edit">Ghi chú</label>
+                                <div class="form-group">
+                                    <input formControlName="code" id="code" type="text"
+                                        class="form-control input-default ">
                                 </div>
                             </div>
                         </div>

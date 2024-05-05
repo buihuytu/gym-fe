@@ -69,27 +69,6 @@ export class CardInfoComponent {
       width: 220
     },
     {
-      caption: ['Mã khách hàng', 'Customer Code'],
-      field: 'codeCus',
-      type: 'text',
-      align: 'left',
-      width: 150
-    },
-    {
-      caption: ['Tên khách hàng', 'Customer name'],
-      field: 'customerName',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Giới tính', 'Gender'],
-      field: 'genderName',
-      type: 'text',
-      align: 'left',
-      width: 100
-    },
-    {
       caption: ['Ghi chú', 'Note'],
       field: 'note',
       type: 'text',
