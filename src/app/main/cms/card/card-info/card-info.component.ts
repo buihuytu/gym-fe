@@ -71,14 +71,14 @@ export class CardInfoComponent {
     {
       caption: ['Ngày hiệu lực', 'Effect Date'],
       field: 'effectDateString',
-      type: 'text',
+      type: 'date',
       align: 'left',
       width: 150
     },
     {
       caption: ['Ngày hết hạn', 'Expired Date'],
       field: 'expiredDateString',
-      type: 'text',
+      type: 'date',
       align: 'left',
       width: 150
     },
@@ -92,7 +92,7 @@ export class CardInfoComponent {
     {
       caption: ['Giá', 'Price'],
       field: 'price',
-      type: 'text',
+      type: 'currency',
       align: 'left',
       width: 150
     },
