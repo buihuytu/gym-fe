@@ -59,14 +59,49 @@ export class CardInfoComponent {
       field: 'code',
       type: 'text',
       align: 'left',
-      width: 220
+      width: 150
     },
     {
       caption: ['Tên loại thẻ', 'Card type name'],
       field: 'cardTypeName',
       type: 'text',
       align: 'left',
-      width: 220
+      width: 170
+    },
+    {
+      caption: ['Ngày hiệu lực', 'Effect Date'],
+      field: 'effectDateString',
+      type: 'text',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: ['Ngày hết hạn', 'Expired Date'],
+      field: 'expiredDateString',
+      type: 'text',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: ['Có tủ đồ', 'Wardrobe?'],
+      field: 'wardrobe',
+      type: 'bool',
+      align: 'left',
+      width: 120
+    },
+    {
+      caption: ['Giá', 'Price'],
+      field: 'price',
+      type: 'text',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: ['Ca tập', 'Shift Name'],
+      field: 'shiftName',
+      type: 'text',
+      align: 'left',
+      width: 200
     },
     {
       caption: ['Ghi chú', 'Note'],

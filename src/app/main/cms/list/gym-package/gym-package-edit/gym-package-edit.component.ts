@@ -27,7 +27,7 @@ import { AppConfigService } from '../../../../../services/app-config.service';
   styleUrl: './gym-package-edit.component.css'
 })
 export class GymPackageEditComponent extends BaseEditComponent implements OnInit, AfterViewInit, OnDestroy {
-  title: string[] = ['Gói cước', 'Gym Package'];
+  title: string[] = ['Gói tập', 'Gym Package'];
 
   modalMode: boolean = true;//for modal and style modal
   crud!: ICorePageEditCRUD;

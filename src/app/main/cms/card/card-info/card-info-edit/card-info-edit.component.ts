@@ -36,6 +36,7 @@ export class CardInfoEditComponent extends BaseEditComponent implements OnInit, 
   apiParams: string[] = ["TYPE_CARD"];
   getCardTypeOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'TYPE_CARD';
   getCustomerOptions$: string = api.CARD_INFO_GET_LIST_CUSTOMER;
+  getGymShiftOptions$: string = api.GYM_SHIFT_GET_LIST;
 
   constructor(
     private fb: FormBuilder,
@@ -45,11 +46,14 @@ export class CardInfoEditComponent extends BaseEditComponent implements OnInit, 
     super(dialogService);
     this.form = this.fb.group({
       id: [],
-      code: [null, [Validators.required]],
+      code: [null],
       cardTypeId: [null, [Validators.required]],
       effectedDate: [null, [Validators.required]],
       expiredDate: [null, [Validators.required]],
-      expiredDateString: [null, [Validators.required]],
+      expiredDateString: [null],
+      wardrobe: [null, [Validators.required]],
+      price: [null, [Validators.required]],
+      shiftId: [null, [Validators.required]],
       note: [],
     })
     this.crud = {

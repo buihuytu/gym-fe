@@ -26,7 +26,7 @@ export class GymPackageComponent implements BaseComponent {
     queryListRelativePath: api.GYM_PACKAGE_QUERY_LIST,
     deleteIds:api.GYM_PACKAGE_DELETE_IDS
   };
-  title: string[] = ['Danh mục gói cước', 'List Gym Package'];
+  title: string[] = ['Danh mục gói tập', 'List Gym Package'];
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];

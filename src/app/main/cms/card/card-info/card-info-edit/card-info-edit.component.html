@@ -69,22 +69,22 @@
                         <div class="col-md-6 d-flex">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                    <input type="checkbox" formControlName="isGuestPass"
-                                        class="custom-control-input form-control" id="isGuestPass" required="">
-                                    <label class="custom-control-label" for="isGuestPass"></label>
+                                    <input type="checkbox" formControlName="wardrobe"
+                                        class="custom-control-input form-control" id="wardrobe" required="">
+                                    <label class="custom-control-label" for="wardrobe"></label>
                                 </div>
                             </div>
-                            <label for="isGuestPass" class="mb-2 title-control-edit">Có tủ đồ</label>
+                            <label for="wardrobe" class="mb-2 title-control-edit">Có tủ đồ</label>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="expiredDate" class="mb-2 title-control-edit required">Ca tập</label>
+                                <label for="shiftId" class="mb-2 title-control-edit required">Ca tập</label>
                                 <div class="form-group">
-                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'cardTypeId')" 
-                                        [getByIdOptions]="form.get('cardTypeId')?.value" 
-                                        [apiGetOptions]="getCardTypeOptions$">
+                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'shiftId')" 
+                                        [getByIdOptions]="form.get('shiftId')?.value" 
+                                        [apiGetOptions]="getGymShiftOptions$">
                                     </app-dropdown>
-                                    @if (form.get('expiredDate')?.hasError('required') && !form.get('expiredDate')?.untouched) {
+                                    @if (form.get('shiftId')?.hasError('required') && !form.get('shiftId')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc chọn
                                     </span>
@@ -97,11 +97,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="code" class="mb-2 title-control-edit required">Giá tiền</label>
+                                <label for="price" class="mb-2 title-control-edit required">Giá tiền</label>
                                 <div class="form-group">
-                                    <input formControlName="code" id="code" type="text"
+                                    <input formControlName="price" id="price" type="text"
                                         class="form-control input-default ">
-                                    @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
+                                    @if (form.get('price')?.hasError('required') && !form.get('price')?.untouched) {
                                     <span class="input-error">
                                         Bắt buộc chọn
                                     </span>
@@ -111,9 +111,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="code" class="mb-2 title-control-edit">Ghi chú</label>
+                                <label for="note" class="mb-2 title-control-edit">Ghi chú</label>
                                 <div class="form-group">
-                                    <input formControlName="code" id="code" type="text"
+                                    <input formControlName="note" id="note" type="text"
                                         class="form-control input-default ">
                                 </div>
                             </div>
