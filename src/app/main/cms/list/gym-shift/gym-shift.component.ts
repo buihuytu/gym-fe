@@ -51,49 +51,49 @@ export class GymShiftComponent implements BaseComponent {
       field: 'status',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Mã ca', 'Code'],
       field: 'code',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 160
     },
     {
       caption: ['Tên ca', 'Name'],
       field: 'name',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Số ngày trong tuần', 'Total Days Of Week'],
       field: 'totalDays',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 200
     },
     {
       caption: ['Giờ bắt đầu', 'Hour Start'],
       field: 'hoursStartString',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 120
     },
     {
       caption: ['Giờ kết thúc', 'Hour Start'],
       field: 'hoursEndString',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 120
     },
     {
       caption: ['Ghi chú', 'Note'],
       field: 'note',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 200
     },
   ]
   
