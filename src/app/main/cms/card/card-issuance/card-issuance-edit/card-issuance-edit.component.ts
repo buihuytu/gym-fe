@@ -10,6 +10,7 @@ import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-emplo
 import { BasePageEditComponent, ICorePageEditCRUD } from '../../../../../libraries/base-page-edit/base-page-edit.component';
 import { DialogService } from '../../../../../services/dialog.service';
 import { HttpRequestService } from '../../../../../services/http.service';
+import { BaseCustomerSearchComponent } from '../../../../../libraries/base-customer-search/base-customer-search.component';
 
 @Component({
   selector: 'app-card-issuance-edit',
@@ -21,7 +22,8 @@ import { HttpRequestService } from '../../../../../services/http.service';
     BasePageEditComponent,
     DropdownComponent,
     CheckListComponent,
-    BaseEmployeeSearchComponent
+    BaseEmployeeSearchComponent,
+    BaseCustomerSearchComponent
   ],
   templateUrl: './card-issuance-edit.component.html',
   styleUrl: './card-issuance-edit.component.scss'

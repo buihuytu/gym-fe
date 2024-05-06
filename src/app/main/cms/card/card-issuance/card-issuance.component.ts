@@ -175,34 +175,34 @@ export class CardIssuanceComponent {
       align: 'left',
       width: 200
     },
-    {
-      caption: ['Số tiền VAT', 'VAT amount'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Dịch vụ', 'Service'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Số tiền dịch vụ', 'Service amount'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Số tiền khác', 'Other amount'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
+    // {
+    //   caption: ['Số tiền VAT', 'VAT amount'],
+    //   field: 'note',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 200
+    // },
+    // {
+    //   caption: ['Dịch vụ', 'Service'],
+    //   field: 'note',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 200
+    // },
+    // {
+    //   caption: ['Số tiền dịch vụ', 'Service amount'],
+    //   field: 'note',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 200
+    // },
+    // {
+    //   caption: ['Số tiền khác', 'Other amount'],
+    //   field: 'note',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 200
+    // },
     {
       caption: ['Tổng cộng', 'Total'],
       field: 'note',
@@ -218,21 +218,14 @@ export class CardIssuanceComponent {
       width: 200
     },
     {
+      caption: ['Số tiền đẫ trả', 'The money have to pay'],
+      field: 'note',
+      type: 'text',
+      align: 'left',
+      width: 200
+    },
+    {
       caption: ['Số tiền còn lại', 'The remaining amount'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Trạng thái', 'Extra time'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Trạng thái', 'Status'],
       field: 'note',
       type: 'text',
       align: 'left',
@@ -254,27 +247,6 @@ export class CardIssuanceComponent {
     },
     {
       caption: ['Tạo bởi', 'Create by'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Hủy bởi', 'Cancel by'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Ngày kick hoạt', 'Activation date'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Số hóa đơn', 'Bill'],
       field: 'note',
       type: 'text',
       align: 'left',

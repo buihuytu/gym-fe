@@ -7,24 +7,21 @@
             <div class="row w-100">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="code" class="mb-2 title-control-edit required">Mã khách hàng</label>
+                                <label for="code" class="mb-2 title-control-edit required">Số chứng từ</label>
                                 <div class="form-group">
-                                    <input formControlName="code" id="code" type="text" placeholder="Mã khách hàng sẽ được tự phát sinh"
+                                    <input formControlName="code" id="code" type="text" placeholder="Số chứng từ sẽ được tự phát sinh"
                                         class="form-control input-default " readonly>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="mb-3">
-                                <label for="customerClassId" class="mb-2 title-control-edit required">Nhóm khách
-                                    hàng</label>
+                                <label for="customerClassId" class="mb-2 title-control-edit required">Ngày chứng từ</label>
                                 <div class="form-group">
-                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'customerClassId')"
-                                        [getByIdOptions]="form.get('customerClassId')?.value"
-                                        [apiGetOptions]="getCustomerOptions$">
-                                    </app-dropdown>
+                                    <input formControlName="code" id="code" type="date"
+                                        class="form-control input-default ">
                                 </div>
                                 @if (form.get('customerClassId')?.hasError('required') &&
                                 !form.get('customerClassId')?.untouched) {
@@ -41,8 +38,8 @@
                             <div class="mb-3">
                                 <label for="fullName" class="mb-2 title-control-edit required">Họ tên khách hàng</label>
                                 <div class="form-group">
-                                    <input formControlName="fullName" id="fullName" type="text"
-                                        class="form-control input-default">
+                                    <base-customer-control formControlName="fullName" id="fullName" type="text"
+                                        class="form-control input-default"></base-customer-control>
                                     @if (form.get('fullName')?.hasError('required') && !form.get('fullName')?.untouched)
                                     {
                                     <span class="input-error">
