@@ -1,5 +1,5 @@
 <ul class="metismenu" id="menu">
-    <li  class="nav-label first">Menu chính</li>
+    <li class="nav-label first">Menu chính</li>
     <li *ngIf="data.includes('1')">
         <a class="ai-icon" href="sdfsdf" aria-expanded="false">
             <i class="flaticon-144-layout"></i>
@@ -14,8 +14,10 @@
         </a>
         <ul aria-expanded="false">
             <li *ngIf="data.includes('3')"><a [routerLink]="['/cms/profile/per-customer']">Thông tin khách hàng</a></li>
-            <li *ngIf="data.includes('4')"><a [routerLink]="['/cms/profile/per-customer-transaction']">Giao dịch với khách hàng</a></li>
-            <li *ngIf="data.includes('5')"><a [routerLink]="['/cms/profile/per-customer-list-card']">Danh sách các thẻ được cấp</a></li>
+            <li *ngIf="data.includes('4')"><a [routerLink]="['/cms/profile/per-customer-transaction']">Giao dịch với
+                    khách hàng</a></li>
+            <li *ngIf="data.includes('5')"><a [routerLink]="['/cms/profile/per-customer-list-card']">Danh sách các thẻ
+                    được cấp</a></li>
         </ul>
     </li>
     <li *ngIf="data.includes('6')">
@@ -39,7 +41,8 @@
         </a>
         <ul aria-expanded="false">
             <li *ngIf="data.includes('9')"><a [routerLink]="['/cms/list/goods-equipment']">Danh sách thiết bị</a></li>
-            <li *ngIf="data.includes('10')"><a [routerLink]="['/cms/list/goods-equipment-fix']">Danh sách bảo trì/sửa chữa thiết bị</a></li>
+            <li *ngIf="data.includes('10')"><a [routerLink]="['/cms/list/goods-equipment-fix']">Danh sách bảo trì/sửa
+                    chữa thiết bị</a></li>
             <li *ngIf="data.includes('11')"><a [routerLink]="['/cms/list/goods-list']">Danh sách hàng hóa</a></li>
             <li *ngIf="data.includes('6')"><a href="">Danh sách sản phẩm, NVL</a></li>
             <li *ngIf="data.includes('12')"><a [routerLink]="['/cms/list/gym-shift']">Danh sách Ca tập</a></li>
@@ -47,7 +50,8 @@
             <li *ngIf="data.includes('6')"><a href="">Danh sách Locker</a></li>
             <li *ngIf="data.includes('14')"><a [routerLink]="['/cms/list/sys-user']">Danh sách tài khoản</a></li>
             <li *ngIf="data.includes('15')"><a [routerLink]="['/cms/system/sys-other-list']">Tham số hệ thống</a></li>
-            <li *ngIf="data.includes('16')"><a [routerLink]="['/cms/system/sys-other-list-type']">Nhóm tham số hệ thống</a></li>
+            <li *ngIf="data.includes('16')"><a [routerLink]="['/cms/system/sys-other-list-type']">Nhóm tham số hệ
+                    thống</a></li>
         </ul>
     </li>
     <li *ngIf="data.includes('18')">
@@ -57,18 +61,20 @@
         </a>
         <ul aria-expanded="false">
             <li *ngIf="data.includes('18')"><a [routerLink]="['/cms/card/card-check-in']">Check In bằng thẻ</a></li>
-            <li *ngIf="data.includes('19')"><a [routerLink]="['/cms/list/card-check-in']">Danh sách thẻ Check in</a></li>
+            <!-- <li *ngIf="data.includes('19')"><a [routerLink]="['/cms/list/card-check-in']">Danh sách thẻ Check in</a> -->
+            <!-- </li> -->
             <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/card/card-issuance']">Cấp thẻ</a></li>
-            <li *ngIf="data.includes('6')"><a href="">Tình trạng Locker</a></li>
-            <li *ngIf="data.includes('6')"><a href="">Danh sách Locker bị khóa</a></li>
-            <li *ngIf="data.includes('6')"><a href="">Thuê tủ</a></li>
-            <li *ngIf="data.includes('20')" ><a [routerLink]="['/cms/card/card-info']">Danh sách thẻ</a></li>
-            <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/card/card-issuance']">Chuyển nhượng thẻ</a></li>
+            <!-- <li *ngIf="data.includes('6')"><a href="">Tình trạng Locker</a></li> -->
+            <!-- <li *ngIf="data.includes('6')"><a href="">Thuê tủ</a></li> -->
+            <li *ngIf="data.includes('20')"><a [routerLink]="['/cms/card/card-info']">Danh sách thẻ</a></li>
+            <li *ngIf="data.includes('20')"><a [routerLink]="['/cms/card/card-info']">Lịch sử thẻ</a></li>
+            <!-- <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/card/card-issuance']">Chuyển nhượng thẻ</a></li> -->
             <!-- <li *ngIf="data.includes('6')"><a href="">New Card</a></li>
-            <li *ngIf="data.includes('6')"><a href="">Renew Card</a></li> -->
-            <li *ngIf="data.includes('6')"><a href="">Nâng cấp thẻ</a></li>
+                <li *ngIf="data.includes('6')"><a href="">Renew Card</a></li> -->
+            <!-- <li *ngIf="data.includes('6')"><a href="">Nâng cấp thẻ</a></li>
             <li *ngIf="data.includes('6')"><a href="">Đóng băng thẻ</a></li>
-            <li *ngIf="data.includes('6')"><a href="">Báo cáo thẻ hết hạn</a></li>
+            <li *ngIf="data.includes('6')"><a href="">Báo cáo thẻ hết hạn</a></li> -->
+            <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/list/locker']">Danh sách tủ</a></li>
         </ul>
     </li>
 
@@ -106,7 +112,8 @@
             <span class="nav-text">Công cụ</span>
         </a>
         <ul aria-expanded="false">
-            <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/system/decentralization']">Phân quyền tài khoản</a></li>
+            <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/system/decentralization']">Phân quyền tài khoản</a>
+            </li>
             <li *ngIf="data.includes('6')"><a href="">Restore Database</a></li>
         </ul>
     </li>
@@ -122,5 +129,5 @@
         </ul>
     </li>
 
-    
+
 </ul>
