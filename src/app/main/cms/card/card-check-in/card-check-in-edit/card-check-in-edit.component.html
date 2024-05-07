@@ -1,0 +1,32 @@
+<div class="app-card-check-in-edit-container">
+    <app-base-page-edit 
+        [width]="500!" 
+        [class.modal-mode-container]="modalMode" 
+        [crud]="crud" 
+        [isModalMode]="modalMode"
+        [main]="main" 
+        [title]="title" 
+        [formGroup]="form"
+        (onInitialValueStringReady)="onFormReinit($event)"
+    ></app-base-page-edit>
+    <ng-template #main>
+        <form [formGroup]="form">
+            <div class="row w-100">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="cardCode" class="mb-2 title-control-edit required">Mã thẻ</label>
+                                <div class="form-group">
+                                    <input formControlName="cardCode" id="cardCode" type="text"
+                                        class="form-control input-default ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+            </div>
+        </form>
+    </ng-template>
+</div>
