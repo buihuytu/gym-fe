@@ -27,6 +27,7 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   @Input() getByIdOptions!: any;
   @Input() showFrom: any = 'fullName';
   @Input() isModalMode: any= true;
+  @Output() selectedIdChange = new EventEmitter();
   @Output() selectedDataChange = new EventEmitter();
 
 
@@ -42,6 +43,7 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   title: string[] = ['Thông tin khách hàng', 'Informasion customer'];
   currentIdType!:any;
   otherListTypeOptions!:any[];
+  otherListTypeOptionShow!:any[];
   searchType!:any;
   outerInOperators: IInOperator[] = [];
   language!: boolean;
@@ -161,35 +163,36 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   }
   ngOnInit() {
     this.getListOtherListTypes()
-    if (typeof window !== "undefined") {
-    
-    }
   }
 
   getListOtherListTypes() {
     this.subscriptions.push(
-      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'STAFF_GROUP').subscribe(x => {
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUSTOMER_GROUP').subscribe(x => {
         if (!!x.ok && x.status === 200) {
           const body = x.body;
           if (body.statusCode === 200) {
             const data = body.innerBody;
             this.otherListTypeOptions = data;
+            this.otherListTypeOptionShow = data;
           }
         }
       })
     );
   }
   onSearchListType(e:any){
-    console.log(this.searchType)
+    if(this.searchType !== '' && this.searchType !== null){
+      this.otherListTypeOptionShow = this.otherListTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.otherListTypeOptionShow = this.otherListTypeOptions
+    }
   }
-
   onSelectedListTypeChanged(e:any) {
     if(this.currentIdType == e.id) return;
     else{
       this.currentIdType = e.id;
-      this.outerInOperators = [
+      this.outerInOperators= [
         {
-          field: 'staffGroupId',
+          field: 'customerClassId',
           values: e.id
         }
       ]
@@ -202,11 +205,13 @@ export class BaseCustomerSearchComponent implements BaseComponent {
     this.showPopup = false;
   }
   onSelectedDataChange(e:any){
+    this.selectedIdChange.emit(e.id);
     this.selectedDataChange.emit(e);
     this.selectedData = e
     this.showPopup = false;
   }
   onUnSelectedData(){
+    this.selectedIdChange.emit(null);
     this.selectedDataChange.emit(null);
     this.selectedData = null;
   }

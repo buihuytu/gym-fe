@@ -85,11 +85,11 @@ export class CardIssuanceComponent {
       width: 200
     },
     {
-      caption: ['Giờ tập', 'Practice time'],
+      caption: ['Khung giờ tập', 'Practice time'],
       field: 'genderName',
       type: 'text',
       align: 'left',
-      width: 100
+      width: 200
     },
     {
       caption: ['Số thẻ', 'Card number'],

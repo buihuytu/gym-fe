@@ -62,13 +62,18 @@ export class CardIssuanceEditComponent extends BaseEditComponent  implements OnI
       id:[],
       code: [null],
       fullName: [null,[Validators.required]],
-      customerClassId: [null,[Validators.required]],
-      phoneNumber: [],
-      email: [],
-      avatar: [],
-      genderId: [],
-      statusId: [],
-      address: [],
+      customerId: [null,[Validators.required]],
+      customerName: [null,[Validators.required]],
+      customerCode: [null],
+      cardId: [null,[Validators.required]],
+      hourCard: [],
+      practiceTime: [],
+      startDate: [],
+      endDate: [],
+      hourCardBonus: [],
+      totalHourCard: [],
+      wardrobe: [],
+      lockerId: [],
       birthDate: [null,[Validators.required]],
       note: [],
       perPtId:[],
@@ -143,5 +148,8 @@ export class CardIssuanceEditComponent extends BaseEditComponent  implements OnI
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();
   }
-  
+  selectedDataChange(event:any, e:string,m:string){
+    this.form.get(e)?.setValue(event[m]);
+    this.form.get(e)?.markAllAsTouched();
+  }
 }
