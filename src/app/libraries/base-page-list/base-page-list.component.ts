@@ -67,7 +67,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() left!: TemplateRef<any>;
   @Input() hideHeader!: boolean;
   @Input() isControl!: boolean;
-
+  @Input() enableDoubleClick: boolean = true;
   @Output() selectedIdsChange = new EventEmitter();
   @Output() selectedDataChange = new EventEmitter();
 
@@ -338,12 +338,14 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     } else if (event.detail === 2) {
       if (!!this.isControl) { }
       else {
-        this.router.navigate(
-          [btoa(row.id)],
-          {
-            relativeTo: this.route.parent,
-          }
-        );
+        if(!!this.enableDoubleClick){
+          this.router.navigate(
+            [btoa(row.id)],
+            {
+              relativeTo: this.route.parent,
+            }
+          );
+        }
       }
       this.selectedDataChange.emit(row);
     }
