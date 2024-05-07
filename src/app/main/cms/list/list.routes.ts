@@ -30,4 +30,8 @@ export const routes: Routes = [
     path: "goods-equipment-fix",
     loadChildren:() => import('./goods-equipment-fix/goods-equipment-fix.routes').then((m) => m.routes)
   },
+  {
+    path: "locker",
+    loadChildren:() => import('./gym-locker/gym-locker.routes').then((m) => m.routes)
+  },
 ];

@@ -3,7 +3,7 @@
         <div class="select-box__value">
             <input class="select-box__input" type="radio" id="null" value="null" name="null"
                 [checked]="!!selectedData" />
-            <p class="select-box__input-text">{{!!selectedData ? selectedData.fullName:''}}</p>
+            <p class="select-box__input-text">{{!!selectedData ? selectedData[showFrom]:''}}</p>
         </div>
         @if (!!selectedData) {
         <button (click)="onUnSelectedData()" type="button" class="close clear-content" data-dismiss="modal"><span>&times;</span>

@@ -25,7 +25,7 @@ import { DebounceDirective } from '../debounce-event/debounce-event.directive';
 })
 export class BaseCustomerSearchComponent implements BaseComponent {
   @Input() getByIdOptions!: any;
-  @Input() showFrom!: any;
+  @Input() showFrom: any = 'fullName';
   @Input() isModalMode: any= true;
   @Output() selectedDataChange = new EventEmitter();
 
