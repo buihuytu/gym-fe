@@ -90,6 +90,13 @@ export class CardInfoComponent {
       width: 120
     },
     {
+      caption: ['Có PT', 'Have PT?'],
+      field: 'isHavePt',
+      type: 'bool',
+      align: 'left',
+      width: 120
+    },
+    {
       caption: ['Giá', 'Price'],
       field: 'price',
       type: 'currency',

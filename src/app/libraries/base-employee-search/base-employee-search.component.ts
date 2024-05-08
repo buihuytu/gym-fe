@@ -27,7 +27,7 @@ export class BaseEmployeeSearchComponent implements BaseComponent,OnChanges {
   @Input() getByIdOptions!: any;
   @Input() showFrom!: any;
   @Input() isModalMode: any= true;
-
+  @Input() disableSelect: boolean= false;
   //style margin
   @Input() top: number=-9.25;
   @Input() left: number=-100;

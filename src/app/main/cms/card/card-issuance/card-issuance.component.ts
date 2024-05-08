@@ -143,13 +143,13 @@ export class CardIssuanceComponent {
     {
       caption: ['Lấy giá gốc?', 'Original price?'],
       field: 'note',
-      type: 'text',
+      type: 'bool',
       align: 'left',
       width: 200
     },
     {
-      caption: ['Giá', 'Price'],
-      field: 'note',
+      caption: ['Giá thẻ', 'Price'],
+      field: 'priceCard',
       type: 'text',
       align: 'left',
       width: 200

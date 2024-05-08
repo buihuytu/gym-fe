@@ -39,10 +39,15 @@
                                 <div>
                                     <base-customer-control
                                         (selectedDataChange)="selectedDataChange($event, 'customerName','fullName')"
-                                        (selectedIdChange)="onDropdownSelected($event, 'employeeId')"
-                                        [getByIdOptions]="form.get('employeeId')?.value" [showFrom]="'code'" [top]="-8"
+                                        (selectedIdChange)="onDropdownSelected($event, 'customerId')"
+                                        [getByIdOptions]="form.get('customerId')?.value" [showFrom]="'code'" [top]="-8"
                                         [isModalMode]="false" [left]="-235">
                                     </base-customer-control>
+                                    @if (form.get('customerId')?.hasError('required') && !form.get('customerId')?.untouched) {
+                                        <span class="input-error">
+                                            Bắt buộc chọn
+                                        </span>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -120,6 +125,10 @@
                                     class="form-control input-default" readonly>
                             </div>
                         </div>
+
+                    </div>
+
+                    <div class="row mb-3">
                         <div class="col-md-3 d-flex align-items-center">
                             <div class="form-group pe-none">
                                 <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
@@ -130,9 +139,6 @@
                             </div>
                             <label class="mb-2 title-control-edit">Có tủ đồ</label>
                         </div>
-                    </div>
-
-                    <div class="row mb-3">
                         <div class="col-md-3">
                             <label for="lockerId" class="mb-2 title-control-edit">Tủ đồ</label>
                             <div class="form-group">
@@ -141,32 +147,101 @@
                                 </app-dropdown>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="" class="mb-2 title-control-edit">Email</label>
+
+                        <div class="col-md-3 d-flex align-items-center">
+                            <div class="form-group pe-none">
+                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                    <input type="checkbox" formControlName="isHavePt" readonly
+                                        class="custom-control-input form-control" id="isHavePt">
+                                    <label class="custom-control-label" for="isHavePt"></label>
+                                </div>
+                            </div>
+                            <label class="mb-2 title-control-edit">Có PT</label>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="perPtId" class="mb-2 title-control-edit">Huấn luyện viên</label>
                             <div class="form-group">
-                                <input formControlName="email" id="email" type="text"
-                                    class="form-control input-default ">
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'perPtId')"
+                                    [getByIdOptions]="form.get('perPtId')?.value" [top]="-25" [isModalMode]="false"
+                                    [disableSelect]="true" [left]="-335">
+                                </base-employee-control>
+                                
                             </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="perPtId" class="mb-2 title-control-edit">Huấn luyện viên</label>
+                        <div class="col-md-3 d-flex align-items-center">
                             <div class="form-group">
-                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'perPtId')"
-                                    [getByIdOptions]="form.get('perPtId')?.value" [top]="-30" [isModalMode]="false"
-                                    [left]="-15">
-                                </base-employee-control>
+                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                    <input type="checkbox" formControlName="isRealPrice"
+                                        class="custom-control-input form-control" id="isRealPrice">
+                                    <label class="custom-control-label" for="isRealPrice"></label>
+                                </div>
+                            </div>
+                            <label class="mb-2 title-control-edit" for="isRealPrice">Lấy giá gốc?</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cardPrice" class="mb-2 title-control-edit">Giá thẻ</label>
+                            <div class="form-group">
+                                <input formControlName="cardPrice" id="cardPrice" type="text" [readOnly]="false"
+                                    class="form-control input-default ">
+
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="statusId" class="mb-2 title-control-edit">Trạng thái khách hàng</label>
+                        <div class="col-md-3">
+                            <label for="percentDiscount" class="mb-2 title-control-edit">% giảm giá</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'statusId')"
-                                    [getByIdOptions]="form.get('statusId')?.value"
-                                    [apiGetOptions]="geCusStatusOptions$">
-                                </app-dropdown>
+                                <input formControlName="percentDiscount" id="percentDiscount" type="number"
+                                    class="form-control input-default ">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="afterDiscount" class="mb-2 title-control-edit">Số tiền sau giảm giá</label>
+                            <div class="form-group">
+                                <input formControlName="afterDiscount" id="afterDiscount" type="number"
+                                    class="form-control input-default " readonly>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <label for="percentVat" class="mb-2 title-control-edit">% VAT</label>
+                            <div class="form-group">
+                                <input formControlName="percentVat" id="percentVat" type="number"
+                                    class="form-control input-default ">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="totalPrice" class="mb-2 title-control-edit required">Tổng cộng</label>
+                            <div class="form-group">
+                                <input formControlName="totalPrice" id="totalPrice" type="text" readonly
+                                    class="form-control input-default ">
+                                @if (form.get('totalPrice')?.hasError('required') && !form.get('totalPrice')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="moneyHavePay" class="mb-2 title-control-edit">Số tiền phải trả</label>
+                            <div class="form-group">
+                                <input formControlName="moneyHavePay" id="moneyHavePay" type="number" readonly
+                                    class="form-control input-default ">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="paidMoney" class="mb-2 title-control-edit">Số tiền đã trả</label>
+                            <div class="form-group">
+                                <input formControlName="paidMoney" id="paidMoney" type="number"
+                                    class="form-control input-default ">
+
                             </div>
                         </div>
                     </div>

@@ -74,11 +74,17 @@ export class CardIssuanceEditComponent extends BaseEditComponent  implements OnI
       totalHourCard: [],
       wardrobe: [],
       lockerId: [],
-      birthDate: [null,[Validators.required]],
-      note: [],
+      isHavePt: [null,[Validators.required]],
       perPtId:[],
-      idNo:[],
-      isGuestPass:[]
+      isRealPrice:[],
+      cardPrice:[],
+      percentDiscount:[],
+      afterDiscount:[],
+      percentVat:[],
+      totalPrice:[null,[Validators.required]],
+      moneyHavePay:[],
+      paidMoney:[],
+      note: [],
     })
     this.crud = {
       c: api.PER_CUSTOMER_CREATE,
