@@ -47,10 +47,7 @@
             <li *ngIf="data.includes('12')"><a [routerLink]="['/cms/list/gym-shift']">Danh sách Ca tập</a></li>
             <!-- <li *ngIf="data.includes('13')"><a [routerLink]="['/cms/list/gym-package']">Danh sách Gói tập</a></li> -->
             <!-- <li *ngIf="data.includes('6')"><a href="">Danh sách Locker</a></li> -->
-            <li *ngIf="data.includes('14')"><a [routerLink]="['/cms/list/sys-user']">Danh sách tài khoản</a></li>
-            <li *ngIf="data.includes('15')"><a [routerLink]="['/cms/system/sys-other-list']">Tham số hệ thống</a></li>
-            <li *ngIf="data.includes('16')"><a [routerLink]="['/cms/system/sys-other-list-type']">Nhóm tham số hệ
-                    thống</a></li>
+            <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/list/locker']">Danh sách tủ</a></li>
         </ul>
     </li>
     <li *ngIf="data.includes('18')">
@@ -73,7 +70,6 @@
             <!-- <li *ngIf="data.includes('6')"><a href="">Nâng cấp thẻ</a></li>
             <li *ngIf="data.includes('6')"><a href="">Đóng băng thẻ</a></li>
             <li *ngIf="data.includes('6')"><a href="">Báo cáo thẻ hết hạn</a></li> -->
-            <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/list/locker']">Danh sách tủ</a></li>
         </ul>
     </li>
 
@@ -85,7 +81,7 @@
         <ul aria-expanded="false">
             <li *ngIf="data.includes('6')"><a href="">Hóa đơn bán lẻ</a></li>
             <li *ngIf="data.includes('6')"><a href="">Danh sách hóa đơn bán lẻ</a></li>
-            <li *ngIf="data.includes('6')"><a href="">Phiếu giảm giá</a></li>
+            <!-- <li *ngIf="data.includes('6')"><a href="">Phiếu giảm giá</a></li> -->
             <li *ngIf="data.includes('6')"><a href="">Danh sách phiếu giảm giá</a></li>
             <!-- <li *ngIf="data.includes('6')"><a href="">Thông tin giờ tập</a></li> -->
             <!-- <li *ngIf="data.includes('6')"><a href="">Cập nhật tỷ giá ngoại tệ</a></li> -->
@@ -112,7 +108,7 @@
         </a>
         <ul aria-expanded="false">
             <li *ngIf="data.includes('6')"><a [routerLink]="['/cms/system/decentralization']">Phân quyền tài khoản</a> -->
-            <!-- </li>
+    <!-- </li>
             <li *ngIf="data.includes('6')"><a href="">Restore Database</a></li>
         </ul>
     </li> -->
@@ -123,10 +119,20 @@
             <span class="nav-text">Báo cáo</span>
         </a>
         <ul aria-expanded="false">
-            <li *ngIf="data.includes('6')"><a href="">Danh sách hóa đơn</a></li>
-            <li *ngIf="data.includes('6')"><a href="">Hệ thống báo cáo</a></li>
+            <li *ngIf="data.includes('6')"><a href="">Báo cáo</a></li>
         </ul>
     </li>
-
+    <li *ngIf="data.includes('21')">
+        <a class="has-arrow ai-icon" href="" aria-expanded="false">
+            <i class="flaticon-092-money"></i>
+            <span class="nav-text">Hệ thống</span>
+        </a>
+        <ul aria-expanded="false">
+            <li *ngIf="data.includes('14')"><a [routerLink]="['/cms/list/sys-user']">Danh sách tài khoản</a></li>
+            <li *ngIf="data.includes('15')"><a [routerLink]="['/cms/system/sys-other-list']">Tham số hệ thống</a></li>
+            <li *ngIf="data.includes('16')"><a [routerLink]="['/cms/system/sys-other-list-type']">Nhóm tham số hệ
+                    thống</a></li>
+        </ul>
+    </li>
 
 </ul>

@@ -30,7 +30,7 @@ export class SysOtherListComponent implements BaseComponent {
 
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.SYS_OTHER_LIST_QUERY_LIST,
-    deleteIds:api.SYS_OTHER_LIST_DELETE_IDS
+    deleteIds:api.SYS_OTHER_LIST_DELETE_IDS,
   };
   title: string[] = ['Tham số hệ thống', 'System parameter'];
   currentIdType!:any;
@@ -42,7 +42,9 @@ export class SysOtherListComponent implements BaseComponent {
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 
     EnumBaseButton.EDIT, 
-    EnumBaseButton.APPROVE
+    EnumBaseButton.APPROVE,
+    EnumBaseButton.EXCEL,
+    EnumBaseButton.PDF,
   ]
   columns: ICoreTableColumnItem[] = [
     {
