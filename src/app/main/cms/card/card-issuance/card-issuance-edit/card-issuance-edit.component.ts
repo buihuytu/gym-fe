@@ -59,12 +59,13 @@ export class CardIssuanceEditComponent extends BaseEditComponent  implements OnI
     ) {
     super(dialogService);
     this.form = this.fb.group({
-      id:[],
-      code: [null],
-      fullName: [null,[Validators.required]],
+      id:[null],
+      documentNumber: [null],
+      documentDate: [null,[Validators.required]],
       customerId: [null,[Validators.required]],
       customerName: [null,[Validators.required]],
       customerCode: [null],
+      perSellId: [null],
       cardId: [null,[Validators.required]],
       hourCard: [],
       practiceTime: [],

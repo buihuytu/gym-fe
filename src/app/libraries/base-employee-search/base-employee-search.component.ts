@@ -18,7 +18,7 @@ import { AppConfigService } from '../../services/app-config.service';
     CommonModule,
     BasePageListComponent,
     FormsModule,
-    DebounceDirective
+    DebounceDirective,
   ],
   templateUrl: './base-employee-search.component.html',
   styleUrl: './base-employee-search.component.scss'
@@ -28,6 +28,8 @@ export class BaseEmployeeSearchComponent implements BaseComponent,OnChanges {
   @Input() showFrom!: any;
   @Input() isModalMode: any= true;
   @Input() disableSelect: boolean= false;
+  @Input() hiddenLeft: boolean= false;
+  @Input() constValue!: any;
   //style margin
   @Input() top: number=-9.25;
   @Input() left: number=-100;
@@ -132,6 +134,14 @@ export class BaseEmployeeSearchComponent implements BaseComponent,OnChanges {
     this.getListOtherListTypes()
     if (typeof window !== "undefined") {
       var win_h = window.outerHeight;
+    }
+    if(!!this.constValue){
+      this.outerInOperators = [
+        {
+          field: 'staffGroupId',
+          values: this.constValue
+        }
+      ]
     }
   }
 

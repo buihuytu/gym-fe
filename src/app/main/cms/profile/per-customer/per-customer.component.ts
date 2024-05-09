@@ -127,13 +127,13 @@ export class PerCustomerComponent {
       align: 'left',
       width: 170
     },
-    {
-      caption: ['Huấn luyện viên', 'Coach'],
-      field: 'perPtName',
-      type: 'text',
-      align: 'left',
-      width: 170
-    },
+    // {
+    //   caption: ['Huấn luyện viên', 'Coach'],
+    //   field: 'perPtName',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 170
+    // },
     {
       caption: ['Ghi chú', 'Note'],
       field: 'note',

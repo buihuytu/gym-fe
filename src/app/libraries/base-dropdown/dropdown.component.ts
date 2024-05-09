@@ -14,6 +14,7 @@ import { HttpRequestService } from '../../services/http.service';
 export class DropdownComponent implements BaseComponent, OnChanges {
   @Input() apiGetOptions!: string;
   @Input() getByIdOptions!: any;
+  @Input() disableSelect: boolean= false;
   @Output() valueChange = new EventEmitter;
   
   subscriptions: Subscription[] =[];

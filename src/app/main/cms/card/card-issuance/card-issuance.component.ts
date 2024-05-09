@@ -23,10 +23,10 @@ import { HttpRequestService } from '../../../../services/http.service';
 })
 export class CardIssuanceComponent {
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.CARD_INFO_QUERY_LIST,
-    deleteIds:api.CARD_INFO_DELETE_IDS,
-    toggleActiveIds: api.CARD_INFO_TOGGLE_ACTIVE,
-    exportExcel:api.CARD_INFO_QUERY_LIST,
+    queryListRelativePath: api.CARD_ISSUANCE_QUERY_LIST,
+    deleteIds:api.CARD_ISSUANCE_DELETE_IDS,
+    toggleActiveIds: api.CARD_ISSUANCE_TOGGLE_ACTIVE,
+    exportExcel:api.CARD_ISSUANCE_QUERY_LIST,
   };
   title: string[] = ['Cấp thẻ', 'Card issuance'];
   currentIdType!:any;

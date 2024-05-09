@@ -27,6 +27,8 @@ export class BaseCustomerSearchComponent implements BaseComponent {
   @Input() getByIdOptions!: any;
   @Input() showFrom: any = 'fullName';
   @Input() isModalMode: any= true;
+  @Input() disableSelect: boolean= false;
+  @Input() hiddenLeft: boolean= false;
   @Output() selectedIdChange = new EventEmitter();
   @Output() selectedDataChange = new EventEmitter();
 
@@ -66,13 +68,13 @@ export class BaseCustomerSearchComponent implements BaseComponent {
       align: 'left',
       width: 220
     },
-    {
-      caption: ['Ảnh đại diện', 'Avatar'],
-      field: 'avatar',
-      type: 'text',
-      align: 'left',
-      width: 220
-    },
+    // {
+    //   caption: ['Ảnh đại diện', 'Avatar'],
+    //   field: 'avatar',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 220
+    // },
     {
       caption: ['Mã khách hàng', 'Customer Code'],
       field: 'code',

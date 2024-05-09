@@ -122,11 +122,20 @@ export enum api{
     PER_CUSTOMER_TRANSACTIONS_DELETE_IDS = '/api/PerCusTransaction/DeleteIds',
     PER_CUSTOMER_TRANSACTIONS_TOGGLE_ACTIVE = '/api/PerCusTransaction/ToggleActiveIds',
 
-    //PER_CUSTOMER
+    //GOODS_LOCKER
     GOODS_LOCKER_QUERY_LIST = '/api/GoodsLocker/QueryList',
     GOODS_LOCKER_CREATE = '/api/GoodsLocker/Create',
     GOODS_LOCKER_READ = '/api/GoodsLocker/GetById?id=',
     GOODS_LOCKER_UPDATE = '/api/GoodsLocker/Update',
     GOODS_LOCKER_DELETE_IDS = '/api/GoodsLocker/DeleteIds',
     GOODS_LOCKER_TOGGLE_ACTIVE = '/api/GoodsLocker/ToggleActiveIds',
+
+
+    //PER_CUSTOMER
+    CARD_ISSUANCE_QUERY_LIST = '/api/CardIssuance/QueryList',
+    CARD_ISSUANCE_CREATE = '/api/CardIssuance/Create',
+    CARD_ISSUANCE_READ = '/api/CardIssuance/GetById?id=',
+    CARD_ISSUANCE_UPDATE = '/api/CardIssuance/Update',
+    CARD_ISSUANCE_DELETE_IDS = '/api/CardIssuance/DeleteIds',
+    CARD_ISSUANCE_TOGGLE_ACTIVE = '/api/CardIssuance/ToggleActiveIds',
 }

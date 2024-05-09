@@ -64,7 +64,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() outerParam$!: BehaviorSubject<any>;
   @Input() buttons!: EnumBaseButton[];
   @Input() fixedPageSize!: number;
-  @Input() left!: TemplateRef<any>;
+  @Input() left!: TemplateRef<any>|null;
   @Input() hideHeader!: boolean;
   @Input() isControl!: boolean;
   @Input() enableDoubleClick: boolean = true;
