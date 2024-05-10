@@ -28,7 +28,7 @@ export class CardInfoComponent {
     deleteIds:api.CARD_INFO_DELETE_IDS,
     toggleActiveIds: api.CARD_INFO_TOGGLE_ACTIVE
   };
-  title: string[] = ['Thông tin thẻ', 'Informasion card'];
+  title: string[] = ['Thông tin thẻ', 'Card Information'];
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];

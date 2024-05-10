@@ -96,8 +96,17 @@ export enum api{
     CARD_INFO_UPDATE = '/api/CardInfo/Update',
     CARD_INFO_DELETE_IDS = '/api/CardInfo/DeleteIds',
     CARD_INFO_TOGGLE_ACTIVE = '/api/CardInfo/ToggleActiveIds',
-    CARD_INFO_GET_LIST_CUSTOMER = '/api/CardInfo/GetListCustomer',
     CARD_INFO_GET_ALL_CARD_VALID = '/api/CardInfo/GetAllCardValid',
+    CARD_INFO_GET_LIST_CUSTOMER = '/api/CardInfo/GetListCustomer',    
+
+    //CARD_HISTORY
+    CARD_HISTORY_QUERY_LIST = '/api/CardHistory/QueryList',
+    CARD_HISTORY_CREATE = '/api/CardHistory/Create',
+    CARD_HISTORY_READ = '/api/CardHistory/GetById?id=',
+    CARD_HISTORY_UPDATE = '/api/CardHistory/Update',
+    CARD_HISTORY_DELETE_IDS = '/api/CardHistory/DeleteIds',
+    CARD_HISTORY_TOGGLE_ACTIVE = '/api/CardHistory/ToggleActiveIds',
+    CARD_HISTORY_GET_LIST_CARD_CODE = '/api/CardHistory/GetListCardCode',
 
     // GOODS_EQUIPMENT
     GOODS_EQUIPMENT_QUERY_LIST = '/api/GoodsEquipment/QueryList',
@@ -131,7 +140,6 @@ export enum api{
     GOODS_LOCKER_UPDATE = '/api/GoodsLocker/Update',
     GOODS_LOCKER_DELETE_IDS = '/api/GoodsLocker/DeleteIds',
     GOODS_LOCKER_TOGGLE_ACTIVE = '/api/GoodsLocker/ToggleActiveIds',
-
 
     //PER_CUSTOMER
     CARD_ISSUANCE_QUERY_LIST = '/api/CardIssuance/QueryList',
