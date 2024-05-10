@@ -17,7 +17,7 @@ import { BaseCustomerSearchComponent } from '../../../../../libraries/base-custo
   standalone: true,
   imports: [
     RouterModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     BasePageEditComponent,
     DropdownComponent,
@@ -28,64 +28,62 @@ import { BaseCustomerSearchComponent } from '../../../../../libraries/base-custo
   templateUrl: './card-issuance-edit.component.html',
   styleUrl: './card-issuance-edit.component.scss'
 })
-export class CardIssuanceEditComponent extends BaseEditComponent  implements OnInit, AfterViewInit, OnDestroy{
-  title: string[] = ['Cấp thẻ','Card issuance'];
+export class CardIssuanceEditComponent extends BaseEditComponent implements OnInit, AfterViewInit, OnDestroy {
+  title: string[] = ['Cấp thẻ', 'Card issuance'];
 
   modalMode: boolean = false;//for modal and style modal
   crud!: ICorePageEditCRUD;
 
-  otherListTypeOptions!:any[];
+  otherListTypeOptions!: any[];
   genderOptions!: any[];
-  customerGroupOptions!: any [];
+  customerGroupOptions!: any[];
   nativeOptions!: any[];
   religionOptions!: any[];
   bankOptions!: any[];
   bankBranchOptions!: any[];
   subscriptions: Subscription[] = [];
 
-  apiParams: string[] = ["CUSTOMER_GROUP", "GENDER", "NATIVE", "RELIGION", "BANK", "BANK_BRANCH"];
-
-  getCustomerOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUSTOMER_GROUP';
-  getGenderOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'GENDER';
-  getNativeIdOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'NATIVE';
-  getReligionOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'RELIGION';
-  getBankOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK';
-  geCusStatusOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUS_STATUS';
+  getListCardOptions$: string = api.CARD_INFO_GET_ALL_CARD_VALID;
+  getGenderOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'GENDER';
+  getNativeIdOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'NATIVE';
+  getReligionOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'RELIGION';
+  getBankOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'BANK';
+  geCusStatusOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'CUS_STATUS';
 
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
     private httpService: HttpRequestService,
-    ) {
+  ) {
     super(dialogService);
     this.form = this.fb.group({
-      id:[null],
+      id: [null],
       documentNumber: [null],
-      documentDate: [null,[Validators.required]],
-      customerId: [null,[Validators.required]],
-      customerName: [null,[Validators.required]],
+      documentDate: [null, [Validators.required]],
+      customerId: [null, [Validators.required]],
+      customerName: [null, [Validators.required]],
       customerCode: [null],
       perSellId: [null],
-      cardId: [null,[Validators.required]],
-      hourCard: [],
-      practiceTime: [],
-      startDate: [],
-      endDate: [],
-      hourCardBonus: [],
-      totalHourCard: [],
-      wardrobe: [],
-      lockerId: [],
-      isHavePt: [null,[Validators.required]],
-      perPtId:[],
-      isRealPrice:[],
-      cardPrice:[],
-      percentDiscount:[],
-      afterDiscount:[],
-      percentVat:[],
-      totalPrice:[null,[Validators.required]],
-      moneyHavePay:[],
-      paidMoney:[],
-      note: [],
+      cardId: [null, [Validators.required]],
+      hourCard: [null],
+      practiceTime: [null],
+      startDate: [null],
+      endDate: [null],
+      hourCardBonus: [null],
+      totalHourCard: [null],
+      wardrobe: [null],
+      lockerId: [null],
+      isHavePt: [null, [Validators.required]],
+      perPtId: [null],
+      isRealPrice: [null],
+      cardPrice: [null],
+      percentDiscount: [null],
+      afterDiscount: [null],
+      percentVat: [null],
+      totalPrice: [null, [Validators.required]],
+      moneyHavePay: [null],
+      paidMoney: [null],
+      note: [null],
     })
     this.crud = {
       c: api.PER_CUSTOMER_CREATE,
@@ -93,69 +91,96 @@ export class CardIssuanceEditComponent extends BaseEditComponent  implements OnI
       u: api.PER_CUSTOMER_UPDATE,
       d: api.PER_CUSTOMER_DELETE_IDS,
     }
-  }
-  
-
-  getListOtherListTypes() {
-    forkJoin(this.apiParams.map(param => this.httpService.makeGetRequest('', api.SYS_OTHER_LIST_GET_LIST_BY_GROUP + param)))
-      .subscribe(responses => {
-        responses.forEach((item, index) => {
-          if (item.body.statusCode == 200 && item.ok == true) {
-            const options: { value: number | null; text: string; }[] = [];
-            item.body.innerBody.map((g: any) => {
-              options.push({
-                value: g.id,
-                text: g.name
-              });
-            });
-            const param = this.apiParams[index];
-            switch (param) {
-              case 'GENDER':
-                this.genderOptions = options;
-                break;
-              case 'CUSTOMER_GROUP':
-                this.customerGroupOptions = options;
-                break;
-              case 'NATIVE':
-                this.nativeOptions = options;
-                break;
-              case 'RELIGION':
-                this.religionOptions = options;
-                break;
-              case 'BANK':
-                this.bankOptions = options;
-                break;
-              case 'BANK_BRANCH':
-                this.bankBranchOptions = options;
-                break;
-              default:
-                break;
-            }
-          }
-        });
-      });
+    this.onFormCreated()
   }
 
+  onFormCreated() {
+    this.subscriptions.push(
+      this.form.get('cardId')?.valueChanges.subscribe(x => {
+        this.getInfoCard(x)
+      })!,
+      this.form.get('hourCard')?.valueChanges.subscribe(x => {
+        this.calculateTotal()
+      })!,
+      this.form.get('hourCardBonus')?.valueChanges.subscribe(x => {
+        this.calculateTotal()
+      })!,
+    )
+  }
+  getInfoCard(id: any) {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('getInfoCard', api.CARD_INFO_CALCULATE + id).subscribe(res => {
+        if (res.status == 200 && res.ok == true) {
+          this.form.patchValue(res.body.innerBody)
+        }
+      })
+    )
+  }
+  // getListOtherListTypes() {
+  //   forkJoin(this.apiParams.map(param => this.httpService.makeGetRequest('', api.SYS_OTHER_LIST_GET_LIST_BY_GROUP + param)))
+  //     .subscribe(responses => {
+  //       responses.forEach((item, index) => {
+  //         if (item.body.statusCode == 200 && item.ok == true) {
+  //           const options: { value: number | null; text: string; }[] = [];
+  //           item.body.innerBody.map((g: any) => {
+  //             options.push({
+  //               value: g.id,
+  //               text: g.name
+  //             });
+  //           });
+  //           const param = this.apiParams[index];
+  //           switch (param) {
+  //             case 'GENDER':
+  //               this.genderOptions = options;
+  //               break;
+  //             case 'CUSTOMER_GROUP':
+  //               this.customerGroupOptions = options;
+  //               break;
+  //             case 'NATIVE':
+  //               this.nativeOptions = options;
+  //               break;
+  //             case 'RELIGION':
+  //               this.religionOptions = options;
+  //               break;
+  //             case 'BANK':
+  //               this.bankOptions = options;
+  //               break;
+  //             case 'BANK_BRANCH':
+  //               this.bankBranchOptions = options;
+  //               break;
+  //             default:
+  //               break;
+  //           }
+  //         }
+  //       });
+  //     });
+  // }
+  calculateTotal() {
+    const hourCard = this.form.get('hourCard')?.value ?? 0;
+    const hourCardBonus = this.form.get('hourCardBonus')?.value ?? 0;
+    this.form.get('totalHourCard')?.setValue(hourCard + hourCardBonus);
+  }
   ngOnInit(): void {
-    this.getListOtherListTypes();
+    // this.getListOtherListTypes();
   }
-  
+
   ngAfterViewInit(): void {
   }
 
   onFormReinit(e: string): void {
     this.formInitStringValue = e;
   }
-  
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
   }
 
-  onDropdownSelected(event:any, e:string):void{
+  onDropdownSelected(event: any, e: string): void {
     this.form.get(e)?.setValue(event);
     this.form.get(e)?.markAllAsTouched();
   }
-  selectedDataChange(event:any, e:string,m:string){
+  selectedDataChange(event: any, e: string, m: string) {
+    debugger
     this.form.get(e)?.setValue(event[m]);
     this.form.get(e)?.markAllAsTouched();
   }

@@ -67,7 +67,7 @@
                             <label for="cardId" class="mb-2 title-control-edit required">Thẻ tập</label>
                             <div class="form-group">
                                 <app-dropdown (valueChange)="onDropdownSelected($event, 'cardId')"
-                                    [getByIdOptions]="form.get('cardId')?.value" [apiGetOptions]="getGenderOptions$">
+                                    [getByIdOptions]="form.get('cardId')?.value" [apiGetOptions]="getListCardOptions$">
                                 </app-dropdown>
                                 @if (form.get('cardId')?.hasError('required') && !form.get('cardId')?.untouched) {
                                 <span class="input-error">
@@ -126,12 +126,12 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label for="employeeId" class="mb-2 title-control-edit">Nhân viên bán hàng</label>
+                            <label for="perSellId" class="mb-2 title-control-edit">Nhân viên bán hàng</label>
                             <div class="form-group">
-                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'employeeId')"
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'perSellId')"
                                     [hiddenLeft]="true"
                                     [constValue]="10040"
-                                    [getByIdOptions]="form.get('employeeId')?.value" [top]="-19" [isModalMode]="false"
+                                    [getByIdOptions]="form.get('perSellId')?.value" [top]="-19" [isModalMode]="false"
                                     [left]="-335">
                                 </base-employee-control>
                                 
@@ -154,7 +154,7 @@
                             <label for="lockerId" class="mb-2 title-control-edit">Tủ đồ</label>
                             <div class="form-group">
                                 <app-dropdown (valueChange)="onDropdownSelected($event, 'lockerId')"
-                                    [disableSelect]="true"
+                                    [disableSelect]="!form.get('wardrobe')?.value"
                                     [getByIdOptions]="form.get('lockerId')?.value" [apiGetOptions]="getGenderOptions$">
                                 </app-dropdown>
                             </div>
@@ -163,7 +163,7 @@
                         <div class="col-md-3 d-flex align-items-center">
                             <div class="form-group pe-none">
                                 <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                    <input type="checkbox" formControlName="isHavePt" readonly
+                                    <input type="checkbox" formControlName="isHavePt" readOnly 
                                         class="custom-control-input form-control" id="isHavePt">
                                     <label class="custom-control-label" for="isHavePt"></label>
                                 </div>
@@ -172,13 +172,13 @@
                         </div>
 
                         <div class="col-md-3">
-                            <label for="perSellId" class="mb-2 title-control-edit">Huấn luyện viên</label>
+                            <label for="perPtId" class="mb-2 title-control-edit">Huấn luyện viên</label>
                             <div class="form-group">
-                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'perSellId')"
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'perPtId')"
                                     [hiddenLeft]="true"
                                     [constValue]="21"
-                                    [getByIdOptions]="form.get('perSellId')?.value" [top]="-25" [isModalMode]="false"
-                                    [disableSelect]="true" [left]="-335">
+                                    [getByIdOptions]="form.get('perPtId')?.value" [top]="-25" [isModalMode]="false"
+                                    [disableSelect]="!form.get('isHavePt')?.value" [left]="-335">
                                 </base-employee-control>
                                 
                             </div>

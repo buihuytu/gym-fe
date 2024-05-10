@@ -92,10 +92,12 @@ export enum api{
     CARD_INFO_QUERY_LIST = '/api/CardInfo/QueryList',
     CARD_INFO_CREATE = '/api/CardInfo/Create',
     CARD_INFO_READ = '/api/CardInfo/GetById?id=',
+    CARD_INFO_CALCULATE = '/api/CardInfo/CalculateByCardId?id=',
     CARD_INFO_UPDATE = '/api/CardInfo/Update',
     CARD_INFO_DELETE_IDS = '/api/CardInfo/DeleteIds',
     CARD_INFO_TOGGLE_ACTIVE = '/api/CardInfo/ToggleActiveIds',
     CARD_INFO_GET_LIST_CUSTOMER = '/api/CardInfo/GetListCustomer',
+    CARD_INFO_GET_ALL_CARD_VALID = '/api/CardInfo/GetAllCardValid',
 
     // GOODS_EQUIPMENT
     GOODS_EQUIPMENT_QUERY_LIST = '/api/GoodsEquipment/QueryList',
