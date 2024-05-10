@@ -19,7 +19,7 @@ declare var Zenix: any;
   styleUrl: './navigator.component.scss'
 })
 export class NavigatorComponent implements AfterViewInit {
-  data!:any[];
+  data:any[]=[];
   constructor(
     private authService: AuthService
   ){

@@ -51,182 +51,133 @@ export class CardIssuanceComponent {
     },
     {
       caption: ['Số chứng từ', 'Document number'],
-      field: 'status',
+      field: 'documentNumber',
       type: 'text',
       align: 'left',
       width: 220
     },
     {
       caption: ['Ngày chứng từ', 'Customer code'],
-      field: 'code',
-      type: 'text',
+      field: 'documentDate',
+      type: 'date',
       align: 'left',
       width: 220
     },
     {
       caption: ['Tên khách hàng', 'Customer name'],
-      field: 'cardTypeName',
+      field: 'customerName',
       type: 'text',
       align: 'left',
       width: 220
     },
     {
       caption: ['Mã khách hàng', 'Customer Code'],
-      field: 'codeCus',
+      field: 'customerCode',
       type: 'text',
       align: 'left',
       width: 150
     },
     {
-      caption: ['Nhóm khách hàng', 'Customer group'],
-      field: 'customerName',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
       caption: ['Khung giờ tập', 'Practice time'],
-      field: 'genderName',
+      field: 'practiceTime',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
       caption: ['Số thẻ', 'Card number'],
-      field: 'note',
+      field: 'cardCode',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
       caption: ['Loại thẻ', 'Type card'],
-      field: 'note',
+      field: 'cardTypeName',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
       caption: ['Ngày bắt đầu', 'Start date'],
-      field: 'note',
-      type: 'text',
+      field: 'startDate',
+      type: 'date',
       align: 'left',
       width: 200
     },
     {
       caption: ['Ngày kết thúc ', 'End date'],
-      field: 'note',
+      field: 'endDate',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
-      caption: ['Thời gian tập', 'Start date'],
-      field: 'note',
+      caption: ['Số giờ tập', 'Start date'],
+      field: 'hourCard',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
-      caption: ['Thời gian thêm', 'Extra time'],
-      field: 'note',
+      caption: ['Số giờ thêm', 'Extra time'],
+      field: 'hourCardBonus',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
-      caption: ['Tổng thời gian', 'Total time'],
-      field: 'note',
+      caption: ['Tổng giờ thêm', 'Total time'],
+      field: 'totalHourCard',
       type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Lấy giá gốc?', 'Original price?'],
-      field: 'note',
-      type: 'bool',
       align: 'left',
       width: 200
     },
     {
       caption: ['Giá thẻ', 'Price'],
-      field: 'priceCard',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Phần trăm giảm', 'Percent reduction'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Số tiền giảm', 'Reduced amount'],
-      field: 'note',
-      type: 'text',
+      field: 'cardPrice',
+      type: 'price',
       align: 'left',
       width: 200
     },
     {
       caption: ['VAT', 'VAT'],
-      field: 'note',
+      field: 'percentVat',
       type: 'text',
       align: 'left',
       width: 200
     },
-    // {
-    //   caption: ['Số tiền VAT', 'VAT amount'],
-    //   field: 'note',
-    //   type: 'text',
-    //   align: 'left',
-    //   width: 200
-    // },
-    // {
-    //   caption: ['Dịch vụ', 'Service'],
-    //   field: 'note',
-    //   type: 'text',
-    //   align: 'left',
-    //   width: 200
-    // },
-    // {
-    //   caption: ['Số tiền dịch vụ', 'Service amount'],
-    //   field: 'note',
-    //   type: 'text',
-    //   align: 'left',
-    //   width: 200
-    // },
-    // {
-    //   caption: ['Số tiền khác', 'Other amount'],
-    //   field: 'note',
-    //   type: 'text',
-    //   align: 'left',
-    //   width: 200
-    // },
     {
       caption: ['Tổng cộng', 'Total'],
-      field: 'note',
+      field: 'totalPrice',
+      type: 'price',
+      align: 'left',
+      width: 200
+    },
+    {
+      caption: ['Phần trăm giảm', 'Percent reduction'],
+      field: 'percentDiscount',
+      type: 'text',
+      align: 'left',
+      width: 200
+    },
+    {
+      caption: ['Số tiền sau giảm giá', 'Reduced amount'],
+      field: 'afterDiscount',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
       caption: ['Số tiền phải trả', 'The money have to pay'],
-      field: 'note',
+      field: 'moneyHavePay',
       type: 'text',
       align: 'left',
       width: 200
     },
     {
       caption: ['Số tiền đẫ trả', 'The money have to pay'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
-      caption: ['Số tiền còn lại', 'The remaining amount'],
-      field: 'note',
+      field: 'paidMoney',
       type: 'text',
       align: 'left',
       width: 200
@@ -239,15 +190,8 @@ export class CardIssuanceComponent {
       width: 200
     },
     {
-      caption: ['Loại giao dịch', 'Transaction type'],
-      field: 'note',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
-    {
       caption: ['Tạo bởi', 'Create by'],
-      field: 'note',
+      field: 'createdByUsername',
       type: 'text',
       align: 'left',
       width: 200

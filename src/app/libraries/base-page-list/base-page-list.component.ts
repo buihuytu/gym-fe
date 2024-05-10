@@ -15,6 +15,7 @@ import { DialogService } from '../../services/dialog.service';
 import { HttpRequestService } from '../../services/http.service';
 import { api } from '../../constants/api/apiDefinitions';
 import { AlertService } from '../alert/alert.service';
+import { PreLoaderFullScreenComponent } from '../../layout/pre-loader-full-screen/pre-loader-full-screen.component';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: api;
   deleteIds?: api;
@@ -51,7 +52,8 @@ export interface IInOperator {
     CommonModule,
     TooltipModule,
     FormsModule,
-    PreLoaderComponent
+    PreLoaderComponent,
+    PreLoaderFullScreenComponent
   ],
   templateUrl: './base-page-list.component.html',
   styleUrl: './base-page-list.component.scss'
@@ -100,7 +102,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
 
   pageSize$ = new BehaviorSubject<number>(defaultPaging.take);
   pendingAction: any;
-
+  loadingDelete:boolean = false; 
   constructor(
     private basePageListService: BasePageListService,
     public appConfig: AppConfigService,
@@ -393,6 +395,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   }
   deleteObjectSelect() {
     if (!this.apiDefinition.deleteIds!) return;
+    this.loadingDelete = true;
     this.subscriptions.push(
       this.httpService.makePostRequest('create', this.apiDefinition.deleteIds!, { ids: this.selectedIds }).subscribe((x) => {
         if (x.ok && x.status === 200) {
@@ -409,6 +412,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         } else {
           // this.onNotOk200Response(x);
         }
+        this.loadingDelete = false;
       })
     )
   }

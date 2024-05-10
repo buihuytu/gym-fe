@@ -186,24 +186,35 @@
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-md-3 d-flex align-items-center">
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                                    <input type="checkbox" formControlName="isRealPrice"
-                                        class="custom-control-input form-control" id="isRealPrice">
-                                    <label class="custom-control-label" for="isRealPrice"></label>
-                                </div>
-                            </div>
-                            <label class="mb-2 title-control-edit" for="isRealPrice">Lấy giá gốc?</label>
-                        </div>
                         <div class="col-md-3">
                             <label for="cardPrice" class="mb-2 title-control-edit">Giá thẻ</label>
                             <div class="form-group">
-                                <input formControlName="cardPrice" id="cardPrice" type="text" [readOnly]="false"
+                                <input formControlName="cardPrice" id="cardPrice" type="text" readonly
                                     class="form-control input-default ">
 
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <label for="percentVat" class="mb-2 title-control-edit">% VAT</label>
+                            <div class="form-group">
+                                <input formControlName="percentVat" id="percentVat" type="number"
+                                    class="form-control input-default ">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="totalPrice" class="mb-2 title-control-edit">Tổng tiền</label>
+                            <div class="form-group">
+                                <input formControlName="totalPrice" id="totalPrice" type="text" readonly
+                                    class="form-control input-default ">
+                                @if (form.get('totalPrice')?.hasError('required') && !form.get('totalPrice')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="col-md-3">
                             <label for="percentDiscount" class="mb-2 title-control-edit">% giảm giá</label>
                             <div class="form-group">
@@ -217,29 +228,6 @@
                             <div class="form-group">
                                 <input formControlName="afterDiscount" id="afterDiscount" type="number"
                                     class="form-control input-default " readonly>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-3">
-                            <label for="percentVat" class="mb-2 title-control-edit">% VAT</label>
-                            <div class="form-group">
-                                <input formControlName="percentVat" id="percentVat" type="number"
-                                    class="form-control input-default ">
-
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="totalPrice" class="mb-2 title-control-edit required">Tổng cộng</label>
-                            <div class="form-group">
-                                <input formControlName="totalPrice" id="totalPrice" type="text" readonly
-                                    class="form-control input-default ">
-                                @if (form.get('totalPrice')?.hasError('required') && !form.get('totalPrice')?.untouched) {
-                                <span class="input-error">
-                                    Bắt buộc chọn
-                                </span>
-                                }
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -255,7 +243,6 @@
                             <div class="form-group">
                                 <input formControlName="paidMoney" id="paidMoney" type="number"
                                     class="form-control input-default ">
-
                             </div>
                         </div>
                     </div>

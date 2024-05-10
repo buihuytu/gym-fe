@@ -16,7 +16,7 @@ export class DropdownComponent implements BaseComponent, OnChanges {
   @Input() getByIdOptions!: any;
   @Input() disableSelect: boolean= false;
   @Output() valueChange = new EventEmitter;
-  
+
   subscriptions: Subscription[] =[];
   data: any[]=[];
   dataShow: any[]=[];
@@ -33,8 +33,16 @@ export class DropdownComponent implements BaseComponent, OnChanges {
     if (changes['getByIdOptions']) {
       this.selectedId = changes['getByIdOptions'].currentValue;
     }
+    if(changes['apiGetOptions']){
+      if(!changes['apiGetOptions'].firstChange) {
+        this.CallData();
+      }
+    }
   }
   ngAfterViewInit(): void {
+    this.CallData();
+  }
+  CallData(){
     setTimeout(() => {
       if(!!this.apiGetOptions && this.apiGetOptions !== ''){
         this.subscriptions.push(

@@ -86,24 +86,40 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
       note: [null],
     })
     this.crud = {
-      c: api.PER_CUSTOMER_CREATE,
-      r: api.PER_CUSTOMER_READ,
-      u: api.PER_CUSTOMER_UPDATE,
-      d: api.PER_CUSTOMER_DELETE_IDS,
+      c: api.CARD_ISSUANCE_CREATE,
+      r: api.CARD_ISSUANCE_READ,
+      u: api.CARD_ISSUANCE_UPDATE,
+      d: api.CARD_ISSUANCE_DELETE_IDS,
     }
     this.onFormCreated()
   }
 
   onFormCreated() {
+
     this.subscriptions.push(
+      this.form.get('id')?.valueChanges.subscribe(x => {
+        this.getListCardOptions$ =this.getListCardOptions$+`?id=${this.form.get('cardId')?.value}`;
+      })!,
       this.form.get('cardId')?.valueChanges.subscribe(x => {
         this.getInfoCard(x)
       })!,
       this.form.get('hourCard')?.valueChanges.subscribe(x => {
-        this.calculateTotal()
+        this.calculateTotalHour()
       })!,
       this.form.get('hourCardBonus')?.valueChanges.subscribe(x => {
-        this.calculateTotal()
+        this.calculateTotalHour()
+      })!,
+      this.form.get('cardPrice')?.valueChanges.subscribe(x => {
+        this.calculateTotalPrice()
+      })!,
+      this.form.get('percentVat')?.valueChanges.subscribe(x => {
+        this.calculateTotalPrice()
+      })!,
+      this.form.get('percentDiscount')?.valueChanges.subscribe(x => {
+        this.calculateAfterDiscount()
+      })!,
+      this.form.get('totalPrice')?.valueChanges.subscribe(x => {
+        this.calculateAfterDiscount()
       })!,
     )
   }
@@ -155,10 +171,23 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
   //       });
   //     });
   // }
-  calculateTotal() {
+  calculateTotalHour() {
     const hourCard = this.form.get('hourCard')?.value ?? 0;
     const hourCardBonus = this.form.get('hourCardBonus')?.value ?? 0;
     this.form.get('totalHourCard')?.setValue(hourCard + hourCardBonus);
+  }
+  calculateTotalPrice() {
+    var cardPrice = this.form.get('cardPrice')?.value ?? 0;
+    var percentVat = this.form.get('percentVat')?.value ?? 0;
+    cardPrice += cardPrice * percentVat/100;
+    this.form.get('totalPrice')?.setValue(cardPrice);
+  }
+  calculateAfterDiscount() {
+    var totalPrice = this.form.get('totalPrice')?.value ?? 0;
+    var percentDiscount = this.form.get('percentDiscount')?.value ?? 0;
+    var totalDis =totalPrice - totalPrice * percentDiscount/100;
+    this.form.get('afterDiscount')?.setValue(totalDis);
+    this.form.get('moneyHavePay')?.setValue(totalDis);
   }
   ngOnInit(): void {
     // this.getListOtherListTypes();
@@ -180,7 +209,6 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
     this.form.get(e)?.markAllAsTouched();
   }
   selectedDataChange(event: any, e: string, m: string) {
-    debugger
     this.form.get(e)?.setValue(event[m]);
     this.form.get(e)?.markAllAsTouched();
   }

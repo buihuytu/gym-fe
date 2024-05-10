@@ -201,6 +201,7 @@ export class BaseEmployeeSearchComponent implements BaseComponent,OnChanges {
   }
   onUnSelectedData(){
     this.selectedDataChange.emit(null);
+    this.selectedIdChange.emit(null);
     this.selectedData = null;
   }
 }
