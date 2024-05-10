@@ -26,7 +26,7 @@ export const BASE_BUTTONS: ICoreButtonVNS[] = [
     {
         code: EnumBaseButton.ACTIVATE,
         iconClass: 'flaticon-151-check',
-        caption: 'Thêm mới',
+        caption: 'Áp dụng',
         styleClass: 'btn btn-primary',
         order: 3,
     },

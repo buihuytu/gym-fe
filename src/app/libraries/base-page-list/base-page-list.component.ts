@@ -66,7 +66,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() outerParam$!: BehaviorSubject<any>;
   @Input() buttons!: EnumBaseButton[];
   @Input() fixedPageSize!: number;
-  @Input() left!: TemplateRef<any>|null;
+  @Input() left!: TemplateRef<any> | null;
   @Input() hideHeader!: boolean;
   @Input() isControl!: boolean;
   @Input() enableDoubleClick: boolean = true;
@@ -102,7 +102,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
 
   pageSize$ = new BehaviorSubject<number>(defaultPaging.take);
   pendingAction: any;
-  loadingDelete:boolean = false; 
+  loadingDelete: boolean = false;
   constructor(
     private basePageListService: BasePageListService,
     public appConfig: AppConfigService,
@@ -192,6 +192,12 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
           case EnumBaseButton.DELETE:
             this.deleteObjectSelect();
             break;
+          case EnumBaseButton.ACTIVATE:
+            this.toggleActiveObjectSelect(true);
+            break;
+          case EnumBaseButton.INACTIVATE:
+            this.toggleActiveObjectSelect(false);
+            break;
           default:
             break;
         }
@@ -248,10 +254,24 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         );
         break;
       case EnumBaseButton.ACTIVATE:
-        this.navigationLink = `/cms/test/${btoa('0')}`;
+        this.pendingAction = EnumBaseButton.ACTIVATE;
+        if (this.selectedIds.length === 0) return this.alertService.error('Chưa chọn bản ghi nào');
+        this.dialogService.busy = true;
+        this.dialogService.showConfirmDialog$.next(true);
+        this.dialogService.title$.next("XÁC NHẬN");
+        this.dialogService.body$.next("Bạn có chắc chắn muốn áp dụng những đối tượng đã chọn?");
+        this.dialogService.okButtonText$.next("Đồng ý");
+        this.dialogService.cancelButtonText$.next("Quay lại");
         break;
       case EnumBaseButton.INACTIVATE:
-        this.navigationLink = `/cms/test/${btoa('0')}`;
+        this.pendingAction = EnumBaseButton.INACTIVATE;
+        if (this.selectedIds.length === 0) return this.alertService.error('Chưa chọn bản ghi nào');
+        this.dialogService.busy = true;
+        this.dialogService.showConfirmDialog$.next(true);
+        this.dialogService.title$.next("XÁC NHẬN");
+        this.dialogService.body$.next("Bạn có chắc chắn muốn ngừng áp dụng những đối tượng đã chọn?");
+        this.dialogService.okButtonText$.next("Đồng ý");
+        this.dialogService.cancelButtonText$.next("Quay lại");
         break;
       case EnumBaseButton.DELETE:
         this.pendingAction = EnumBaseButton.DELETE;
@@ -264,7 +284,14 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         this.dialogService.cancelButtonText$.next("Quay lại");
         break;
       case EnumBaseButton.APPROVE:
-        this.navigationLink = `/cms/test/${btoa('0')}`;
+        this.pendingAction = EnumBaseButton.APPROVE;
+        if (this.selectedIds.length === 0) return this.alertService.error('Chưa chọn bản ghi nào');
+        this.dialogService.busy = true;
+        this.dialogService.showConfirmDialog$.next(true);
+        this.dialogService.title$.next("XÁC NHẬN");
+        this.dialogService.body$.next("Bạn có chắc chắn muốn áp dụng những đối tượng đã chọn?");
+        this.dialogService.okButtonText$.next("Đồng ý");
+        this.dialogService.cancelButtonText$.next("Quay lại");
         break;
       case EnumBaseButton.EXCEL:
         const urlExcel = this.apiDefinition.exportExcel;
@@ -340,7 +367,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     } else if (event.detail === 2) {
       if (!!this.isControl) { }
       else {
-        if(!!this.enableDoubleClick){
+        if (!!this.enableDoubleClick) {
           this.router.navigate(
             [btoa(row.id)],
             {
@@ -394,7 +421,13 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     return result;
   }
   deleteObjectSelect() {
-    if (!this.apiDefinition.deleteIds!) return;
+    if (!this.apiDefinition.deleteIds!){
+      if(isDevMode()) {
+        return this.alertService.warn('API NOT FOUND')
+      }else{
+        return;
+      }
+    }
     this.loadingDelete = true;
     this.subscriptions.push(
       this.httpService.makePostRequest('create', this.apiDefinition.deleteIds!, { ids: this.selectedIds }).subscribe((x) => {
@@ -402,6 +435,35 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
           const body = x.body;
           if (body.statusCode === 200) {
             this.alertService.success('Xóa thành công');
+            this.getDataForTable();
+            this.selectedIds = [];
+            this.checkingModel = [];
+            this.headerCheckboxState = false;
+            if (isDevMode()) {
+            }
+          }
+        } else {
+          // this.onNotOk200Response(x);
+        }
+        this.loadingDelete = false;
+      })
+    )
+  }
+  toggleActiveObjectSelect(value: boolean) {
+    if (!this.apiDefinition.toggleActiveIds!){
+      if(isDevMode()) {
+        return this.alertService.warn('API NOT FOUND')
+      }else{
+        return;
+      }
+    }
+    this.loadingDelete = true;
+    this.subscriptions.push(
+      this.httpService.makePostRequest('active', this.apiDefinition.toggleActiveIds!, { ids: this.selectedIds, valueToBind: value }).subscribe((x) => {
+        if (x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            this.alertService.success(body.messageCode);
             this.getDataForTable();
             this.selectedIds = [];
             this.checkingModel = [];

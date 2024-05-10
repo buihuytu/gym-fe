@@ -42,6 +42,8 @@ export class SysOtherListComponent implements BaseComponent {
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 
     EnumBaseButton.EDIT, 
+    EnumBaseButton.ACTIVATE, 
+    EnumBaseButton.INACTIVATE,  
     EnumBaseButton.APPROVE,
     EnumBaseButton.EXCEL,
     EnumBaseButton.PDF,
