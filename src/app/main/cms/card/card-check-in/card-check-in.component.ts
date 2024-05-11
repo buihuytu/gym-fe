@@ -68,7 +68,29 @@ export class CardCheckInComponent {
       width: 150
     },
     {
-      caption: ['Giờ vào', 'Hour In'],
+      caption: ['Ca tập', 'Shift'],
+      field: 'shiftName',
+      type: 'text',
+      align: 'left',
+      width: 150
+    },
+    {
+      caption: ['Giờ vào gốc', 'Hour Shift In'],
+      field: 'timeStartShiftString',
+      type: 'text',
+      align: 'left',
+      width: 150
+    },
+    
+    {
+      caption: ['Giờ ra gốc', 'Hour Shift Out'],
+      field: 'timeEndShiftString',
+      type: 'text',
+      align: 'left',
+      width: 200
+    },
+    {
+      caption: ['Giờ vào thực tế', 'Hour In'],
       field: 'timeStartString',
       type: 'text',
       align: 'left',
@@ -76,7 +98,7 @@ export class CardCheckInComponent {
     },
     
     {
-      caption: ['Giờ ra', 'Hour Out'],
+      caption: ['Giờ ra thực tế', 'Hour Out'],
       field: 'timeEndString',
       type: 'text',
       align: 'left',

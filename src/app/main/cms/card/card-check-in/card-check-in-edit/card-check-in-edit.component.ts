@@ -29,6 +29,7 @@ export class CardCheckInEditComponent extends BaseEditComponent implements OnIni
   title: string[] = ['Thông tin check in', 'Information card'];
 
   modalMode: boolean = true;//for modal and style modal
+  isAlertnoti: boolean = true;//for notification additional
   crud!: ICorePageEditCRUD;
 
   otherListTypeOptions!: any[];

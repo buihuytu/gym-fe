@@ -44,6 +44,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
   @Input() apiDefinition!: ICorePageListApiDefinition;
   @Input() crud!: ICorePageEditCRUD;
   @Input() isModalMode!: boolean;
+  @Input() isAlertnoti!: boolean;
 
   @Output() onInitialValueStringReady = new EventEmitter<string>();
 
@@ -151,6 +152,19 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
       this.httpService.makePostRequest('create', this.crud.c!, this.payLoad).subscribe((x) => {
         if (x.ok && x.status === 200) {
           const body = x.body;
+
+          if(this.isAlertnoti == true) {
+            if(body.statusCode == 200){
+              this.alertService.success(body.messageCode);
+            }
+            else if(body.statusCode == 400){
+              this.alertService.info(body.messageCode);
+            }
+            else{
+              this.alertService.error(body.messageCode);
+            }
+          }
+
           if (body.statusCode === 200) {
             if (isDevMode()) {
             }
@@ -159,20 +173,36 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             );
             this.loading = false;
             this.ignoreDeactivate = true;
+
             this.alertService.success('Thêm mới thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
-        } else {
+        } 
+        else {
           this.loading = false;
           this.alertService.error(x.message);
           this.onNotOk200Response(x);
         }
+        this.loading = false;
       })
 
     } else {
       this.httpService.makePostRequest('update', this.crud.u!, this.payLoad).subscribe((x) => {
         if (x.ok && x.status === 200) {
           const body = x.body;
+
+          if(this.isAlertnoti == true) {
+            if(body.statusCode == 200){
+              this.alertService.success(body.messageCode);
+            }
+            else if(body.statusCode == 400){
+              this.alertService.info(body.messageCode);
+            }
+            else{
+              this.alertService.error(body.messageCode);
+            }
+          }
+
           if (body.statusCode === 200) {
             if (isDevMode()) {
             }
@@ -185,9 +215,11 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             this.alertService.success('Cập nhật thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
-        } else {
+        } 
+        else {
           this.onNotOk200Response(x);
         }
+        this.loading = false;
       })
     }
   }
