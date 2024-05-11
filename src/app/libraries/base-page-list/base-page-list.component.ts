@@ -442,6 +442,9 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
             if (isDevMode()) {
             }
           }
+          else{
+            this.alertService.error(body.messageCode);
+          }
         } else {
           // this.onNotOk200Response(x);
         }
@@ -470,6 +473,9 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
             this.headerCheckboxState = false;
             if (isDevMode()) {
             }
+          }
+          else{
+            this.alertService.error(body.messageCode);
           }
         } else {
           // this.onNotOk200Response(x);
