@@ -136,7 +136,7 @@ export class CardIssuanceComponent {
     {
       caption: ['Giá thẻ', 'Price'],
       field: 'cardPrice',
-      type: 'price',
+      type: 'currency',
       align: 'left',
       width: 200
     },
@@ -150,7 +150,7 @@ export class CardIssuanceComponent {
     {
       caption: ['Tổng cộng', 'Total'],
       field: 'totalPrice',
-      type: 'price',
+      type: 'currency',
       align: 'left',
       width: 200
     },
@@ -164,21 +164,21 @@ export class CardIssuanceComponent {
     {
       caption: ['Số tiền sau giảm giá', 'Reduced amount'],
       field: 'afterDiscount',
-      type: 'text',
+      type: 'currency',
       align: 'left',
       width: 200
     },
     {
       caption: ['Số tiền phải trả', 'The money have to pay'],
       field: 'moneyHavePay',
-      type: 'text',
+      type: 'currency',
       align: 'left',
       width: 200
     },
     {
       caption: ['Số tiền đẫ trả', 'The money have to pay'],
       field: 'paidMoney',
-      type: 'text',
+      type: 'currency',
       align: 'left',
       width: 200
     },

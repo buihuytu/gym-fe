@@ -27,7 +27,7 @@ export class CardCheckInComponent {
     deleteIds:api.CARD_CHECK_IN_DELETE_IDS,
     toggleActiveIds: api.CARD_CHECK_IN_TOGGLE_ACTIVE
   };
-  title: string[] = ['Thông tin thẻ', 'Informasion card'];
+  title: string[] = ['Thông tin check-in', 'Check-in information'];
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];

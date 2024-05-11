@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { Subscription, forkJoin } from 'rxjs';
+import { Subscription, distinctUntilChanged, filter, forkJoin } from 'rxjs';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { CheckListComponent } from '../../../../../libraries/base-checklist/base-checklist.component';
 import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
@@ -28,7 +28,7 @@ import { BaseCustomerSearchComponent } from '../../../../../libraries/base-custo
   templateUrl: './card-issuance-edit.component.html',
   styleUrl: './card-issuance-edit.component.scss'
 })
-export class CardIssuanceEditComponent extends BaseEditComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CardIssuanceEditComponent extends BaseEditComponent implements OnInit,OnChanges, AfterViewInit, OnDestroy {
   title: string[] = ['Cấp thẻ', 'Card issuance'];
 
   modalMode: boolean = false;//for modal and style modal
@@ -50,6 +50,7 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
   getBankOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'BANK';
   geCusStatusOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'CUS_STATUS';
 
+  isFirst: boolean =true;
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -93,15 +94,21 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
     }
     this.onFormCreated()
   }
+  ngOnChanges(changes: SimpleChanges): void {
+  }
 
   onFormCreated() {
-
     this.subscriptions.push(
       this.form.get('id')?.valueChanges.subscribe(x => {
         this.getListCardOptions$ =this.getListCardOptions$+`?id=${this.form.get('cardId')?.value}`;
       })!,
-      this.form.get('cardId')?.valueChanges.subscribe(x => {
-        this.getInfoCard(x)
+      this.form.get('cardId')?.valueChanges.pipe(distinctUntilChanged())
+      .subscribe(x => {
+        if(this.isFirst) {
+          this.isFirst = false;
+        }else{
+          this.getInfoCard(x)
+        }
       })!,
       this.form.get('hourCard')?.valueChanges.subscribe(x => {
         this.calculateTotalHour()
