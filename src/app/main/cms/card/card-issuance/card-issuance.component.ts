@@ -108,7 +108,7 @@ export class CardIssuanceComponent {
     {
       caption: ['Ngày kết thúc ', 'End date'],
       field: 'endDate',
-      type: 'text',
+      type: 'date',
       align: 'left',
       width: 200
     },

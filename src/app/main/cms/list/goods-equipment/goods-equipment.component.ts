@@ -58,14 +58,14 @@ export class GoodsEquipmentComponent implements BaseComponent {
       field: 'status',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Mã thiết bị', 'Code'],
       field: 'code',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 150
     },
     {
       caption: ['Tên thiết bị', 'Name'],
@@ -79,56 +79,56 @@ export class GoodsEquipmentComponent implements BaseComponent {
       field: 'equipmentTypeName',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 200
     },
     {
       caption: ['Nhà sản xuất', 'Manufacturer'],
       field: 'manufacturer',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 300
     },
     {
       caption: ['Ngày mua', 'PurchaseDate'],
       field: 'purchaseDate',
-      type: 'text',
+      type: 'date',
       align: 'left',
-      width: 400
+      width: 200
     },
     {
       caption: ['Ngày hết bảo hành', 'Warranty Expiry Date'],
-      field: 'warrantyExpiryDate',
-      type: 'text',
+      field: 'warrandatetyExpiryDate',
+      type: 'date',
       align: 'left',
-      width: 400
+      width: 200
     },
     {
       caption: ['Giá tiền', 'Cost'],
       field: 'cost',
-      type: 'text',
+      type: 'currency',
       align: 'left',
-      width: 400
+      width: 200
     },
     {
       caption: ['Vị trí đặt', 'Address'],
       field: 'address',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 200
     },
     {
       caption: ['Người quản lý', 'Manager'],
       field: 'managerName',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 200
     },
     {
       caption: ['Ghi chú', 'Note'],
       field: 'note',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 200
     },
   ]
 
