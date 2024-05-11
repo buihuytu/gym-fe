@@ -222,6 +222,7 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
         this.loading = false;
       })
     }
+    this.loading = false;
   }
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });

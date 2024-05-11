@@ -7,6 +7,7 @@ import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { DialogService } from '../../../../../services/dialog.service';
 import { Subscription } from 'rxjs';
+import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
 
 @Component({
   selector: 'app-goods-equipment-edit',
@@ -16,7 +17,8 @@ import { Subscription } from 'rxjs';
     FormsModule, 
     ReactiveFormsModule,
     BasePageEditComponent,
-    DropdownComponent
+    DropdownComponent,
+    BaseEmployeeSearchComponent,
   ],
   templateUrl: './goods-equipment-edit.component.html',
   styleUrl: './goods-equipment-edit.component.css'
@@ -75,6 +77,4 @@ export class GoodsEquipmentEditComponent extends BaseEditComponent implements On
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
   }
-  
-
 }

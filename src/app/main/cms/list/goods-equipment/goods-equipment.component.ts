@@ -175,6 +175,9 @@ export class GoodsEquipmentComponent implements BaseComponent {
   }
 
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.getListEquipmentTypes()
+    })
   }
 
   ngOnInit(): void {

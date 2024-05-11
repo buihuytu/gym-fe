@@ -33,7 +33,7 @@
                         <div class="col-md-6">
                             <label for="code" class="mb-2 title-control-edit required">Mã thiết bị</label>
                             <div class="form-group">
-                                <input formControlName="code" id="code" type="text" class="form-control input-default" placeholder="">
+                                <input formControlName="code" id="code" type="text" class="form-control input-default" placeholder="Mã thiết bị sẽ được tự phát sinh" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -91,13 +91,12 @@
                         <div class="col-md-6">
                             <label for="managerId" class="mb-2 title-control-edit required">Người quản lý</label>
                             <div class="form-group">
-                                <input formControlName="managerId" id="managerId" type="phone"
-                                    class="form-control input-default " placeholder="">
-                                @if (form.get('managerId')?.hasError('required') && !form.get('managerId')?.untouched) {
-                                <span class="input-error">
-                                    Bắt buộc chọn
-                                </span>
-                                }
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'managerId')"
+                                    [hiddenLeft]="true"
+                                    [constValue]="10040"
+                                    [getByIdOptions]="form.get('managerId')?.value" [top]="-19" [isModalMode]="false"
+                                    [left]="-335">
+                                </base-employee-control>
                             </div>
                         </div>
                         <div class="col-md-6">
