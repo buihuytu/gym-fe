@@ -20,6 +20,7 @@ export enum api{
     SYS_OTHER_LIST_READ = '/api/SysOtherList/GetById?id=',
     SYS_OTHER_LIST_UPDATE = '/api/SysOtherList/Update',
     SYS_OTHER_LIST_DELETE_IDS = '/api/SysOtherList/DeleteIds',
+    SYS_OTHER_LIST_EXPORT_EXCEL = '/api/SysOtherList/ExportExcelSysOtherList',
     SYS_OTHER_LIST_GET_LIST_BY_GROUP = '/api/SysOtherList/GetOtherListByGroup?code=',
     SYS_OTHER_LIST_GET_LIST_BY_CODE = '/api/SysOtherList/GetListByCode?typeCode=',
     SYS_OTHER_LIST_GET_LIST_BY_TYPE = '/api/SysOtherList/GetListByType?type=',
