@@ -28,7 +28,7 @@ import { BaseCustomerSearchComponent } from '../../../../../libraries/base-custo
   templateUrl: './card-issuance-edit.component.html',
   styleUrl: './card-issuance-edit.component.scss'
 })
-export class CardIssuanceEditComponent extends BaseEditComponent implements OnInit,OnChanges, AfterViewInit, OnDestroy {
+export class CardIssuanceEditComponent extends BaseEditComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   title: string[] = ['Cấp thẻ', 'Card issuance'];
 
   modalMode: boolean = false;//for modal and style modal
@@ -44,13 +44,13 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
   subscriptions: Subscription[] = [];
 
   getListCardOptions$: string = api.CARD_INFO_GET_ALL_CARD_VALID;
-  getGenderOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'GENDER';
+  getListLockerOptions$!: string;
   getNativeIdOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'NATIVE';
   getReligionOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'RELIGION';
   getBankOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'BANK';
   geCusStatusOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE + 'CUS_STATUS';
 
-  isFirst: boolean =true;
+  isFirst: boolean = true;
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -100,15 +100,17 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
   onFormCreated() {
     this.subscriptions.push(
       this.form.get('id')?.valueChanges.subscribe(x => {
-        this.getListCardOptions$ =this.getListCardOptions$+`?id=${this.form.get('cardId')?.value}`;
+        this.getListCardOptions$ = this.getListCardOptions$ + `?id=${this.form.get('cardId')?.value}`;
+        this.getLocker();
       })!,
+
       this.form.get('cardId')?.valueChanges.pipe(distinctUntilChanged())
-      .subscribe(x => {
-        if(this.isFirst) {
-          this.isFirst = false;
-        }else{
-          this.getInfoCard(x)
-        }
+        .subscribe(x => {
+          this.getInfoCard(x);
+          this.getLocker();
+        })!,
+      this.form.get('customerId')?.valueChanges.pipe(distinctUntilChanged()).subscribe(x => {
+        this.getLocker();
       })!,
       this.form.get('hourCard')?.valueChanges.subscribe(x => {
         this.calculateTotalHour()
@@ -128,6 +130,16 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
       this.form.get('totalPrice')?.valueChanges.subscribe(x => {
         this.calculateAfterDiscount()
       })!,
+      this.form.get('wardrobe')?.valueChanges.subscribe(x => {
+        if(x != true){
+          this.form.get('lockerId')?.setValue(null)
+        }
+      })!,
+      this.form.get('isHavePt')?.valueChanges.subscribe(x => {
+        if(x != true){
+          this.form.get('perPtId')?.setValue(null)
+        }
+      })!,
     )
   }
   getInfoCard(id: any) {
@@ -139,45 +151,16 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
       })
     )
   }
-  // getListOtherListTypes() {
-  //   forkJoin(this.apiParams.map(param => this.httpService.makeGetRequest('', api.SYS_OTHER_LIST_GET_LIST_BY_GROUP + param)))
-  //     .subscribe(responses => {
-  //       responses.forEach((item, index) => {
-  //         if (item.body.statusCode == 200 && item.ok == true) {
-  //           const options: { value: number | null; text: string; }[] = [];
-  //           item.body.innerBody.map((g: any) => {
-  //             options.push({
-  //               value: g.id,
-  //               text: g.name
-  //             });
-  //           });
-  //           const param = this.apiParams[index];
-  //           switch (param) {
-  //             case 'GENDER':
-  //               this.genderOptions = options;
-  //               break;
-  //             case 'CUSTOMER_GROUP':
-  //               this.customerGroupOptions = options;
-  //               break;
-  //             case 'NATIVE':
-  //               this.nativeOptions = options;
-  //               break;
-  //             case 'RELIGION':
-  //               this.religionOptions = options;
-  //               break;
-  //             case 'BANK':
-  //               this.bankOptions = options;
-  //               break;
-  //             case 'BANK_BRANCH':
-  //               this.bankBranchOptions = options;
-  //               break;
-  //             default:
-  //               break;
-  //           }
-  //         }
-  //       });
-  //     });
-  // }
+  getLocker() {
+    var cardId = this.form.get('cardId')?.value;
+    var customerId = this.form.get('customerId')?.value
+    if (!customerId || !cardId) {
+    }
+    else {
+      var lockerId = this.form.get('lockerId')?.value
+      this.getListLockerOptions$ = api.GOODS_LOCKER_GET_ALL_LOCKER_VALID + `?cardId=${cardId}&cusId=${customerId}&id=${lockerId}`;
+    }
+  }
   calculateTotalHour() {
     const hourCard = this.form.get('hourCard')?.value ?? 0;
     const hourCardBonus = this.form.get('hourCardBonus')?.value ?? 0;
@@ -186,13 +169,13 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
   calculateTotalPrice() {
     var cardPrice = this.form.get('cardPrice')?.value ?? 0;
     var percentVat = this.form.get('percentVat')?.value ?? 0;
-    cardPrice += cardPrice * percentVat/100;
+    cardPrice += cardPrice * percentVat / 100;
     this.form.get('totalPrice')?.setValue(cardPrice);
   }
   calculateAfterDiscount() {
     var totalPrice = this.form.get('totalPrice')?.value ?? 0;
     var percentDiscount = this.form.get('percentDiscount')?.value ?? 0;
-    var totalDis =totalPrice - totalPrice * percentDiscount/100;
+    var totalDis = totalPrice - totalPrice * percentDiscount / 100;
     this.form.get('afterDiscount')?.setValue(totalDis);
     this.form.get('moneyHavePay')?.setValue(totalDis);
   }
@@ -201,6 +184,9 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
   }
 
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      console.log(this.form.get('id')?.value);
+    })
   }
 
   onFormReinit(e: string): void {

@@ -141,6 +141,7 @@ export enum api{
     GOODS_LOCKER_UPDATE = '/api/GoodsLocker/Update',
     GOODS_LOCKER_DELETE_IDS = '/api/GoodsLocker/DeleteIds',
     GOODS_LOCKER_TOGGLE_ACTIVE = '/api/GoodsLocker/ToggleActiveIds',
+    GOODS_LOCKER_GET_ALL_LOCKER_VALID = '/api/GoodsLocker/GetAllLockerValid',
 
     //PER_CUSTOMER
     CARD_ISSUANCE_QUERY_LIST = '/api/CardIssuance/QueryList',
