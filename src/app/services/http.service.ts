@@ -25,7 +25,7 @@ const cacheHeaders = new HttpHeaders({
 export class HttpRequestService {
 
   constructor(private http: HttpClient,
-    public appConfigService: AppConfigService ) {
+    public appConfigService: AppConfigService) {
   }
 
   makePostRequest(name: string, relativeApiEndPoint: string, payload: any): Observable<any> {
@@ -59,5 +59,16 @@ export class HttpRequestService {
         last(), // :void return last (completed) message to caller
         // catchError(this.handleError(name))
       )
+  }
+  makeDownloadRequest(name: string, relativeApiEndPoint: string, payload: any): Observable<any> {
+    const token = localStorage.getItem('gym_token');
+    const header1s = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': 'true',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.post(this.appConfigService.BASE_URL + relativeApiEndPoint, payload, {
+      headers: header1s, observe: 'response', reportProgress: true, withCredentials: true,responseType: 'blob'
+    })
   }
 }

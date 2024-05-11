@@ -155,7 +155,7 @@
                             <div class="form-group">
                                 <app-dropdown (valueChange)="onDropdownSelected($event, 'lockerId')"
                                     [disableSelect]="!form.get('wardrobe')?.value"
-                                    [getByIdOptions]="form.get('lockerId')?.value" [apiGetOptions]="getGenderOptions$">
+                                    [getByIdOptions]="form.get('lockerId')?.value" [apiGetOptions]="getListLockerOptions$">
                                 </app-dropdown>
                             </div>
                         </div>

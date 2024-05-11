@@ -16,6 +16,7 @@ import { HttpRequestService } from '../../services/http.service';
 import { api } from '../../constants/api/apiDefinitions';
 import { AlertService } from '../alert/alert.service';
 import { PreLoaderFullScreenComponent } from '../../layout/pre-loader-full-screen/pre-loader-full-screen.component';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 export interface ICorePageListApiDefinition {
   queryListRelativePath: api;
   deleteIds?: api;
@@ -111,7 +112,8 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     private route: ActivatedRoute,
     public dialogService: DialogService,
     private httpService: HttpRequestService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private http: HttpClient,
   ) {
     this.language = this.appConfig.LANGUAGE;
   }
@@ -297,12 +299,34 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
         const urlExcel = this.apiDefinition.exportExcel;
         if (!urlExcel) return this.alertService.warn('Không tìm thấy API');;
         this.subscriptions.push(
-          this.basePageListService.exportExcel(urlExcel, { ids: this.selectedIds }).pipe().subscribe(x => {
-            if (!!x.ok && x.status === 200) {
-              const body = x.body;
-              if (body.statusCode === 200) {
-              }
-              this.loading = false;
+          this.basePageListService.exportExcel(urlExcel).subscribe((x: HttpResponse<Blob>) => {
+            const body = x.body;
+            if (body?.type === 'application/octet-stream') {
+              const downloadUrl = URL.createObjectURL(body);
+              let binaryData = [];
+              binaryData.push(body);
+              const link = document.createElement('a');
+              link.href = window.URL.createObjectURL(
+                new Blob(binaryData, { type: "blob" }));
+              link.setAttribute('download', this.title[0]+'.xlsx');
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(downloadUrl);
+            }
+            else {
+              const reader = new FileReader();
+              reader.onload = () => {
+                const jsonBody = reader.result as string;
+                const data = JSON.parse(jsonBody);
+                if (data.statusCode == 200) {
+                  this.alertService.success(data.messageCode);
+                }
+                else {
+                  this.alertService.error(data.messageCode);
+                }
+              };
+              // reader.readAsText(x);
             }
           })
         )
@@ -442,6 +466,9 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
             if (isDevMode()) {
             }
           }
+          else{
+            this.alertService.error(body.messageCode);
+          }
         } else {
           // this.onNotOk200Response(x);
         }
@@ -470,6 +497,9 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
             this.headerCheckboxState = false;
             if (isDevMode()) {
             }
+          }
+          else{
+            this.alertService.error(body.messageCode);
           }
         } else {
           // this.onNotOk200Response(x);

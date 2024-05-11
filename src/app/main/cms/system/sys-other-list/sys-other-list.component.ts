@@ -31,6 +31,7 @@ export class SysOtherListComponent implements BaseComponent {
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.SYS_OTHER_LIST_QUERY_LIST,
     deleteIds:api.SYS_OTHER_LIST_DELETE_IDS,
+    exportExcel:  api.SYS_OTHER_LIST_EXPORT_EXCEL
   };
   title: string[] = ['Tham số hệ thống', 'System parameter'];
   currentIdType!:any;

@@ -33,15 +33,15 @@ export class BasePageListService {
         );
     }
     exportExcel(url: string,request?: any): Observable<any> {
-        return this.httpService.makePostRequest(
-            'unapproveIds',
+        return this.httpService.makeDownloadRequest(
+            'excel',
             url,
             request
         );
     }
     exportPdf(url: string,request?: any): Observable<any> {
-        return this.httpService.makePostRequest(
-            'unapproveIds',
+        return this.httpService.makeDownloadRequest(
+            'pdf',
             url,
             request
         );
