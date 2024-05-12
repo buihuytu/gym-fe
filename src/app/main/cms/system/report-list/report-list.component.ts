@@ -44,6 +44,7 @@ export class ReportListComponent {
 
   monthControl!:any;
   dayValidControl!:any;
+
   columns: ICoreTableColumnItem[] = [
     {
       caption: ['id', 'id'],
@@ -71,7 +72,6 @@ export class ReportListComponent {
             const data = body.innerBody;
             this.otherListTypeOptions = data;
             this.otherListTypeOptionShow = data;
-            console.log(data);
           }
         }
       })
@@ -111,7 +111,8 @@ export class ReportListComponent {
   }
   buttonHeaderClick(e:any){
     if(e === EnumBaseButton.PRINT){
-      console.log('first')
+      console.log(this.monthControl);
+      console.log(this.dayValidControl);
     }
   }
 }
