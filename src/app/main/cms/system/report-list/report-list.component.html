@@ -44,14 +44,14 @@
         <div class="row p-3">
             <div class="col-md-12">
                 <div class="row row-control justify-content-between">
-                    <div class="col-md-6"  [class.d-none]="currentCodeType !='BIRTH_DATE_IN_MONTH_REPORT'">
+                    <div class="col-md-6"  [class.d-none]="currentCodeType !='PKG_BIRTH_DATE_IN_MONTH_REPORT'">
                         <label for="purchaseDate" class="mb-2 title-control-edit required">Tháng</label>
                         <div class="form-group">
                             <input [(ngModel)]="monthControl" id="purchaseDate" type="month"
                                 class="form-control input-default " placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6"  [class.d-none]="currentCodeType !='CARDS_ABOUT_TO_EXPIRE_REPORT'">
+                    <div class="col-md-6"  [class.d-none]="currentCodeType !='PKG_CARDS_ABOUT_TO_EXPIRE_REPORT'">
                         <label for="purchaseDate" class="mb-2 title-control-edit required">Còn lại số ngày</label>
                         <div class="form-group">
                             <input [(ngModel)]="dayValidControl" id="purchaseDate" type="number"
