@@ -144,7 +144,7 @@ export class ReportListComponent {
             const link = document.createElement('a');
             link.href = window.URL.createObjectURL(
               new Blob(binaryData, { type: "blob" }));
-            link.setAttribute('download', this.title[0]+'.xlsx');
+            link.setAttribute('download', this.currentName+'.xlsx');
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
