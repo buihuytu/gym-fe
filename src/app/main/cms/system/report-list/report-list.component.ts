@@ -8,6 +8,9 @@ import { AppLayoutService } from '../../../../layout/applayout/applayout.service
 import { BasePageListComponent, ICorePageListApiDefinition, IInOperator, ICoreTableColumnItem } from '../../../../libraries/base-page-list/base-page-list.component';
 import { DebounceDirective } from '../../../../libraries/debounce-event/debounce-event.directive';
 import { HttpRequestService } from '../../../../services/http.service';
+import { BasePageListService } from '../../../../libraries/base-page-list/base-page-list.service';
+import { HttpResponse } from '@angular/common/http';
+import { AlertService } from '../../../../libraries/alert/alert.service';
 
 @Component({
   selector: 'app-report-list',
@@ -60,7 +63,9 @@ export class ReportListComponent {
 
   constructor(
     private httpService: HttpRequestService,
-    public appLayoutService:AppLayoutService
+    public appLayoutService:AppLayoutService,
+    private basePageListService: BasePageListService,
+    private alertService: AlertService,
   ){
   }
   
@@ -135,6 +140,40 @@ export class ReportListComponent {
           }
         })
       );
+
+
+      this.subscriptions.push(
+        this.basePageListService.exportExcel(api.EXPORT_REPORT_EXCEL, param).subscribe((x: HttpResponse<Blob>) => {
+          const body = x.body;
+          if (body?.type === 'application/octet-stream') {
+            const downloadUrl = URL.createObjectURL(body);
+            let binaryData = [];
+            binaryData.push(body);
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(
+              new Blob(binaryData, { type: "blob" }));
+            link.setAttribute('download', this.title[0]+'.xlsx');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(downloadUrl);
+          }
+          else {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const jsonBody = reader.result as string;
+              const data = JSON.parse(jsonBody);
+              if (data.statusCode == 200) {
+                this.alertService.success(data.messageCode);
+              }
+              else {
+                this.alertService.error(data.messageCode);
+              }
+            };
+            // reader.readAsText(x);
+          }
+        })
+      )
     }
     
   }
