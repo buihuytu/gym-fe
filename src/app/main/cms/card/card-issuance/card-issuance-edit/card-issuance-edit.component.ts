@@ -74,7 +74,7 @@ export class CardIssuanceEditComponent extends BaseEditComponent implements OnIn
       totalHourCard: [null],
       wardrobe: [null],
       lockerId: [null],
-      isHavePt: [null, [Validators.required]],
+      isHavePt: [null],
       perPtId: [null],
       isRealPrice: [null],
       cardPrice: [null],
