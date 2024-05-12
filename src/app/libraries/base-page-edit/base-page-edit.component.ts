@@ -188,7 +188,6 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
         }
         this.loading = false;
       })
-
     } else {
       this.httpService.makePostRequest('update', this.crud.u!, this.payLoad).subscribe((x) => {
         if (x.ok && x.status === 200) {
@@ -230,7 +229,6 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
         this.loading = false;
       })
     }
-    this.loading = false;
   }
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
