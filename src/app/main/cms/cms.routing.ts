@@ -17,4 +17,12 @@ export const CmsRoutes: Routes = [
         path: 'profile',
         loadChildren:() => import('./profile/profile.routes').then((m) => m.routes)
     },
+    {
+        path: 'report',
+        loadComponent:() => import('./system/report-list/report-list.component').then((m) => m.ReportListComponent)
+    },
+    {
+        path: "**",
+        loadComponent: () => import("../error/error-404/error-404.component").then(m => m.Error404Component)
+      },
 ];

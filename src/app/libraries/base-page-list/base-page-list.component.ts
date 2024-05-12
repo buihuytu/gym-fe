@@ -70,10 +70,14 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() left!: TemplateRef<any> | null;
   @Input() hideHeader!: boolean;
   @Input() isControl!: boolean;
+  @Input() isNotCustom: boolean = true;
   @Input() enableDoubleClick: boolean = true;
+
+  @Input() mainCustom!: TemplateRef<any> | null;
+
   @Output() selectedIdsChange = new EventEmitter();
   @Output() selectedDataChange = new EventEmitter();
-
+  @Output() buttonHeaderClick = new EventEmitter();
   filter$ = new BehaviorSubject<any>(null);
   inOperators$ = new BehaviorSubject<IInOperator[]>([]);
   subscriptions: Subscription[] = [];
@@ -146,7 +150,6 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     }
     this.visibleColumns = this.columns.filter((c: ICoreTableColumnItem) => !!!c.hidden)
     if (!!!this.visibleColumns.length && isDevMode() && this.columns.length) {
-      console.log('first')
     }
 
     if (typeof window !== "undefined") {
@@ -236,6 +239,7 @@ export class BasePageListComponent implements OnInit, AfterViewInit, OnChanges, 
     })
   }
   onHeaderButtonClick(e: EnumBaseButton) {
+    this.buttonHeaderClick.emit(e);
     switch (e) {
       case EnumBaseButton.CREATE:
         this.router.navigate(

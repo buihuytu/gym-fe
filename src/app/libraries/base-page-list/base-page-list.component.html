@@ -1,9 +1,9 @@
 <div class="card">
     @if(!hideHeader){
-        <div class="card-header">
-            <h4 class="card-title">{{!!!language ? title[0]:title[1]}}</h4>
-            <div>
-                <!-- <div [ngStyle]="{
+    <div class="card-header">
+        <h4 class="card-title">{{!!!language ? title[0]:title[1]}}</h4>
+        <div>
+            <!-- <div [ngStyle]="{
                     marginRight: 5+'px',
                 }" class="input-group search-area right d-lg-inline-flex d-none">
                     <input type="search" class="form-control" placeholder="Find something here...">
@@ -15,12 +15,12 @@
                         </span>
                     </div>
                 </div> -->
-                @for (button of showButtons; track $index) {
-                <div (click)="onHeaderButtonClick(button.code)" [appTooltip]='button.caption' class="btn btn-sm"><i
-                        [class]="button.iconClass"></i></div>
-                }
-            </div>
+            @for (button of showButtons; track $index) {
+            <div (click)="onHeaderButtonClick(button.code)" [appTooltip]='button.caption' class="btn btn-sm"><i
+                    [class]="button.iconClass"></i></div>
+            }
         </div>
+    </div>
     }
     <div class="row d-flex flex-nowrap">
         @if(!!left){
@@ -37,15 +37,15 @@
             </div>
         </div>
         }
-
+        @if(isNotCustom){
         <div [class]="!!left? 'col-xl-9':'col-xl-12'">
             <div class="card">
                 <div class="card-body">
                     <div>
                         <table [ngStyle]="{
-                             minHeight: (tableHeight -46) + 'px',
-                             maxHeight: (tableHeight -46) + 'px'
-                        }" id="base-table" class="table table-responsive"><!-- table-responsive-md -->
+                         minHeight: (tableHeight -46) + 'px',
+                         maxHeight: (tableHeight -46) + 'px'
+                    }" id="base-table" class="table table-responsive"><!-- table-responsive-md -->
                             <colgroup>
                                 <col>
                                 @for (col of visibleColumns; track col.field) {
@@ -69,11 +69,11 @@
                                     @if (!!!col.hidden) {
                                     <th class="table-title-name">
                                         <div [ngStyle]="{
-                                            width: !!col.width?col.width+'px' :'80px',
-                                            whiteSpace: 'nowrap',
-                                            overflow: 'hidden',
-                                            textOverflow: 'ellipsis'
-                                        }" [appTooltip]="!!!language ? col.caption[0] : col.caption[1]">
+                                        width: !!col.width?col.width+'px' :'80px',
+                                        whiteSpace: 'nowrap',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis'
+                                    }" [appTooltip]="!!!language ? col.caption[0] : col.caption[1]">
                                             {{!!!language ? col.caption[0] : col.caption[1]}}
                                         </div>
                                     </th>
@@ -97,32 +97,34 @@
                                                 [htmlFor]="'customCheckBox'+ row_index"></label>
                                         </div>
                                     </td>
-                                    
+
                                     <td *ngFor="let col of visibleColumns; let col_index = index">
                                         <div [appTooltip]="row[col.field]" [ngStyle]="{
-                                            width: !!col.width?col.width+'px' :'80px',
-                                            whiteSpace: 'nowrap',
-                                            overflow: 'hidden',
-                                            textOverflow: 'ellipsis'
-                                        }">
-                                        <!-- <div class="d-flex align-items-center"><img src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg" class="rounded-lg mr-2" width="24" alt=""></div> -->
+                                        width: !!col.width?col.width+'px' :'80px',
+                                        whiteSpace: 'nowrap',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis'
+                                    }">
+                                            <!-- <div class="d-flex align-items-center"><img src="https://d1hjkbq40fs2x4.cloudfront.net/2016-01-31/files/1045.jpg" class="rounded-lg mr-2" width="24" alt=""></div> -->
                                             @if (col.type == 'bool') {
-                                                <div [ngStyle]="{
-                                                    minHeight: '1.8rem',
-                                                }" class="custom-control custom-checkbox checkbox-success check-lg mr-3 d-flex">
-                                                    <input [checked]="row[col.field]" type="checkbox"  class="custom-control-input form-control" >
-                                                    <label class="custom-control-label" for="isGuestPass"></label>
-                                                </div>
+                                            <div [ngStyle]="{
+                                                minHeight: '1.8rem',
+                                            }"
+                                                class="custom-control custom-checkbox checkbox-success check-lg mr-3 d-flex">
+                                                <input [checked]="row[col.field]" type="checkbox"
+                                                    class="custom-control-input form-control">
+                                                <label class="custom-control-label" for="isGuestPass"></label>
+                                            </div>
                                             }
                                             @else if (col.type == 'date') {
-                                                {{row[col.field] |date:'dd/MM/yyyy'}}
+                                            {{row[col.field] |date:'dd/MM/yyyy'}}
                                             }
                                             @else if (col.type == 'currency') {
-                                                {{row[col.field] |currency:'VND'}}
+                                            {{row[col.field] |currency:'VND'}}
                                             }
                                             @else {
-                                                {{row[col.field]}} 
-                                            } 
+                                            {{row[col.field]}}
+                                            }
                                         </div>
                                     </td>
                                 </tr>
@@ -169,14 +171,23 @@
                             </nav>
 
                         </div>
-                    }
+                        }
                     </div>
                 </div>
             </div>
         </div>
+        }
+        @else{
+            <div [class]="!!left? 'col-xl-9':'col-xl-12'">
+                <div class="card">
+                    <ng-container [ngTemplateOutlet]="mainCustom"></ng-container>
+                </div>
+            </div>
+        }
+
     </div>
 </div>
 
 @if(!!loadingDelete) {
-    <pre-loader-full-screen ></pre-loader-full-screen>
+<pre-loader-full-screen></pre-loader-full-screen>
 }
