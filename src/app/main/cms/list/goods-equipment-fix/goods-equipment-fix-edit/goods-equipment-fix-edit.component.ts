@@ -7,6 +7,7 @@ import { BaseEditComponent } from '../../../../../libraries/base-edit/base-edit.
 import { Subscription } from 'rxjs';
 import { api } from '../../../../../constants/api/apiDefinitions';
 import { DialogService } from '../../../../../services/dialog.service';
+import { BaseEmployeeSearchComponent } from '../../../../../libraries/base-employee-search/base-employee-search.component';
 
 @Component({
   selector: 'app-goods-equipment-fix-edit',
@@ -16,7 +17,8 @@ import { DialogService } from '../../../../../services/dialog.service';
     FormsModule, 
     ReactiveFormsModule,
     BasePageEditComponent,
-    DropdownComponent
+    DropdownComponent,
+    BaseEmployeeSearchComponent,
   ],
   templateUrl: './goods-equipment-fix-edit.component.html',
   styleUrl: './goods-equipment-fix-edit.component.css'
@@ -28,8 +30,11 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
   crud!: ICorePageEditCRUD;
   subscriptions: Subscription[] = [];
 
-  getListEquipmentOptions$: any = api.GOODS_EQUIPMENT_FIX_GET_LIST;
-  
+  getListEquipmentOptions$: any;
+  getListEquipmentStatusOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_STATUS';
+  getListTypeEquipmentOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_TYPE';
+
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -37,6 +42,7 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
     super(dialogService);
     this.form = this.fb.group({
       id:[],
+      typeId: [null,[Validators.required]],
       equipmentId: [null,[Validators.required]],
       code: [null],
       startDate: [null,[Validators.required]],
@@ -53,6 +59,9 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
       u: api.GOODS_EQUIPMENT_FIX_UPDATE,
       d: api.GOODS_EQUIPMENT_FIX_DELETE_IDS,
     }
+
+    this.onFormCreated()
+
   }
 
   onDropdownSelected(event:any, e:string):void{
@@ -65,6 +74,14 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
   }
 
   ngOnInit(): void {
+  }
+
+  onFormCreated() {
+    this.subscriptions.push(
+      this.form.get('typeId')?.valueChanges.subscribe(x => {
+        this.getListEquipmentOptions$ = api.GOODS_EQUIPMENT_GET_LIST_BY_TYPE_ID + x;
+      })!,
+    )
   }
 
   ngAfterViewInit(): void {

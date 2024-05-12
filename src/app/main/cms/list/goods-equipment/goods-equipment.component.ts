@@ -162,12 +162,13 @@ export class GoodsEquipmentComponent implements BaseComponent {
   }
 
   onSelectedListTypeChanged(e:any) {
+    console.log("onSelectedCardCodeChanged", e);
     if(this.currentIdType == e.id) return;
     else{
       this.currentIdType = e.id;
       this.outerInOperators= [
         {
-          field: 'typeId',
+          field: 'equipmentType',
           values: e.id
         }
       ]

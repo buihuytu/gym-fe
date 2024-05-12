@@ -15,6 +15,20 @@
                 <div class="col-md-12">
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
+                            <label for="typeId" class="mb-2 title-control-edit required">Loại thiết bị</label>
+                            <div class="form-group">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" 
+                                              [getByIdOptions]="form.get('typeId')?.value" 
+                                              [apiGetOptions]="getListTypeEquipmentOptions$">
+                                </app-dropdown>
+                                @if (form.get('typeId')?.hasError('required') && !form.get('typeId')?.untouched) {
+                                <span class="input-error">
+                                    Bắt buộc chọn
+                                </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <label for="equipmentId" class="mb-2 title-control-edit required">Tên thiết bị</label>
                             <div class="form-group">
                                 <app-dropdown (valueChange)="onDropdownSelected($event, 'equipmentId')" 
@@ -31,10 +45,10 @@
                     </div>
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="code" class="mb-2 title-control-edit required">Mã</label>
+                            <label for="code" class="mb-2 title-control-edit required">Mã bảo trì</label>
                             <div class="form-group">
                                 <input formControlName="code" id="code" type="text" class="form-control input-default"
-                                    readonly placeholder="">
+                                    readonly placeholder="Mã thiết bị cần bảo trì/sửa chữa sẽ được tự phát sinh">
                             </div>
                         </div>
                     </div>
@@ -72,7 +86,7 @@
                             <div class="form-group">
                                 <app-dropdown (valueChange)="onDropdownSelected($event, 'resultId')" 
                                               [getByIdOptions]="form.get('resultId')?.value" 
-                                              [apiGetOptions]="getListEquipmentOptions$">
+                                              [apiGetOptions]="getListEquipmentStatusOptions$">
                                 </app-dropdown>
                                 @if (form.get('resultId')?.hasError('required') && !form.get('resultId')?.untouched) {
                                 <span class="input-error">
@@ -85,7 +99,7 @@
                             <label for="money" class="mb-2 title-control-edit">Chi phí</label>
                             <div class="form-group">
                                 <input formControlName="money" id="money" type="number" class="form-control input-default"
-                                    readonly placeholder="">
+                                    placeholder="">
                             </div>
                         </div>
                     </div>
@@ -101,10 +115,13 @@
                         <div class="col-md-6">
                             <label for="employeeId" class="mb-2 title-control-edit">Người giám sát</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'employeeId')" 
-                                              [getByIdOptions]="form.get('employeeId')?.value" 
-                                              [apiGetOptions]="getListEquipmentOptions$">
-                                </app-dropdown>
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'employeeId')"
+                                    [hiddenLeft]="true"
+                                    [constValue]="10040"
+                                    [getByIdOptions]="form.get('employeeId')?.value" 
+                                    [top]="-19" [isModalMode]="false"
+                                    [left]="-120">
+                                </base-employee-control>
                             </div>
                         </div>
                     </div>

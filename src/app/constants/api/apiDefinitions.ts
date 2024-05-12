@@ -117,6 +117,7 @@ export enum api{
     GOODS_EQUIPMENT_DELETE_IDS = '/api/GoodsEquipment/DeleteIds',
     GOODS_EQUIPMENT_GET_LIST = '/api/GoodsEquipment/GetList',
     GOODS_EQUIPMENT_GET_LIST_BY_TYPE_CODE = '/api/GoodsEquipment/GetListByTypeCode?typeCode=',
+    GOODS_EQUIPMENT_GET_LIST_BY_TYPE_ID = '/api/GoodsEquipment/GetListByTypeId?id=',
 
     // GOODS_EQUIPMENT_FIX
     GOODS_EQUIPMENT_FIX_QUERY_LIST = '/api/GoodsEquipmentFix/QueryList',

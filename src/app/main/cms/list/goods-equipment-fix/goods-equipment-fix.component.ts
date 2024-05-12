@@ -52,14 +52,14 @@ export class GoodsEquipmentFixComponent implements BaseComponent{
       width: 100
     },
     {
-      caption: ['Trạng thái', 'Status'],
-      field: 'status',
+      caption: ['Trạng thái sau bảo trì/sửa chữa', 'Status'],
+      field: 'result',
       type: 'text',
       align: 'left',
-      width: 250
+      width: 300
     },
     {
-      caption: ['Mã thiết bị', 'Code'],
+      caption: ['Mã bảo trì/sửa chữa', 'Code'],
       field: 'code',
       type: 'text',
       align: 'left',
@@ -67,59 +67,31 @@ export class GoodsEquipmentFixComponent implements BaseComponent{
     },
     {
       caption: ['Tên thiết bị', 'Name'],
-      field: 'name',
+      field: 'equipmentName',
       type: 'text',
       align: 'left',
       width: 250
     },
     {
       caption: ['Loại thiết bị', 'Equipment Type'],
-      field: 'equipmentTypeName',
+      field: 'typeName',
       type: 'text',
       align: 'left',
       width: 250
     },
     {
-      caption: ['Nhà sản xuất', 'Manufacturer'],
-      field: 'manufacturer',
+      caption: ['Ngày thực hiện', 'Start Date'],
+      field: 'startDate',
       type: 'text',
       align: 'left',
-      width: 400
+      width: 250
     },
     {
-      caption: ['Ngày mua', 'PurchaseDate'],
-      field: 'purchaseDate',
+      caption: ['Ngày hoàn thành', 'End Date'],
+      field: 'endDate',
       type: 'text',
       align: 'left',
-      width: 400
-    },
-    {
-      caption: ['Ngày hết bảo hành', 'Warranty Expiry Date'],
-      field: 'warrantyExpiryDate',
-      type: 'text',
-      align: 'left',
-      width: 400
-    },
-    {
-      caption: ['Giá tiền', 'Cost'],
-      field: 'cost',
-      type: 'text',
-      align: 'left',
-      width: 400
-    },
-    {
-      caption: ['Vị trí đặt', 'Address'],
-      field: 'address',
-      type: 'text',
-      align: 'left',
-      width: 400
-    },
-    {
-      caption: ['Người quản lý', 'Manager'],
-      field: 'managerName',
-      type: 'text',
-      align: 'left',
-      width: 400
+      width: 250
     },
     {
       caption: ['Ghi chú', 'Note'],
@@ -143,6 +115,7 @@ export class GoodsEquipmentFixComponent implements BaseComponent{
   }
 
   ngOnDestroy(): void {
+    this.subscriptions.forEach(x => x.unsubscribe());
   }
 
 }
