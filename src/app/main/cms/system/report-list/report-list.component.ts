@@ -121,8 +121,11 @@ export class ReportListComponent {
   }
   buttonHeaderClick(e:any){
     if(e === EnumBaseButton.PRINT){
-      if(!this.monthControl || this.dayValidControl){
-        return this.alertService.warn('Vui lòng chọn đủ tham số');
+      if(this.currentCodeType == 'PKG_BIRTH_DATE_IN_MONTH_REPORT' && !this.monthControl){
+        return this.alertService.warn('Vui lòng chọn đủ tham số')
+      }
+      if(this.currentCodeType == 'PKG_CARDS_ABOUT_TO_EXPIRE_REPORT' && !this.dayValidControl){
+        return this.alertService.warn('Vui lòng chọn đủ tham số')
       }
       this.loading = true;
       var param = {
