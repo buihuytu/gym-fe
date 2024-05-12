@@ -31,9 +31,10 @@ export class ReportListComponent {
     deleteIds:api.SYS_OTHER_LIST_DELETE_IDS,
     exportExcel:  api.SYS_OTHER_LIST_EXPORT_EXCEL
   };
-  title: string[] = ['Báo cáo', 'Report list'];
+  title: string[] = ['Danh sách báo cáo', 'List Report'];
   currentIdType!:any;
   currentCodeType!:any;
+  currentName!:any;
   otherListTypeOptions!:any[];
   otherListTypeOptionShow!:any[];
   searchType!:any;
@@ -87,8 +88,10 @@ export class ReportListComponent {
   }
 
   onSelectedListTypeChanged(e:any) {
+    console.log(e);
     if(this.currentIdType == e.id) return;
     else{
+      this.currentName = e.name;
       this.currentIdType = e.id;
       this.currentCodeType = e.code;
     }
@@ -113,6 +116,26 @@ export class ReportListComponent {
     if(e === EnumBaseButton.PRINT){
       console.log(this.monthControl);
       console.log(this.dayValidControl);
+
+      var param = {
+        code: this.currentCodeType,
+        name: this.currentName,
+        month: this.monthControl,
+        dayLeft: this.dayValidControl
+      }
+
+      this.subscriptions.push(
+        this.httpService.makePostRequest('',api.EXPORT_REPORT_EXCEL, param).subscribe(x => {
+          if (!!x.ok && x.status === 200) {
+            const body = x.body;
+            if (body.statusCode === 200) {
+              const data = body.innerBody;
+              console.log(data);
+            }
+          }
+        })
+      );
     }
+    
   }
 }

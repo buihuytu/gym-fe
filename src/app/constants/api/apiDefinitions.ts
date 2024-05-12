@@ -151,4 +151,8 @@ export enum api{
     CARD_ISSUANCE_UPDATE = '/api/CardIssuance/Update',
     CARD_ISSUANCE_DELETE_IDS = '/api/CardIssuance/DeleteIds',
     CARD_ISSUANCE_TOGGLE_ACTIVE = '/api/CardIssuance/ToggleActiveIds',
+
+
+    // REPORT
+    EXPORT_REPORT_EXCEL = '/api/Report/GetReport',
 }
