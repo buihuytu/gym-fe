@@ -31,7 +31,7 @@ export class ReportListComponent {
     deleteIds:api.SYS_OTHER_LIST_DELETE_IDS,
     exportExcel:  api.SYS_OTHER_LIST_EXPORT_EXCEL
   };
-  title: string[] = ['Tham số hệ thống', 'System parameter'];
+  title: string[] = ['Báo cáo', 'Report list'];
   currentIdType!:any;
   currentCodeType!:any;
   otherListTypeOptions!:any[];
