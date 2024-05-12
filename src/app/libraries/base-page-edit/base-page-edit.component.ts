@@ -176,6 +176,9 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
 
             this.alertService.success('Thêm mới thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
+          }else{
+            this.loading = false;
+            this.alertService.warn(body.messageCode);
           }
         } 
         else {
