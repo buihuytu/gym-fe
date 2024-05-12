@@ -11,6 +11,7 @@ import { HttpRequestService } from '../../../../services/http.service';
 import { BasePageListService } from '../../../../libraries/base-page-list/base-page-list.service';
 import { HttpResponse } from '@angular/common/http';
 import { AlertService } from '../../../../libraries/alert/alert.service';
+import { PreLoaderFullScreenComponent } from '../../../../layout/pre-loader-full-screen/pre-loader-full-screen.component';
 
 @Component({
   selector: 'app-report-list',
@@ -19,13 +20,14 @@ import { AlertService } from '../../../../libraries/alert/alert.service';
     CommonModule,
     BasePageListComponent,
     FormsModule,
-    DebounceDirective
+    DebounceDirective,
+    PreLoaderFullScreenComponent
   ],
   templateUrl: './report-list.component.html',
   styleUrl: './report-list.component.scss'
 })
 export class ReportListComponent {
-
+  loading: boolean = false;
   listSysOtherListType: any[]=[];
   subscriptions: Subscription[] = [];
 
@@ -119,29 +121,16 @@ export class ReportListComponent {
   }
   buttonHeaderClick(e:any){
     if(e === EnumBaseButton.PRINT){
-      console.log(this.monthControl);
-      console.log(this.dayValidControl);
-
+      if(!this.monthControl || this.dayValidControl){
+        return this.alertService.warn('Vui lòng chọn đủ tham số');
+      }
+      this.loading = true;
       var param = {
         code: this.currentCodeType,
         name: this.currentName,
         month: this.monthControl,
         dayLeft: this.dayValidControl
       }
-
-      this.subscriptions.push(
-        this.httpService.makePostRequest('',api.EXPORT_REPORT_EXCEL, param).subscribe(x => {
-          if (!!x.ok && x.status === 200) {
-            const body = x.body;
-            if (body.statusCode === 200) {
-              const data = body.innerBody;
-              console.log(data);
-            }
-          }
-        })
-      );
-
-
       this.subscriptions.push(
         this.basePageListService.exportExcel(api.EXPORT_REPORT_EXCEL, param).subscribe((x: HttpResponse<Blob>) => {
           const body = x.body;
@@ -172,6 +161,7 @@ export class ReportListComponent {
             };
             // reader.readAsText(x);
           }
+          this.loading = false;
         })
       )
     }
