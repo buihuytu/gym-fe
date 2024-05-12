@@ -218,6 +218,11 @@ export class BasePageEditComponent extends BaseEditComponent implements OnInit,A
             this.alertService.success('Cập nhật thành công');
             this.router.navigate(['../'], { relativeTo: this.route, state: { id: body.innerBody.id } });
           }
+          else {
+            this.loading = false;
+            this.alertService.error(x.message);
+            this.onNotOk200Response(x);
+          }
         } 
         else {
           this.onNotOk200Response(x);
