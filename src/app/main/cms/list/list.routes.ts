@@ -31,6 +31,10 @@ export const routes: Routes = [
     loadChildren:() => import('./goods-equipment-fix/goods-equipment-fix.routes').then((m) => m.routes)
   },
   {
+    path: "goods-discount-voucher",
+    loadChildren:() => import('./goods-discount-voucher/goods-discount-voucher.routes').then((m) => m.routes)
+  },
+  {
     path: "locker",
     loadChildren:() => import('./gym-locker/gym-locker.routes').then((m) => m.routes)
   },

@@ -23,8 +23,8 @@ import { DebounceDirective } from '../../../../libraries/debounce-event/debounce
 export class GoodsListComponent implements BaseComponent {
   subscriptions: Subscription[] = [];
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.GYM_PACKAGE_QUERY_LIST,
-    deleteIds:api.GYM_PACKAGE_DELETE_IDS
+    queryListRelativePath: api.GOODS_LIST_QUERY_LIST,
+    deleteIds:api.GOODS_LIST_DELETE_IDS
   };
   title: string[] = ['Quản lý hàng hóa', 'Goods List'];
   currentIdType!:any;
@@ -48,49 +48,91 @@ export class GoodsListComponent implements BaseComponent {
     },
     {
       caption: ['Trạng thái', 'Status'],
-      field: 'status',
+      field: 'statusName',
       type: 'text',
       align: 'left',
       width: 250
     },
     {
-      caption: ['Mã gói', 'Code'],
+      caption: ['Mã sản phẩm', 'Product Code'],
       field: 'code',
       type: 'text',
       align: 'left',
       width: 250
     },
     {
-      caption: ['Giá', 'Money'],
-      field: 'money',
+      caption: ['Tên sản phẩm', 'Product Name'],
+      field: 'name',
       type: 'text',
       align: 'left',
       width: 250
     },
     {
-      caption: ['Thời hạn', 'Period'],
-      field: 'period',
+      caption: ['Loại sản phẩm', 'Product Type'],
+      field: 'productTypeName',
+      type: 'text',
+      align: 'left',
+      width: 250
+    },
+    {
+      caption: ['Nhà cung cấp', 'Supplier'],
+      field: 'supplier',
+      type: 'text',
+      align: 'left',
+      width: 250
+    },
+    {
+      caption: ['Giá nhập', 'Import Price'],
+      field: 'importPrice',
+      type: 'text',
+      align: 'left',
+      width: 250
+    },
+    {
+      caption: ['Giá bán', 'Price'],
+      field: 'price',
+      type: 'text',
+      align: 'left',
+      width: 250
+    },
+    {
+      caption: ['Số lượng tồn kho', 'Quantity'],
+      field: 'quantity',
       type: 'text',
       align: 'left',
       width: 400
     },
     {
-      caption: ['Ca tập', 'Shift'],
-      field: 'shiftName',
+      caption: ['Đơn vị', 'Measure'],
+      field: 'measureName',
       type: 'text',
       align: 'left',
       width: 400
     },
     {
-      caption: ['Gói tập riêng', 'Private Package'],
-      field: 'isPrivate',
+      caption: ['Ngày nhập kho', 'Receiving Date'],
+      field: 'receivingDate',
       type: 'text',
       align: 'left',
       width: 400
     },
     {
-      caption: ['Mô tả', 'Description'],
-      field: 'description',
+      caption: ['Ngày hết hạn', 'Expire Date'],
+      field: 'expireDate',
+      type: 'text',
+      align: 'left',
+      width: 400
+    },
+    {
+      caption: ['Ghi chú', 'Note'],
+      field: 'note',
+      type: 'text',
+      align: 'left',
+      width: 400
+    },
+    {
+      caption: ['Người quản lý', 'ManagerName'],
+      field: 'managerName',
       type: 'text',
       align: 'left',
       width: 400
