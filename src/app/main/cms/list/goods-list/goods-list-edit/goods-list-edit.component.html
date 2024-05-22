@@ -1,7 +1,13 @@
 <div class="app-per-customer-edit-container">
-    <app-base-page-edit [width]="1000!" [class.modal-mode-container]="modalMode" [crud]="crud" [isModalMode]="modalMode"
-        [main]="main" [title]="title" [formGroup]="form"
-        (onInitialValueStringReady)="onFormReinit($event)"></app-base-page-edit>
+    <app-base-page-edit 
+        [width]="1000!" 
+        [class.modal-mode-container]="modalMode" 
+        [crud]="crud" 
+        [isModalMode]="modalMode"
+        [main]="main" 
+        [title]="title" [formGroup]="form"
+        (onInitialValueStringReady)="onFormReinit($event)"
+    ></app-base-page-edit>
     <ng-template #main>
         <form [formGroup]="form">
             <div class="row w-100">
@@ -22,50 +28,25 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="code" class="mb-2 title-control-edit required">Mã khách hàng</label>
+                                <label for="code" class="mb-2 title-control-edit">{{formLabel.code}}</label>
                                 <div class="form-group">
                                     <input formControlName="code" id="code" type="text"
-                                        class="form-control input-default ">
-                                    @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc chọn
-                                    </span>
-                                    }
+                                        class="form-control input-default" placeholder="Mã thiết bị sẽ được tự phát sinh" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <!-- <div class="mb-3">
-                                <label for="typeId" class="mb-2 title-control-edit required">Nhóm tham số</label>
-                                <div class="form-group">
-                                    <div>
-                                        <app-dropdown (valueChange)="onDropdownSelected($event, 'typeId')" 
-                                                      [getByIdOptions]="form.get('typeId')?.value" 
-                                                      [apiGetOptions]="getListTypeOptions$">
-                                        </app-dropdown>
-                                    </div>
-                                </div>
-                                @if (form.get('typeId')?.hasError('required') && !form.get('typeId')?.untouched) {
-                                <span class="input-error">
-                                    Bắt buộc chọn
-                                </span>
-                                }
-                            </div> -->
                             <div class="mb-3">
-                                <label for="customerClassId" class="mb-2 title-control-edit required">Nhóm khách
-                                    hàng</label>
+                                <label for="name" class="mb-2 title-control-edit required">{{formLabel.name}}</label>
                                 <div class="form-group">
-                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'customerClassId')"
-                                        [getByIdOptions]="form.get('customerClassId')?.value"
-                                        [apiGetOptions]="getCustomerOptions$">
-                                    </app-dropdown>
+                                    <input formControlName="name" id="name" type="text"
+                                        class="form-control input-default ">
+                                    @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc nhập
+                                    </span>
+                                    }
                                 </div>
-                                @if (form.get('customerClassId')?.hasError('required') &&
-                                !form.get('customerClassId')?.untouched) {
-                                <span class="input-error">
-                                    Bắt buộc chọn
-                                </span>
-                                }
                             </div>
                         </div>
                     </div>
@@ -73,44 +54,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="fullName" class="mb-2 title-control-edit required">Họ tên khách hàng</label>
+                                <label for="productTypeId" class="mb-2 title-control-edit required">{{formLabel.productTypeName}}</label>
                                 <div class="form-group">
-                                    <input formControlName="fullName" id="fullName" type="text"
-                                        class="form-control input-default">
-                                    @if (form.get('fullName')?.hasError('required') && !form.get('fullName')?.untouched)
-                                    {
-                                    <span class="input-error">
-                                        Bắt buộc chọn
-                                    </span>
-                                    }
+                                    <app-dropdown (valueChange)="onDropdownSelected($event, 'productTypeId')"
+                                        [getByIdOptions]="form.get('productTypeId')?.value"
+                                        [apiGetOptions]="productTypeOptions$">
+                                    </app-dropdown>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="birthDate" class="mb-2 title-control-edit required">Ngày sinh</label>
-                                <div class="form-group">
-                                    <input formControlName="birthDate" id="birthDate" type="date"
-                                        class="form-control input-default">
-                                    @if (form.get('birthDate')?.hasError('required') &&
-                                    !form.get('birthDate')?.untouched) {
-                                    <span class="input-error">
-                                        Bắt buộc chọn
-                                    </span>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="genderId" class="mb-2 title-control-edit required">Giới tính</label>
-                            <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'genderId')"
-                                    [getByIdOptions]="form.get('genderId')?.value" [apiGetOptions]="getGenderOptions$">
-                                </app-dropdown>
-                                @if (form.get('genderId')?.hasError('required') && !form.get('genderId')?.untouched) {
+                                @if (form.get('productTypeId')?.hasError('required') &&
+                                !form.get('productTypeId')?.untouched) {
                                 <span class="input-error">
                                     Bắt buộc chọn
                                 </span>
@@ -118,86 +70,162 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="address" class="mb-2 title-control-edit">Địa chỉ</label>
-                            <div class="form-group">
-                                <input formControlName="address" id="address" type="text"
-                                    class="form-control input-dèault">
+                            <div class="mb-3">
+                                <label for="supplier" class="mb-2 title-control-edit required">{{formLabel.supplier}}</label>
+                                <div class="form-group">
+                                    <input formControlName="supplier" id="supplier" type="text"
+                                        class="form-control input-default">
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-md-6">
-                            <label for="email" class="mb-2 title-control-edit">Email</label>
+                            <label for="price" class="mb-2 title-control-edit required">{{formLabel.price}}</label>
                             <div class="form-group">
-                                <input formControlName="email" id="email" type="text" class="form-control input-dèault">
+                                <input formControlName="price" id="price" type="number"
+                                        class="form-control input-default">
+                                    @if (form.get('price')?.hasError('required') &&
+                                    !form.get('price')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc nhập
+                                    </span>
+                                    }
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="nativeId" class="mb-2 title-control-edit">Tình thành</label>
+                            <div class="mb-3">
+                                <label for="importPrice" class="mb-2 title-control-edit required">{{formLabel.importPrice}}</label>
+                                <div class="form-group">
+                                    <input formControlName="importPrice" id="importPrice" type="number"
+                                        class="form-control input-default">
+                                    @if (form.get('importPrice')?.hasError('required') &&
+                                    !form.get('importPrice')?.untouched) {
+                                    <span class="input-error">
+                                        Bắt buộc nhập
+                                    </span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <label for="quantity" class="mb-2 title-control-edit">{{formLabel.quantity}}</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'nativeId')"
-                                    [getByIdOptions]="form.get('nativeId')?.value"
-                                    [apiGetOptions]="getNativeIdOptions$">
+                                <input formControlName="quantity" id="quantity" type="number"
+                                    class="form-control input-default">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="measureName" class="mb-2 title-control-edit">{{formLabel.measureName}}</label>
+                            <div class="form-group">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'measureId')"
+                                    [getByIdOptions]="form.get('measureId')?.value"
+                                    [apiGetOptions]="measureTypeOptions$">
                                 </app-dropdown>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row">
+                        
                         <div class="col-md-6">
-                            <label for="religionId" class="mb-2 title-control-edit">Tôn giáo</label>
+                            <label for="receivingDate" class="mb-2 title-control-edit">{{formLabel.receivingDate}}</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'religionId')"
-                                    [getByIdOptions]="form.get('religionId')?.value"
-                                    [apiGetOptions]="getReligionOptions$">
-                                </app-dropdown>
+                                <input formControlName="receivingDate" id="receivingDate" type="date" class="form-control input-default">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="bankId" class="mb-2 title-control-edit">Ngân hàng</label>
+                            <label for="expireDate" class="mb-2 title-control-edit">{{formLabel.expireDate}}</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankId')"
-                                    [getByIdOptions]="form.get('bankId')?.value" [apiGetOptions]="getBankOptions$">
-                                </app-dropdown>
+                                <input formControlName="expireDate" id="expireDate" type="date" class="form-control input-default">
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-md-6">
-                            <label for="bankBrach" class="mb-2 title-control-edit">Chi nhánh ngân hàng</label>
+                            <label for="batchNo" class="mb-2 title-control-edit">{{formLabel.batchNo}}</label>
                             <div class="form-group">
-                                <app-dropdown (valueChange)="onDropdownSelected($event, 'bankBrach')"
-                                    [getByIdOptions]="form.get('bankBrach')?.value"
-                                    [apiGetOptions]="getBankBranchOptions$">
+                                <input formControlName="batchNo" id="batchNo" type="text"
+                                    class="form-control input-default">
+                            </div>
+                        </div>
+                                                
+                        <div class="col-md-6">
+                            <label for="location" class="mb-2 title-control-edit">{{formLabel.location}}</label>
+                            <div class="form-group">
+                                <input formControlName="location" id="location" type="text" class="form-control input-default">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="source" class="mb-2 title-control-edit">{{formLabel.status}}</label>
+                            <div class="form-group">
+                                <app-dropdown (valueChange)="onDropdownSelected($event, 'status')"
+                                    [getByIdOptions]="form.get('status')?.value"
+                                    [apiGetOptions]="statusTypeOptions$">
                                 </app-dropdown>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="bankNo" class="mb-2 title-control-edit">Số tài khoản</label>
+                            <label for="managerName" class="mb-2 title-control-edit">{{formLabel.managerName}}</label>
                             <div class="form-group">
-                                <input formControlName="bankNo" id="bankNo" type="number"
+                                <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'managerId')"
+                                    [hiddenLeft]="true"
+                                    [constValue]="10040"
+                                    [getByIdOptions]="form.get('managerId')?.value" 
+                                    [top]="-35" [isModalMode]="true"
+                                    [left]="-130">
+                                </base-employee-control>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="note" class="mb-2 title-control-edit">{{formLabel.note}}</label>
+                            <div class="form-group">
+                                <input formControlName="note" id="note" type="text" class="form-control input-default">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="warrantyInfor" class="mb-2 title-control-edit">{{formLabel.warrantyInfor}}</label>
+                            <div class="form-group">
+                                <input formControlName="warrantyInfor" id="warrantyInfor" type="text" class="form-control input-default">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="description" class="mb-2 title-control-edit">{{formLabel.description}}</label>
+                            <div class="form-group">
+                                <input formControlName="description" id="description" type="text"
                                     class="form-control input-default">
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="phoneNumber" class="mb-2 title-control-edit">Số điện thoại</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="source" class="mb-2 title-control-edit">{{formLabel.source}}</label>
                             <div class="form-group">
-                                <input formControlName="phoneNumber" id="phoneNumber" type="number"
+                                <input formControlName="source" id="source" type="text"
                                     class="form-control input-default">
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <label for="" class="mb-2 title-control-edit">Ghi chú</label>
-                            <div class="form-group">
-                                <input formControlName="note" id="note" type="text" class="form-control input-default ">
-                            </div>
-                        </div>
                     </div>
+                    
                 </div>
                 <!-- </div> -->
             </div>
