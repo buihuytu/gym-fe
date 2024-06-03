@@ -155,4 +155,12 @@ export enum api{
 
     // REPORT
     EXPORT_REPORT_EXCEL = '/api/Report/GetReport',
+
+    // GOODS_DISCOUNT_VOUCHER
+    GOODS_DISCOUNT_VOUCHER_QUERY_LIST = '/api/GoodsDiscountVoucher/QueryList',
+    GOODS_DISCOUNT_VOUCHER_CREATE = '/api/GoodsDiscountVoucher/Create',
+    GOODS_DISCOUNT_VOUCHER_READ = '/api/GoodsDiscountVoucher/GetById?id=',
+    GOODS_DISCOUNT_VOUCHER_UPDATE = '/api/GoodsDiscountVoucher/Update',
+    GOODS_DISCOUNT_VOUCHER_DELETE_IDS = '/api/GoodsDiscountVoucher/DeleteIds',
+    GOODS_DISCOUNT_VOUCHER_GET_LIST = '/api/GoodsDiscountVoucher/GetList',
 }

@@ -17,7 +17,7 @@
         <a [routerLink]="['/home']" class="brand-logo">
             <img src="../../../assets/icon/default-logo.svg" alt="lg">
             <div class="brand-title">
-                <h3 style="margin: 0px; color: #eb8153;" class="svg-logo-path">Quản trị</h3>
+                <h3 style="font-size: 21px; margin: 0px; color: #eb8153;" class="svg-logo-path">{{!!!language ? "Quản trị": "Management"}}</h3>
             </div>
         </a>
 
@@ -49,7 +49,7 @@
                 <div class="image-bx">
                     <img [src]="avatarUrl||'../../../assets/images/blank-profile-picture-973460_1280.webp'">
                 </div>
-                <h5 class="name"><span class="font-w400">Xin chào</span> </h5>
+                <h5 class="name"><span class="font-w400">{{!!!language ? "Xin chào": "Hello"}}</span> </h5>
             </div>
             <app-navigator></app-navigator>
 

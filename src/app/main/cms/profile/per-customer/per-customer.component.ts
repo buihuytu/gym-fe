@@ -27,7 +27,7 @@ export class PerCustomerComponent {
     deleteIds:api.PER_CUSTOMER_DELETE_IDS,
     toggleActiveIds: api.PER_CUSTOMER_TOGGLE_ACTIVE
   };
-  title: string[] = ['Thông tin khách hàng', 'Informasion customer'];
+  title: string[] = ['Thông tin khách hàng', 'Customer Information'];
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];

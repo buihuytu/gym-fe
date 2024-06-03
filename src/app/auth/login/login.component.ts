@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   showPassword: boolean = false;
   model: LoginInterface = new LoginInterface();
-  
+  language!: boolean;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private alertService: AlertService,
   ) {
+
+    this.language = this.appConfigService.LANGUAGE;
 
     this.form = this.fb.group({
       username: this.fb.control('', [

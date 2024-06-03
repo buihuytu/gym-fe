@@ -30,8 +30,9 @@ import { baseUrl,language } from '../../app.config';
 })
 export class ApplayoutComponent implements OnInit {
   avatarUrl!: string;
-  constructor(public appConfig: AppConfigService ) {
-    
+  language!: boolean;
+  constructor(public appConfig: AppConfigService, ) {
+    this.language = this.appConfig.LANGUAGE;
   }
   ngOnInit(): void {
     this.appConfig.BASE_URL = baseUrl;

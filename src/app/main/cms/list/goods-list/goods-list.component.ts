@@ -7,6 +7,8 @@ import { EnumBaseButton } from '../../../../constants/headerButton/ButtonDefinit
 import { BaseComponent } from '../../../../libraries/base-component/base-component.component';
 import { BasePageListComponent, ICorePageListApiDefinition, IInOperator, ICoreTableColumnItem } from '../../../../libraries/base-page-list/base-page-list.component';
 import { DebounceDirective } from '../../../../libraries/debounce-event/debounce-event.directive';
+import { AppLayoutService } from '../../../../layout/applayout/applayout.service';
+import { HttpRequestService } from '../../../../services/http.service';
 
 @Component({
   selector: 'app-goods-list',
@@ -30,6 +32,10 @@ export class GoodsListComponent implements BaseComponent {
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];
+
+  // LIST LEFT
+  listGoodsTypeOptions!:any[];
+  listGoodsTypeOptionShow!:any[];
 
   showButtons: EnumBaseButton[] = [
     EnumBaseButton.CREATE, 
@@ -139,7 +145,53 @@ export class GoodsListComponent implements BaseComponent {
     },
   ]
   
+  constructor(
+    private httpService: HttpRequestService,
+    public appLayoutService:AppLayoutService
+  ){
+  }
+
+  getListGoodsTypes() {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'GOODS_LIST_TYPE').subscribe(x => {
+        if (!!x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            const data = body.innerBody;
+            this.listGoodsTypeOptions = data;
+            this.listGoodsTypeOptionShow = data;
+          }
+        }
+      })
+    );
+  }
+
+  onSearchListType(e:any){
+    if(this.searchType !== '' && this.searchType !== null){
+      this.listGoodsTypeOptionShow = this.listGoodsTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.listGoodsTypeOptionShow = this.listGoodsTypeOptions
+    }
+  }
+
+  onSelectedListTypeChanged(e:any) {
+    console.log("onSelectedCardCodeChanged", e);
+    if(this.currentIdType == e.id) return;
+    else{
+      this.currentIdType = e.id;
+      this.outerInOperators= [
+        {
+          field: 'productTypeId',
+          values: e.id
+        }
+      ]
+    }
+  }
+
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.getListGoodsTypes()
+    })
   }
   ngOnInit(): void {
   }

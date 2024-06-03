@@ -134,11 +134,11 @@
                         <div>
                             <nav class="row">
                                 <div class="dataTables_info col-6" id="example2_info" role="status" aria-live="polite">
-                                    Hiển thị từ
+                                    {{!!!language ? "Hiển thị":"Display"}}
                                     <select class="custom-select-pagination" [(ngModel)]="selectedSize"
                                         (ngModelChange)="onSizeChange($event)">
                                         <option *ngFor="let size of SizeChanger">{{size}}</option>
-                                    </select> /<span id="totalProduct">{{innerBodyCount$.value}}</span> kết quả
+                                    </select> /<span id="totalProduct">{{innerBodyCount$.value}}</span> {{!!!language ? "kết quả":"result"}}
                                 </div>
                                 <div class="col-6">
                                     <ul id="pagination" class="pagination pagination-circle"
