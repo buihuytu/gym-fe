@@ -38,4 +38,8 @@ export const routes: Routes = [
     path: "locker",
     loadChildren:() => import('./gym-locker/gym-locker.routes').then((m) => m.routes)
   },
+  {
+    path: "locker-status",
+    loadComponent:() => import('./locker-status/locker-status.component').then((m) => m.LockerStatusComponent)
+  },
 ];
