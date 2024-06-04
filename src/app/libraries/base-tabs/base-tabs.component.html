@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">{{!!!language ? title[0]:title[1]}}</h4>
+    </div>
+    <div class="card-body">
+        <!-- Nav tabs -->
+        <div class="default-tab">
+            <ul class="nav nav-tabs" role="tablist">
+                @for (item of headers; track $index) {
+                    <li class="nav-item">
+                        <a class="nav-link" [class.active]="$index == 0" data-toggle="tab" [href]="'#tab'+$index">{{item}}</a>
+                    </li>
+                }
+                <!-- <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#message">Message</a>
+                </li> -->
+            </ul>
+            <div class="tab-content">
+                @for (item of contents; track $index) {
+                    <div class="tab-pane fade show" [class.active]="$index == 0" [id]="'tab'+$index" role="tabpanel">
+                        <div class="pt-4">
+                            <ng-container [ngTemplateOutlet]="item"></ng-container>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
