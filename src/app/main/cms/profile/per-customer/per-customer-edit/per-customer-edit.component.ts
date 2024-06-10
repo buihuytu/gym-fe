@@ -50,6 +50,8 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
   getBankOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'BANK';
   geCusStatusOptions$:string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'CUS_STATUS';
 
+  formLabel: any = {};
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -79,6 +81,21 @@ export class PerCustomerEditComponent extends BaseEditComponent  implements OnIn
       u: api.PER_CUSTOMER_UPDATE,
       d: api.PER_CUSTOMER_DELETE_IDS,
     }
+
+    this.formLabel = {
+      code: !!this.language ? 'Mã khách hàng' : 'Customer Code',
+      customerType: !!this.language ? 'Nhóm khách hàng' : 'Customer Group Type',
+      name: !!this.language ? 'Họ tên khách hàng' : 'Customer Name',
+      gender: !!this.language ? 'Giới tính' : 'Gender',
+      dateOfBirth: !!this.language ? 'Ngày sinh' : 'Date of Birth',
+      idNo: !!this.language ? 'Số CMND/CCCD' : 'ID No',
+      phoneNumber: !!this.language ? 'Số điện thoại' : 'Phone Number',
+      email: !!this.language ? 'Email cá nhân' : 'Email',
+      address: !!this.language ? 'Địa chỉ' : 'Address',
+      note: !!this.language ? 'Ghi chú' : 'Note',
+      isGuestPass: !!this.language ? 'Là khách tập thử' : 'Is a test guest',
+      customerStatus: !!this.language ? 'Trạng thái khách hàng' : 'Customer Status'
+    };
   }
   
 

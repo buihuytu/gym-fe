@@ -17,10 +17,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="cardCode" class="mb-2 title-control-edit required">Mã thẻ</label>
+                                <label for="cardCode" class="mb-2 title-control-edit required">{{formLabel.code}}</label>
                                 <div class="form-group">
                                     <input formControlName="cardCode" id="cardCode" type="text"
                                         class="form-control input-default ">
+                                    @if (form.get('cardCode')?.hasError('required') &&
+                                        !form.get('cardCode')?.untouched) {
+                                        <span class="input-error">
+                                            {{ErrorMessage.required}}
+                                        </span>
+                                        }
                                 </div>
                             </div>
                         </div>

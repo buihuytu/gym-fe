@@ -18,7 +18,7 @@
                             <input formControlName="id" id="id" type="text" class="form-control input-default ">
                             @if (form.get('id')?.hasError('required') && !form.get('id')?.untouched) {
                             <span class="input-error">
-                                Bắt buộc chọn
+                                {{ErrorMessage.required}}
                             </span>
                             }
 
@@ -31,7 +31,7 @@
                                 <label for="code" class="mb-2 title-control-edit">{{formLabel.code}}</label>
                                 <div class="form-group">
                                     <input formControlName="code" id="code" type="text"
-                                        class="form-control input-default" placeholder="Mã thiết bị sẽ được tự phát sinh" readonly>
+                                        class="form-control input-default" placeholder="Product code will be auto-generated" readonly>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                         class="form-control input-default ">
                                     @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc nhập
+                                        {{ErrorMessage.required}}
                                     </span>
                                     }
                                 </div>
@@ -64,14 +64,14 @@
                                 @if (form.get('productTypeId')?.hasError('required') &&
                                 !form.get('productTypeId')?.untouched) {
                                 <span class="input-error">
-                                    Bắt buộc chọn
+                                    {{ErrorMessage.required}}
                                 </span>
                                 }
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="supplier" class="mb-2 title-control-edit required">{{formLabel.supplier}}</label>
+                                <label for="supplier" class="mb-2 title-control-edit">{{formLabel.supplier}}</label>
                                 <div class="form-group">
                                     <input formControlName="supplier" id="supplier" type="text"
                                         class="form-control input-default">
@@ -89,7 +89,7 @@
                                     @if (form.get('price')?.hasError('required') &&
                                     !form.get('price')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc nhập
+                                        {{ErrorMessage.required}}
                                     </span>
                                     }
                             </div>
@@ -103,7 +103,7 @@
                                     @if (form.get('importPrice')?.hasError('required') &&
                                     !form.get('importPrice')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc nhập
+                                        {{ErrorMessage.required}}
                                     </span>
                                     }
                                 </div>

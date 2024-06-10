@@ -28,7 +28,13 @@ export class CardCheckInComponent {
     toggleActiveIds: api.CARD_CHECK_IN_TOGGLE_ACTIVE
   };
   title: string[] = ['Thông tin check-in', 'Check-in information'];
-  currentIdType!:any;
+
+  subscriptions: Subscription[]=[];
+
+  cardCodeOptions!:any[];
+  cardCodeOptionShow!:any[];
+
+  currentCode!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];
   showButtons: EnumBaseButton[] = [
@@ -110,9 +116,49 @@ export class CardCheckInComponent {
     public appLayoutService:AppLayoutService
   ) {
   }
-  subscriptions: Subscription[]=[];
+
+  
+  getListCodeCards() {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('',api.CARD_CHECK_IN_GET_LIST_CARD_CODE).subscribe(x => {
+        if (!!x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            const data = body.innerBody;
+            this.cardCodeOptions = data;
+            this.cardCodeOptionShow = data;
+          }
+        }
+      })
+    );
+  }
+
+  onSearchCardCode(e:any){
+    if(this.searchType !== '' && this.searchType !== null){
+      this.cardCodeOptionShow = this.cardCodeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.cardCodeOptionShow = this.cardCodeOptions
+    }
+  }
+
+  onSelectedCardCodeChanged(e:any) {
+    console.log("onSelectedCardCodeChanged", e);
+    if(this.currentCode == e.code) return;
+    else{
+      this.currentCode = e.code;
+      this.outerInOperators= [
+        {
+          field: 'cardCode',
+          values: e.code
+        }
+      ]
+    }
+  }
+
   ngAfterViewInit(): void {
-    
+    setTimeout(() => {
+      this.getListCodeCards();
+    })
   }
   ngOnDestroy(): void {
   }

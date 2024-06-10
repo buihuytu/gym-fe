@@ -35,6 +35,10 @@ export class GoodsEquipmentFixComponent implements BaseComponent{
   searchType!:any;
   outerInOperators: IInOperator[] = [];
 
+  // LIST LEFT
+  listEquipmentTypeOptions!:any[];
+  listEquipmentTypeOptionShow!:any[];
+
   showButtons: EnumBaseButton[] = [
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 
@@ -108,7 +112,47 @@ export class GoodsEquipmentFixComponent implements BaseComponent{
   ){
   }
 
+  getListEquipmentTypes() {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_TYPE').subscribe(x => {
+        if (!!x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            const data = body.innerBody;
+            this.listEquipmentTypeOptions = data;
+            this.listEquipmentTypeOptionShow = data;
+          }
+        }
+      })
+    );
+  }
+
+  onSearchListType(e:any){
+    if(this.searchType !== '' && this.searchType !== null){
+      this.listEquipmentTypeOptionShow = this.listEquipmentTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.listEquipmentTypeOptionShow = this.listEquipmentTypeOptions
+    }
+  }
+
+  onSelectedListTypeChanged(e:any) {
+    console.log("onSelectedCardCodeChanged", e);
+    if(this.currentIdType == e.id) return;
+    else{
+      this.currentIdType = e.id;
+      this.outerInOperators= [
+        {
+          field: 'typeId',
+          values: e.id
+        }
+      ]
+    }
+  }
+
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.getListEquipmentTypes()
+    })
   }
 
   ngOnInit(): void {

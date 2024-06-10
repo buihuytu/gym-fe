@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="equipmentType" class="mb-2 title-control-edit required">Loại thiết bị</label>
+                            <label for="equipmentType" class="mb-2 title-control-edit required">{{formLabel.equipmentType}}</label>
                             <div class="form-group">
                                 <app-dropdown (valueChange)="onDropdownSelected($event, 'equipmentType')" 
                                               [getByIdOptions]="form.get('equipmentType')?.value" 
@@ -23,7 +23,7 @@
                                 </app-dropdown>
                                 @if (form.get('equipmentType')?.hasError('required') && !form.get('equipmentType')?.untouched) {
                                 <span class="input-error">
-                                    Bắt buộc chọn
+                                    {{ErrorMessage.required}}
                                 </span>
                                 }
                             </div>
@@ -31,19 +31,19 @@
                     </div>
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="code" class="mb-2 title-control-edit required">Mã thiết bị</label>
+                            <label for="code" class="mb-2 title-control-edit required">{{formLabel.code}}</label>
                             <div class="form-group">
-                                <input formControlName="code" id="code" type="text" class="form-control input-default" placeholder="Mã thiết bị sẽ được tự phát sinh" readonly>
+                                <input formControlName="code" id="code" type="text" class="form-control input-default" placeholder="Equipment code will be spontaneously arising" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="name" class="mb-2 title-control-edit required">Tên thiết bị</label>
+                            <label for="name" class="mb-2 title-control-edit required">{{formLabel.name}}</label>
                             <div class="form-group">
                                 <input formControlName="name" id="name" type="text" class="form-control input-default "
                                     placeholder="">
                                 @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
                                 <span class="input-error">
-                                    Bắt buộc chọn
+                                    {{ErrorMessage.required}}
                                 </span>
                                 }
 
@@ -52,7 +52,7 @@
                     </div>
                     <div class="row row-control justify-content-between">
                         <div class="col-md-12">
-                            <label for="manufacturer" class="mb-2 title-control-edit">Nhà sản xuất</label>
+                            <label for="manufacturer" class="mb-2 title-control-edit">{{formLabel.manufacturer}}</label>
                             <div class="form-group">
                                 <input formControlName="manufacturer" id="manufacturer" type="text" class="form-control input-default "
                                     placeholder="">
@@ -62,25 +62,25 @@
                    
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="purchaseDate" class="mb-2 title-control-edit required">Ngày mua</label>
+                            <label for="purchaseDate" class="mb-2 title-control-edit required">{{formLabel.purchaseDate}}</label>
                             <div class="form-group">
                                 <input formControlName="purchaseDate" id="purchaseDate" type="date"
                                     class="form-control input-default " placeholder="">
                                 @if (form.get('purchaseDate')?.hasError('required') && !form.get('purchaseDate')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc chọn
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="warrantyExpiryDate" class="mb-2 title-control-edit required">Ngày hết bảo hành</label>
+                            <label for="warrantyExpiryDate" class="mb-2 title-control-edit required">{{formLabel.warrantyExpiryDate}}</label>
                             <div class="form-group">
                                 <input formControlName="warrantyExpiryDate" id="warrantyExpiryDate" type="date" class="form-control input-default "
                                     placeholder="">
                                 @if (form.get('warrantyExpiryDate')?.hasError('required') && !form.get('warrantyExpiryDate')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc chọn
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                             </div>
@@ -89,7 +89,7 @@
 
                     <div class="row row-control justify-content-between">
                         <div class="col-md-6">
-                            <label for="managerId" class="mb-2 title-control-edit required">Người quản lý</label>
+                            <label for="managerId" class="mb-2 title-control-edit required">{{formLabel.manager}}</label>
                             <div class="form-group">
                                 <base-employee-control (selectedIdChange)="onDropdownSelected($event, 'managerId')"
                                     [hiddenLeft]="true"
@@ -100,13 +100,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label for="cost" class="mb-2 title-control-edit required">Giá tiền</label>
+                            <label for="cost" class="mb-2 title-control-edit required">{{formLabel.cost}}</label>
                             <div class="form-group">
                                 <input formControlName="cost" id="cost" type="number"
                                     class="form-control input-default " placeholder="">
                                 @if (form.get('cost')?.hasError('required') && !form.get('cost')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc chọn
+                                        {{ErrorMessage.required}}
                                     </span>
                                     }
                             </div>
@@ -115,7 +115,7 @@
 
                     <div class="row row-control justify-content-between">
                         <div class="col-md-12">
-                            <label for="address" class="mb-2 title-control-edit">Vị trí đặt</label>
+                            <label for="address" class="mb-2 title-control-edit">{{formLabel.address}}</label>
                             <div class="form-group">
                                 <input formControlName="address" id="address" type="text"
                                     class="form-control input-default " placeholder="">
@@ -124,7 +124,7 @@
                     </div>
                     <div class="row row-control justify-content-between">
                         <div class="col-md-12">
-                            <label for="note" class="mb-2 title-control-edit">Ghi chú</label>
+                            <label for="note" class="mb-2 title-control-edit">{{formLabel.note}}</label>
                             <div class="form-group">
                                 <input formControlName="note" id="note" type="text"
                                     class="form-control input-default " placeholder="">

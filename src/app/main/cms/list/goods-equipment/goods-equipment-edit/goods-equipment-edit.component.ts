@@ -32,6 +32,9 @@ export class GoodsEquipmentEditComponent extends BaseEditComponent implements On
   
   getListEquipmentTypeOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_TYPE';
 
+  formLabel: any = {};
+
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -57,6 +60,20 @@ export class GoodsEquipmentEditComponent extends BaseEditComponent implements On
       u: api.GOODS_EQUIPMENT_UPDATE,
       d: api.GOODS_EQUIPMENT_DELETE_IDS,
     }
+
+    this.formLabel = {
+      code: !!this.language ? 'Mã thiết bị' : 'Equipment Code',
+      equipmentType: !!this.language ? 'Loại thiết bị' : 'Equipment Type',
+      name: !!this.language ? 'Tên thiết bị' : 'Equipment Name',
+      manufacturer: !!this.language ? 'Nhà sản xuất' : 'Manufacturer',
+      purchaseDate: !!this.language ? 'Ngày mua' : 'Purchase Date',
+      warrantyExpiryDate: !!this.language ? 'Ngày hết bảo hành' : 'Warranty Expiry Date',
+      manager: !!this.language ? 'Người quản lý' : 'Manager',
+      cost: !!this.language ? 'Giá tiền' : 'Price',
+      address: !!this.language ? 'Vị trí đặt' : 'Placement location',
+      note: !!this.language ? 'Ghi chú' : 'Note',
+      
+    };
   }
 
   onDropdownSelected(event:any, e:string):void{

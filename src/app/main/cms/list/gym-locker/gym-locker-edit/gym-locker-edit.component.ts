@@ -29,6 +29,9 @@ export class GymLockerEditComponent extends BaseEditComponent implements OnInit 
   isMaintenance: boolean = true;
   getStaffGroupOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'LOCKER_STATUS';
   getGenderOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'GENDER';
+
+  formLabel: any = {};
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -50,6 +53,16 @@ export class GymLockerEditComponent extends BaseEditComponent implements OnInit 
       u: api.GOODS_LOCKER_UPDATE,
       d: api.GOODS_LOCKER_DELETE_IDS,
     }
+
+    this.formLabel = {
+      code: !!this.language ? 'Mã tủ' : 'Locker Code',
+      area: !!this.language ? 'Khu vực' : 'Area',
+      price: !!this.language ? 'Giá thuê 1 tiếng' : 'Price for one hour rental',
+      status: !!this.language ? 'Trạng thái' : 'Status',
+      maintenanceFromDate: !!this.language ? 'Bảo trì từ ngày' : 'Maintenance starting from date',
+      maintenanceToDate: !!this.language ? 'Bảo trì đến ngày' : 'Maintenance starting to date',
+      note: !!this.language ? 'Ghi chú' : 'Note',
+    };
   }
   ngOnInit() {
     this.onFormCreated();

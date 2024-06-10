@@ -35,7 +35,7 @@
                             <input formControlName="username" id="username" type="text" class="form-control input-default">
                                 @if (form.get('username')?.hasError('required') && !form.get('username')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc nhập
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                                
@@ -47,7 +47,7 @@
                             <input formControlName="fullname" id="fullname" type="text" class="form-control input-default ">
                                 @if (form.get('fullname')?.hasError('required') && !form.get('fullname')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc nhập
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                                
@@ -85,7 +85,7 @@
                             <input formControlName="password" id="password" type="text" class="form-control input-default">
                                 @if (form.get('password')?.hasError('required') && !form.get('password')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc nhập
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                                
@@ -97,7 +97,7 @@
                             <input formControlName="rePassword" id="rePassword" type="text" class="form-control input-default ">
                                 @if (form.get('rePassword')?.hasError('required') && !form.get('rePassword')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc nhập
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                                

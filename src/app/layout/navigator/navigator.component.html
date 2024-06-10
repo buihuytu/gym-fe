@@ -44,8 +44,8 @@
             <li *ngIf="data.includes('12')"><a [routerLink]="['/cms/list/gym-shift']">{{!!!language ? "Danh sách Ca tập": "List of Workout Session"}}</a></li>
             <!-- <li *ngIf="data.includes('13')"><a [routerLink]="['/cms/list/gym-package']">Danh sách Gói tập</a></li> -->
             <!-- <li *ngIf="data.includes('6')"><a href="">Danh sách Locker</a></li> -->
-            <li *ngIf="data.includes('13')"><a [routerLink]="['/cms/list/locker']">Danh sách tủ</a></li>
-            <li *ngIf="data.includes('13')"><a [routerLink]="['/cms/list/locker-status']">Trạng thái tủ</a></li>
+            <li *ngIf="data.includes('13')"><a [routerLink]="['/cms/list/locker']">{{!!!language ? "Danh sách tủ": "List of Locker"}}</a></li>
+            <li *ngIf="data.includes('13')"><a [routerLink]="['/cms/list/locker-status']">{{!!!language ? "Trạng thái tủ": "Locker Status"}}</a></li>
         </ul>
     </li>
     <li *ngIf="data.includes('17')">
@@ -57,7 +57,7 @@
             <li *ngIf="data.includes('18')"><a [routerLink]="['/cms/card/card-check-in']">{{!!!language ? "Check In bằng thẻ": "Check In by Card"}}</a></li>
             <!-- <li *ngIf="data.includes('19')"><a [routerLink]="['/cms/list/card-check-in']">Danh sách thẻ Check in</a> -->
             <!-- </li> -->
-            <li *ngIf="data.includes('19')"><a [routerLink]="['/cms/card/card-issuance']">{{!!!language ? "Cấp thẻ": "Create Card"}}</a></li>
+            <li *ngIf="data.includes('19')"><a [routerLink]="['/cms/card/card-issuance']">{{!!!language ? "Cấp thẻ": "Card Issuance"}}</a></li>
             <!-- <li *ngIf="data.includes('6')"><a href="">Tình trạng Locker</a></li> -->
             <!-- <li *ngIf="data.includes('6')"><a href="">Thuê tủ</a></li> -->
             <li *ngIf="data.includes('20')"><a [routerLink]="['/cms/card/card-info']">{{!!!language ? "Danh sách thẻ": "List of Card"}}</a></li>
