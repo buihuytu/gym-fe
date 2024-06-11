@@ -1,126 +1,88 @@
+<base-tabs [contents]="[man,woman]" [title]="title" [headers]="['Male','Female']" (onChangeTab)="onChangeTab($event)"></base-tabs>
 
-
-   <base-tabs [contents]="[man,woman]" [title]="title" [headers]="['Male','Female']"></base-tabs>
-
-   <ng-template #man>
-    <div #container class="app-explain-work-container">
-        <div class="row no-padding no-margin">
-          <div class="col-md-12 no-padding" #calendarContainer>
-            <input type="checkbox" id="month-dropdown-opened" [(ngModel)]="monthPickerActive" />
-            <input type="checkbox" id="year-dropdown-opened" [(ngModel)]="yearPickerActive" />
-            <div class="scroll-container">
-              <div class="calendar-body-container"> 
-                <div #calendarBody class="calendar-body fade-in">
-                  <ul *ngFor="let week of data$.value">
-                    <li (click)="clickExplanation(item, $event)" *ngFor="let item of week.items; let i = index">
-                      <div class="d-flex-v d-flex-between" 
-                        [class.out-of-month]="!!!item.currentMonth"
-                        [class.loc-empty]="item.status=='E'"
-                        [class.loc-used]="item.status=='U'"
-                        [class.loc-maintenance]="item.status=='M'"
-                        >
-                        <div class="date">{{ item.codeLoc.toUpperCase() }}</div>
-                        <div class="text-info"></div>
-                        <div class="status-info w-100 d-flex-start">
-                          <div class="late-status" *ngIf="item.manualCode === 'L'" >
-                            <div *ngIf="!!item.currentMonth" class="info"></div>
-                          </div>
-                          <div class="late-status" *ngIf="item.manualCode === 'X'">
-                            <div *ngIf="!!item.currentMonth" class="success"></div>
-                          </div>
-                          <div class="late-status" *ngIf="item.manualCode === 'T'">
-                            <div *ngIf="!!item.currentMonth" class="error"></div>
-                          </div>
-                          <div class="late-status" *ngIf="item.manualCode === 'P'">
-                            <div *ngIf="!!item.currentMonth" class="warning"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    
-            <div class="d-flex legends">
-              <div class="d-flex align-items-center">
-                <div class="h mb-3 me-1 mr-2"></div>
-                <p class="content">{{ work }} Empty</p>
-              </div>
-              <div class="d-flex align-items-center">
-                <div class="c mb-3 me-1 mr-2"></div>
-                <p class="content">{{ onLeave }}Used</p>
-              </div>
-              <div class="d-flex align-items-center">
-                <div class="a mb-3 me-1 mr-2"></div>
-                <p class="content">{{ missingAtendance }} Maintenance</p>
-              </div>
+<ng-template #man>
+  <div #container class="app-explain-work-container">
+    <div class="row no-padding no-margin">
+      <div class="col-md-12 no-padding" #calendarContainer>
+        <input type="checkbox" id="month-dropdown-opened" [(ngModel)]="monthPickerActive" />
+        <input type="checkbox" id="year-dropdown-opened" [(ngModel)]="yearPickerActive" />
+        <div class="scroll-container">
+          <div class="calendar-body-container">
+            <div #calendarBody class="calendar-body fade-in">
+              <ul *ngFor="let week of data$.value">
+                <li *ngFor="let item of week.items; let i = index">
+                  <div class="d-flex-v d-flex-between" [class.loc-empty]="item.status=='E'"
+                    [class.loc-used]="item.status=='U'" [class.loc-maintenance]="item.status=='M'">
+                    <div class="date">{{ item.codeLoc.toUpperCase() }}</div>
+                    <div class="text-info"></div>
+                    <div class="status-info w-100 d-flex-start">
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </div>
-      
-   </ng-template>
 
-   <ng-template #woman>
-    <div #container class="app-explain-work-container">
-        <div class="row no-padding no-margin">
-          <div class="col-md-12 no-padding" #calendarContainer>
-            <input type="checkbox" id="month-dropdown-opened" [(ngModel)]="monthPickerActive" />
-            <input type="checkbox" id="year-dropdown-opened" [(ngModel)]="yearPickerActive" />
-            <div class="scroll-container">
-              <div class="calendar-body-container">
-                <div #calendarBody class="calendar-body fade-in">
-                  <ul *ngFor="let week of data$.value">
-                    <li (click)="clickExplanation(item, $event)" *ngFor="let item of week.items; let i = index" [class.t7]="i === 5" [class.cn]="i === 6">
-                      <div class="d-flex-v d-flex-between" [class.out-of-month]="!!!item.currentMonth">
-                        <div class="date">{{ item.codeLoc }}</div>
-                        <div class="text-info"></div>
-                        <div class="status-info w-100 d-flex-start">
-                          <div class="late-status" *ngIf="item.manualCode === 'L'" >
-                            <div *ngIf="!!item.currentMonth" class="info"></div>
-                          </div>
-                          <div class="late-status" *ngIf="item.manualCode === 'X'">
-                            <div *ngIf="!!item.currentMonth" class="success"></div>
-                          </div>
-                          <div class="late-status" *ngIf="item.manualCode === 'T'">
-                            <div *ngIf="!!item.currentMonth" class="error"></div>
-                          </div>
-                          <div class="late-status" *ngIf="item.manualCode === 'P'">
-                            <div *ngIf="!!item.currentMonth" class="warning"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    
-            <div class="d-flex flex-wrap mt-3 align-items-start">
-              <div class="col-md-4">
-                <div class="me-4 d-flex align-items-center">
-                  <div class="h mb-3 me-1"></div>
-                  <p class="content">{{ work }} dfsdf</p>
-                </div>
-                <div class="d-flex align-items-center">
-                  <div class="c mb-3 me-1"></div>
-                  <p class="content">{{ onLeave }}</p>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="me-4 d-flex align-items-center">
-                  <div class="a mb-3 me-1"></div>
-                  <p class="content">{{ missingAtendance }}</p>
-                </div>
-                <div class="d-flex align-items-center">
-                  <div class="d mb-3 me-1"></div>
-                  <p class="content">{{ holiday }}</p>
-                </div>
-              </div>
-            </div>
+        <div class="d-flex legends">
+          <div class="d-flex align-items-center">
+            <div class="h mb-3 me-1 mr-2"></div>
+            <p class="content">Empty</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="c mb-3 me-1 mr-2"></div>
+            <p class="content">Used</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="a mb-3 me-1 mr-2"></div>
+            <p class="content">Maintenance</p>
           </div>
         </div>
       </div>
-      
-   </ng-template>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #woman>
+  <div #container class="app-explain-work-container">
+    <div class="row no-padding no-margin">
+      <div class="col-md-12 no-padding" #calendarContainer>
+        <input type="checkbox" id="month-dropdown-opened" [(ngModel)]="monthPickerActive" />
+        <input type="checkbox" id="year-dropdown-opened" [(ngModel)]="yearPickerActive" />
+        <div class="scroll-container">
+          <div class="calendar-body-container">
+            <div #calendarBody class="calendar-body fade-in">
+              <ul *ngFor="let week of data$.value">
+                <li *ngFor="let item of week.items; let i = index">
+                  <div class="d-flex-v d-flex-between" [class.loc-empty]="item.status=='E'"
+                    [class.loc-used]="item.status=='U'" [class.loc-maintenance]="item.status=='M'">
+                    <div class="date">{{ item.codeLoc.toUpperCase() }}</div>
+                    <div class="text-info"></div>
+                    <div class="status-info w-100 d-flex-start">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex legends">
+          <div class="d-flex align-items-center">
+            <div class="h mb-3 me-1 mr-2"></div>
+            <p class="content">Empty</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="c mb-3 me-1 mr-2"></div>
+            <p class="content">Used</p>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="a mb-3 me-1 mr-2"></div>
+            <p class="content">Maintenance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
