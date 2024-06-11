@@ -33,6 +33,7 @@ export class GymShiftEditComponent extends BaseEditComponent implements OnInit, 
 
   getListTypeOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'USER_GROUP';
 
+  formLabel: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -43,7 +44,7 @@ export class GymShiftEditComponent extends BaseEditComponent implements OnInit, 
     this.form = this.fb.group({
       id:[],
       isActive:[],
-      code: [null,[Validators.required]],
+      code: [null],
       name: [null,[Validators.required]],
       totalDays: [],
       hoursStart: [null,[Validators.required]],
@@ -56,6 +57,16 @@ export class GymShiftEditComponent extends BaseEditComponent implements OnInit, 
       u: api.GYM_SHIFT_UPDATE,
       d: api.GYM_SHIFT_DELETE_IDS,
     }
+
+    this.formLabel = {
+      code: !!this.language ? 'Mã thiết bị' : 'Shift Code',
+      name: !!this.language ? 'Tên ca tập' : 'Shift Name',
+      totalDays: !!this.language ? 'Số ngày trong tuần' : 'Number of Days in a Week',
+      hoursStart: !!this.language ? 'Giờ bắt đầu' : 'Start Time',
+      hoursEnd: !!this.language ? 'Giờ kết thúc' : 'End Time',
+      note: !!this.language ? 'Ghi chú' : 'Note',
+      
+    };
   }
 
   ngOnInit(): void {

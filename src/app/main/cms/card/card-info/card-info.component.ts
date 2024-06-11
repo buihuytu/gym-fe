@@ -29,9 +29,16 @@ export class CardInfoComponent {
     toggleActiveIds: api.CARD_INFO_TOGGLE_ACTIVE
   };
   title: string[] = ['Thông tin thẻ', 'Card Information'];
-  currentIdType!:any;
   searchType!:any;
+  currentTypeId!:any;
+
   outerInOperators: IInOperator[] = [];
+
+  subscriptions: Subscription[]=[];
+
+  listCardTypeOptions!:any[];
+  listCardTypeOptionShow!:any[];
+
   showButtons: EnumBaseButton[] = [
     EnumBaseButton.CREATE, 
     EnumBaseButton.DELETE, 
@@ -123,9 +130,47 @@ export class CardInfoComponent {
     public appLayoutService:AppLayoutService
   ) {
   }
-  subscriptions: Subscription[]=[];
+
+  getListCodeCards() {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_GROUP  + 'TYPE_CARD').subscribe(x => {
+        if (!!x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            const data = body.innerBody;
+            this.listCardTypeOptions = data;
+            this.listCardTypeOptionShow = data;
+          }
+        }
+      })
+    );
+  }
+
+  onSearchCardType(e:any){
+    if(this.searchType !== '' && this.searchType !== null){
+      this.listCardTypeOptionShow = this.listCardTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.listCardTypeOptionShow = this.listCardTypeOptions
+    }
+  }
+
+  onSelectedCardTypeChanged(e:any) {
+    console.log("onSelectedCardTypeChanged", e);
+    if(this.currentTypeId == e.id) return;
+    else{
+      this.currentTypeId = e.id;
+      this.outerInOperators= [
+        {
+          field: 'cardTypeId',
+          values: e.id
+        }
+      ]
+    }
+  }
   ngAfterViewInit(): void {
-    
+    setTimeout(() => {
+      this.getListCodeCards();
+    })
   }
   ngOnDestroy(): void {
   }

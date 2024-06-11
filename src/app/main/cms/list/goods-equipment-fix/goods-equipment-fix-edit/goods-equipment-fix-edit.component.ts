@@ -34,6 +34,7 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
   getListEquipmentStatusOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_STATUS';
   getListTypeEquipmentOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_TYPE';
 
+  formLabel: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -59,9 +60,22 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
       u: api.GOODS_EQUIPMENT_FIX_UPDATE,
       d: api.GOODS_EQUIPMENT_FIX_DELETE_IDS,
     }
-
+    
+    this.formLabel = {
+      code: !!this.language ? 'Mã bảo trì' : 'Maintenance/repair Code',
+      equipmentType: !!this.language ? 'Loại thiết bị' : 'Equipment Type',
+      name: !!this.language ? 'Tên thiết bị' : 'Equipment Name',
+      executionDate: !!this.language ? 'Ngày thực hiện' : 'Execution date',
+      completionDate: !!this.language ? 'Ngày hoàn thành' : 'Completion date',
+      result: !!this.language ? 'Trạng thái sau bảo trì/sửa chữa' : 'Status after maintenance/repair',
+      cost: !!this.language ? 'Chi phí' : 'Cost',
+      expectedUseTime: !!this.language ? 'Thời gian dự kiến sử dụng lại' : 'Estimated time to reuse',
+      supervisor: !!this.language ? 'Người giám sát' : 'Supervisor',
+      note: !!this.language ? 'Ghi chú' : 'Note',
+      
+    };
+      
     this.onFormCreated()
-
   }
 
   onDropdownSelected(event:any, e:string):void{

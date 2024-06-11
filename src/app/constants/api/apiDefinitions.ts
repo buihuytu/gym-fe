@@ -88,6 +88,8 @@ export enum api{
     CARD_CHECK_IN_CHECK_IN = '/api/CardCheckIn/CheckIn',
     CARD_CHECK_IN_DELETE_IDS = '/api/CardCheckIn/DeleteIds',
     CARD_CHECK_IN_TOGGLE_ACTIVE = '/api/CardCheckIn/ToggleActiveIds',
+    CARD_CHECK_IN_GET_LIST_CARD_CODE = '/api/CardCheckIn/GetListCardCode',
+
 
     //CARD_INFO
     CARD_INFO_QUERY_LIST = '/api/CardInfo/QueryList',

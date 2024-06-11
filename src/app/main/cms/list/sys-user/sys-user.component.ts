@@ -26,6 +26,10 @@ export class SysUserComponent implements BaseComponent {
   
   subscriptions: Subscription[] = [];
 
+  currentUserGroupType!:any;
+  userGroupTypeOptions!:any[];
+  userGroupTypeOptionShow!:any[];
+
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.SYS_USER_QUERY_LIST,
     deleteIds:api.SYS_USER_DELETE_IDS
@@ -94,10 +98,50 @@ export class SysUserComponent implements BaseComponent {
   ){
   }
 
+  getListUserGroup() {
+    this.subscriptions.push(
+      this.httpService.makeGetRequest('',api.SYS_OTHER_LIST_GET_LIST_BY_GROUP  + 'USER_GROUP').subscribe(x => {
+        if (!!x.ok && x.status === 200) {
+          const body = x.body;
+          if (body.statusCode === 200) {
+            const data = body.innerBody;
+            this.userGroupTypeOptions = data;
+            this.userGroupTypeOptionShow = data;
+          }
+        }
+      })
+    );
+  }
+
+  onSearchUserGroupType(e:any){
+    if(this.searchType !== '' && this.searchType !== null){
+      this.userGroupTypeOptionShow = this.userGroupTypeOptions.filter(x=> x.name.toString().toUpperCase().includes(this.searchType.toString().toUpperCase()));
+    }else{
+      this.userGroupTypeOptionShow = this.userGroupTypeOptions
+    }
+  }
+
+  onSelectedUserGroupTypeChanged(e:any) {
+    console.log("onSelectedUserGroupTypeChanged", e);
+    if(this.currentUserGroupType == e.id) return;
+    else{
+      this.currentUserGroupType = e.id;
+      this.outerInOperators= [
+        {
+          field: 'groupId',
+          values: e.id
+        }
+      ]
+    }
+  }
+
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.getListUserGroup();
+    })
   }
   
   ngOnDestroy(): void {

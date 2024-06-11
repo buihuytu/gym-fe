@@ -23,7 +23,7 @@
                                 </app-dropdown>
                                 @if (form.get('equipmentType')?.hasError('required') && !form.get('equipmentType')?.untouched) {
                                 <span class="input-error">
-                                    Bắt buộc chọn
+                                    {{ErrorMessage.required}}
                                 </span>
                                 }
                             </div>
@@ -43,7 +43,7 @@
                                     placeholder="">
                                 @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
                                 <span class="input-error">
-                                    Bắt buộc chọn
+                                    {{ErrorMessage.required}}
                                 </span>
                                 }
 
@@ -68,7 +68,7 @@
                                     class="form-control input-default " placeholder="">
                                 @if (form.get('purchaseDate')?.hasError('required') && !form.get('purchaseDate')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc chọn
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                             </div>
@@ -80,7 +80,7 @@
                                     placeholder="">
                                 @if (form.get('warrantyExpiryDate')?.hasError('required') && !form.get('warrantyExpiryDate')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc chọn
+                                        {{ErrorMessage.required}}
                                     </span>
                                 }
                             </div>
@@ -106,7 +106,7 @@
                                     class="form-control input-default " placeholder="">
                                 @if (form.get('cost')?.hasError('required') && !form.get('cost')?.untouched) {
                                     <span class="input-error">
-                                        Bắt buộc chọn
+                                        {{ErrorMessage.required}}
                                     </span>
                                     }
                             </div>

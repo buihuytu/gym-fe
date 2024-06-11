@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BaseCustomerSearchComponent } from '../../../../../libraries/base-customer-search/base-customer-search.component';
 import { DropdownComponent } from '../../../../../libraries/base-dropdown/dropdown.component';
@@ -37,6 +37,8 @@ export class CardCheckInEditComponent extends BaseEditComponent implements OnIni
 
   apiParams: string[] = ["TYPE_CARD"];
 
+  formLabel: any = {};
+
   constructor(
     private fb: FormBuilder,
     public override dialogService: DialogService,
@@ -45,7 +47,7 @@ export class CardCheckInEditComponent extends BaseEditComponent implements OnIni
     super(dialogService);
     this.form = this.fb.group({
       id: [],
-      cardCode: [null],
+      cardCode: [null, [Validators.required]],
     })
     this.crud = {
       c: api.CARD_CHECK_IN_CHECK_IN,
@@ -53,6 +55,10 @@ export class CardCheckInEditComponent extends BaseEditComponent implements OnIni
       u: api.CARD_CHECK_IN_CHECK_IN,
       d: api.CARD_CHECK_IN_DELETE_IDS,
     }
+
+    this.formLabel = {
+      code: !!this.language ? 'Mã thẻ' : 'Card Code',
+    };
   }
 
   ngOnInit(): void {

@@ -28,6 +28,8 @@ export class HuEmployeeEditComponent extends BaseEditComponent implements OnInit
   modalMode: boolean = true;//for modal and style modal
   crud!: ICorePageEditCRUD;
 
+  formLabel: any = {};
+
   getStaffGroupOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'STAFF_GROUP';
   getGenderOptions$: string = api.SYS_OTHER_LIST_GET_LIST_BY_TYPE+'GENDER';
   constructor(
@@ -54,6 +56,19 @@ export class HuEmployeeEditComponent extends BaseEditComponent implements OnInit
       u: api.PER_EMPLOYEE_UPDATE,
       d: api.PER_EMPLOYEE_DELETE_IDS,
     }
+
+    this.formLabel = {
+      code: !!this.language ? 'Mã nhân viên' : 'Employee Code',
+      name: !!this.language ? 'Họ và tên' : 'Employee Name',
+      gender: !!this.language ? 'Giới tính' : 'Gender',
+      dateOfBirth: !!this.language ? 'Ngày sinh' : 'Date of Birth',
+      idNo: !!this.language ? 'Số CMND/CCCD' : 'ID No',
+      employeeType: !!this.language ? 'Nhóm nhân viên' : 'Group Type',
+      phoneNumber: !!this.language ? 'Số điện thoại' : 'Phone Number',
+      email: !!this.language ? 'Email cá nhân' : 'Email',
+      address: !!this.language ? 'Địa chỉ' : 'Address',
+      note: !!this.language ? 'Ghi chú' : 'Note',
+    };
   }
   ngOnInit() {
   }

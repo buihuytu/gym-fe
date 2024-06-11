@@ -20,31 +20,31 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="code" class="mb-2 font-weight-bold required">Mã ca</label>
+                        <label for="code" class="mb-2 font-weight-bold required">{{formLabel.code}}</label>
                         <div class="form-group">
-                            <input formControlName="code" id="code" type="text" class="form-control input-default">
+                            <input formControlName="code" id="code" type="text" class="form-control input-default" placeholder="Shift code will be spontaneously arising" readonly>
                             @if (form.get('code')?.hasError('required') && !form.get('code')?.untouched) {
                             <span class="input-error">
-                                Bắt buộc nhập
+                                {{ErrorMessage.required}}
                             </span>
                             }
 
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="mb-2 font-weight-bold required">Tên ca</label>
+                        <label for="name" class="mb-2 font-weight-bold required">{{formLabel.name}}</label>
                         <div class="form-group">
                             <input formControlName="name" id="name" type="text" class="form-control input-default">
                             @if (form.get('name')?.hasError('required') && !form.get('name')?.untouched) {
                             <span class="input-error">
-                                Bắt buộc nhập
+                                {{ErrorMessage.required}}
                             </span>
                             }
 
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="totalDays" class="mb-2 font-weight-bold">Số ngày trong tuần</label>
+                        <label for="totalDays" class="mb-2 font-weight-bold">{{formLabel.totalDays}}</label>
                         <div class="form-group">
                             <input formControlName="totalDays" id="totalDays" type="text"
                                 class="form-control input-default ">
@@ -53,33 +53,33 @@
                 </div>
                 <div class="col-md-12">
                     <div class="mb-3">
-                        <label for="hoursStart" class="mb-2 font-weight-bold required">Giờ bắt đầu</label>
+                        <label for="hoursStart" class="mb-2 font-weight-bold required">{{formLabel.hoursStart}}</label>
                         <div class="form-group">
                             <input formControlName="hoursStart" id="hoursStart" type="time"
                                 class="form-control input-default">
                             @if (form.get('hoursStart')?.hasError('required') && !form.get('hoursStart')?.untouched) {
                             <span class="input-error">
-                                Bắt buộc nhập
+                                {{ErrorMessage.required}}
                             </span>
                             }
 
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="hoursEnd" class="mb-2 font-weight-bold required">Giờ kết thúc</label>
+                        <label for="hoursEnd" class="mb-2 font-weight-bold required">{{formLabel.hoursEnd}}</label>
                         <div class="form-group">
                             <input formControlName="hoursEnd" id="hoursEnd" type="time"
                                 class="form-control input-default">
                             @if (form.get('hoursEnd')?.hasError('required') && !form.get('hoursEnd')?.untouched) {
                             <span class="input-error">
-                                Bắt buộc nhập
+                                {{ErrorMessage.required}}
                             </span>
                             }
 
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="note" class="mb-2 font-weight-bold">Ghi chú</label>
+                        <label for="note" class="mb-2 font-weight-bold">{{formLabel.note}}</label>
                         <div class="form-group">
                             <input formControlName="note" id="note" type="text" class="form-control input-default ">
                         </div>
