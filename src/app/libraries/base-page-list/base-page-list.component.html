@@ -122,6 +122,9 @@
                                             @else if (col.type == 'currency') {
                                             {{row[col.field] |currency:'VND'}}
                                             }
+                                            @else if (col.type == 'number') {
+                                            {{row[col.field] | number}}
+                                            }
                                             @else {
                                             {{row[col.field]}}
                                             }

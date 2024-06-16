@@ -33,7 +33,7 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
   getListEquipmentOptions$: any;
   getListEquipmentStatusOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_STATUS';
   getListTypeEquipmentOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_TYPE';
-
+  getListStatusDeviceOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'STATUS_DEVICE';
   formLabel: any = {};
 
   constructor(
@@ -46,10 +46,11 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
       typeId: [null,[Validators.required]],
       equipmentId: [null,[Validators.required]],
       code: [null],
+      statusId: [null,[Validators.required]],
       startDate: [null,[Validators.required]],
       endDate: [null,[Validators.required]],
-      resultId: [null,[Validators.required]],
-      money: [null,[Validators.required]],
+      resultId: [null],
+      money: [null],
       expectedUseTime: [], 
       employeeId: [],
       note: [],
@@ -63,6 +64,7 @@ export class GoodsEquipmentFixEditComponent extends BaseEditComponent implements
     
     this.formLabel = {
       code: !!this.language ? 'Mã bảo trì' : 'Maintenance/repair Code',
+      status: !!this.language ? 'Hành động' : 'Action',
       equipmentType: !!this.language ? 'Loại thiết bị' : 'Equipment Type',
       name: !!this.language ? 'Tên thiết bị' : 'Equipment Name',
       executionDate: !!this.language ? 'Ngày thực hiện' : 'Execution date',

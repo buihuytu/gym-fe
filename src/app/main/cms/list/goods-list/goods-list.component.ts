@@ -90,21 +90,21 @@ export class GoodsListComponent implements BaseComponent {
     {
       caption: ['Giá nhập', 'Import Price'],
       field: 'importPrice',
-      type: 'text',
+      type: 'number',
       align: 'left',
       width: 250
     },
     {
       caption: ['Giá bán', 'Price'],
       field: 'price',
-      type: 'text',
+      type: 'number',
       align: 'left',
       width: 250
     },
     {
       caption: ['Số lượng tồn kho', 'Quantity'],
       field: 'quantity',
-      type: 'text',
+      type: 'number',
       align: 'left',
       width: 400
     },

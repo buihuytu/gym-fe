@@ -14,7 +14,7 @@
         </a>
         <ul aria-expanded="false">
             <li *ngIf="data.includes('3')"><a [routerLink]="['/cms/profile/per-customer']">{{!!!language ? "Thông tin khách hàng": "Customer Information"}}</a></li>
-            <li *ngIf="data.includes('4')"><a [routerLink]="['/cms/profile/per-customer-transaction']"> {{!!!language ? "Giao dịch với khách hàng": "Transactions With Customers"}}</a></li>
+            <!-- <li *ngIf="data.includes('4')"><a [routerLink]="['/cms/profile/per-customer-transaction']"> {{!!!language ? "Giao dịch với khách hàng": "Transactions With Customers"}}</a></li> -->
             <li *ngIf="data.includes('5')"><a [routerLink]="['/cms/profile/per-customer-list-card']">{{!!!language ? "Danh sách các thẻ được cấp": "List Of Cards Issued"}}</a></li>
         </ul>
     </li>
