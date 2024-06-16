@@ -24,13 +24,15 @@ import { DialogService } from '../../../../../services/dialog.service';
   styleUrl: './goods-discount-voucher-edit.component.css'
 })
 export class GoodsDiscountVoucherEditComponent extends BaseEditComponent implements OnInit, AfterViewInit, OnDestroy {
-  title: string[] = ['Thông tin Phiếu giảm giá','Discount Voucher information'];
+  title: string[] = ['Thông tin Phiếu giảm giá','Discount Voucher Information'];
 
   modalMode: boolean = true;//for modal and style modal
   crud!: ICorePageEditCRUD;
   subscriptions: Subscription[] = [];
   
-  getListEquipmentTypeOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'EQUIPMENT_TYPE';
+  getListDiscountTypeIdOptions$: any = api.SYS_OTHER_LIST_GET_LIST_BY_CODE + 'DISCOUNT_TYPE';
+
+  formLabel: any = {};
   
   constructor(
     private fb: FormBuilder,
@@ -57,6 +59,19 @@ export class GoodsDiscountVoucherEditComponent extends BaseEditComponent impleme
       u: api.GOODS_DISCOUNT_VOUCHER_UPDATE,
       d: api.GOODS_DISCOUNT_VOUCHER_DELETE_IDS,
     }
+
+    this.formLabel = {
+      code: !!this.language ? 'Mã voucher' : 'Voucher Code',
+      voucherType: !!this.language ? 'Loại voucher' : 'Voucher Type',
+      name: !!this.language ? 'Tên voucher' : 'Voucher Name',
+      dicountValue: !!this.language ? 'Giá trị giảm giá' : 'Discount value',
+      startDate: !!this.language ? 'Ngày bắt đầu' : 'Start Date',
+      endDate: !!this.language ? 'Ngày kết thúc' : 'End Date',
+      issueQuantity: !!this.language ? 'Số lượng phát hành' : 'Issue quantity',
+      usedQuantity: !!this.language ? 'Số lượng đã sử dụng' : 'Quantity used',
+      note: !!this.language ? 'Ghi chú' : 'Note',
+      
+    };
   }
 
   onDropdownSelected(event:any, e:string):void{

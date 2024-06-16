@@ -25,11 +25,11 @@ import { HttpRequestService } from '../../../../services/http.service';
 export class GoodsDiscountVoucherComponent implements BaseComponent {
   subscriptions: Subscription[] = [];
   apiQueryList: ICorePageListApiDefinition = {
-    queryListRelativePath: api.GOODS_EQUIPMENT_QUERY_LIST,
-    deleteIds:api.GOODS_EQUIPMENT_DELETE_IDS
+    queryListRelativePath: api.GOODS_DISCOUNT_VOUCHER_QUERY_LIST,
+    deleteIds:api.GOODS_DISCOUNT_VOUCHER_DELETE_IDS
   }; 
 
-  title: string[] = ['Danh sách thiết bị', 'List Equipment'];
+  title: string[] = ['Danh sách phiếu giảm giá', 'List Discount Voucher'];
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];
@@ -162,7 +162,7 @@ export class GoodsDiscountVoucherComponent implements BaseComponent {
       this.currentIdType = e.id;
       this.outerInOperators= [
         {
-          field: 'equipmentType',
+          field: 'discountTypeId',
           values: e.id
         }
       ]
