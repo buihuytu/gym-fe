@@ -189,13 +189,13 @@ export class CardIssuanceComponent {
       align: 'left',
       width: 200
     },
-    {
-      caption: ['Tạo bởi', 'Create by'],
-      field: 'createdByUsername',
-      type: 'text',
-      align: 'left',
-      width: 200
-    },
+    // {
+    //   caption: ['Tạo bởi', 'Create by'],
+    //   field: 'createdByUsername',
+    //   type: 'text',
+    //   align: 'left',
+    //   width: 200
+    // },
   ]
   constructor(
     private httpService: HttpRequestService,

@@ -74,7 +74,7 @@ export class PerCustomerListCardComponent {
       field: 'idNo',
       type: 'text',
       align: 'center',
-      width: 120
+      width: 150
     },
     {
       caption: ['Tổng thời gian', 'TOTAL TIME'],
