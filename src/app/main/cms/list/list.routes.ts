@@ -42,4 +42,8 @@ export const routes: Routes = [
     path: "locker-status",
     loadComponent:() => import('./locker-status/locker-status.component').then((m) => m.LockerStatusComponent)
   },
+  {
+    path: "bills",
+    loadComponent:() => import('./order-bills/order-bills.component').then((m) => m.OrderBillsComponent)
+  },
 ];
