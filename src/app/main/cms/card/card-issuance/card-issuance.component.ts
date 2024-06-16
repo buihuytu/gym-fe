@@ -127,7 +127,7 @@ export class CardIssuanceComponent {
       width: 200
     },
     {
-      caption: ['Tổng giờ thêm', 'Total time'],
+      caption: ['Tổng giờ', 'Total time'],
       field: 'totalHourCard',
       type: 'text',
       align: 'left',

@@ -47,6 +47,7 @@ export enum api{
     PER_CUSTOMER_CREATE = '/api/PerCustomer/Create',
     PER_CUSTOMER_READ = '/api/PerCustomer/GetById?id=',
     PER_CUSTOMER_UPDATE = '/api/PerCustomer/Update',
+    PER_CUSTOMER_GET_ALL = '/api/PerCustomer/GetAllCustomer',
     PER_CUSTOMER_DELETE_IDS = '/api/PerCustomer/DeleteIds',
     PER_CUSTOMER_TOGGLE_ACTIVE = '/api/PerCustomer/ToggleActiveIds',
 
