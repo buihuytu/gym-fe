@@ -166,4 +166,7 @@ export enum api{
     GOODS_DISCOUNT_VOUCHER_UPDATE = '/api/GoodsDiscountVoucher/Update',
     GOODS_DISCOUNT_VOUCHER_DELETE_IDS = '/api/GoodsDiscountVoucher/DeleteIds',
     GOODS_DISCOUNT_VOUCHER_GET_LIST = '/api/GoodsDiscountVoucher/GetList',
+
+    // GOODS_DISCOUNT_VOUCHER
+    ORD_BILL_QUERY_LIST = '/api/OrdBill/QueryList',
 }
