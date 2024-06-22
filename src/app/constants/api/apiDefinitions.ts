@@ -169,4 +169,6 @@ export enum api{
 
     // GOODS_DISCOUNT_VOUCHER
     ORD_BILL_QUERY_LIST = '/api/OrdBill/QueryList',
+    ORD_BILL_READ = '/api/OrdBill/GetById?id=',
+    ORD_BILL_PRINT = '/api/OrdBill/PrintBills',
 }

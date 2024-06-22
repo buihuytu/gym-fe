@@ -8,6 +8,9 @@ import { api } from '../../../../constants/api/apiDefinitions';
 import { EnumBaseButton } from '../../../../constants/headerButton/ButtonDefinitions';
 import { BaseComponent } from '../../../../libraries/base-component/base-component.component';
 
+import { HttpResponse } from '@angular/common/http';
+import { HttpRequestService } from '../../../../services/http.service';
+
 @Component({
   selector: 'app-order-bills',
   standalone: true,
@@ -15,7 +18,7 @@ import { BaseComponent } from '../../../../libraries/base-component/base-compone
     CommonModule,
     BasePageListComponent,
     FormsModule,
-    DebounceDirective
+    DebounceDirective,
   ],
   templateUrl: './order-bills.component.html',
   styleUrl: './order-bills.component.scss'
@@ -25,15 +28,15 @@ export class OrderBillsComponent implements BaseComponent {
   apiQueryList: ICorePageListApiDefinition = {
     queryListRelativePath: api.ORD_BILL_QUERY_LIST,
   };
-  title: string[] = ['Danh mục ca tập', 'List Gym Shift'];
+  title: string[] = ['Hóa Đơn', 'Bill'];
   currentIdType!:any;
   searchType!:any;
   outerInOperators: IInOperator[] = [];
-
+  ids:number[] = [];
   showButtons: EnumBaseButton[] = [
-    EnumBaseButton.EXCEL,
-    EnumBaseButton.PDF,
-    EnumBaseButton.VIEW
+    EnumBaseButton.PRINT,
+    EnumBaseButton.VIEW,
+    
   ]
   columns: ICoreTableColumnItem[] = [
     {
@@ -122,13 +125,54 @@ export class OrderBillsComponent implements BaseComponent {
       width: 180
     },
   ]
-  
+  constructor(private httpService: HttpRequestService){
+
+  }
   ngAfterViewInit(): void {
   }
   ngOnInit(): void {
   }
   ngOnDestroy(): void {
     this.subscriptions.forEach(x => x.unsubscribe());
+  }
+  buttonHeaderClick(e: any): void {
+    if(e == EnumBaseButton.PRINT){
+      this.subscriptions.push(
+        this.httpService.makeDownloadRequest('print',api.ORD_BILL_PRINT,{ids:this.ids}).subscribe((x: HttpResponse<Blob>) => {
+          const body = x.body;
+          if (body?.type === 'application/pdf') {
+            const downloadUrl = URL.createObjectURL(body);
+            let binaryData = [];
+            binaryData.push(body);
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(
+              new Blob(binaryData, { type: "blob" }));
+            link.setAttribute('download', this.title[0]+'.pdf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(downloadUrl);
+          }
+          else {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const jsonBody = reader.result as string;
+              const data = JSON.parse(jsonBody);
+              if (data.statusCode == 200) {
+                //this.alertService.success(data.messageCode);
+              }
+              else {
+                //this.alertService.error(data.messageCode);
+              }
+            };
+            // reader.readAsText(x);
+          }
+        })
+      )
+    }
+  }
+  onSelected(e:any): void {
+    this.ids = e
   }
 
 }
