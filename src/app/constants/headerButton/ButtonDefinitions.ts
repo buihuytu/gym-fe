@@ -9,4 +9,5 @@ export enum EnumBaseButton{
     EXCEL = 'EXCEL',
     PDF = 'PDF',
     PRINT = 'PRINT',
+    VIEW = 'VIEW',
 }

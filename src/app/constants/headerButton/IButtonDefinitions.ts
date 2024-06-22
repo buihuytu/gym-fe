@@ -65,5 +65,12 @@ export const BASE_BUTTONS: ICoreButtonVNS[] = [
         styleClass: 'btn btn-primary',
         order: 8,
     },
+    {
+        code: EnumBaseButton.VIEW,
+        iconClass: 'flaticon-057-eye',
+        caption: 'Chi tiết',
+        styleClass: 'btn btn-primary',
+        order: 8,
+    },
 
 ]

@@ -88,7 +88,9 @@
                                 }
                                 <tr *ngFor="let row of data; let row_index=index" (click)="onClickLocal(row, $event)">
                                     <td>
-                                        <div class="custom-control custom-checkbox checkbox-success check-lg mr-3">
+                                        <div [ngStyle]="{
+                                            marginTop: '-0.5rem'
+                                        }" class="custom-control custom-checkbox checkbox-success check-lg mr-3">
                                             <input [(ngModel)]="checkingModel[row_index]"
                                                 (ngModelChange)="onCheckingNgModelChange()" type="checkbox"
                                                 class="custom-control-input" [id]="'customCheckBox'+ row_index"
